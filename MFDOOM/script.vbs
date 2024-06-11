@@ -2473,15 +2473,21 @@ End Sub
 '   TABLE INITS & MATHS
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Sub Table1_Init()
-		if UsePuPEvents Then PuPStart(cPuPPack):pupevent 500
+		LoadEM
+		Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay") 
+		if UsePuPEvents Then 
+			PuPStart(cPuPPack)
+			'pupevent 500
+		End If
+		LoadOrbital
 		
 		resetbackglass
 		'DMD_Init
 		flexdmd_Init
-		LoadEM
+'		LoadEM
 		Dim i
 		Randomize
-		Loadhs
+		'Loadhs
 		bAttractMode = False
 		bOnTheFirstBall = False
 		bBallInPlungerLane = False
@@ -2541,7 +2547,8 @@ End Sub
 		End With		
 		ChangeBall(ChooseBall)
 		StartSmokeAnimations
-		End Sub
+
+End Sub
 
 	StartSmokeAnimations
 	Sub StartSmokeAnimations
@@ -3297,9 +3304,11 @@ End Sub
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 7, ""FN"":11, ""VL"":99 }"
 	End Sub
 
+
+Sub LoadOrbital
 	If HasPuP Then
 
-	Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay") 
+		PuPlayer.LabelInit pBackglass
 
 '		PuPlayer.Init pBackglass,cGameName
 		PuPlayer.Init pMusic,cGameName
@@ -3328,6 +3337,7 @@ End Sub
 
 
 	End if
+End Sub
 
 	If toppervideo = 1 Then
 		RandomTopperVideoLoop
@@ -3350,7 +3360,7 @@ End Sub
 		'PuPlayer.SetBackground pTopper,1	
 	End Sub
 
-'	PuPlayer.LabelInit pBackglass
+	
 
 	'Setup Pages.  Note if you use fonts they must be in FONTS folder of the pupVideos\tablename\FONTS
 	'syntax - PuPlayer.LabelNew <screen# or pDMD>,<Labelname>,<fontName>,<size%>,<colour>,<rotation>,<xAlign>,<yAlign>,<xpos>,<ypos>,<PageNum>,<visible>
@@ -10525,7 +10535,6 @@ End Sub
 
 	Sub DMDintroloop
 
-
 		PuPlayer.LabelSet pBackglass,"modetitle","",1,"{'mt':2,'color':16777215, 'size': 0, 'xpos': 80.7, 'xalign': 1, 'ypos': 72.6, 'yalign': 0}"
 		introtime = 0	
 		introposition = introposition + 1
@@ -17227,7 +17236,7 @@ End Sub
 Sub PuPStart(cPuPPack)
     If PUPStatus=true then Exit Sub
     If UsePuPEvents=true then
-'        Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay")
+       ' Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay")
         If PuPlayer is Nothing Then
             UsePuPEvents=false
             PUPStatus=false
@@ -17240,5 +17249,6 @@ End Sub
 
 Sub PuPEvent(EventNum)
     if (UsePuPEvents=false or PUPStatus=false) then Exit Sub
+	Dbg "Event: " &EventNum
     PuPlayer.B2SData "E"&EventNum,1  'send event to Pup-Pack
 End Sub
