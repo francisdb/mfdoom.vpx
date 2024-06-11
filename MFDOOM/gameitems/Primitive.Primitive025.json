@@ -27,7 +27,7 @@
     "name": "Primitive025",
     "material": "Plastic with an image",
     "side_color": "#969696",
-    "is_visible": true,
+    "is_visible": false,
     "draw_textures_inside": true,
     "hit_event": true,
     "threshold": 2.0,

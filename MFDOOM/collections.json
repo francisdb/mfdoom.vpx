@@ -50,7 +50,8 @@
       "Ramp004",
       "Ramp011",
       "Wall057",
-      "Wall020"
+      "Wall020",
+      "RubberPostPrim004"
     ],
     "fire_events": true,
     "stop_single_events": false,
@@ -249,8 +250,6 @@
   {
     "name": "dSleeves",
     "items": [
-      "RubberPostPrim004",
-      "RubberPostPrim003",
       "RubberPostPrim033"
     ],
     "fire_events": true,
@@ -486,9 +485,7 @@
       "RubberPostPrim032",
       "RubberPostPrim031",
       "RubberPostPrim034",
-      "RubberPostPrim003",
       "RubberPostPrim033",
-      "RubberPostPrim004",
       "RubberPostPrim001",
       "RubberPostPrim007",
       "RubberPostPrim011",

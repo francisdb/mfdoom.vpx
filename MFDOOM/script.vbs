@@ -53,6 +53,7 @@
 ' 15 iaakki		 - Added insert color mod. Some new inserts reworked
 ' 16 iaakki	 	 - Inserts done
 ' 17 iaakki	 	 - Fixed the GI bug I made and adjusted some levels
+' 18 iaakki		 - Slings fixed, callout volume option added, something must be done for primitive25
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -90,6 +91,7 @@
 
 '----- Callouts Toggle On/Off -----
 	EnableCallouts = 1      			'0 = turn off, 1 = turn on
+	CalloutVol = 0.5					' Recommended values should be no greater than 1.
 
 '----- Choose Ball Options -----
 	Const ChooseBall = 0  				'Choose Ball Settings (select 0-4)
@@ -139,6 +141,7 @@ Const 	FlexDMD_Align_TopLeft = 0, _
 Dim FlexDMD
 Dim Frame
 Dim DMDMode
+: 
 
 Sub FlexDMD_init
 	Dim fso,curdir
@@ -1928,6 +1931,7 @@ End Sub
 	Dim toppervideo
 	Dim SmokeAnimation
 	Dim EnableCallouts
+	Dim CalloutVol 
 	Dim ballrolleron
 	Dim turnoffrules
 	Dim PlayersPlayingGame
@@ -3103,6 +3107,7 @@ End Sub
 			lutsetsounddir = 1
 			If LutToggleSound then
 				If lutsetsounddir = 1 And LutSet <> 15 Then
+					'todo sounds
 					Playsound "fx320", 0, 1, 0, 0.2, 0, 0, 0, 1
 				End If
 				If lutsetsounddir = -1 And LutSet <> 15 Then
@@ -3144,13 +3149,13 @@ End Sub
 	dim lutsetsounddir
 	sub LutSlctr_timer
 		If lutsetsounddir = 1 And LutSet <> 15 Then
-			Playsound "", 0, 1, 0, 0.2, 0, 0, 0, -1
+'			Playsound "", 0, 1, 0, 0.2, 0, 0, 0, -1
 		End If
 		If lutsetsounddir = -1 And LutSet <> 15 Then
-			Playsound "", 0, 1, 0, 0.2, 0, 0, 0, 1
+'			Playsound "", 0, 1, 0, 0.2, 0, 0, 0, 1
 		End If
 		If LutSet = 15 Then
-			Playsound "", 0, 1, 0, 0.2, 0, 0, 0, 1
+'			Playsound "", 0, 1, 0, 0.2, 0, 0, 0, 1
 		End If
 		LutSlctr.enabled = False
 	end sub
@@ -3298,7 +3303,7 @@ End Sub
 		TiltDecreaseTimer.Enabled = True
 		'If(Tilt> TiltSensitivity) AND(Tilt <15) Then
 		If(Tilt> TiltSensitivity) AND(Tilt <15) Then
-			PlaySound "tilt1"
+			PlaySoundCallOut "tilt1"
 			PuPlayer.playlistplayex pBackglass,"videos-tiltwarning","",100,29
 			DMDBigText "WARNING",100,1
 			'chilloutthemusic
@@ -3307,7 +3312,7 @@ End Sub
 		If Tilt> 15 AND LastSwitchHit <> "finaltilt" Then 
 			Tilted = True
 			LastSwitchHit = "finaltilt"
-			PlaySound "tiltshutdown"
+			PlaySoundCallOut "tiltshutdown"
 			PuPlayer.playlistplayex pBackglass,"videos-tilt","",100,30
 			DMDBigText "SOFA KING",120,0
 			vpmtimer.addtimer 1500, "TiltDelayedDMDBigText'"   
@@ -4098,7 +4103,7 @@ End Sub
 		hsCurrentDigit = 1
 
 		'pNote "YOU GOT","A HIGH SCORE!"
-		Playsound "fx278"
+		PlaySoundCallOut "fx278"
 		chilloutthemusic
 		
 		PuPlayer.SetLoop 2,1
@@ -4131,7 +4136,7 @@ End Sub
 		End If
 
 		If keycode = StartGameKey or keycode = PlungerKey Then
-			PlaySound "fx080"
+			PlaySoundCallOut "fx080"
 				If hsCurrentDigit = 3 Then
 					If hsletter = 0 Then
 						hsCurrentDigit = hsCurrentDigit -1
@@ -4588,11 +4593,11 @@ End Sub
 	End Sub
 	Sub BallSavedCallout
 		Select Case Int(Rnd * 5) + 1
-			Case 1:Playsound "fx376"
-			Case 2:Playsound "fx378"
-			Case 3:Playsound "fx380"
-			Case 4:Playsound "fx382"
-			Case 5:Playsound "fx383"
+			Case 1:PlaySoundCallOut "fx376"
+			Case 2:PlaySoundCallOut "fx378"
+			Case 3:PlaySoundCallOut "fx380"
+			Case 4:PlaySoundCallOut "fx382"
+			Case 5:PlaySoundCallOut "fx383"
 		End Select
 	End Sub
 	Sub DoubleScoringCallout
@@ -4672,19 +4677,29 @@ End Sub
 		LSupreme009.state = 0
 		LSupreme026.state = 0
 	End Sub
+
+
+' CalloutVol
+
+sub PlaySoundCallOut(clip)
+'PlaySound "EFX_gun_loading2",0,CalloutVol,0,0,1,1,1
+	debug.print clip & " at " & CalloutVol
+	PlaySound clip,0,CalloutVol,0,0,1,1,1
+end sub
+
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' RANDOM SOUND COLLECTION
 
 	Sub RandomSoundHighScores()
 		Select Case Int(Rnd * 8) + 1
-			Case 1:PlaySound "fx051"
-			Case 2:PlaySound "fx062"
-			Case 3:PlaySound "fx075"
-			Case 4:PlaySound "fx083"
-			Case 5:PlaySound "fx119"
-			Case 6:PlaySound "fx154"
-			Case 7:PlaySound "fx195"
-			Case 8:PlaySound "fx278"
+			Case 1:PlaySoundCallOut "fx051"
+			Case 2:PlaySoundCallOut "fx062"
+			Case 3:PlaySoundCallOut "fx075"
+			Case 4:PlaySoundCallOut "fx083"
+			Case 5:PlaySoundCallOut "fx119"
+			Case 6:PlaySoundCallOut "fx154"
+			Case 7:PlaySoundCallOut "fx195"
+			Case 8:PlaySoundCallOut "fx278"
 		End Select
 	End Sub
 
@@ -4693,8 +4708,8 @@ End Sub
 	Sub RandomSoundFairyDust()
 		SoundFairyDust = SoundFairyDust + 1
 		Select Case SoundFairyDust			
-			Case 1:PlaySound "fx200"
-			Case 2:PlaySound "fx202"
+			Case 1:PlaySoundCallOut "fx200"
+			Case 2:PlaySoundCallOut "fx202"
 				   SoundFairyDust = 0
 		End Select
 	End Sub
@@ -4703,9 +4718,9 @@ End Sub
 	Sub RandomSoundBong
 		SoundBong = SoundBong + 1
 		Select Case SoundBong			
-			Case 1:PlaySound "fx001"
-			Case 2:PlaySound "fx002"
-			Case 3:PlaySound "fx003"
+			Case 1:PlaySoundCallOut "fx001"
+			Case 2:PlaySoundCallOut "fx002"
+			Case 3:PlaySoundCallOut "fx003"
 				   SoundBong = 0
 		End Select
 		SmokeSpinBumper
@@ -4717,37 +4732,37 @@ End Sub
 
 	Sub RandomSoundGasToo()
 		Select Case Int(Rnd * 4) + 1				
-			Case 1:PlaySound "fx281"
-			Case 2:PlaySound "fx282"
-			Case 3:PlaySound "fx283"
-			Case 4:PlaySound "fx284"
+			Case 1:PlaySoundCallOut "fx281"
+			Case 2:PlaySoundCallOut "fx282"
+			Case 3:PlaySoundCallOut "fx283"
+			Case 4:PlaySoundCallOut "fx284"
 		End Select
 	End Sub
 
 	Sub RandomSoundFood()
 		Select Case Int(Rnd * 3) + 1
-			Case 1:PlaySound "fx034"
-			Case 2:PlaySound "fx036"
-			Case 3:PlaySound "fx069"
+			Case 1:PlaySoundCallOut "fx034"
+			Case 2:PlaySoundCallOut "fx036"
+			Case 3:PlaySoundCallOut "fx069"
 		End Select
 	End Sub
 
 	Sub RandomSoundFoods()
 		Select Case Int(Rnd * 3) + 1
-			Case 1:PlaySound "fx033"
-			Case 2:PlaySound "fx056"
-			Case 3:PlaySound "fx068"
+			Case 1:PlaySoundCallOut "fx033"
+			Case 2:PlaySoundCallOut "fx056"
+			Case 3:PlaySoundCallOut "fx068"
 		End Select
 	End Sub
 
 	Sub RandomSoundWind()
 		Select Case Int(Rnd * 1) + 1
-			Case 1:PlaySound "powerdownn"
+			Case 1:PlaySoundCallOut "powerdownn"
 		End Select
 	End Sub
 
 	Sub RandomSoundStartup()
-		PlaySound "fx067"
+		PlaySoundCallOut "fx067"
 		RotDisc1Step = 14 : 
 		Disc1Timer.Enabled = 1
 		RotDisc2Step = 14
@@ -4770,60 +4785,60 @@ End Sub
 
 	Sub RandomKickerRubberSound
 		Select Case Int(Rnd * 3) + 1
-			Case 1:PlaySound "fx_rubber_hit_1"
-			Case 2:PlaySound "fx_rubber_hit_2"
-			Case 3:PlaySound "fx_rubber_hit_3"
+			Case 1:PlaySoundCallOut "fx_rubber_hit_1"
+			Case 2:PlaySoundCallOut "fx_rubber_hit_2"
+			Case 3:PlaySoundCallOut "fx_rubber_hit_3"
 		End Select
 	End Sub
 
 	Sub RandomSoundRampEntry
 		Select Case Int(Rnd * 3) + 1
-			Case 1:PlaySound "ramp_hit1"
-			Case 2:PlaySound "ramp_hit2"
-			Case 3:PlaySound "ramp_hit3"
+			Case 1:PlaySoundCallOut "ramp_hit1"
+			Case 2:PlaySoundCallOut "ramp_hit2"
+			Case 3:PlaySoundCallOut "ramp_hit3"
 		End Select
 	End Sub
 
 	Sub RandomSoundRampHit
 		Select Case Int(Rnd * 4) + 1
-			Case 1:PlaySound "rampbump1"
-			Case 2:PlaySound "rampbump5"
-			Case 3:PlaySound "rampbump6"
-			Case 4:PlaySound "rampbump7"
+			Case 1:PlaySoundCallOut "rampbump1"
+			Case 2:PlaySoundCallOut "rampbump5"
+			Case 3:PlaySoundCallOut "rampbump6"
+			Case 4:PlaySoundCallOut "rampbump7"
 		End Select
 	End Sub
 
 	Sub RandomSoundRampExit
 		Select Case Int(Rnd * 6) + 1
-			Case 1:PlaySound "Ball_Drop_Playfield_1_Delayed"
-			Case 2:PlaySound "Ball_Drop_Playfield_2_Delayed"
-			Case 3:PlaySound "Ball_Drop_Playfield_3_Delayed"
-			Case 4:PlaySound "Ball_Drop_Playfield_4_Delayed"
-			Case 5:PlaySound "Ball_Drop_Playfield_5_Delayed"
-			Case 6:PlaySound "fx_ballrampdrop"
+			Case 1:PlaySoundCallOut "Ball_Drop_Playfield_1_Delayed"
+			Case 2:PlaySoundCallOut "Ball_Drop_Playfield_2_Delayed"
+			Case 3:PlaySoundCallOut "Ball_Drop_Playfield_3_Delayed"
+			Case 4:PlaySoundCallOut "Ball_Drop_Playfield_4_Delayed"
+			Case 5:PlaySoundCallOut "Ball_Drop_Playfield_5_Delayed"
+			Case 6:PlaySoundCallOut "fx_ballrampdrop"
 		End Select
 	End Sub
 
 	Sub RandomSoundWireRampRolling
 		Select Case Int(Rnd * 1) + 1
-			Case 1:PlaySound "fx_metalrolling"		
+			Case 1:PlaySoundCallOut "fx_metalrolling"		
 		End Select
 	End Sub
 
 	Sub RandomSoundSwitch()
 		Select Case Int(Rnd * 5) + 1
-			Case 1:PlaySound "fx228"
-			Case 2:PlaySound "fx240"
-			Case 3:PlaySound "fx241"
-			Case 4:PlaySound "fx252"
-			Case 5:PlaySound "fx253"
+			Case 1:PlaySoundCallOut "fx228"
+			Case 2:PlaySoundCallOut "fx240"
+			Case 3:PlaySoundCallOut "fx241"
+			Case 4:PlaySoundCallOut "fx252"
+			Case 5:PlaySoundCallOut "fx253"
 		End Select
 	End Sub
 
 	Sub RandomSoundBumper()
 		Select Case Int(Rnd * 2) + 1			
-			Case 1:PlaySound "fx236"
-			Case 2:PlaySound "fx237"
+			Case 1:PlaySoundCallOut "fx236"
+			Case 2:PlaySoundCallOut "fx237"
 		End Select
 	End Sub
 
@@ -4832,9 +4847,9 @@ End Sub
 	Sub RandomSoundPunch()
 		SoundPunch = SoundPunch + 1
 		Select Case SoundPunch			
-			Case 1:PlaySound "fx232"
-			Case 2:PlaySound "fx233"
-			Case 3:PlaySound "fx239"
+			Case 1:PlaySoundCallOut "fx232"
+			Case 2:PlaySoundCallOut "fx233"
+			Case 3:PlaySoundCallOut "fx239"
 				   SoundPunch = 0
 		End Select
 	End Sub
@@ -4849,19 +4864,19 @@ End Sub
 			Case 6: RandomSoundPunch
 			Case 7: RandomSoundPunch
 			Case 8: RandomSoundPunch
-			Case 9: PlaySound "fx359" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 9: PlaySoundCallOut "fx359" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
-			Case 10: PlaySound "fx360" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 10: PlaySoundCallOut "fx360" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
-			Case 11: PlaySound "fx361" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 11: PlaySoundCallOut "fx361" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
-			Case 12: PlaySound "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 12: PlaySoundCallOut "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
-			Case 13: PlaySound "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 13: PlaySoundCallOut "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
-			Case 14: PlaySound "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 14: PlaySoundCallOut "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
-			Case 15: PlaySound "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
+			Case 15: PlaySoundCallOut "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank10Shaker : ChangeColorMaskBig
 					If DMDFistLeft=0 Then DMDFistLeft=1
 		End Select
 	End Sub
@@ -4876,64 +4891,64 @@ End Sub
 			Case 6: RandomSoundPunch
 			Case 7: RandomSoundPunch
 			Case 8: RandomSoundPunch
-			Case 9: PlaySound "fx359" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 9: PlaySoundCallOut "fx359" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
-			Case 10: PlaySound "fx360" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 10: PlaySoundCallOut "fx360" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
-			Case 11: PlaySound "fx361" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 11: PlaySoundCallOut "fx361" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
-			Case 12: PlaySound "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 12: PlaySoundCallOut "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
-			Case 13: PlaySound "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 13: PlaySoundCallOut "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
-			Case 14: PlaySound "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 14: PlaySoundCallOut "fx362" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
-			Case 15: PlaySound "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
+			Case 15: PlaySoundCallOut "fx363" : Flash18 : dank6Shaker : dank7Shaker : dank11Shaker : ChangeColorMaskBig
 					If DMDFistRight=0 Then DMDFistRight=1
 		End Select
 	End Sub
 
 	Sub RandomSoundSideTargets()
 		Select Case Int(Rnd * 40) + 1			
-			Case 1:PlaySound "fx026"
-			Case 2:PlaySound "fx084"
-			Case 3:PlaySound "fx113"
-			Case 4:PlaySound "fx120"
-			Case 5:PlaySound "fx200"
-			Case 6:PlaySound "fx201"
-			Case 7:PlaySound "fx202"
-			Case 8:PlaySound "fx203"
-			Case 9:PlaySound "fx222"
-			Case 10:PlaySound "fx223"
-			Case 11:PlaySound "fx224"
-			Case 12:PlaySound "fx225"
-			Case 13:PlaySound "fx226"
-			Case 14:PlaySound "fx227"
-			Case 15:PlaySound "fx229"
-			Case 16:PlaySound "fx230"
-			Case 17:PlaySound "fx234"
-			Case 18:PlaySound "fx331"
-			Case 19:PlaySound "fx242"
-			Case 20:PlaySound "fx243"
-			Case 21:PlaySound "fx244"
-			Case 22:PlaySound "fx245"
-			Case 23:PlaySound "fx249"
-			Case 24:PlaySound "fx251"
-			Case 25:PlaySound "fx254"
-			Case 26:PlaySound "fx255"
-			Case 27:PlaySound "fx317"
-			Case 28:PlaySound "fx318"
-			Case 29:PlaySound "fx319"
-			Case 30:PlaySound "fx320"
-			Case 31:PlaySound "fx321"
-			Case 32:PlaySound "fx322"
-			Case 33:PlaySound "fx323"
-			Case 34:PlaySound "fx325"
-			Case 35:PlaySound "fx327"
-			Case 36:PlaySound "fx328"
-			Case 37:PlaySound "fx340"
-			Case 38:PlaySound "fx341"
-			Case 39:PlaySound "fx342"
+			Case 1:PlaySoundCallOut "fx026"
+			Case 2:PlaySoundCallOut "fx084"
+			Case 3:PlaySoundCallOut "fx113"
+			Case 4:PlaySoundCallOut "fx120"
+			Case 5:PlaySoundCallOut "fx200"
+			Case 6:PlaySoundCallOut "fx201"
+			Case 7:PlaySoundCallOut "fx202"
+			Case 8:PlaySoundCallOut "fx203"
+			Case 9:PlaySoundCallOut "fx222"
+			Case 10:PlaySoundCallOut "fx223"
+			Case 11:PlaySoundCallOut "fx224"
+			Case 12:PlaySoundCallOut "fx225"
+			Case 13:PlaySoundCallOut "fx226"
+			Case 14:PlaySoundCallOut "fx227"
+			Case 15:PlaySoundCallOut "fx229"
+			Case 16:PlaySoundCallOut "fx230"
+			Case 17:PlaySoundCallOut "fx234"
+			Case 18:PlaySoundCallOut "fx331"
+			Case 19:PlaySoundCallOut "fx242"
+			Case 20:PlaySoundCallOut "fx243"
+			Case 21:PlaySoundCallOut "fx244"
+			Case 22:PlaySoundCallOut "fx245"
+			Case 23:PlaySoundCallOut "fx249"
+			Case 24:PlaySoundCallOut "fx251"
+			Case 25:PlaySoundCallOut "fx254"
+			Case 26:PlaySoundCallOut "fx255"
+			Case 27:PlaySoundCallOut "fx317"
+			Case 28:PlaySoundCallOut "fx318"
+			Case 29:PlaySoundCallOut "fx319"
+			Case 30:PlaySoundCallOut "fx320"
+			Case 31:PlaySoundCallOut "fx321"
+			Case 32:PlaySoundCallOut "fx322"
+			Case 33:PlaySoundCallOut "fx323"
+			Case 34:PlaySoundCallOut "fx325"
+			Case 35:PlaySoundCallOut "fx327"
+			Case 36:PlaySoundCallOut "fx328"
+			Case 37:PlaySoundCallOut "fx340"
+			Case 38:PlaySoundCallOut "fx341"
+			Case 39:PlaySoundCallOut "fx342"
 			Case 40:RandomSoundGas
 		End Select
 	End Sub
@@ -4948,15 +4963,15 @@ End Sub
 	Sub RandomSoundPlungerShoot()
 		SoundPlungerShoot = SoundPlungerShoot + 1
 		Select Case SoundPlungerShoot			
-			Case 1:PlaySound "fx061"
-			Case 2:PlaySound "fx192"
-			Case 3:PlaySound "fx193"
-			Case 4:PlaySound "fx231"
-			Case 5:PlaySound "fx254"
-			Case 6:PlaySound "fx255"
-			Case 7:PlaySound "fx329"
-			Case 8:PlaySound "fx331"
-			Case 9:PlaySound "fx332"
+			Case 1:PlaySoundCallOut "fx061"
+			Case 2:PlaySoundCallOut "fx192"
+			Case 3:PlaySoundCallOut "fx193"
+			Case 4:PlaySoundCallOut "fx231"
+			Case 5:PlaySoundCallOut "fx254"
+			Case 6:PlaySoundCallOut "fx255"
+			Case 7:PlaySoundCallOut "fx329"
+			Case 8:PlaySoundCallOut "fx331"
+			Case 9:PlaySoundCallOut "fx332"
 				   SoundPlungerShoot = 0
 		End Select
 	End Sub
@@ -4966,44 +4981,44 @@ End Sub
 	Sub RandomSoundKickout()
 		SoundKickout = SoundKickout + 1
 		Select Case SoundKickout		
-			Case 1:PlaySound "fx135"
-			Case 2:PlaySound "fx043"
-			Case 3:PlaySound "fx047"
-			Case 4:PlaySound "fx058"
-			Case 5:PlaySound "fx062"
-			Case 6:PlaySound "fx063"
-			Case 7:PlaySound "fx066"
-			Case 8:PlaySound "fx034"
-			Case 9:PlaySound "fx080"
-			Case 10:PlaySound "fx105"
-			Case 11:PlaySound "fx118"
-			Case 12:PlaySound "fx129"
-			Case 13:PlaySound "fx132"
-			Case 14:PlaySound "fx287"
-			Case 15:PlaySound "fx145"
-			Case 16:PlaySound "fx147"
-			Case 17:PlaySound "fx154"
-			Case 18:PlaySound "fx157"
-			Case 19:PlaySound "fx041"
-			Case 20:PlaySound "fx287"
-			Case 21:PlaySound "fx195"
-			Case 22:PlaySound "fx196"
-			Case 23:PlaySound "fx197"
-			Case 24:PlaySound "fx201"
-			Case 25:PlaySound "fx202"
-			Case 26:PlaySound "fx222"
-			Case 27:PlaySound "fx225"
-			Case 28:PlaySound "fx227"
-			Case 29:PlaySound "fx230"
-			Case 30:PlaySound "fx226"
-			Case 31:PlaySound "fx254"
-			Case 32:PlaySound "fx255"
-			Case 33:PlaySound "fx319"
-			Case 34:PlaySound "fx320"
-			Case 35:PlaySound "fx321"
-			Case 36:PlaySound "fx322"
-			Case 37:PlaySound "fx325"
-			Case 38:PlaySound "fx327"
+			Case 1:PlaySoundCallOut "fx135"
+			Case 2:PlaySoundCallOut "fx043"
+			Case 3:PlaySoundCallOut "fx047"
+			Case 4:PlaySoundCallOut "fx058"
+			Case 5:PlaySoundCallOut "fx062"
+			Case 6:PlaySoundCallOut "fx063"
+			Case 7:PlaySoundCallOut "fx066"
+			Case 8:PlaySoundCallOut "fx034"
+			Case 9:PlaySoundCallOut "fx080"
+			Case 10:PlaySoundCallOut "fx105"
+			Case 11:PlaySoundCallOut "fx118"
+			Case 12:PlaySoundCallOut "fx129"
+			Case 13:PlaySoundCallOut "fx132"
+			Case 14:PlaySoundCallOut "fx287"
+			Case 15:PlaySoundCallOut "fx145"
+			Case 16:PlaySoundCallOut "fx147"
+			Case 17:PlaySoundCallOut "fx154"
+			Case 18:PlaySoundCallOut "fx157"
+			Case 19:PlaySoundCallOut "fx041"
+			Case 20:PlaySoundCallOut "fx287"
+			Case 21:PlaySoundCallOut "fx195"
+			Case 22:PlaySoundCallOut "fx196"
+			Case 23:PlaySoundCallOut "fx197"
+			Case 24:PlaySoundCallOut "fx201"
+			Case 25:PlaySoundCallOut "fx202"
+			Case 26:PlaySoundCallOut "fx222"
+			Case 27:PlaySoundCallOut "fx225"
+			Case 28:PlaySoundCallOut "fx227"
+			Case 29:PlaySoundCallOut "fx230"
+			Case 30:PlaySoundCallOut "fx226"
+			Case 31:PlaySoundCallOut "fx254"
+			Case 32:PlaySoundCallOut "fx255"
+			Case 33:PlaySoundCallOut "fx319"
+			Case 34:PlaySoundCallOut "fx320"
+			Case 35:PlaySoundCallOut "fx321"
+			Case 36:PlaySoundCallOut "fx322"
+			Case 37:PlaySoundCallOut "fx325"
+			Case 38:PlaySoundCallOut "fx327"
 				    SoundKickout = 0
 		End Select
 		RandomSmokeGif
@@ -5014,45 +5029,45 @@ End Sub
 	Sub RandomSoundOutlane()
 		SoundOutlane = SoundOutlane + 1
 		Select Case SoundOutlane			
-			Case 1:PlaySound "fx005"
-			Case 2:PlaySound "fx023"
-			Case 3:PlaySound "fx026"
-			Case 4:PlaySound "fx068"
-			Case 5:PlaySound "fx083"
-			Case 6:PlaySound "fx085"
-			Case 7:PlaySound "fx098"
-			Case 8:PlaySound "fx120"
-			Case 9:PlaySound "fx125"
-			Case 10:PlaySound "fx145"
-			Case 11:PlaySound "fx182"
-			Case 12:PlaySound "fx199"
-			Case 13:PlaySound "fx201"
-			Case 14:PlaySound "fx204"
-			Case 15:PlaySound "fx206"
-			Case 16:PlaySound "fx225"
-			Case 17:PlaySound "fx227"
-			Case 18:PlaySound "fx243"
-			Case 19:PlaySound "fx245"
-			Case 20:PlaySound "fx249"
-			Case 21:PlaySound "fx259"
-			Case 22:PlaySound "fx265"
-			Case 23:PlaySound "fx271"
-			Case 24:PlaySound "fx272"
-			Case 25:PlaySound "fx287"
-			Case 26:PlaySound "fx293"
-			Case 27:PlaySound "fx301"
-			Case 28:PlaySound "fx317"
-			Case 29:PlaySound "fx318"
-			Case 30:PlaySound "fx319"
-			Case 31:PlaySound "fx320"
-			Case 32:PlaySound "fx321"
-			Case 33:PlaySound "fx323"
-			Case 34:PlaySound "fx324"
-			Case 35:PlaySound "fx325"
-			Case 36:PlaySound "fx326"
-			Case 37:PlaySound "fx327"
-			Case 38:PlaySound "fx328"
-			Case 39:PlaySound "fx343"
+			Case 1:PlaySoundCallOut "fx005"
+			Case 2:PlaySoundCallOut "fx023"
+			Case 3:PlaySoundCallOut "fx026"
+			Case 4:PlaySoundCallOut "fx068"
+			Case 5:PlaySoundCallOut "fx083"
+			Case 6:PlaySoundCallOut "fx085"
+			Case 7:PlaySoundCallOut "fx098"
+			Case 8:PlaySoundCallOut "fx120"
+			Case 9:PlaySoundCallOut "fx125"
+			Case 10:PlaySoundCallOut "fx145"
+			Case 11:PlaySoundCallOut "fx182"
+			Case 12:PlaySoundCallOut "fx199"
+			Case 13:PlaySoundCallOut "fx201"
+			Case 14:PlaySoundCallOut "fx204"
+			Case 15:PlaySoundCallOut "fx206"
+			Case 16:PlaySoundCallOut "fx225"
+			Case 17:PlaySoundCallOut "fx227"
+			Case 18:PlaySoundCallOut "fx243"
+			Case 19:PlaySoundCallOut "fx245"
+			Case 20:PlaySoundCallOut "fx249"
+			Case 21:PlaySoundCallOut "fx259"
+			Case 22:PlaySoundCallOut "fx265"
+			Case 23:PlaySoundCallOut "fx271"
+			Case 24:PlaySoundCallOut "fx272"
+			Case 25:PlaySoundCallOut "fx287"
+			Case 26:PlaySoundCallOut "fx293"
+			Case 27:PlaySoundCallOut "fx301"
+			Case 28:PlaySoundCallOut "fx317"
+			Case 29:PlaySoundCallOut "fx318"
+			Case 30:PlaySoundCallOut "fx319"
+			Case 31:PlaySoundCallOut "fx320"
+			Case 32:PlaySoundCallOut "fx321"
+			Case 33:PlaySoundCallOut "fx323"
+			Case 34:PlaySoundCallOut "fx324"
+			Case 35:PlaySoundCallOut "fx325"
+			Case 36:PlaySoundCallOut "fx326"
+			Case 37:PlaySoundCallOut "fx327"
+			Case 38:PlaySoundCallOut "fx328"
+			Case 39:PlaySoundCallOut "fx343"
 				    SoundOutlane = 0
 		End Select
 	End Sub
@@ -5074,20 +5089,20 @@ End Sub
 	Sub RandomSoundDrainBottomLight()
 		SoundDrainBottomLight = SoundDrainBottomLight + 1
 		Select Case SoundDrainBottomLight		
-			Case 1:PlaySound "fx036"   
-			Case 2:PlaySound "fx045"
-			Case 3:PlaySound "fx051"
-			Case 4:PlaySound "fx053"
-			Case 5:PlaySound "fx054"
-			Case 6:PlaySound "fx065"
-			Case 7:PlaySound "fx068"
-			Case 8:PlaySound "fx074"
-			Case 9:PlaySound "fx083"
-			Case 10:PlaySound "fx098"
-			Case 11:PlaySound "fx139"
-			Case 12:PlaySound "fx146"
-			Case 13:PlaySound "fx160"
-			Case 14:PlaySound "fx162"			
+			Case 1:PlaySoundCallOut "fx036"   
+			Case 2:PlaySoundCallOut "fx045"
+			Case 3:PlaySoundCallOut "fx051"
+			Case 4:PlaySoundCallOut "fx053"
+			Case 5:PlaySoundCallOut "fx054"
+			Case 6:PlaySoundCallOut "fx065"
+			Case 7:PlaySoundCallOut "fx068"
+			Case 8:PlaySoundCallOut "fx074"
+			Case 9:PlaySoundCallOut "fx083"
+			Case 10:PlaySoundCallOut "fx098"
+			Case 11:PlaySoundCallOut "fx139"
+			Case 12:PlaySoundCallOut "fx146"
+			Case 13:PlaySoundCallOut "fx160"
+			Case 14:PlaySoundCallOut "fx162"			
 	                SoundDrainBottomLight = 0
 		End Select
 	End Sub
@@ -5097,92 +5112,92 @@ End Sub
 	Sub RandomSoundDrainBottomHeavy()
 		SoundDrainBottomHeavy = SoundDrainBottomHeavy + 1
 		Select Case SoundDrainBottomHeavy			
-			Case 1:PlaySound "fx008"
-			Case 2:PlaySound "fx014"
-			Case 3:PlaySound "fx022"
-			Case 4:PlaySound "fx033"
-			Case 5:PlaySound "fx250"
-			Case 6:PlaySound "fx035"
-			Case 7:PlaySound "fx040"
-			Case 8:PlaySound "fx044"
-			Case 9:PlaySound "fx238"
-			Case 10:PlaySound "fx289"
-			Case 11:PlaySound "fx056"
-			Case 12:PlaySound "fx286"
-			Case 13:PlaySound "fx071"
-			Case 14:PlaySound "fx213"
-			Case 15:PlaySound "fx072"
-			Case 16:PlaySound "fx082"
-			Case 17:PlaySound "fx106"
-			Case 18:PlaySound "fx117"
-			Case 19:PlaySound "fx196"
-			Case 20:PlaySound "fx127"
-			Case 21:PlaySound "fx130"
-			Case 22:PlaySound "fx163"
-			Case 23:PlaySound "fx195"
-			Case 24:PlaySound "fx166"
-			Case 25:PlaySound "fx167"
-			Case 26:PlaySound "fx168"
-			Case 27:PlaySound "fx182"
-			Case 28:PlaySound "fx216"
-			Case 29:PlaySound "fx256"
-			Case 30:PlaySound "fx264"
-			Case 31:PlaySound "fx267"
-			Case 32:PlaySound "fx164"
-			Case 33:PlaySound "fx274"
-			Case 34:PlaySound "fx276"
-			Case 35:PlaySound "fx277"
-			Case 36:PlaySound "fx116"
-			Case 37:PlaySound "fx278"
-			Case 38:PlaySound "fx286"
-			Case 39:PlaySound "fx292"
-			Case 40:PlaySound "fx316"
-			Case 41:PlaySound "fx350"
-			Case 42:PlaySound "fx353"
-			Case 43:PlaySound "fx355"
-			Case 44:PlaySound "fx377"
-			Case 45:PlaySound "fx379"
-			Case 46:PlaySound "fx384"
+			Case 1:PlaySoundCallOut "fx008"
+			Case 2:PlaySoundCallOut "fx014"
+			Case 3:PlaySoundCallOut "fx022"
+			Case 4:PlaySoundCallOut "fx033"
+			Case 5:PlaySoundCallOut "fx250"
+			Case 6:PlaySoundCallOut "fx035"
+			Case 7:PlaySoundCallOut "fx040"
+			Case 8:PlaySoundCallOut "fx044"
+			Case 9:PlaySoundCallOut "fx238"
+			Case 10:PlaySoundCallOut "fx289"
+			Case 11:PlaySoundCallOut "fx056"
+			Case 12:PlaySoundCallOut "fx286"
+			Case 13:PlaySoundCallOut "fx071"
+			Case 14:PlaySoundCallOut "fx213"
+			Case 15:PlaySoundCallOut "fx072"
+			Case 16:PlaySoundCallOut "fx082"
+			Case 17:PlaySoundCallOut "fx106"
+			Case 18:PlaySoundCallOut "fx117"
+			Case 19:PlaySoundCallOut "fx196"
+			Case 20:PlaySoundCallOut "fx127"
+			Case 21:PlaySoundCallOut "fx130"
+			Case 22:PlaySoundCallOut "fx163"
+			Case 23:PlaySoundCallOut "fx195"
+			Case 24:PlaySoundCallOut "fx166"
+			Case 25:PlaySoundCallOut "fx167"
+			Case 26:PlaySoundCallOut "fx168"
+			Case 27:PlaySoundCallOut "fx182"
+			Case 28:PlaySoundCallOut "fx216"
+			Case 29:PlaySoundCallOut "fx256"
+			Case 30:PlaySoundCallOut "fx264"
+			Case 31:PlaySoundCallOut "fx267"
+			Case 32:PlaySoundCallOut "fx164"
+			Case 33:PlaySoundCallOut "fx274"
+			Case 34:PlaySoundCallOut "fx276"
+			Case 35:PlaySoundCallOut "fx277"
+			Case 36:PlaySoundCallOut "fx116"
+			Case 37:PlaySoundCallOut "fx278"
+			Case 38:PlaySoundCallOut "fx286"
+			Case 39:PlaySoundCallOut "fx292"
+			Case 40:PlaySoundCallOut "fx316"
+			Case 41:PlaySoundCallOut "fx350"
+			Case 42:PlaySoundCallOut "fx353"
+			Case 43:PlaySoundCallOut "fx355"
+			Case 44:PlaySoundCallOut "fx377"
+			Case 45:PlaySoundCallOut "fx379"
+			Case 46:PlaySoundCallOut "fx384"
 	                SoundDrainBottomHeavy = 0
 		End Select
 	End Sub
 
 	Sub RandomSpinfx()
 		Select Case Int(Rnd * 37) + 1
-			Case 1:PlaySound "fx084", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 2:PlaySound "fx113", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 3:PlaySound "fx120", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 4:PlaySound "fx203", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 5:PlaySound "fx204", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 6:PlaySound "fx222", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 7:PlaySound "fx223", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 8:PlaySound "fx225", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 9:PlaySound "fx226", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 10:PlaySound "fx229", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 11:PlaySound "fx230", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 12:PlaySound "fx245", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 13:PlaySound "fx249", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 14:PlaySound "fx251", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 15:PlaySound "fx252", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 16:PlaySound "fx253", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 17:PlaySound "fx254", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 18:PlaySound "fx255", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 19:PlaySound "fx271", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 20:PlaySound "fx294", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 21:PlaySound "fx318", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 22:PlaySound "fx319", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 23:PlaySound "fx320", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 24:PlaySound "fx322", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 25:PlaySound "fx323", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 26:PlaySound "fx325", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 27:PlaySound "fx326", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 28:PlaySound "fx327", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 29:PlaySound "fx330", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 30:PlaySound "fx331", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 31:PlaySound "fx340", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 32:PlaySound "fx341", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 33:PlaySound "fx342", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
-			Case 34:PlaySound "Supreme_fx_11", 0, 1, AudioPan(Spinner), 0.25, 0, 0, 1, AudioFade(Spinner) 
+			Case 1:PlaySoundCallOut "fx084"
+			Case 2:PlaySoundCallOut "fx113"
+			Case 3:PlaySoundCallOut "fx120"
+			Case 4:PlaySoundCallOut "fx203"
+			Case 5:PlaySoundCallOut "fx204"
+			Case 6:PlaySoundCallOut "fx222"
+			Case 7:PlaySoundCallOut "fx223"
+			Case 8:PlaySoundCallOut "fx225"
+			Case 9:PlaySoundCallOut "fx226"
+			Case 10:PlaySoundCallOut "fx229"
+			Case 11:PlaySoundCallOut "fx230"
+			Case 12:PlaySoundCallOut "fx245"
+			Case 13:PlaySoundCallOut "fx249"
+			Case 14:PlaySoundCallOut "fx251"
+			Case 15:PlaySoundCallOut "fx252"
+			Case 16:PlaySoundCallOut "fx253"
+			Case 17:PlaySoundCallOut "fx254"
+			Case 18:PlaySoundCallOut "fx255"
+			Case 19:PlaySoundCallOut "fx271"
+			Case 20:PlaySoundCallOut "fx294"
+			Case 21:PlaySoundCallOut "fx318"
+			Case 22:PlaySoundCallOut "fx319"
+			Case 23:PlaySoundCallOut "fx320"
+			Case 24:PlaySoundCallOut "fx322"
+			Case 25:PlaySoundCallOut "fx323"
+			Case 26:PlaySoundCallOut "fx325"
+			Case 27:PlaySoundCallOut "fx326"
+			Case 28:PlaySoundCallOut "fx327"
+			Case 29:PlaySoundCallOut "fx330"
+			Case 30:PlaySoundCallOut "fx331"
+			Case 31:PlaySoundCallOut "fx340"
+			Case 32:PlaySoundCallOut "fx341"
+			Case 33:PlaySoundCallOut "fx342"
+			Case 34:PlaySoundCallOut "Supreme_fx_11"
 			Case 35:Randomsoundbong
 			Case 36:RandomSoundGasToo
 			Case 37:RandomSoundFairyDust
@@ -5211,50 +5226,50 @@ End Sub
 
 	Sub RandomSoundBeatHeavy()
 		Select Case Int(Rnd * 44) + 1
-			Case 1:PlaySound "fx004"
-			Case 2:PlaySound "fx009"
-			Case 3:PlaySound "fx010"
-			Case 4:PlaySound "fx013"
-			Case 5:PlaySound "fx020"
-			Case 6:PlaySound "fx021"
-			Case 7:PlaySound "fx024"
-			Case 8:PlaySound "fx025"
-			Case 9:PlaySound "fx031"
-			Case 10:PlaySound "fx042"
-			Case 11:PlaySound "fx081"
-			Case 12:PlaySound "fx086"
-			Case 13:PlaySound "fx087"
-			Case 14:PlaySound "fx089"
-			Case 15:PlaySound "fx092"
-			Case 16:PlaySound "fx093"
-			Case 17:PlaySound "fx094"
-			Case 18:PlaySound "fx096"
-			Case 19:PlaySound "fx217"
-			Case 20:PlaySound "fx211"
-			Case 21:PlaySound "fx109"
-			Case 22:PlaySound "fx112"
-			Case 23:PlaySound "fx302"
-			Case 24:PlaySound "fx303"
-			Case 25:PlaySound "fx148"
-			Case 26:PlaySound "fx149"
-			Case 27:PlaySound "fx306"
-			Case 28:PlaySound "fx171"
-			Case 29:PlaySound "fx174"
-			Case 30:PlaySound "fx300"
-			Case 31:PlaySound "fx176"
-			Case 32:PlaySound "fx210"
-			Case 33:PlaySound "fx299"
-			Case 34:PlaySound "fx179"
-			Case 35:PlaySound "fx180"
-			Case 36:PlaySound "fx181"
-			Case 37:PlaySound "fx183"
-			Case 38:PlaySound "fx184"
-			Case 39:PlaySound "fx185"
-			Case 40:PlaySound "fx297"
-			Case 41:PlaySound "fx212"
-			Case 42:PlaySound "fx189"
-			Case 43:PlaySound "fx209"
-			Case 44:PlaySound "fx198"
+			Case 1:PlaySoundCallOut "fx004"
+			Case 2:PlaySoundCallOut "fx009"
+			Case 3:PlaySoundCallOut "fx010"
+			Case 4:PlaySoundCallOut "fx013"
+			Case 5:PlaySoundCallOut "fx020"
+			Case 6:PlaySoundCallOut "fx021"
+			Case 7:PlaySoundCallOut "fx024"
+			Case 8:PlaySoundCallOut "fx025"
+			Case 9:PlaySoundCallOut "fx031"
+			Case 10:PlaySoundCallOut "fx042"
+			Case 11:PlaySoundCallOut "fx081"
+			Case 12:PlaySoundCallOut "fx086"
+			Case 13:PlaySoundCallOut "fx087"
+			Case 14:PlaySoundCallOut "fx089"
+			Case 15:PlaySoundCallOut "fx092"
+			Case 16:PlaySoundCallOut "fx093"
+			Case 17:PlaySoundCallOut "fx094"
+			Case 18:PlaySoundCallOut "fx096"
+			Case 19:PlaySoundCallOut "fx217"
+			Case 20:PlaySoundCallOut "fx211"
+			Case 21:PlaySoundCallOut "fx109"
+			Case 22:PlaySoundCallOut "fx112"
+			Case 23:PlaySoundCallOut "fx302"
+			Case 24:PlaySoundCallOut "fx303"
+			Case 25:PlaySoundCallOut "fx148"
+			Case 26:PlaySoundCallOut "fx149"
+			Case 27:PlaySoundCallOut "fx306"
+			Case 28:PlaySoundCallOut "fx171"
+			Case 29:PlaySoundCallOut "fx174"
+			Case 30:PlaySoundCallOut "fx300"
+			Case 31:PlaySoundCallOut "fx176"
+			Case 32:PlaySoundCallOut "fx210"
+			Case 33:PlaySoundCallOut "fx299"
+			Case 34:PlaySoundCallOut "fx179"
+			Case 35:PlaySoundCallOut "fx180"
+			Case 36:PlaySoundCallOut "fx181"
+			Case 37:PlaySoundCallOut "fx183"
+			Case 38:PlaySoundCallOut "fx184"
+			Case 39:PlaySoundCallOut "fx185"
+			Case 40:PlaySoundCallOut "fx297"
+			Case 41:PlaySoundCallOut "fx212"
+			Case 42:PlaySoundCallOut "fx189"
+			Case 43:PlaySoundCallOut "fx209"
+			Case 44:PlaySoundCallOut "fx198"
 		End Select
 	End Sub
 
@@ -5271,154 +5286,154 @@ End Sub
 			Case 1:RandomSoundBong
 			Case 2:RandomSoundBong
 			Case 3:RandomSoundBong
-			Case 4:PlaySound "fx005"
-			Case 5:PlaySound "fx007"
-			Case 6:PlaySound "fx008"
-			Case 7:PlaySound "fx011"
-			Case 8:PlaySound "fx023"
-			Case 9:PlaySound "fx026"
-			Case 10:PlaySound "fx028"
-			Case 11:PlaySound "fx034"
-			Case 12:PlaySound "fx036"
-			Case 13:PlaySound "fx043"
-			Case 14:PlaySound "fx045"
-			Case 15:PlaySound "fx051"
-			Case 16:PlaySound "fx053"
-			Case 17:PlaySound "fx054"
-			Case 18:PlaySound "fx056"
-			Case 19:PlaySound "fx057"
-			Case 20:PlaySound "fx058"
-			Case 21:PlaySound "fx287"
-			Case 22:PlaySound "fx286"
-			Case 23:PlaySound "fx062"
-			Case 24:PlaySound "fx063"
-			Case 25:PlaySound "fx065"
-			Case 26:PlaySound "fx066"
-			Case 27:PlaySound "fx067"
-			Case 28:PlaySound "fx068"
-			Case 29:PlaySound "fx069"
-			Case 30:PlaySound "fx074"
-			Case 31:PlaySound "fx075"
-			Case 32:PlaySound "fx076"
-			Case 33:PlaySound "fx077"
-			Case 34:PlaySound "fx080"
-			Case 35:PlaySound "fx083"
-			Case 36:PlaySound "fx084"
-			Case 37:PlaySound "fx085"
-			Case 38:PlaySound "fx090"
-			Case 39:PlaySound "fx097"
-			Case 40:PlaySound "fx098"
-			Case 41:PlaySound "fx099"
-			Case 42:PlaySound "fx102"
-			Case 43:PlaySound "fx105"
-			Case 44:PlaySound "fx113"
-			Case 45:PlaySound "fx115"
-			Case 46:PlaySound "fx116"
-			Case 47:PlaySound "fx117"
-			Case 48:PlaySound "fx128"
-			Case 49:PlaySound "fx129"
-			Case 50:PlaySound "fx136"
-			Case 51:PlaySound "fx137"
-			Case 52:PlaySound "fx139"
-			Case 53:PlaySound "fx145"
-			Case 54:PlaySound "fx146"
-			Case 55:PlaySound "fx147"
-			Case 56:PlaySound "fx151"
-			Case 57:PlaySound "fx154"
-			Case 58:PlaySound "fx155"
-			Case 59:PlaySound "fx160"
-			Case 60:PlaySound "fx162"
-			Case 61:PlaySound "fx182"
-			Case 62:PlaySound "fx190"
-			Case 63:PlaySound "fx192"
-			Case 64:PlaySound "fx193"
-			Case 65:PlaySound "fx061"
-			Case 66:PlaySound "fx195"
-			Case 67:PlaySound "fx196" 
-			Case 68:PlaySound "fx197"
-			Case 69:PlaySound "fx199" 
-			Case 70:PlaySound "fx200" 
-			Case 71:PlaySound "fx201" 
-			Case 72:PlaySound "fx202" 
-			Case 73:PlaySound "fx203" 
-			Case 74:PlaySound "fx204" 
-			Case 75:PlaySound "fx205" 
-			Case 76:PlaySound "fx206" 
-			Case 77:PlaySound "fx213" 
-			Case 78:PlaySound "fx218"  
-			Case 79:PlaySound "fx222" 
-			Case 80:PlaySound "fx223" 
-			Case 81:PlaySound "fx224" 
-			Case 82:PlaySound "fx225" 
-			Case 83:PlaySound "fx226" 
-			Case 84:PlaySound "fx227" 
-			Case 85:PlaySound "fx229" 
-			Case 86:PlaySound "fx230" 
-			Case 87:PlaySound "fx231" 
-			Case 88:PlaySound "fx234" 
-			Case 89:PlaySound "fx238" 
-			Case 90:PlaySound "fx242" 
-			Case 91:PlaySound "fx243" 
-			Case 92:PlaySound "fx244" 
-			Case 93:PlaySound "fx245" 
-			Case 94:PlaySound "fx246" 
-			Case 95:PlaySound "fx247"
-			Case 96:PlaySound "fx248"
-			Case 97:PlaySound "fx249"
-			Case 98:PlaySound "fx250"
-			Case 99:PlaySound "fx251"
-			Case 100:PlaySound "fx254"
-			Case 101:PlaySound "fx255"
-			Case 102:PlaySound "fx257"
-			Case 103:PlaySound "fx259"
-			Case 104:PlaySound "fx261"
-			Case 105:PlaySound "fx263"
-			Case 106:PlaySound "fx264"
-			Case 107:PlaySound "fx265"
-			Case 108:PlaySound "fx268"
-			Case 109:PlaySound "fx269"
-			Case 110:PlaySound "fx270"
-			Case 111:PlaySound "fx271"
-			Case 112:PlaySound "fx272"
-			Case 113:PlaySound "fx287"
-			Case 114:PlaySound "fx290"			
-			Case 115:PlaySound "fx293"
-			Case 116:PlaySound "fx294"
-			Case 117:PlaySound "fx009" 
-			Case 118:PlaySound "fx031"
-			Case 119:PlaySound "fx042"
-			Case 120:PlaySound "fx081"
-			Case 121:PlaySound "fx089"
-			Case 122:PlaySound "fx096"
-			Case 123:PlaySound "fx171"
-			Case 124:PlaySound "fx198"
-			Case 125:PlaySound "fx210"
-			Case 126:PlaySound "fx317"
-			Case 127:PlaySound "fx318"
-			Case 128:PlaySound "fx319"
-			Case 129:PlaySound "fx320"
-			Case 130:PlaySound "fx321"
-			Case 131:PlaySound "fx322"
-			Case 132:PlaySound "fx323"
-			Case 133:PlaySound "fx325"
-			Case 134:PlaySound "fx327"
-			Case 135:PlaySound "fx328"
-			Case 136:PlaySound "fx340"
-			Case 137:PlaySound "fx341"
-			Case 138:PlaySound "fx342"
-			Case 139:PlaySound "fx343"
-			Case 140:PlaySound "fx344"
-			Case 141:PlaySound "fx345"
-			Case 142:PlaySound "fx346"
-			Case 143:PlaySound "fx347"
-			Case 144:PlaySound "fx348"
-			Case 145:PlaySound "fx349"
-			Case 146:PlaySound "fx351"
-			Case 147:PlaySound "fx352"
-			Case 148:PlaySound "fx353"
-			Case 149:PlaySound "fx354"
-			Case 150:PlaySound "fx355"
-			Case 151:PlaySound "fx357"
+			Case 4:PlaySoundCallOut "fx005"
+			Case 5:PlaySoundCallOut "fx007"
+			Case 6:PlaySoundCallOut "fx008"
+			Case 7:PlaySoundCallOut "fx011"
+			Case 8:PlaySoundCallOut "fx023"
+			Case 9:PlaySoundCallOut "fx026"
+			Case 10:PlaySoundCallOut "fx028"
+			Case 11:PlaySoundCallOut "fx034"
+			Case 12:PlaySoundCallOut "fx036"
+			Case 13:PlaySoundCallOut "fx043"
+			Case 14:PlaySoundCallOut "fx045"
+			Case 15:PlaySoundCallOut "fx051"
+			Case 16:PlaySoundCallOut "fx053"
+			Case 17:PlaySoundCallOut "fx054"
+			Case 18:PlaySoundCallOut "fx056"
+			Case 19:PlaySoundCallOut "fx057"
+			Case 20:PlaySoundCallOut "fx058"
+			Case 21:PlaySoundCallOut "fx287"
+			Case 22:PlaySoundCallOut "fx286"
+			Case 23:PlaySoundCallOut "fx062"
+			Case 24:PlaySoundCallOut "fx063"
+			Case 25:PlaySoundCallOut "fx065"
+			Case 26:PlaySoundCallOut "fx066"
+			Case 27:PlaySoundCallOut "fx067"
+			Case 28:PlaySoundCallOut "fx068"
+			Case 29:PlaySoundCallOut "fx069"
+			Case 30:PlaySoundCallOut "fx074"
+			Case 31:PlaySoundCallOut "fx075"
+			Case 32:PlaySoundCallOut "fx076"
+			Case 33:PlaySoundCallOut "fx077"
+			Case 34:PlaySoundCallOut "fx080"
+			Case 35:PlaySoundCallOut "fx083"
+			Case 36:PlaySoundCallOut "fx084"
+			Case 37:PlaySoundCallOut "fx085"
+			Case 38:PlaySoundCallOut "fx090"
+			Case 39:PlaySoundCallOut "fx097"
+			Case 40:PlaySoundCallOut "fx098"
+			Case 41:PlaySoundCallOut "fx099"
+			Case 42:PlaySoundCallOut "fx102"
+			Case 43:PlaySoundCallOut "fx105"
+			Case 44:PlaySoundCallOut "fx113"
+			Case 45:PlaySoundCallOut "fx115"
+			Case 46:PlaySoundCallOut "fx116"
+			Case 47:PlaySoundCallOut "fx117"
+			Case 48:PlaySoundCallOut "fx128"
+			Case 49:PlaySoundCallOut "fx129"
+			Case 50:PlaySoundCallOut "fx136"
+			Case 51:PlaySoundCallOut "fx137"
+			Case 52:PlaySoundCallOut "fx139"
+			Case 53:PlaySoundCallOut "fx145"
+			Case 54:PlaySoundCallOut "fx146"
+			Case 55:PlaySoundCallOut "fx147"
+			Case 56:PlaySoundCallOut "fx151"
+			Case 57:PlaySoundCallOut "fx154"
+			Case 58:PlaySoundCallOut "fx155"
+			Case 59:PlaySoundCallOut "fx160"
+			Case 60:PlaySoundCallOut "fx162"
+			Case 61:PlaySoundCallOut "fx182"
+			Case 62:PlaySoundCallOut "fx190"
+			Case 63:PlaySoundCallOut "fx192"
+			Case 64:PlaySoundCallOut "fx193"
+			Case 65:PlaySoundCallOut "fx061"
+			Case 66:PlaySoundCallOut "fx195"
+			Case 67:PlaySoundCallOut "fx196" 
+			Case 68:PlaySoundCallOut "fx197"
+			Case 69:PlaySoundCallOut "fx199" 
+			Case 70:PlaySoundCallOut "fx200" 
+			Case 71:PlaySoundCallOut "fx201" 
+			Case 72:PlaySoundCallOut "fx202" 
+			Case 73:PlaySoundCallOut "fx203" 
+			Case 74:PlaySoundCallOut "fx204" 
+			Case 75:PlaySoundCallOut "fx205" 
+			Case 76:PlaySoundCallOut "fx206" 
+			Case 77:PlaySoundCallOut "fx213" 
+			Case 78:PlaySoundCallOut "fx218"  
+			Case 79:PlaySoundCallOut "fx222" 
+			Case 80:PlaySoundCallOut "fx223" 
+			Case 81:PlaySoundCallOut "fx224" 
+			Case 82:PlaySoundCallOut "fx225" 
+			Case 83:PlaySoundCallOut "fx226" 
+			Case 84:PlaySoundCallOut "fx227" 
+			Case 85:PlaySoundCallOut "fx229" 
+			Case 86:PlaySoundCallOut "fx230" 
+			Case 87:PlaySoundCallOut "fx231" 
+			Case 88:PlaySoundCallOut "fx234" 
+			Case 89:PlaySoundCallOut "fx238" 
+			Case 90:PlaySoundCallOut "fx242" 
+			Case 91:PlaySoundCallOut "fx243" 
+			Case 92:PlaySoundCallOut "fx244" 
+			Case 93:PlaySoundCallOut "fx245" 
+			Case 94:PlaySoundCallOut "fx246" 
+			Case 95:PlaySoundCallOut "fx247"
+			Case 96:PlaySoundCallOut "fx248"
+			Case 97:PlaySoundCallOut "fx249"
+			Case 98:PlaySoundCallOut "fx250"
+			Case 99:PlaySoundCallOut "fx251"
+			Case 100:PlaySoundCallOut "fx254"
+			Case 101:PlaySoundCallOut "fx255"
+			Case 102:PlaySoundCallOut "fx257"
+			Case 103:PlaySoundCallOut "fx259"
+			Case 104:PlaySoundCallOut "fx261"
+			Case 105:PlaySoundCallOut "fx263"
+			Case 106:PlaySoundCallOut "fx264"
+			Case 107:PlaySoundCallOut "fx265"
+			Case 108:PlaySoundCallOut "fx268"
+			Case 109:PlaySoundCallOut "fx269"
+			Case 110:PlaySoundCallOut "fx270"
+			Case 111:PlaySoundCallOut "fx271"
+			Case 112:PlaySoundCallOut "fx272"
+			Case 113:PlaySoundCallOut "fx287"
+			Case 114:PlaySoundCallOut "fx290"			
+			Case 115:PlaySoundCallOut "fx293"
+			Case 116:PlaySoundCallOut "fx294"
+			Case 117:PlaySoundCallOut "fx009" 
+			Case 118:PlaySoundCallOut "fx031"
+			Case 119:PlaySoundCallOut "fx042"
+			Case 120:PlaySoundCallOut "fx081"
+			Case 121:PlaySoundCallOut "fx089"
+			Case 122:PlaySoundCallOut "fx096"
+			Case 123:PlaySoundCallOut "fx171"
+			Case 124:PlaySoundCallOut "fx198"
+			Case 125:PlaySoundCallOut "fx210"
+			Case 126:PlaySoundCallOut "fx317"
+			Case 127:PlaySoundCallOut "fx318"
+			Case 128:PlaySoundCallOut "fx319"
+			Case 129:PlaySoundCallOut "fx320"
+			Case 130:PlaySoundCallOut "fx321"
+			Case 131:PlaySoundCallOut "fx322"
+			Case 132:PlaySoundCallOut "fx323"
+			Case 133:PlaySoundCallOut "fx325"
+			Case 134:PlaySoundCallOut "fx327"
+			Case 135:PlaySoundCallOut "fx328"
+			Case 136:PlaySoundCallOut "fx340"
+			Case 137:PlaySoundCallOut "fx341"
+			Case 138:PlaySoundCallOut "fx342"
+			Case 139:PlaySoundCallOut "fx343"
+			Case 140:PlaySoundCallOut "fx344"
+			Case 141:PlaySoundCallOut "fx345"
+			Case 142:PlaySoundCallOut "fx346"
+			Case 143:PlaySoundCallOut "fx347"
+			Case 144:PlaySoundCallOut "fx348"
+			Case 145:PlaySoundCallOut "fx349"
+			Case 146:PlaySoundCallOut "fx351"
+			Case 147:PlaySoundCallOut "fx352"
+			Case 148:PlaySoundCallOut "fx353"
+			Case 149:PlaySoundCallOut "fx354"
+			Case 150:PlaySoundCallOut "fx355"
+			Case 151:PlaySoundCallOut "fx357"
 		End Select
 	End Sub
 
@@ -5427,258 +5442,261 @@ End Sub
 			Case 1:RandomSoundBong
 			Case 2:RandomSoundBong
 			Case 3:RandomSoundBong
-			Case 4:PlaySound "fx005"
-			Case 5:PlaySound "fx007"
-			Case 6:PlaySound "fx008"
-			Case 7:PlaySound "fx011"
-			Case 8:PlaySound "fx014"
-			Case 9:PlaySound "fx015"
-			Case 10:PlaySound "fx016"
-			Case 11:PlaySound "fx017"
-			Case 12:PlaySound "fx018"
-			Case 13:PlaySound "fx019"
-			Case 14:PlaySound "fx022"
-			Case 15:PlaySound "fx023"
-			Case 16:PlaySound "fx026"
-			Case 17:PlaySound "fx027"
-			Case 18:PlaySound "fx028"
-			Case 19:PlaySound "fx029"
-			Case 20:PlaySound "fx030"
-			Case 21:PlaySound "fx032"
-			Case 22:PlaySound "fx033"
-			Case 23:PlaySound "fx034"
-			Case 24:PlaySound "fx035"
-			Case 25:PlaySound "fx036"
-			Case 26:PlaySound "fx037"
-			Case 27:PlaySound "fx038"
-			Case 28:PlaySound "fx039"
-			Case 29:PlaySound "fx041"
-			Case 30:PlaySound "fx043"
-			Case 31:PlaySound "fx044"
-			Case 32:PlaySound "fx045"
-			Case 33:PlaySound "fx046"
-			Case 34:PlaySound "fx047"
-			Case 35:PlaySound "fx289"
-			Case 36:PlaySound "fx049"
-			Case 37:PlaySound "fx050"
-			Case 38:PlaySound "fx051"
-			Case 39:PlaySound "fx052"
-			Case 40:PlaySound "fx053"
-			Case 41:PlaySound "fx054"
-			Case 42:PlaySound "fx288"
-			Case 43:PlaySound "fx056"
-			Case 44:PlaySound "fx057"
-			Case 45:PlaySound "fx058"
-			Case 46:PlaySound "fx287"
-			Case 47:PlaySound "fx286"
-			Case 48:PlaySound "fx062"
-			Case 49:PlaySound "fx063"
-			Case 50:PlaySound "fx064"
-			Case 51:PlaySound "fx065"
-			Case 52:PlaySound "fx066"
-			Case 53:PlaySound "fx067"
-			Case 54:PlaySound "fx068"
-			Case 55:PlaySound "fx069"
-			Case 56:PlaySound "fx070"
-			Case 57:PlaySound "fx071"
-			Case 58:PlaySound "fx072"
-			Case 59:PlaySound "fx074"
-			Case 60:PlaySound "fx075"
-			Case 61:PlaySound "fx076"
-			Case 62:PlaySound "fx077"
-			Case 63:PlaySound "fx078"
-			Case 64:PlaySound "fx079"
-			Case 65:PlaySound "fx080"
-			Case 66:PlaySound "fx082"
-			Case 67:PlaySound "fx083"
-			Case 68:PlaySound "fx084"
-			Case 69:PlaySound "fx085"
-			Case 70:PlaySound "fx088"
-			Case 71:PlaySound "fx090"
-			Case 72:PlaySound "fx091"
-			Case 73:PlaySound "fx097"
-			Case 74:PlaySound "fx098"
-			Case 75:PlaySound "fx099"
-			Case 76:PlaySound "fx102"
-			Case 77:PlaySound "fx104"
-			Case 78:PlaySound "fx105"
-			Case 79:PlaySound "fx106"
-			Case 80:PlaySound "fx107"
-			Case 81:PlaySound "fx108"
-			Case 82:PlaySound "fx110"
-			Case 83:PlaySound "fx111"
-			Case 84:PlaySound "fx113"
-			Case 85:PlaySound "fx114"
-			Case 86:PlaySound "fx115"
-			Case 87:PlaySound "fx116"
-			Case 88:PlaySound "fx117"
-			Case 89:PlaySound "fx118"
-			Case 90:PlaySound "fx125"
-			Case 91:PlaySound "fx126"
-			Case 92:PlaySound "fx127"
-			Case 93:PlaySound "fx128"
-			Case 94:PlaySound "fx129"
-			Case 95:PlaySound "fx130"
-			Case 96:PlaySound "fx132"
-			Case 97:PlaySound "fx133"
-			Case 98:PlaySound "fx134"
-			Case 99:PlaySound "fx135"
-			Case 100:PlaySound "fx301" 'out of order 
-			Case 101:PlaySound "fx136"
-			Case 102:PlaySound "fx137"
-			Case 103:PlaySound "fx139"
-			Case 104:PlaySound "fx140"
-			Case 105:PlaySound "fx144"
-			Case 106:PlaySound "fx145"
-			Case 107:PlaySound "fx146"
-			Case 108:PlaySound "fx147"
-			Case 109:PlaySound "fx151"
-			Case 110:PlaySound "fx154"
-			Case 111:PlaySound "fx155"
-			Case 112:PlaySound "fx157"
-			Case 113:PlaySound "fx159"
-			Case 114:PlaySound "fx160"
-			Case 115:PlaySound "fx162"
-			Case 116:PlaySound "fx163"
-			Case 117:PlaySound "fx164"
-			Case 118:PlaySound "fx166"
-			Case 119:PlaySound "fx167"
-			Case 120:PlaySound "fx168"
-			Case 121:PlaySound "fx173"
-			Case 122:PlaySound "fx182"
-			Case 123:PlaySound "fx190"
-			Case 124:PlaySound "fx192"
-			Case 125:PlaySound "fx193"
-			Case 126:PlaySound "fx006"      
-			Case 127:PlaySound "fx061" 
-			Case 128:PlaySound "fx120" 
-			Case 129:PlaySound "fx195" 
-			Case 130:PlaySound "fx196" 
-			Case 131:PlaySound "fx197"
-			Case 132:PlaySound "fx199" 
-			Case 133:PlaySound "fx200" 
-			Case 134:PlaySound "fx201" 
-			Case 135:PlaySound "fx202" 
-			Case 136:PlaySound "fx203" 
-			Case 137:PlaySound "fx204" 
-			Case 138:PlaySound "fx205" 
-			Case 139:PlaySound "fx206" 
-			Case 140:PlaySound "fx207" 
-			Case 141:PlaySound "fx213" 
-			Case 142:PlaySound "fx214" 
-			Case 143:PlaySound "fx216" 
-			Case 144:PlaySound "fx218"  
-			Case 145:PlaySound "fx222" 
-			Case 146:PlaySound "fx223" 
-			Case 147:PlaySound "fx224" 
-			Case 148:PlaySound "fx225" 
-			Case 149:PlaySound "fx226" 
-			Case 150:PlaySound "fx227" 
-			Case 151:PlaySound "fx229" 
-			Case 152:PlaySound "fx230" 
-			Case 153:PlaySound "fx231" 
-			Case 154:PlaySound "fx234" 
-			Case 155:PlaySound "fx238" 
-			Case 156:PlaySound "fx242" 
-			Case 157:PlaySound "fx243" 
-			Case 158:PlaySound "fx244" 
-			Case 159:PlaySound "fx245" 
-			Case 160:PlaySound "fx246" 
-			Case 161:PlaySound "fx247"
-			Case 162:PlaySound "fx248"
-			Case 163:PlaySound "fx249"
-			Case 164:PlaySound "fx250"
-			Case 165:PlaySound "fx251"
-			Case 166:PlaySound "fx254"
-			Case 167:PlaySound "fx255"
-			Case 168:PlaySound "fx256"
-			Case 169:PlaySound "fx257"
-			Case 170:PlaySound "fx259"
-			Case 171:PlaySound "fx260"
-			Case 172:PlaySound "fx261"
-			Case 173:PlaySound "fx262"
-			Case 174:PlaySound "fx263"
-			Case 175:PlaySound "fx264"
-			Case 176:PlaySound "fx265"
-			Case 177:PlaySound "fx266"
-			Case 178:PlaySound "fx267"
-			Case 179:PlaySound "fx268"
-			Case 180:PlaySound "fx269"
-			Case 181:PlaySound "fx270"
-			Case 182:PlaySound "fx271"
-			Case 183:PlaySound "fx272"
-			Case 184:PlaySound "fx273"
-			Case 185:PlaySound "fx274"
-			Case 186:PlaySound "fx275"
-			Case 187:PlaySound "fx276"
-			Case 188:PlaySound "fx277"
-			Case 189:PlaySound "fx278"
-			Case 190:PlaySound "fx286"
-			Case 191:PlaySound "fx287"
-			Case 192:PlaySound "fx288"
-			Case 193:PlaySound "fx290"
-			Case 194:PlaySound "fx291"
-			Case 195:PlaySound "fx292"
-			Case 196:PlaySound "fx293"
-			Case 197:PlaySound "fx294"
-			Case 198:PlaySound "fx295"
-			Case 199:PlaySound "fx296"
-			Case 200:PlaySound "fx298"
-			Case 201:PlaySound "fx313"
-			Case 202:PlaySound "fx314"
-			Case 203:PlaySound "fx315"
-			Case 204:PlaySound "fx317"
-			Case 205:PlaySound "fx318"
-			Case 206:PlaySound "fx319"
-			Case 207:PlaySound "fx320"
-			Case 208:PlaySound "fx321"
-			Case 209:PlaySound "fx322"
-			Case 210:PlaySound "fx323"
-			Case 211:PlaySound "fx325"
-			Case 212:PlaySound "fx327"
-			Case 213:PlaySound "fx328"
-			Case 214:PlaySound "fx340"
-			Case 215:PlaySound "fx341"
-			Case 216:PlaySound "fx342"
-			Case 217:PlaySound "fx343"
-			Case 218:PlaySound "fx344"
-			Case 219:PlaySound "fx345"
-			Case 220:PlaySound "fx346"
-			Case 221:PlaySound "fx347"
-			Case 222:PlaySound "fx348"
-			Case 223:PlaySound "fx349"
-			Case 224:PlaySound "fx351"
-			Case 225:PlaySound "fx352"
-			Case 226:PlaySound "fx353"
-			Case 227:PlaySound "fx354"
-			Case 228:PlaySound "fx355"
-			Case 229:PlaySound "fx357"
-			Case 230:PlaySound "fx377"
-			Case 231:PlaySound "fx380"
-			Case 232:PlaySound "fx381"
-			Case 233:PlaySound "fx383"
-			Case 234:PlaySound "fx384"
+			Case 4:PlaySoundCallOut "fx005"
+			Case 5:PlaySoundCallOut "fx007"
+			Case 6:PlaySoundCallOut "fx008"
+			Case 7:PlaySoundCallOut "fx011"
+			Case 8:PlaySoundCallOut "fx014"
+			Case 9:PlaySoundCallOut "fx015"
+			Case 10:PlaySoundCallOut "fx016"
+			Case 11:PlaySoundCallOut "fx017"
+			Case 12:PlaySoundCallOut "fx018"
+			Case 13:PlaySoundCallOut "fx019"
+			Case 14:PlaySoundCallOut "fx022"
+			Case 15:PlaySoundCallOut "fx023"
+			Case 16:PlaySoundCallOut "fx026"
+			Case 17:PlaySoundCallOut "fx027"
+			Case 18:PlaySoundCallOut "fx028"
+			Case 19:PlaySoundCallOut "fx029"
+			Case 20:PlaySoundCallOut "fx030"
+			Case 21:PlaySoundCallOut "fx032"
+			Case 22:PlaySoundCallOut "fx033"
+			Case 23:PlaySoundCallOut "fx034"
+			Case 24:PlaySoundCallOut "fx035"
+			Case 25:PlaySoundCallOut "fx036"
+			Case 26:PlaySoundCallOut "fx037"
+			Case 27:PlaySoundCallOut "fx038"
+			Case 28:PlaySoundCallOut "fx039"
+			Case 29:PlaySoundCallOut "fx041"
+			Case 30:PlaySoundCallOut "fx043"
+			Case 31:PlaySoundCallOut "fx044"
+			Case 32:PlaySoundCallOut "fx045"
+			Case 33:PlaySoundCallOut "fx046"
+			Case 34:PlaySoundCallOut "fx047"
+			Case 35:PlaySoundCallOut "fx289"
+			Case 36:PlaySoundCallOut "fx049"
+			Case 37:PlaySoundCallOut "fx050"
+			Case 38:PlaySoundCallOut "fx051"
+			Case 39:PlaySoundCallOut "fx052"
+			Case 40:PlaySoundCallOut "fx053"
+			Case 41:PlaySoundCallOut "fx054"
+			Case 42:PlaySoundCallOut "fx288"
+			Case 43:PlaySoundCallOut "fx056"
+			Case 44:PlaySoundCallOut "fx057"
+			Case 45:PlaySoundCallOut "fx058"
+			Case 46:PlaySoundCallOut "fx287"
+			Case 47:PlaySoundCallOut "fx286"
+			Case 48:PlaySoundCallOut "fx062"
+			Case 49:PlaySoundCallOut "fx063"
+			Case 50:PlaySoundCallOut "fx064"
+			Case 51:PlaySoundCallOut "fx065"
+			Case 52:PlaySoundCallOut "fx066"
+			Case 53:PlaySoundCallOut "fx067"
+			Case 54:PlaySoundCallOut "fx068"
+			Case 55:PlaySoundCallOut "fx069"
+			Case 56:PlaySoundCallOut "fx070"
+			Case 57:PlaySoundCallOut "fx071"
+			Case 58:PlaySoundCallOut "fx072"
+			Case 59:PlaySoundCallOut "fx074"
+			Case 60:PlaySoundCallOut "fx075"
+			Case 61:PlaySoundCallOut "fx076"
+			Case 62:PlaySoundCallOut "fx077"
+			Case 63:PlaySoundCallOut "fx078"
+			Case 64:PlaySoundCallOut "fx079"
+			Case 65:PlaySoundCallOut "fx080"
+			Case 66:PlaySoundCallOut "fx082"
+			Case 67:PlaySoundCallOut "fx083"
+			Case 68:PlaySoundCallOut "fx084"
+			Case 69:PlaySoundCallOut "fx085"
+			Case 70:PlaySoundCallOut "fx088"
+			Case 71:PlaySoundCallOut "fx090"
+			Case 72:PlaySoundCallOut "fx091"
+			Case 73:PlaySoundCallOut "fx097"
+			Case 74:PlaySoundCallOut "fx098"
+			Case 75:PlaySoundCallOut "fx099"
+			Case 76:PlaySoundCallOut "fx102"
+			Case 77:PlaySoundCallOut "fx104"
+			Case 78:PlaySoundCallOut "fx105"
+			Case 79:PlaySoundCallOut "fx106"
+			Case 80:PlaySoundCallOut "fx107"
+			Case 81:PlaySoundCallOut "fx108"
+			Case 82:PlaySoundCallOut "fx110"
+			Case 83:PlaySoundCallOut "fx111"
+			Case 84:PlaySoundCallOut "fx113"
+			Case 85:PlaySoundCallOut "fx114"
+			Case 86:PlaySoundCallOut "fx115"
+			Case 87:PlaySoundCallOut "fx116"
+			Case 88:PlaySoundCallOut "fx117"
+			Case 89:PlaySoundCallOut "fx118"
+			Case 90:PlaySoundCallOut "fx125"
+			Case 91:PlaySoundCallOut "fx126"
+			Case 92:PlaySoundCallOut "fx127"
+			Case 93:PlaySoundCallOut "fx128"
+			Case 94:PlaySoundCallOut "fx129"
+			Case 95:PlaySoundCallOut "fx130"
+			Case 96:PlaySoundCallOut "fx132"
+			Case 97:PlaySoundCallOut "fx133"
+			Case 98:PlaySoundCallOut "fx134"
+			Case 99:PlaySoundCallOut "fx135"
+			Case 100:PlaySoundCallOut "fx301" 'out of order 
+			Case 101:PlaySoundCallOut "fx136"
+			Case 102:PlaySoundCallOut "fx137"
+			Case 103:PlaySoundCallOut "fx139"
+			Case 104:PlaySoundCallOut "fx140"
+			Case 105:PlaySoundCallOut "fx144"
+			Case 106:PlaySoundCallOut "fx145"
+			Case 107:PlaySoundCallOut "fx146"
+			Case 108:PlaySoundCallOut "fx147"
+			Case 109:PlaySoundCallOut "fx151"
+			Case 110:PlaySoundCallOut "fx154"
+			Case 111:PlaySoundCallOut "fx155"
+			Case 112:PlaySoundCallOut "fx157"
+			Case 113:PlaySoundCallOut "fx159"
+			Case 114:PlaySoundCallOut "fx160"
+			Case 115:PlaySoundCallOut "fx162"
+			Case 116:PlaySoundCallOut "fx163"
+			Case 117:PlaySoundCallOut "fx164"
+			Case 118:PlaySoundCallOut "fx166"
+			Case 119:PlaySoundCallOut "fx167"
+			Case 120:PlaySoundCallOut "fx168"
+			Case 121:PlaySoundCallOut "fx173"
+			Case 122:PlaySoundCallOut "fx182"
+			Case 123:PlaySoundCallOut "fx190"
+			Case 124:PlaySoundCallOut "fx192"
+			Case 125:PlaySoundCallOut "fx193"
+			Case 126:PlaySoundCallOut "fx006"      
+			Case 127:PlaySoundCallOut "fx061" 
+			Case 128:PlaySoundCallOut "fx120" 
+			Case 129:PlaySoundCallOut "fx195" 
+			Case 130:PlaySoundCallOut "fx196" 
+			Case 131:PlaySoundCallOut "fx197"
+			Case 132:PlaySoundCallOut "fx199" 
+			Case 133:PlaySoundCallOut "fx200" 
+			Case 134:PlaySoundCallOut "fx201" 
+			Case 135:PlaySoundCallOut "fx202" 
+			Case 136:PlaySoundCallOut "fx203" 
+			Case 137:PlaySoundCallOut "fx204" 
+			Case 138:PlaySoundCallOut "fx205" 
+			Case 139:PlaySoundCallOut "fx206" 
+			Case 140:PlaySoundCallOut "fx207" 
+			Case 141:PlaySoundCallOut "fx213" 
+			Case 142:PlaySoundCallOut "fx214" 
+			Case 143:PlaySoundCallOut "fx216" 
+			Case 144:PlaySoundCallOut "fx218"  
+			Case 145:PlaySoundCallOut "fx222" 
+			Case 146:PlaySoundCallOut "fx223" 
+			Case 147:PlaySoundCallOut "fx224" 
+			Case 148:PlaySoundCallOut "fx225" 
+			Case 149:PlaySoundCallOut "fx226" 
+			Case 150:PlaySoundCallOut "fx227" 
+			Case 151:PlaySoundCallOut "fx229" 
+			Case 152:PlaySoundCallOut "fx230" 
+			Case 153:PlaySoundCallOut "fx231" 
+			Case 154:PlaySoundCallOut "fx234" 
+			Case 155:PlaySoundCallOut "fx238" 
+			Case 156:PlaySoundCallOut "fx242" 
+			Case 157:PlaySoundCallOut "fx243" 
+			Case 158:PlaySoundCallOut "fx244" 
+			Case 159:PlaySoundCallOut "fx245" 
+			Case 160:PlaySoundCallOut "fx246" 
+			Case 161:PlaySoundCallOut "fx247"
+			Case 162:PlaySoundCallOut "fx248"
+			Case 163:PlaySoundCallOut "fx249"
+			Case 164:PlaySoundCallOut "fx250"
+			Case 165:PlaySoundCallOut "fx251"
+			Case 166:PlaySoundCallOut "fx254"
+			Case 167:PlaySoundCallOut "fx255"
+			Case 168:PlaySoundCallOut "fx256"
+			Case 169:PlaySoundCallOut "fx257"
+			Case 170:PlaySoundCallOut "fx259"
+			Case 171:PlaySoundCallOut "fx260"
+			Case 172:PlaySoundCallOut "fx261"
+			Case 173:PlaySoundCallOut "fx262"
+			Case 174:PlaySoundCallOut "fx263"
+			Case 175:PlaySoundCallOut "fx264"
+			Case 176:PlaySoundCallOut "fx265"
+			Case 177:PlaySoundCallOut "fx266"
+			Case 178:PlaySoundCallOut "fx267"
+			Case 179:PlaySoundCallOut "fx268"
+			Case 180:PlaySoundCallOut "fx269"
+			Case 181:PlaySoundCallOut "fx270"
+			Case 182:PlaySoundCallOut "fx271"
+			Case 183:PlaySoundCallOut "fx272"
+			Case 184:PlaySoundCallOut "fx273"
+			Case 185:PlaySoundCallOut "fx274"
+			Case 186:PlaySoundCallOut "fx275"
+			Case 187:PlaySoundCallOut "fx276"
+			Case 188:PlaySoundCallOut "fx277"
+			Case 189:PlaySoundCallOut "fx278"
+			Case 190:PlaySoundCallOut "fx286"
+			Case 191:PlaySoundCallOut "fx287"
+			Case 192:PlaySoundCallOut "fx288"
+			Case 193:PlaySoundCallOut "fx290"
+			Case 194:PlaySoundCallOut "fx291"
+			Case 195:PlaySoundCallOut "fx292"
+			Case 196:PlaySoundCallOut "fx293"
+			Case 197:PlaySoundCallOut "fx294"
+			Case 198:PlaySoundCallOut "fx295"
+			Case 199:PlaySoundCallOut "fx296"
+			Case 200:PlaySoundCallOut "fx298"
+			Case 201:PlaySoundCallOut "fx313"
+			Case 202:PlaySoundCallOut "fx314"
+			Case 203:PlaySoundCallOut "fx315"
+			Case 204:PlaySoundCallOut "fx317"
+			Case 205:PlaySoundCallOut "fx318"
+			Case 206:PlaySoundCallOut "fx319"
+			Case 207:PlaySoundCallOut "fx320"
+			Case 208:PlaySoundCallOut "fx321"
+			Case 209:PlaySoundCallOut "fx322"
+			Case 210:PlaySoundCallOut "fx323"
+			Case 211:PlaySoundCallOut "fx325"
+			Case 212:PlaySoundCallOut "fx327"
+			Case 213:PlaySoundCallOut "fx328"
+			Case 214:PlaySoundCallOut "fx340"
+			Case 215:PlaySoundCallOut "fx341"
+			Case 216:PlaySoundCallOut "fx342"
+			Case 217:PlaySoundCallOut "fx343"
+			Case 218:PlaySoundCallOut "fx344"
+			Case 219:PlaySoundCallOut "fx345"
+			Case 220:PlaySoundCallOut "fx346"
+			Case 221:PlaySoundCallOut "fx347"
+			Case 222:PlaySoundCallOut "fx348"
+			Case 223:PlaySoundCallOut "fx349"
+			Case 224:PlaySoundCallOut "fx351"
+			Case 225:PlaySoundCallOut "fx352"
+			Case 226:PlaySoundCallOut "fx353"
+			Case 227:PlaySoundCallOut "fx354"
+			Case 228:PlaySoundCallOut "fx355"
+			Case 229:PlaySoundCallOut "fx357"
+			Case 230:PlaySoundCallOut "fx377"
+			Case 231:PlaySoundCallOut "fx380"
+			Case 232:PlaySoundCallOut "fx381"
+			Case 233:PlaySoundCallOut "fx383"
+			Case 234:PlaySoundCallOut "fx384"
 		End Select
 	End Sub
 
 	Sub LaserMask	
 		Select Case Int(Rnd * 14) + 1
-			Case 1: Playsound "fx203"
-			Case 2: Playsound "fx322"
-			Case 3: Playsound "fx364"
-			Case 4: Playsound "fx365"
-			Case 5: Playsound "fx366"
-			Case 6: Playsound "fx367"
-			Case 7: Playsound "fx368"
-			Case 8: Playsound "fx369"
-			Case 9: Playsound "fx370"
-			Case 10: Playsound "fx371"
-			Case 11: Playsound "fx372"
-			Case 12: Playsound "fx373"
-			Case 13: Playsound "fx374"
-			Case 14: Playsound "fx375"
+			Case 1: PlaySoundCallOut "fx203"
+			Case 2: PlaySoundCallOut "fx322"
+			Case 3: PlaySoundCallOut "fx364"
+			Case 4: PlaySoundCallOut "fx365"
+			Case 5: PlaySoundCallOut "fx366"
+			Case 6: PlaySoundCallOut "fx367"
+			Case 7: PlaySoundCallOut "fx368"
+			Case 8: PlaySoundCallOut "fx369"
+			Case 9: PlaySoundCallOut "fx370"
+			Case 10: PlaySoundCallOut "fx371"
+			Case 11: PlaySoundCallOut "fx372"
+			Case 12: PlaySoundCallOut "fx373"
+			Case 13: PlaySoundCallOut "fx374"
+			Case 14: PlaySoundCallOut "fx375"
 		End Select
 	End Sub
+
+'/// end of sounds
+
 
 	Dim ColorMaskSmall
 		ColorMaskSmall = Int(Rnd * 1) + 1
@@ -7857,7 +7875,7 @@ End Sub
 				RandomChangeGi				
 				Gi001.state = 2	
 				FlasherAttract
-				Playsound "fx067"
+				PlaySoundCallOut "fx067"
 				chilloutthemusic
 				vpmtimer.addtimer 0500, "AmericasMostBluntedCallout '"
 				PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-multiballislit","",100,6
@@ -7884,7 +7902,7 @@ End Sub
 			IF (bGameInPLay = True) AND(Tilted = False) AND L10KScore03.state = 1 AND L10KScore04.state = 1 AND L10KScore05.state = 1 THEN
 				IF LMultiballIsLit.state = 1 AND LMultiball2more.state = 0 AND LMultiball1more.state = 0 AND LMultiballSupremeMultiball.state = 0 AND LMultiballSupremeJackpot.state = 0 Then
 					RandomChangeGi
-					Playsound "Thunder7"				
+					PlaySoundCallOut "Thunder7"				
 					LMultiballIsLit.state = 1
 					LMultiball2more.state = 1
 					LMultiball1more.state = 0
@@ -7908,7 +7926,7 @@ End Sub
 				ELSE
 					IF LMultiballIsLit.state = 1 AND LMultiball2more.state = 1 AND LMultiball1more.state = 0 AND LMultiballSupremeMultiball.state = 0 AND LMultiballSupremeJackpot.state = 0 Then
 						RandomChangeGi
-						Playsound "Thunder7"						
+						PlaySoundCallOut "Thunder7"						
 						LMultiballIsLit.state = 1
 						LMultiball2more.state = 1
 						LMultiball1more.state = 1
@@ -7932,7 +7950,7 @@ End Sub
 							End If
 					ELSE
 						IF LMultiballIsLit.state = 1 AND LMultiball2more.state = 1 AND LMultiball1more.state = 1 AND LMultiballSupremeMultiball.state = 0 AND LMultiballSupremeJackpot.state = 0 Then
-							Playsound "Thunder7"
+							PlaySoundCallOut "Thunder7"
 							SmokeSpin
 							LMultiballIsLit.state = 1
 							LMultiball2more.state = 1
@@ -7995,7 +8013,7 @@ End Sub
 								TurnOffGIMultiball
 								ChangeLights(base)
 								chilloutthemusic
-								Playsound "Thunder7"
+								PlaySoundCallOut "Thunder7"
 								PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-jackpot","",100,16
 								DOF 945, DOFOn   'DOF MX
 								DOF 973, DOFOn   'DOF MX - BACK
@@ -8173,7 +8191,7 @@ End Sub
 			LeftSlingshot.Disabled = 1
 			RightSlingshot.Disabled = 1
 			Tilted = True
-			PlaySound "tiltshutdown"
+			PlaySoundCallOut "tiltshutdown"
 			PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
 			DisableTable True
 			tilttableclear.enabled = true
@@ -8183,7 +8201,7 @@ End Sub
 
 	Sub PackItUpKeepBombing
 			Tilted = True
-			PlaySound "tiltshutdown"
+			PlaySoundCallOut "tiltshutdown"
 			DisableTable True
 			tilttableclear.enabled = true
 			TiltRecoveryTimer.Enabled = True 
@@ -10705,7 +10723,7 @@ End Sub
 				StartWarpMultiball
 			Else
 				PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-keepbombing","",100,24
-				Playsound "fx078"
+				PlaySoundCallOut "fx078"
 				ClearMusicCallout
 				LWarpMultiballCounter.state = 0
 				LightShootAgain.state = 0
@@ -10752,7 +10770,7 @@ End Sub
 				y.State = 0
 			Next
 			If PlayersPlayingGame> 1 Then
-				PlaySound "fx067" &CurrentPlayer
+				PlaySoundCallOut "fx067" &CurrentPlayer
 			End If
 		End If
 		ResetLWarpMultiballLight       '

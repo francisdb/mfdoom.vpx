@@ -1,14 +1,14 @@
 {
   "Primitive": {
     "position": {
-      "x": 263.00497,
-      "y": 919.2563,
+      "x": 260.6146,
+      "y": 924.03705,
       "z": 0.0
     },
     "size": {
-      "x": 8.55,
-      "y": 8.55,
-      "z": 50.0
+      "x": 7.0,
+      "y": 7.0,
+      "z": 110.0
     },
     "rot_and_tra": [
       0.0,
@@ -25,9 +25,9 @@
     "normal_map": "",
     "sides": 40,
     "name": "RubberPostPrim004",
-    "material": "",
+    "material": "Metal Gold",
     "side_color": "#969696",
-    "is_visible": false,
+    "is_visible": true,
     "draw_textures_inside": false,
     "hit_event": true,
     "threshold": 0.5,
@@ -44,9 +44,9 @@
     "disable_lighting_top_old": null,
     "disable_lighting_top": 0.0,
     "disable_lighting_below": 1.0,
-    "is_reflection_enabled": false,
+    "is_reflection_enabled": true,
     "backfaces_enabled": false,
-    "physics_material": "zCol_Sleeves",
+    "physics_material": "zCol_MetalFO",
     "overwrite_physics": false,
     "display_texture": false,
     "object_space_normal_map": false,

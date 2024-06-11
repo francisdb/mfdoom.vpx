@@ -1,14 +1,14 @@
 {
   "Primitive": {
     "position": {
-      "x": 252.50235,
-      "y": 926.3657,
+      "x": 260.77432,
+      "y": 923.9876,
       "z": 59.0
     },
     "size": {
-      "x": 100.0,
-      "y": 100.0,
-      "z": 100.0
+      "x": 77.0,
+      "y": 77.0,
+      "z": 77.0
     },
     "rot_and_tra": [
       0.0,
@@ -35,7 +35,7 @@
     "elasticity_falloff": 0.0,
     "friction": 0.0,
     "scatter": 0.0,
-    "edge_factor_ui": 0.25,
+    "edge_factor_ui": 1.0,
     "collision_reduction_factor": 0.0,
     "is_collidable": false,
     "is_toy": true,
