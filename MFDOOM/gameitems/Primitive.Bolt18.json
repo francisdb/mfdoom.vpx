@@ -41,9 +41,9 @@
     "is_toy": true,
     "use_3d_mesh": true,
     "static_rendering": true,
-    "disable_lighting_top_old": 0.0,
-    "disable_lighting_top": null,
-    "disable_lighting_below": 0.0,
+    "disable_lighting_top_old": null,
+    "disable_lighting_top": 0.0,
+    "disable_lighting_below": 1.0,
     "is_reflection_enabled": false,
     "backfaces_enabled": false,
     "physics_material": "",
@@ -55,13 +55,13 @@
     "mesh_file_name": "",
     "depth_bias": 0.0,
     "add_blend": false,
-    "use_depth_mask": null,
+    "use_depth_mask": true,
     "alpha": 100.0,
     "color": "#ffffff",
-    "light_map": null,
-    "reflection_probe": null,
-    "reflection_strength": null,
-    "refraction_probe": null,
-    "refraction_thickness": null
+    "light_map": "",
+    "reflection_probe": "",
+    "reflection_strength": 1.0,
+    "refraction_probe": "",
+    "refraction_thickness": 10.0
   }
 }

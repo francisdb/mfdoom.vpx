@@ -78,7 +78,7 @@
 	DisableLUTSelector = 0              '0 = LUT selector using magna save enabled, 1 = LUT selector using magna save disabled
 	
 '----- PUP Topper Videos Toggle On/Off -----
-	TopperVideo = 1      				'0 = turn off, 1 = turn on PUP topper videos
+	TopperVideo = 0      				'0 = turn off, 1 = turn on PUP topper videos
 
 '----- Smoke Animations Toggle On/Off -----
 	SmokeAnimation = 1      			'0 = turn off, 1 = turn on cartoon bong/blunt smoke animations
@@ -3530,7 +3530,7 @@ End Sub
 	Dim PuPlayer
 	Const pTopper=0
 	Const pDMD=1
-	Const pBackglass=5
+	Const pBackglass=2
 	Const pPlayfield=3
 	Const pMusic=4
 	Const pAudio=7
@@ -13272,7 +13272,7 @@ End Sub
 
 Sub Table1_exit()
 	SaveLUT
-	Controller.Stop
+
     If Not FlexDMD is Nothing Then
 		FlexDMD.Show = False
 		FlexDMD.Run = False

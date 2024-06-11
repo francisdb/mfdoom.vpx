@@ -4,11 +4,11 @@
       "x": 812.4552,
       "y": 787.77344
     },
-    "height": null,
+    "height": 1.0,
     "falloff_radius": 42.0,
     "falloff_power": 2.0,
     "state_u32": 0,
-    "state": null,
+    "state": 0.0,
     "color": "#ffc58f",
     "color2": "#ffffff",
     "is_timer_enabled": false,
@@ -32,9 +32,9 @@
     "mesh_radius": 20.0,
     "bulb_modulate_vs_add": 1.0,
     "bulb_halo_height": 1.0,
-    "shadows": null,
-    "fader": null,
-    "visible": null,
+    "shadows": "none",
+    "fader": "linear",
+    "visible": true,
     "drag_points": [
       {
         "x": 822.09705,

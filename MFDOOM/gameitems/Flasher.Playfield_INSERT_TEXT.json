@@ -22,7 +22,7 @@
     "image_alignment": "world",
     "filter": "none",
     "filter_amount": 0,
-    "light_map": null,
+    "light_map": "",
     "drag_points": [
       {
         "x": -0.80842257,

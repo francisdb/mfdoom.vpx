@@ -19,6 +19,6 @@
     "image": "spinner",
     "surface": "",
     "name": "Spinner",
-    "is_reflection_enabled": null
+    "is_reflection_enabled": true
   }
 }
