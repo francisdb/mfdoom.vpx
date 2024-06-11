@@ -19,7 +19,7 @@
     "name": "LeftInlane2",
     "shape": "wire_d",
     "anim_speed": 50.0,
-    "is_reflection_enabled": true,
+    "is_reflection_enabled": false,
     "drag_points": [
       {
         "x": 16.170303,

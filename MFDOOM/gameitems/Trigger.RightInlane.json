@@ -19,7 +19,7 @@
     "name": "RightInlane",
     "shape": "wire_d",
     "anim_speed": 50.0,
-    "is_reflection_enabled": true,
+    "is_reflection_enabled": false,
     "drag_points": [
       {
         "x": 720.25116,

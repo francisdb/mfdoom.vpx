@@ -19,7 +19,7 @@
     "name": "TriggerOrbit02",
     "shape": "wire_d",
     "anim_speed": 1.0,
-    "is_reflection_enabled": true,
+    "is_reflection_enabled": false,
     "drag_points": [
       {
         "x": 823.97125,

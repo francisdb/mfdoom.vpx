@@ -48,6 +48,11 @@
 ' 11 goill773 	 - updated pf art, added more inserts, added flipper prims, added DOOMSDAY lights, added cartoon smoke animations, added flasher lasers from mask rubies
 '                - added VR room, fixed positioning of ramps, outlane wire guides, blunt wrap & smoke prims 
 ' 12 goill773    - VR tweaks, added VR mask topper, Animated plunger  
+' 13 iaakki 	 - Reworking how inserts are done
+' 14 iaakki 	 - Bug fix and 17 new inserts reworked
+' 15 iaakki		 - Added insert color mod. Some new inserts reworked
+' 16 iaakki	 	 - Inserts done
+' 17 iaakki	 	 - Fixed the GI bug I made and adjusted some levels
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -78,7 +83,7 @@
 	DisableLUTSelector = 0              '0 = LUT selector using magna save enabled, 1 = LUT selector using magna save disabled
 	
 '----- PUP Topper Videos Toggle On/Off -----
-	TopperVideo = 0      				'0 = turn off, 1 = turn on PUP topper videos
+	TopperVideo = 1      				'0 = turn off, 1 = turn on PUP topper videos
 
 '----- Smoke Animations Toggle On/Off -----
 	SmokeAnimation = 1      			'0 = turn off, 1 = turn on cartoon bong/blunt smoke animations
@@ -2200,9 +2205,6 @@ Function RndInt(min, max)
     RndInt = Int(Rnd() * (max-min + 1) + min)' Sets a random number integer between min and max
 End Function
 
-Function RndNum(min, max)
-    RndNum = Rnd() * (max-min) + min' Sets a random number between min and max
-End Function
 
 '/////////////////////////////  GENERAL SOUND SUBROUTINES  ////////////////////////////
 Sub SoundStartButton()
@@ -3526,11 +3528,11 @@ End Sub
 '   PinUp Player Config
 '   Change HasPuP = True if using PinUp Player Videos
 '*********************************************************
-	Dim HasPup:HasPuP = True
+	Dim HasPup:HasPuP = true
 	Dim PuPlayer
 	Const pTopper=0
 	Const pDMD=1
-	Const pBackglass=2
+	Const pBackglass=5
 	Const pPlayfield=3
 	Const pMusic=4
 	Const pAudio=7
@@ -4403,7 +4405,7 @@ End Sub
 		DMDintroloop
 		FlasherAttract
 		StartRainbow alights
-		StartRainbow2 GI
+		StartRainbowGI GI
 		DMDattract.Enabled = 1
 		intromover.enabled = true
 		ruleshelperoff
@@ -8213,8 +8215,8 @@ End Sub
 		WarpSpeedMultiballTimerExpired.Interval = 1000 * seconds
 		LWarpMultiballCounter.BlinkInterval = 160
 		LWarpMultiballCounter.State = 2
-		LightShootAgainMB.BlinkInterval = 160
-		LightShootAgainMB.State = 2
+		LightShootAgain.BlinkInterval = 160
+		LightShootAgain.State = 2
 	End Sub
 
 	Sub WarpSpeedMultiballTimerExpired_Timer()
@@ -8223,13 +8225,13 @@ End Sub
 		waittime = 1000
 		vpmtimer.addtimer waittime, "WarpSpeedMultiballCountdownGrace'"
 		LWarpMultiballCounter.State = 0
-		LightShootAgainMB.State = 0
+		LightShootAgain.State = 0
 	End Sub
 
 	Sub WarpSpeedMultiballCountdownGrace
 		bWarpSpeedMultiballActive = False
 		LWarpMultiballCounter.State = 0
-		LightShootAgainMB.State = 0
+		LightShootAgain.State = 0
 	End Sub
 	'***************************************
 	'   COMBO TIMER ON/OFF
@@ -8841,1034 +8843,1137 @@ End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  LIGHTING / RAINBOW LIGHTS
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-	'********************************************************************************************
-	' Only for VPX 10.2 and higher.
-	' FlashForMs will blink light or a flasher for TotalPeriod(ms) at rate of BlinkPeriod(ms)
-	' When TotalPeriod done, light or flasher will be set to FinalState value where
-	' Final State values are:   0=Off, 1=On, 2=Return to previous State
-	'********************************************************************************************
-	Sub FlashForMs(MyLight, TotalPeriod, BlinkPeriod, FinalState) 'thanks gtxjoe for the first version
+'********************************************************************************************
+' Only for VPX 10.2 and higher.
+' FlashForMs will blink light or a flasher for TotalPeriod(ms) at rate of BlinkPeriod(ms)
+' When TotalPeriod done, light or flasher will be set to FinalState value where
+' Final State values are:   0=Off, 1=On, 2=Return to previous State
+'********************************************************************************************
+Sub FlashForMs(MyLight, TotalPeriod, BlinkPeriod, FinalState) 'thanks gtxjoe for the first version
 
-		If TypeName(MyLight) = "Light" Then
+	If TypeName(MyLight) = "Light" Then
 
-			If FinalState = 2 Then
-				FinalState = MyLight.State 'Keep the current light state
-			End If
-			MyLight.BlinkInterval = BlinkPeriod
-			MyLight.Duration 2, TotalPeriod, FinalState
-		ElseIf TypeName(MyLight) = "Flasher" Then
-
-			Dim steps
-
-			' Store all blink information
-			steps = Int(TotalPeriod / BlinkPeriod + .5) 'Number of ON/OFF steps to perform
-			If FinalState = 2 Then                      'Keep the current flasher state
-				FinalState = ABS(MyLight.Visible)
-			End If
-			MyLight.UserValue = steps * 10 + FinalState 'Store # of blinks, and final state
-
-			' Start blink timer and create timer subroutine
-			MyLight.TimerInterval = BlinkPeriod
-			MyLight.TimerEnabled = 0
-			MyLight.TimerEnabled = 1
-			ExecuteGlobal "Sub " & MyLight.Name & "_Timer:" & "Dim tmp, steps, fstate:tmp=me.UserValue:fstate = tmp MOD 10:steps= tmp\10 -1:Me.Visible = steps MOD 2:me.UserValue = steps *10 + fstate:If Steps = 0 then Me.Visible = fstate:Me.TimerEnabled=0:End if:End Sub"
+		If FinalState = 2 Then
+			FinalState = MyLight.State 'Keep the current light state
 		End If
-	End Sub
-	'******************************************
-	' Change light color - simulate color leds
-	' changes the light color and state
-	'******************************************
-	Dim amber, lightamber, yellow, lightyellow, green, lightgreen, purple, lightpurple, white, ivory, base, black, red, indigo, lime, magenta, orange, maroon
-	amber = 1
-	lightamber = 2
-	yellow = 3
-	lightyellow = 4
-	green = 5
-	lightgreen = 6
-	purple = 7
-	lightpurple = 8
-	white = 9
-	ivory = 10
-	base = 11
-	black = 12
-	red = 13
-	indigo = 14
-	lime = 15
-	magenta = 16
-	orange = 17
-	Sub SetLightColor(n, col, stat)
-		Select Case col
-			Case amber
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(255, 153, 0)
-			Case lightamber
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(255, 222, 173)
-			Case yellow
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(255, 255, 0)
-			Case lightyellow
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(255, 255, 224)			
-			Case green
-				n.color = RGB(34, 139, 34)
-				n.colorfull = RGB(0, 255, 0)
-			Case lightgreen
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(152, 251, 152)			
-			Case purple
-				n.color = RGB(148, 0, 211)
-				n.colorfull = RGB(128, 0, 128)
-			Case lightpurple
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(186, 85, 211)
-			Case white
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(255, 255, 255)
-			Case ivory
-				n.color = RGB(255, 252, 224)
-				n.colorfull = RGB(193, 91, 0)
-			Case base
-				n.color = RGB(255, 197, 143)
-				n.colorfull = RGB(255, 255, 236)
-			Case black
-				n.color = RGB(0, 0, 0)
-				n.colorfull = RGB(0, 0, 0)
-			Case red
-				n.color = RGB(255, 0, 0)  '255
-				n.colorfull = RGB(139, 0, 0)
-			Case indigo
-				n.color = RGB(128, 0, 128)
-				n.colorfull = RGB(75, 0, 130)
-			Case lime
-				n.color = RGB(173, 255, 47)
-				n.colorfull = RGB(0, 255, 0)
-			Case magenta
-				n.color = RGB(218, 112, 214 )
-				n.colorfull = RGB(255, 0, 255)
-			Case orange
-				n.color = RGB(255, 165, 0 )
-				n.colorfull = RGB(255, 165, 0)
-			Case maroon
-				n.color = RGB(139, 0, 0 )
-				n.colorfull = RGB(130, 0, 0)
-		End Select
-		If stat <> -1 Then
-			n.State = 0
-			n.State = stat
+		MyLight.BlinkInterval = BlinkPeriod
+		MyLight.Duration 2, TotalPeriod, FinalState
+	ElseIf TypeName(MyLight) = "Flasher" Then
+
+		Dim steps
+
+		' Store all blink information
+		steps = Int(TotalPeriod / BlinkPeriod + .5) 'Number of ON/OFF steps to perform
+		If FinalState = 2 Then                      'Keep the current flasher state
+			FinalState = ABS(MyLight.Visible)
 		End If
-	End Sub
+		MyLight.UserValue = steps * 10 + FinalState 'Store # of blinks, and final state
 
-	Sub ResetAllLightsColor 	
-		Dim bulb
-		For each bulb in alights
-			SetLightColor bulb, base, -1
-		Next	
-	End Sub
+		' Start blink timer and create timer subroutine
+		MyLight.TimerInterval = BlinkPeriod
+		MyLight.TimerEnabled = 0
+		MyLight.TimerEnabled = 1
+		ExecuteGlobal "Sub " & MyLight.Name & "_Timer:" & "Dim tmp, steps, fstate:tmp=me.UserValue:fstate = tmp MOD 10:steps= tmp\10 -1:Me.Visible = steps MOD 2:me.UserValue = steps *10 + fstate:If Steps = 0 then Me.Visible = fstate:Me.TimerEnabled=0:End if:End Sub"
+	End If
+End Sub
+'******************************************
+' Change light color - simulate color leds
+' changes the light color and state
+'******************************************
+Dim amber, lightamber, yellow, lightyellow, green, lightgreen, purple, lightpurple, white, ivory, base, black, red, indigo, lime, magenta, orange, maroon
+amber = 1
+lightamber = 2
+yellow = 3
+lightyellow = 4
+green = 5
+lightgreen = 6
+purple = 7
+lightpurple = 8
+white = 9
+ivory = 10
+base = 11
+black = 12
+red = 13
+indigo = 14
+lime = 15
+magenta = 16
+orange = 17
 
-	Sub ResetAllGILightsColor
-		Dim bulb
-		For each bulb in GI
-			SetLightColor bulb, base, -1
-		Next	
-		TurnOffGIMultiball
-	End Sub
-	'*************************
-	' Rainbow Changing Lights
-	'*************************
-'''''''''''''''''''
-	Dim RGBStep, RGBFactor, rRed, rGreen, rBlue, RainbowLights
+' Storing base colors for from insert lights - iaakki
+Dim BaseColours()
+redim BaseColours(200)
 
-	Sub StartRainbow(n)
-		set RainbowLights = n
-		RGBStep = 0
-		RGBFactor = 5
-		rRed = 255
-		rGreen = 197    '0
-		rBlue = 143     '0
-		RainbowTimer.Enabled = 1
-	End Sub
+StoreBaseColors
+sub StoreBaseColors
+	dim k, x : x = 0
+	for each k in aLights
+		BaseColours(x) = Array(k.name,k.color)
+		x = x + 1
+	next
+	Redim preserve BaseColours(x)
+end sub
 
-	Dim RGBStep2, RGBFactor2, rRed2, rGreen2, rBlue2, RainbowLights2
-	Sub StartRainbow2(n)
-		set RainbowLights2 = n
-		RGBStep2 = 0
-		RGBFactor2 = 5
-		rRed2 = 255
-		rGreen2 = 197   '0
-		rBlue2 = 143    '0
-		RainbowTimer1.Enabled = 1
-	End Sub
+function returnBaseColor(baseObject)
+	dim baseColor, baseName, x
+	if IsObject(baseObject) then
+		baseName = baseObject.name
+		'if baseName = "gi2" then msgbox "hep"
+		for x = 0 to UBound(BaseColours) - 1
+			'if baseName = "gi2" then debug.print x
+			if baseName = BaseColours(x)(0) then
+				returnBaseColor = BaseColours(x)(1)
+				exit for
+			end if
+		next
+	Else
+		debug.print "not object: " & baseObject
+	end if
+end function
 
-	Sub StopRainbow(n)
-		Dim obj
-		RainbowTimer.Enabled = 0
-		RainbowTimer.Enabled = 0
-			For each obj in RainbowLights
-				SetLightColor obj, "base", 0
-			Next
-	End Sub
 
-	Sub StopRainbow2(n)
-		Dim obj
-		RainbowTimer1.Enabled = 0
-			For each obj in RainbowLights2
-				SetLightColor obj, "base", 0
-				obj.state = 1
-				obj.Intensity = 14
-			Next
-	End Sub
+Sub SetLightColor(n, col, stat)
+	dim baseColor
+	Select Case col
+		Case amber
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 153, 0)
+		Case lightamber
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 222, 173)
+		Case yellow
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 255, 0)
+		Case lightyellow
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 255, 224)			
+		Case green
+			n.color = RGB(34, 139, 34)
+			n.colorfull = RGB(0, 255, 0)
+		Case lightgreen
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(152, 251, 152)			
+		Case purple
+			n.color = RGB(148, 0, 211)
+			n.colorfull = RGB(128, 0, 128)
+		Case lightpurple
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(186, 85, 211)
+		Case white
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 255, 255)
+		Case ivory
+			n.color = RGB(255, 252, 224)
+			n.colorfull = RGB(193, 91, 0)
+		Case base
+'			debug.print n.name
+			baseColor = returnBaseColor(n)
+			n.color = baseColor
+			n.colorfull = baseColor
+		Case black
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(0, 0, 0)
+		Case red
+			n.color = RGB(255, 0, 0)  '255
+			n.colorfull = RGB(139, 0, 0)
+		Case indigo
+			n.color = RGB(128, 0, 128)
+			n.colorfull = RGB(75, 0, 130)
+		Case lime
+			n.color = RGB(173, 255, 47)
+			n.colorfull = RGB(0, 255, 0)
+		Case magenta
+			n.color = RGB(218, 112, 214 )
+			n.colorfull = RGB(255, 0, 255)
+		Case orange
+			n.color = RGB(255, 165, 0 )
+			n.colorfull = RGB(255, 165, 0)
+		Case maroon
+			n.color = RGB(139, 0, 0 )
+			n.colorfull = RGB(130, 0, 0)
+	End Select
+	If stat <> -1 Then
+		n.State = 0
+		n.State = stat
+	End If
+End Sub
 
-	Sub RainbowTimer_Timer 'rainbow led light color changing
-		Dim obj
-		Select Case RGBStep
-			Case 0 'Green
-				rGreen = rGreen + RGBFactor
-				If rGreen > 255 then
-					rGreen = 255
-					RGBStep = 1
-				End If
-			Case 1 'Red
-				rRed = rRed - RGBFactor
-				If rRed < 0 then
-					rRed = 0
-					RGBStep = 2
-				End If
-			Case 2 'Blue
-				rBlue = rBlue + RGBFactor
-				If rBlue > 255 then
-					rBlue = 255
-					RGBStep = 3
-				End If
-			Case 3 'Green
-				rGreen = rGreen - RGBFactor
-				If rGreen < 0 then
-					rGreen = 0
-					RGBStep = 4
-				End If
-			Case 4 'Red
-				rRed = rRed + RGBFactor
-				If rRed > 255 then
-					rRed = 255
-					RGBStep = 5
-				End If
-			Case 5 'Blue
-				rBlue = rBlue - RGBFactor
-				If rBlue < 0 then
-					rBlue = 0
-					RGBStep = 0
-				End If
-		End Select
-			For each obj in RainbowLights
-				obj.color = RGB(rRed \ 10, rGreen \ 10, rBlue \ 10)
-				obj.colorfull = RGB(rRed, rGreen, rBlue)
-			Next
-	End Sub
+Sub SetLightColorGI(n, col, stat)
+	dim baseColor
+	Select Case col
+		Case amber
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 153, 0)
+		Case lightamber
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 222, 173)
+		Case yellow
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 255, 0)
+		Case lightyellow
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 255, 224)			
+		Case green
+			n.color = RGB(34, 139, 34)
+			n.colorfull = RGB(0, 255, 0)
+		Case lightgreen
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(152, 251, 152)			
+		Case purple
+			n.color = RGB(148, 0, 211)
+			n.colorfull = RGB(128, 0, 128)
+		Case lightpurple
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(186, 85, 211)
+		Case white
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(255, 255, 255)
+		Case ivory
+			n.color = RGB(255, 252, 224)
+			n.colorfull = RGB(193, 91, 0)
+		Case base
+			n.color = RGB(255, 197, 143)
+			n.colorfull = RGB(255, 252, 224)
+		Case black
+			n.color = RGB(0, 0, 0)
+			n.colorfull = RGB(0, 0, 0)
+		Case red
+			n.color = RGB(255, 0, 0)  '255
+			n.colorfull = RGB(139, 0, 0)
+		Case indigo
+			n.color = RGB(128, 0, 128)
+			n.colorfull = RGB(75, 0, 130)
+		Case lime
+			n.color = RGB(173, 255, 47)
+			n.colorfull = RGB(0, 255, 0)
+		Case magenta
+			n.color = RGB(218, 112, 214 )
+			n.colorfull = RGB(255, 0, 255)
+		Case orange
+			n.color = RGB(255, 165, 0 )
+			n.colorfull = RGB(255, 165, 0)
+		Case maroon
+			n.color = RGB(139, 0, 0 )
+			n.colorfull = RGB(130, 0, 0)
+	End Select
+	If stat <> -1 Then
+		n.State = 0
+		n.State = stat
+	End If
+End Sub
 
-	Sub RainbowTimer1_Timer 'rainbow led light color changing
-		Dim obj
-		Select Case RGBStep2
-			Case 0 'Green
-				rGreen2 = rGreen2 + RGBFactor2
-				If rGreen2 > 255 then
-					rGreen2 = 255
-					RGBStep2 = 1
-				End If
-			Case 1 'Red
-				rRed2 = rRed2 - RGBFactor2
-				If rRed2 < 0 then
-					rRed2 = 0
-					RGBStep2 = 2
-				End If
-			Case 2 'Blue
-				rBlue2 = rBlue2 + RGBFactor2
-				If rBlue2 > 255 then
-					rBlue2 = 255
-					RGBStep2 = 3
-				End If
-			Case 3 'Green
-				rGreen2 = rGreen2 - RGBFactor2
-				If rGreen2 < 0 then
-					rGreen2 = 0
-					RGBStep2 = 4
-				End If
-			Case 4 'Red
-				rRed2 = rRed2 + RGBFactor2
-				If rRed2 > 255 then
-					rRed2 = 255
-					RGBStep2 = 5
-				End If
-			Case 5 'Blue
-				rBlue2 = rBlue2 - RGBFactor2
-				If rBlue2 < 0 then
-					rBlue2 = 0
-					RGBStep2 = 0
-				End If
-		End Select
-			For each obj in RainbowLights2
-				obj.color = RGB(rRed2 \ 10, rGreen2 \ 10, rBlue2 \ 10)
-				obj.colorfull = RGB(rRed2, rGreen2, rBlue2)
-			Next
-	End Sub
+Sub ResetAllLightsColor 	
+	Dim bulb
+	For each bulb in alights
+		SetLightColor bulb, base, -1
+	Next	
+End Sub
 
-	Sub StartLightSeq()
-		Dim a
-		For each a in attractlights
-			a.State = 1
-		Next
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDownOn, 70, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqCircleOutOn, 70, 1
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqUpOn, 70, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDownOn, 70, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanRightUpOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 2  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 2
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqFanRightDownOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 5          
-			LightSeqAttract.Play SeqDownOn, 75, 2
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagUpRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 5          
-			LightSeqAttract.Play SeqCircleOutOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDownOn, 75, 2
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqUpOn, 75, 2
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagDownRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 7
-			LightSeqAttract.Play SeqCircleOutOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDownOn, 70, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqCircleOutOn, 70, 1
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqUpOn, 70, 1  
-			LightSeqAttract.UpdateInterval = 4         
-			LightSeqAttract.Play SeqDownOn, 70, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanRightUpOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 2  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 2
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8
-			LightSeqAttract.Play SeqLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqFanRightDownOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 5          
-			LightSeqAttract.Play SeqDownOn, 75, 2
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagUpRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 5          
-			LightSeqAttract.Play SeqCircleOutOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqDownOn, 75, 2
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqUpOn, 75, 2
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagDownRightOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract.UpdateInterval = 7
-			LightSeqAttract.Play SeqCircleOutOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 4
-			LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract.UpdateInterval = 4          
-			LightSeqAttract.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract.UpdateInterval = 8          
-			LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
-		For each a in GI
-			a.State = 1
-			a.Intensity = 23
-		Next
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDownOn, 70, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqCircleOutOn, 70, 1
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqUpOn, 70, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDownOn, 70, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanRightDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanLeftDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanRightUpOn, 75, 1
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 2  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqStripe2VertOn, 75, 2
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqFanRightDownOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqGi.UpdateInterval = 5          
-			LightSeqGi.Play SeqDownOn, 75, 2
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe2VertOn, 75, 1 
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe2VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe2VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagUpRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 5          
-			LightSeqGi.Play SeqCircleOutOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDownOn, 75, 2
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqUpOn, 75, 2
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagDownRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 7
-			LightSeqGi.Play SeqCircleOutOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanRightDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanLeftDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 1 
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDownOn, 70, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqCircleOutOn, 70, 1
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqUpOn, 70, 1  
-			LightSeqGi.UpdateInterval = 4         
-			LightSeqGi.Play SeqDownOn, 70, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanRightDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanLeftDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanRightUpOn, 75, 1
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 2  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqStripe2VertOn, 75, 2
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 8
-			LightSeqGi.Play SeqLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqFanRightDownOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqGi.UpdateInterval = 5          
-			LightSeqGi.Play SeqDownOn, 75, 2
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe2VertOn, 75, 1 
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe2VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe2VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagUpRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 5          
-			LightSeqGi.Play SeqCircleOutOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqDownOn, 75, 2
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqUpOn, 75, 2
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagDownRightOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqGi.UpdateInterval = 7
-			LightSeqGi.Play SeqCircleOutOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanRightDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 4
-			LightSeqGi.Play SeqFanLeftDownOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 1 
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqGi.UpdateInterval = 4          
-			LightSeqGi.Play SeqStripe1VertOn, 75, 1
-			LightSeqGi.UpdateInterval = 8          
-			LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
-	End Sub
-
-	Sub StartLightSeq2()
-		Dim a
-		For each a in attractlights2
-			a.State = 1
-		Next
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDownOn, 70, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqCircleOutOn, 70, 1
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqUpOn, 70, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDownOn, 70, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanRightUpOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 2  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqFanRightDownOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 5          
-			LightSeqAttract2.Play SeqDownOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagUpRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 5          
-			LightSeqAttract2.Play SeqCircleOutOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDownOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqUpOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 7
-			LightSeqAttract2.Play SeqCircleOutOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDownOn, 70, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqCircleOutOn, 70, 1
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqUpOn, 70, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDownOn, 70, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanRightUpOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 2  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8
-			LightSeqAttract2.Play SeqLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqFanRightDownOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 5          
-			LightSeqAttract2.Play SeqDownOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagUpRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 5          
-			LightSeqAttract2.Play SeqCircleOutOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqDownOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqUpOn, 75, 2
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 7
-			LightSeqAttract2.Play SeqCircleOutOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 4
-			LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract2.UpdateInterval = 4          
-			LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract2.UpdateInterval = 8          
-			LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
-	End Sub
-
-	Sub StartLightSeq3()
-		Dim a
-		For each a in attractlights3
-			a.State = 1
-		Next
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDownOn, 70, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqCircleOutOn, 70, 1
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqUpOn, 70, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDownOn, 70, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanRightUpOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 2  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqFanRightDownOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 5          
-			LightSeqAttract3.Play SeqDownOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagUpRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 5          
-			LightSeqAttract3.Play SeqCircleOutOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDownOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqUpOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 7
-			LightSeqAttract3.Play SeqCircleOutOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDownOn, 70, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqCircleOutOn, 70, 1
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqUpOn, 70, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDownOn, 70, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanRightUpOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 2  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8
-			LightSeqAttract3.Play SeqLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqFanRightDownOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 5          
-			LightSeqAttract3.Play SeqDownOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagUpLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagUpRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 5          
-			LightSeqAttract3.Play SeqCircleOutOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqDownOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqUpOn, 75, 2
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 7
-			LightSeqAttract3.Play SeqCircleOutOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 4
-			LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1  
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
-			LightSeqAttract3.UpdateInterval = 4          
-			LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
-			LightSeqAttract3.UpdateInterval = 8          
-			LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
-	End Sub
-
-	Sub StartPLights()
-		Dim p
-		For each p in pLights
-			p.State = 2
-			p.BlinkInterval = 150	
-		Next
-	End Sub
+Sub ResetAllGILightsColor
+	Dim bulb
+	For each bulb in GI
+		SetLightColorGI bulb, base, -1
+		debug.print bulb.name & base
+	Next	
 	
-	Sub StopPLights()
-		Dim p
-		For each p in pLights
-			p.State = 0	
-		Next
-		Dim a
-		For each a in attractlights2
-			a.State = 0	
-		Next
-		For each a in attractlights3
-			a.State = 0	
-		Next
-	End Sub
+	TurnOffGIMultiball
 
-	Sub LightSeqTilt_PlayDone()
-		LightSeqTilt.Play SeqAllOff
-	End Sub
+End Sub
+'*************************
+' Rainbow Changing Lights
+'*************************
+'''''''''''''''''''
+Dim RGBStep, RGBFactor, rRed, rGreen, rBlue, RainbowLights
 
-	Sub LightSeqSkillshot_PlayDone()
-		LightSeqSkillshot.Play SeqAllOff
-	End Sub
+Sub StartRainbow(n)
+	set RainbowLights = n
+	RGBStep = 0
+	RGBFactor = 5
+	rRed = 255
+	rGreen = 197    '0
+	rBlue = 143     '0
+	RainbowTimer.Enabled = 1
+End Sub
+
+Dim RGBStep2, RGBFactor2, rRed2, rGreen2, rBlue2, RainbowLights2
+Sub StartRainbowGI(n)
+	set RainbowLights2 = n
+	RGBStep2 = 0
+	RGBFactor2 = 5
+	rRed2 = 255
+	rGreen2 = 197   '0
+	rBlue2 = 143    '0
+	RainbowTimer1.Enabled = 1
+End Sub
+
+Sub StopRainbow(n)
+	Dim obj
+	RainbowTimer.Enabled = 0
+	RainbowTimer.Enabled = 0
+		For each obj in RainbowLights
+			SetLightColor obj, "base", 0
+		Next
+End Sub
+
+Sub StopRainbow2(n)
+	Dim obj
+	RainbowTimer1.Enabled = 0
+		For each obj in RainbowLights2
+			SetLightColorGI obj, "base", 0
+			obj.state = 1
+			obj.Intensity = 18
+		Next
+End Sub
+
+Sub RainbowTimer_Timer 'rainbow led light color changing
+	Dim obj
+	Select Case RGBStep
+		Case 0 'Green
+			rGreen = rGreen + RGBFactor
+			If rGreen > 255 then
+				rGreen = 255
+				RGBStep = 1
+			End If
+		Case 1 'Red
+			rRed = rRed - RGBFactor
+			If rRed < 0 then
+				rRed = 0
+				RGBStep = 2
+			End If
+		Case 2 'Blue
+			rBlue = rBlue + RGBFactor
+			If rBlue > 255 then
+				rBlue = 255
+				RGBStep = 3
+			End If
+		Case 3 'Green
+			rGreen = rGreen - RGBFactor
+			If rGreen < 0 then
+				rGreen = 0
+				RGBStep = 4
+			End If
+		Case 4 'Red
+			rRed = rRed + RGBFactor
+			If rRed > 255 then
+				rRed = 255
+				RGBStep = 5
+			End If
+		Case 5 'Blue
+			rBlue = rBlue - RGBFactor
+			If rBlue < 0 then
+				rBlue = 0
+				RGBStep = 0
+			End If
+	End Select
+		For each obj in RainbowLights
+			obj.color = RGB(rRed \ 10, rGreen \ 10, rBlue \ 10)
+			obj.colorfull = RGB(rRed, rGreen, rBlue)
+		Next
+End Sub
+
+Sub RainbowTimer1_Timer 'rainbow led light color changing
+	Dim obj
+	Select Case RGBStep2
+		Case 0 'Green
+			rGreen2 = rGreen2 + RGBFactor2
+			If rGreen2 > 255 then
+				rGreen2 = 255
+				RGBStep2 = 1
+			End If
+		Case 1 'Red
+			rRed2 = rRed2 - RGBFactor2
+			If rRed2 < 0 then
+				rRed2 = 0
+				RGBStep2 = 2
+			End If
+		Case 2 'Blue
+			rBlue2 = rBlue2 + RGBFactor2
+			If rBlue2 > 255 then
+				rBlue2 = 255
+				RGBStep2 = 3
+			End If
+		Case 3 'Green
+			rGreen2 = rGreen2 - RGBFactor2
+			If rGreen2 < 0 then
+				rGreen2 = 0
+				RGBStep2 = 4
+			End If
+		Case 4 'Red
+			rRed2 = rRed2 + RGBFactor2
+			If rRed2 > 255 then
+				rRed2 = 255
+				RGBStep2 = 5
+			End If
+		Case 5 'Blue
+			rBlue2 = rBlue2 - RGBFactor2
+			If rBlue2 < 0 then
+				rBlue2 = 0
+				RGBStep2 = 0
+			End If
+	End Select
+		For each obj in RainbowLights2
+			obj.color = RGB(rRed2 \ 10, rGreen2 \ 10, rBlue2 \ 10)
+			obj.colorfull = RGB(rRed2, rGreen2, rBlue2)
+		Next
+End Sub
+
+Sub StartLightSeq()
+	Dim a
+	For each a in attractlights
+		a.State = 1
+	Next
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDownOn, 70, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqCircleOutOn, 70, 1
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqUpOn, 70, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDownOn, 70, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanRightUpOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 2  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 2
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqFanRightDownOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 5          
+		LightSeqAttract.Play SeqDownOn, 75, 2
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagUpRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 5          
+		LightSeqAttract.Play SeqCircleOutOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDownOn, 75, 2
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqUpOn, 75, 2
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagDownRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 7
+		LightSeqAttract.Play SeqCircleOutOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDownOn, 70, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqCircleOutOn, 70, 1
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqUpOn, 70, 1  
+		LightSeqAttract.UpdateInterval = 4         
+		LightSeqAttract.Play SeqDownOn, 70, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanRightUpOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 2  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 2
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8
+		LightSeqAttract.Play SeqLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqFanRightDownOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 5          
+		LightSeqAttract.Play SeqDownOn, 75, 2
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagUpRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 5          
+		LightSeqAttract.Play SeqCircleOutOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqDownOn, 75, 2
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqUpOn, 75, 2
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagDownRightOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract.UpdateInterval = 7
+		LightSeqAttract.Play SeqCircleOutOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 4
+		LightSeqAttract.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract.UpdateInterval = 4          
+		LightSeqAttract.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract.UpdateInterval = 8          
+		LightSeqAttract.Play SeqStripe1HorizOn, 75, 1 
+	For each a in GI
+		a.State = 1
+		a.Intensity = 23
+	Next
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDownOn, 70, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqCircleOutOn, 70, 1
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqUpOn, 70, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDownOn, 70, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanRightDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanLeftDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanRightUpOn, 75, 1
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 2  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqStripe2VertOn, 75, 2
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqFanRightDownOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqGi.UpdateInterval = 5          
+		LightSeqGi.Play SeqDownOn, 75, 2
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe2VertOn, 75, 1 
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe2VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe2VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagUpRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 5          
+		LightSeqGi.Play SeqCircleOutOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDownOn, 75, 2
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqUpOn, 75, 2
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagDownRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 7
+		LightSeqGi.Play SeqCircleOutOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanRightDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanLeftDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 1 
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDownOn, 70, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqCircleOutOn, 70, 1
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqUpOn, 70, 1  
+		LightSeqGi.UpdateInterval = 4         
+		LightSeqGi.Play SeqDownOn, 70, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanRightDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanLeftDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanRightUpOn, 75, 1
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 2  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqStripe2VertOn, 75, 2
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 8
+		LightSeqGi.Play SeqLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqFanRightDownOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqGi.UpdateInterval = 5          
+		LightSeqGi.Play SeqDownOn, 75, 2
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe2VertOn, 75, 1 
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe2VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe2VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagUpRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 5          
+		LightSeqGi.Play SeqCircleOutOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqDownOn, 75, 2
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqUpOn, 75, 2
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagDownRightOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqGi.UpdateInterval = 7
+		LightSeqGi.Play SeqCircleOutOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanRightDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 4
+		LightSeqGi.Play SeqFanLeftDownOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 1 
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqGi.UpdateInterval = 4          
+		LightSeqGi.Play SeqStripe1VertOn, 75, 1
+		LightSeqGi.UpdateInterval = 8          
+		LightSeqGi.Play SeqStripe1HorizOn, 75, 1 
+End Sub
+
+Sub StartLightSeq2()
+	Dim a
+	For each a in attractlights2
+		a.State = 1
+	Next
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDownOn, 70, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqCircleOutOn, 70, 1
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqUpOn, 70, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDownOn, 70, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanRightUpOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 2  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqFanRightDownOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 5          
+		LightSeqAttract2.Play SeqDownOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagUpRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 5          
+		LightSeqAttract2.Play SeqCircleOutOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDownOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqUpOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 7
+		LightSeqAttract2.Play SeqCircleOutOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDownOn, 70, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqCircleOutOn, 70, 1
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqUpOn, 70, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDownOn, 70, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanRightUpOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 2  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8
+		LightSeqAttract2.Play SeqLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqFanRightDownOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 5          
+		LightSeqAttract2.Play SeqDownOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagUpRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 5          
+		LightSeqAttract2.Play SeqCircleOutOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqDownOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqUpOn, 75, 2
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagDownRightOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 7
+		LightSeqAttract2.Play SeqCircleOutOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 4
+		LightSeqAttract2.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract2.UpdateInterval = 4          
+		LightSeqAttract2.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract2.UpdateInterval = 8          
+		LightSeqAttract2.Play SeqStripe1HorizOn, 75, 1 
+End Sub
+
+Sub StartLightSeq3()
+	Dim a
+	For each a in attractlights3
+		a.State = 1
+	Next
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDownOn, 70, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqCircleOutOn, 70, 1
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqUpOn, 70, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDownOn, 70, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanRightUpOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 2  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqFanRightDownOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 5          
+		LightSeqAttract3.Play SeqDownOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagUpRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 5          
+		LightSeqAttract3.Play SeqCircleOutOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDownOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqUpOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 7
+		LightSeqAttract3.Play SeqCircleOutOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDownOn, 70, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqCircleOutOn, 70, 1
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqUpOn, 70, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDownOn, 70, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanRightUpOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 2  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8
+		LightSeqAttract3.Play SeqLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqFanRightDownOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 5          
+		LightSeqAttract3.Play SeqDownOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe2VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe2HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagUpLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagUpRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 5          
+		LightSeqAttract3.Play SeqCircleOutOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqDownOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqUpOn, 75, 2
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagDownRightOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqDiagDownLeftOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 7
+		LightSeqAttract3.Play SeqCircleOutOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanLeftUpOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanRightDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 4
+		LightSeqAttract3.Play SeqFanLeftDownOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1  
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
+		LightSeqAttract3.UpdateInterval = 4          
+		LightSeqAttract3.Play SeqStripe1VertOn, 75, 1
+		LightSeqAttract3.UpdateInterval = 8          
+		LightSeqAttract3.Play SeqStripe1HorizOn, 75, 1 
+End Sub
+
+Sub StartPLights()
+	Dim p
+	For each p in pLights
+		p.State = 2
+		p.BlinkInterval = 150	
+	Next
+End Sub
+
+Sub StopPLights()
+	Dim p
+	For each p in pLights
+		p.State = 0	
+	Next
+	Dim a
+	For each a in attractlights2
+		a.State = 0	
+	Next
+	For each a in attractlights3
+		a.State = 0	
+	Next
+End Sub
+
+Sub LightSeqTilt_PlayDone()
+	LightSeqTilt.Play SeqAllOff
+End Sub
+
+Sub LightSeqSkillshot_PlayDone()
+	LightSeqSkillshot.Play SeqAllOff
+End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  GI LIGHTING
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -9920,11 +10025,11 @@ End Sub
 	Sub ChangeGiBlink(col)
 		Dim bulb
 		For each bulb in GI
-			SetLightColorBlink bulb, col, 2
+			SetLightColorBlinkGI bulb, col, 2
 		Next
 	End Sub
 
-	Sub SetLightColorBlink(n, col, stat)
+	Sub SetLightColorBlinkGI(n, col, stat)
 		Select Case col
 			Case amber
 				n.color = RGB(255, 153, 0)
@@ -9954,35 +10059,35 @@ End Sub
 		End If
 	End Sub
 
-	Sub SetLightColorBlinkMultiball(n, col, stat)
-		Select Case col
-			Case amber
-				n.color = RGB(255, 153, 0)
-				n.colorfull = RGB(255, 153, 0)
-			Case yellow
-				n.color = RGB(255, 255, 0)
-				n.colorfull = RGB(255, 255, 0)
-			Case green
-				n.color = RGB(0, 255, 0)
-				n.colorfull = RGB(0, 255, 0)
-			Case purple
-				n.color = RGB(128, 0, 128)
-				n.colorfull = RGB(128, 0, 128)
-			Case white
-				n.color = RGB(255, 255, 255)
-				n.colorfull = RGB(255, 255, 255)
-			Case ivory
-				n.color = RGB(255, 252, 224)
-				n.colorfull = RGB(193, 91, 0)
-			Case base
-				n.color = RGB(255, 197, 143)
-				n.colorfull = RGB(255, 255, 236)
-		End Select
-		If stat <> -1 THEN
-			n.State = 0
-			n.State = stat
-		End If
-	End Sub
+'	Sub SetLightColorBlinkMultiball(n, col, stat)
+'		dim baseColor
+'			Case amber
+'				n.color = RGB(255, 153, 0)
+'				n.colorfull = RGB(255, 153, 0)
+'			Case yellow
+'				n.color = RGB(255, 255, 0)
+'				n.colorfull = RGB(255, 255, 0)
+'			Case green
+'				n.color = RGB(0, 255, 0)
+'				n.colorfull = RGB(0, 255, 0)
+'			Case purple
+'				n.color = RGB(128, 0, 128)
+'				n.colorfull = RGB(128, 0, 128)
+'			Case white
+'				n.color = RGB(255, 255, 255)
+'				n.colorfull = RGB(255, 255, 255)
+'			Case ivory
+'				n.color = RGB(255, 252, 224)
+'				n.colorfull = RGB(193, 91, 0)
+'			Case base
+'				n.color = RGB(255, 197, 143)
+'				n.colorfull = RGB(255, 255, 236)
+'		End Select
+'		If stat <> -1 THEN
+'			n.State = 0
+'			n.State = stat
+'		End If
+'	End Sub
 
  	Sub RandomChangeGi()
 		RandomGIColor : RandomLightsColor
@@ -10057,11 +10162,11 @@ End Sub
 	Sub ChangeGiLit(col)
 		Dim bulb
 		For each bulb in GI
-			SetLightColorLit bulb, col, 1
+			SetLightColorLitGI bulb, col, 1
 		Next
 	End Sub
 
-	Sub SetLightColorLit(n, col, stat)
+	Sub SetLightColorLitGI(n, col, stat)
 		Select Case col
 			Case white
 				n.color = RGB(255, 252, 224)
@@ -10131,29 +10236,29 @@ End Sub
 	' Change GI blinking colors for specific triggers
 	'**************************************************
 	Sub ChangeGiBlinkDrainLeft(col)
-		SetLightColorBlink gi4, col, 2
-		SetLightColorBlink gi6, col, 2
-		SetLightColorBlink gi7, col, 2
+		SetLightColorBlinkGI gi4, col, 2
+		SetLightColorBlinkGI gi6, col, 2
+		SetLightColorBlinkGI gi7, col, 2
 	End Sub
 	Sub ChangeGiBlinkDrainRight(col)
-		SetLightColorBlink gi2, col, 2
-		SetLightColorBlink gi5, col, 2
-		SetLightColorBlink gi8, col, 2
+		SetLightColorBlinkGI gi2, col, 2
+		SetLightColorBlinkGI gi5, col, 2
+		SetLightColorBlinkGI gi8, col, 2
 	End Sub
 	Sub ChangeGiBlinkRampLeft(col)
-		SetLightColorBlink gi4, col, 2
-		SetLightColorBlink gi6, col, 2
-		SetLightColorBlink gi7, col, 2
-		SetLightColorBlink gi12, col, 2
-		SetLightColorBlink gi13, col, 2
-		SetLightColorBlink gi17, col, 2
+		SetLightColorBlinkGI gi4, col, 2
+		SetLightColorBlinkGI gi6, col, 2
+		SetLightColorBlinkGI gi7, col, 2
+		SetLightColorBlinkGI gi12, col, 2
+		SetLightColorBlinkGI gi13, col, 2
+		SetLightColorBlinkGI gi17, col, 2
 	End Sub
 	Sub ChangeGiBlinkRampRight(col)
-		SetLightColorBlink gi2, col, 2
-		SetLightColorBlink gi5, col, 2
-		SetLightColorBlink gi8, col, 2
-		SetLightColorBlink gi9, col, 2
-		SetLightColorBlink gi10, col, 2
+		SetLightColorBlinkGI gi2, col, 2
+		SetLightColorBlinkGI gi5, col, 2
+		SetLightColorBlinkGI gi8, col, 2
+		SetLightColorBlinkGI gi9, col, 2
+		SetLightColorBlinkGI gi10, col, 2
 	End Sub
 
 	Sub RandomGIForTargets()
@@ -10255,7 +10360,7 @@ End Sub
 		DOF 126, DOFOn     '?
 		Dim bulb
 		For each bulb in GI
-			SetLightColor bulb, base, -1
+			SetLightColorGI bulb, base, -1
 			bulb.State = 1
 		Next
 	End Sub
@@ -10603,7 +10708,7 @@ End Sub
 				Playsound "fx078"
 				ClearMusicCallout
 				LWarpMultiballCounter.state = 0
-				LightShootAgainMB.state = 0
+				LightShootAgain.state = 0
 				bBallSaverActive = False
 				ChangeGiForKeepBombing
 				ChangeLights(base)	
@@ -13272,7 +13377,7 @@ End Sub
 
 Sub Table1_exit()
 	SaveLUT
-
+'	Controller.Stop
     If Not FlexDMD is Nothing Then
 		FlexDMD.Show = False
 		FlexDMD.Run = False
@@ -15508,6 +15613,425 @@ End Sub
 Sub TimerVRPlunger2_Timer
 	PinCab_Shooter.Y = -215 + (5* Plunger.Position) -20
 End Sub
+
+
+'*******************************************
+' Insert primitive fading and color assignment
+' iaakki
+'*******************************************
+sub L10KScore03_animate
+	pL10KScore03.blenddisablelighting = 1000 * (L10KScore03.GetInPlayIntensity / L10KScore03.Intensity)
+	pL10KScore03.color = GrayedRGB(L10KScore03.colorfull)
+end sub
+
+sub L10KScore04_animate
+	pL10KScore04.blenddisablelighting = 1000 * (L10KScore04.GetInPlayIntensity / L10KScore04.Intensity)
+	pL10KScore04.color = GrayedRGB(L10KScore04.colorfull)
+end sub
+
+sub L10KScore05_animate
+	pL10KScore05.blenddisablelighting = 1000 * (L10KScore05.GetInPlayIntensity / L10KScore05.Intensity)
+	pL10KScore05.color = GrayedRGB(L10KScore05.colorfull)
+end sub
+'
+'LStar08
+'LMultiplier01
+'LMultiplier02
+'LMultiplier03
+'LStar09
+
+
+
+sub LStar04_animate
+	pLStar04.blenddisablelighting = 1000 * (LStar04.GetInPlayIntensity / LStar04.Intensity)
+	pLStar04.color = GrayedRGB(LStar04.colorfull)
+end sub
+
+sub LStar05_animate
+	pLStar05.blenddisablelighting = 1000 * (LStar05.GetInPlayIntensity / LStar05.Intensity)
+	pLStar05.color = GrayedRGB(LStar05.colorfull)
+end sub
+
+sub LStar06_animate
+	pLStar06.blenddisablelighting = 1000 * (LStar06.GetInPlayIntensity / LStar06.Intensity)
+	pLStar06.color = GrayedRGB(LStar06.colorfull)
+end sub
+
+sub LStar07_animate
+	pLStar07.blenddisablelighting = 1000 * (LStar07.GetInPlayIntensity / LStar07.Intensity)
+	pLStar07.color = GrayedRGB(LStar07.colorfull)
+end sub
+
+
+sub LStar08_animate
+	pLStar08.blenddisablelighting = 1000 * (LStar08.GetInPlayIntensity / LStar08.Intensity)
+	pLStar08.color = GrayedRGB(LStar08.colorfull)
+end sub
+
+sub LMultiplier01_animate
+	pLMultiplier01.blenddisablelighting = 1300 * (LMultiplier01.GetInPlayIntensity / LMultiplier01.Intensity)
+	pLMultiplier01.color = GrayedRGB(LMultiplier01.colorfull)
+end sub
+
+sub LMultiplier02_animate
+	pLMultiplier02.blenddisablelighting = 1300 * (LMultiplier02.GetInPlayIntensity / LMultiplier02.Intensity)
+	pLMultiplier02.color = GrayedRGB(LMultiplier02.colorfull)
+end sub
+
+sub LMultiplier03_animate
+	pLMultiplier03.blenddisablelighting = 1300 * (LMultiplier03.GetInPlayIntensity / LMultiplier03.Intensity)
+	pLMultiplier03.color = GrayedRGB(LMultiplier03.colorfull)
+end sub
+
+sub LStar09_animate
+	pLStar09.blenddisablelighting = 1000 * (LStar09.GetInPlayIntensity / LStar09.Intensity)
+	pLStar09.color = GrayedRGB(LStar09.colorfull)
+end sub
+
+'LBonus01
+'LBonus02
+'LBonus03
+'LBonus04
+'LBonus05
+'LBonus06
+'LBonus07
+'LBonus08
+'LBonus09
+'LBonus10
+
+sub LBonus01_animate
+	pLBonus01.blenddisablelighting = 1000 * (LBonus01.GetInPlayIntensity / LBonus01.Intensity)
+	pLBonus01.color = GrayedRGB(LBonus01.colorfull)
+end sub
+
+sub LBonus02_animate
+	pLBonus02.blenddisablelighting = 1000 * (LBonus02.GetInPlayIntensity / LBonus02.Intensity)
+	pLBonus02.color = GrayedRGB(LBonus02.colorfull)
+end sub
+
+sub LBonus03_animate
+	pLBonus03.blenddisablelighting = 1000 * (LBonus03.GetInPlayIntensity / LBonus03.Intensity)
+	pLBonus03.color = GrayedRGB(LBonus03.colorfull)
+end sub
+
+sub LBonus04_animate
+	pLBonus04.blenddisablelighting = 1000 * (LBonus04.GetInPlayIntensity / LBonus04.Intensity)
+	pLBonus04.color = GrayedRGB(LBonus04.colorfull)
+end sub
+
+sub LBonus05_animate
+	pLBonus05.blenddisablelighting = 1000 * (LBonus05.GetInPlayIntensity / LBonus05.Intensity)
+	pLBonus05.color = GrayedRGB(LBonus05.colorfull)
+end sub
+
+sub LBonus06_animate
+	pLBonus06.blenddisablelighting = 1000 * (LBonus06.GetInPlayIntensity / LBonus06.Intensity)
+	pLBonus06.color = GrayedRGB(LBonus06.colorfull)
+end sub
+
+sub LBonus07_animate
+	pLBonus07.blenddisablelighting = 1000 * (LBonus07.GetInPlayIntensity / LBonus07.Intensity)
+	pLBonus07.color = GrayedRGB(LBonus07.colorfull)
+end sub
+
+sub LBonus08_animate
+	pLBonus08.blenddisablelighting = 1000 * (LBonus08.GetInPlayIntensity / LBonus08.Intensity)
+	pLBonus08.color = GrayedRGB(LBonus08.colorfull)
+end sub
+
+sub LBonus09_animate
+	pLBonus09.blenddisablelighting = 1000 * (LBonus09.GetInPlayIntensity / LBonus09.Intensity)
+	pLBonus09.color = GrayedRGB(LBonus09.colorfull)
+end sub
+
+sub LBonus10_animate
+	pLBonus10.blenddisablelighting = 1000 * (LBonus10.GetInPlayIntensity / LBonus10.Intensity)
+	pLBonus10.color = GrayedRGB(LBonus10.colorfull)
+end sub
+
+'LightShootAgain
+sub LightShootAgain_animate
+	pLightShootAgain.blenddisablelighting = 1500 * (LightShootAgain.GetInPlayIntensity / LightShootAgain.Intensity)
+	pLightShootAgain.color = GrayedRGB(LightShootAgain.colorfull)
+end sub
+
+'LBonusInThousands01
+sub LBonusInThousands01_animate
+	pLBonusInThousands01.blenddisablelighting = 1000 * (LBonusInThousands01.GetInPlayIntensity / LBonusInThousands01.Intensity)
+	pLBonusInThousands01.color = GrayedRGB(LBonusInThousands01.colorfull)
+end sub
+
+sub LSupreme001_animate
+	pLSupreme001.blenddisablelighting = 1000 * (LSupreme001.GetInPlayIntensity / LSupreme001.Intensity)
+	pLSupreme001.color = GrayedRGB(LSupreme001.colorfull)
+end sub
+
+sub LSupreme002_animate
+	pLSupreme002.blenddisablelighting = 1000 * (LSupreme002.GetInPlayIntensity / LSupreme002.Intensity)
+	pLSupreme002.color = GrayedRGB(LSupreme002.colorfull)
+end sub
+
+sub LSupreme003_animate
+	pLSupreme003.blenddisablelighting = 1000 * (LSupreme003.GetInPlayIntensity / LSupreme003.Intensity)
+	pLSupreme003.color = GrayedRGB(LSupreme003.colorfull)
+end sub
+
+
+sub LSupreme004_animate
+	pLSupreme004.blenddisablelighting = 1000 * (LSupreme004.GetInPlayIntensity / LSupreme004.Intensity)
+	pLSupreme004.color = GrayedRGB(LSupreme004.colorfull)
+end sub
+
+sub LSupreme005_animate
+	pLSupreme005.blenddisablelighting = 1000 * (LSupreme005.GetInPlayIntensity / LSupreme005.Intensity)
+	pLSupreme005.color = GrayedRGB(LSupreme005.colorfull)
+end sub
+
+sub LSupreme07_animate
+	pLSupreme07.blenddisablelighting = 1000 * (LSupreme07.GetInPlayIntensity / LSupreme07.Intensity)
+	pLSupreme07.color = GrayedRGB(LSupreme07.colorfull)
+end sub
+
+sub LSupreme08_animate
+	pLSupreme08.blenddisablelighting = 1000 * (LSupreme08.GetInPlayIntensity / LSupreme08.Intensity)
+	pLSupreme08.color = GrayedRGB(LSupreme08.colorfull)
+end sub
+
+sub LSupreme09_animate
+	pLSupreme09.blenddisablelighting = 1000 * (LSupreme09.GetInPlayIntensity / LSupreme09.Intensity)
+	pLSupreme09.color = GrayedRGB(LSupreme09.colorfull)
+end sub
+
+sub LSupreme10_animate
+	pLSupreme10.blenddisablelighting = 1000 * (LSupreme10.GetInPlayIntensity / LSupreme10.Intensity)
+	pLSupreme10.color = GrayedRGB(LSupreme10.colorfull)
+end sub
+
+' Side stand up targets
+sub LBolt01_animate
+	pLBolt01.blenddisablelighting = 1000 * (LBolt01.GetInPlayIntensity / LBolt01.Intensity)
+	pLBolt01.color = GrayedRGB(LBolt01.colorfull)
+end sub
+
+sub LBolt02_animate
+	pLBolt02.blenddisablelighting = 1000 * (LBolt02.GetInPlayIntensity / LBolt02.Intensity)
+	pLBolt02.color = GrayedRGB(LBolt02.colorfull)
+end sub
+
+sub LBolt03_animate
+	pLBolt03.blenddisablelighting = 1000 * (LBolt03.GetInPlayIntensity / LBolt03.Intensity)
+	pLBolt03.color = GrayedRGB(LBolt03.colorfull)
+end sub
+
+
+sub LBolt04_animate
+	pLBolt04.blenddisablelighting = 1000 * (LBolt04.GetInPlayIntensity / LBolt04.Intensity)
+	pLBolt04.color = GrayedRGB(LBolt04.colorfull)
+end sub
+
+sub LBolt05_animate
+	pLBolt05.blenddisablelighting = 1000 * (LBolt05.GetInPlayIntensity / LBolt05.Intensity)
+	pLBolt05.color = GrayedRGB(LBolt05.colorfull)
+end sub
+
+sub LBolt06_animate
+	pLBolt06.blenddisablelighting = 1000 * (LBolt06.GetInPlayIntensity / LBolt06.Intensity)
+	pLBolt06.color = GrayedRGB(LBolt06.colorfull)
+end sub
+
+
+' large round inserts on shots
+sub LSupreme01_animate
+	pLSupreme01.blenddisablelighting = 1000 * (LSupreme01.GetInPlayIntensity / LSupreme01.Intensity)
+	pLSupreme01.color = GrayedRGB(LSupreme01.colorfull)
+end sub
+
+sub LSupreme02_animate
+	pLSupreme02.blenddisablelighting = 1000 * (LSupreme02.GetInPlayIntensity / LSupreme02.Intensity)
+	pLSupreme02.color = GrayedRGB(LSupreme02.colorfull)
+end sub
+
+sub LSupreme03_animate
+	pLSupreme03.blenddisablelighting = 1000 * (LSupreme03.GetInPlayIntensity / LSupreme03.Intensity)
+	pLSupreme03.color = GrayedRGB(LSupreme03.colorfull)
+end sub
+
+sub LSupreme04_animate
+	pLSupreme04.blenddisablelighting = 1000 * (LSupreme04.GetInPlayIntensity / LSupreme04.Intensity)
+	pLSupreme04.color = GrayedRGB(LSupreme04.colorfull)
+end sub
+
+sub LSupreme05_animate
+	pLSupreme05.blenddisablelighting = 1000 * (LSupreme05.GetInPlayIntensity / LSupreme05.Intensity)
+	pLSupreme05.color = GrayedRGB(LSupreme05.colorfull)
+end sub
+
+sub LSupreme06_animate
+	pLSupreme06.blenddisablelighting = 1000 * (LSupreme06.GetInPlayIntensity / LSupreme06.Intensity)
+	pLSupreme06.color = GrayedRGB(LSupreme06.colorfull)
+end sub
+
+'eb
+
+
+sub LExtraBall01_animate
+	pLExtraBall01.blenddisablelighting = 1000 * (LExtraBall01.GetInPlayIntensity / LExtraBall01.Intensity)
+	pLExtraBall01.color = GrayedRGB(LExtraBall01.colorfull)
+end sub
+
+
+'10K scores
+
+sub L10KScore02_animate
+	pL10KScore02.blenddisablelighting = 1000 * (L10KScore02.GetInPlayIntensity / L10KScore02.Intensity)
+	pL10KScore02.color = GrayedRGB(L10KScore02.colorfull)
+end sub
+
+sub L5KScore01_animate
+	pL5KScore01.blenddisablelighting = 1000 * (L5KScore01.GetInPlayIntensity / L5KScore01.Intensity)
+	pL5KScore01.color = GrayedRGB(L5KScore01.colorfull)
+end sub
+
+sub L10KScore07_animate
+	pL10KScore07.blenddisablelighting = 1000 * (L10KScore07.GetInPlayIntensity / L10KScore07.Intensity)
+	pL10KScore07.color = GrayedRGB(L10KScore07.colorfull)
+end sub
+
+sub L5KScore02_animate
+	pL5KScore02.blenddisablelighting = 1000 * (L5KScore02.GetInPlayIntensity / L5KScore02.Intensity)
+	pL5KScore02.color = GrayedRGB(L5KScore02.colorfull)
+end sub
+
+sub L10KScore09_animate
+	pL10KScore09.blenddisablelighting = 1000 * (L10KScore09.GetInPlayIntensity / L10KScore09.Intensity)
+	pL10KScore09.color = GrayedRGB(L10KScore09.colorfull)
+end sub
+
+
+
+
+
+sub L25KScore01_animate
+	pL25KScore01.blenddisablelighting = 1000 * (L25KScore01.GetInPlayIntensity / L25KScore01.Intensity)
+	pL25KScore01.color = GrayedRGB(L25KScore01.colorfull)
+end sub
+
+sub L25KScore02_animate
+	pL25KScore02.blenddisablelighting = 1000 * (L25KScore02.GetInPlayIntensity / L25KScore02.Intensity)
+	pL25KScore02.color = GrayedRGB(L25KScore02.colorfull)
+end sub
+
+sub L10KScore06_animate
+	pL10KScore06.blenddisablelighting = 1000 * (L10KScore06.GetInPlayIntensity / L10KScore06.Intensity)
+	pL10KScore06.color = GrayedRGB(L10KScore06.colorfull)
+end sub
+
+sub L25KScore03_animate
+	pL25KScore03.blenddisablelighting = 1000 * (L25KScore03.GetInPlayIntensity / L25KScore03.Intensity)
+	pL25KScore03.color = GrayedRGB(L25KScore03.colorfull)
+end sub
+
+sub L10KScore08_animate
+	pL10KScore08.blenddisablelighting = 1000 * (L10KScore08.GetInPlayIntensity / L10KScore08.Intensity)
+	pL10KScore08.color = GrayedRGB(L10KScore08.colorfull)
+end sub
+
+sub L25KScore04_animate
+	pL25KScore04.blenddisablelighting = 1000 * (L25KScore04.GetInPlayIntensity / L25KScore04.Intensity)
+	pL25KScore04.color = GrayedRGB(L25KScore04.colorfull)
+end sub
+
+
+
+
+
+'arrows
+sub LArrow01_animate
+	pLArrow01.blenddisablelighting = 1000 * (LArrow01.GetInPlayIntensity / LArrow01.Intensity)
+	pLArrow01.color = GrayedRGB(LArrow01.colorfull)
+end sub
+
+sub LArrow02_animate
+	pLArrow02.blenddisablelighting = 1000 * (LArrow02.GetInPlayIntensity / LArrow02.Intensity)
+	pLArrow02.color = GrayedRGB(LArrow02.colorfull)
+end sub
+
+sub LArrow03_animate
+	pLArrow03.blenddisablelighting = 1000 * (LArrow03.GetInPlayIntensity / LArrow03.Intensity)
+	pLArrow03.color = GrayedRGB(LArrow03.colorfull)
+end sub
+
+sub LArrow04_animate
+	pLArrow04.blenddisablelighting = 1000 * (LArrow04.GetInPlayIntensity / LArrow04.Intensity)
+	pLArrow04.color = GrayedRGB(LArrow04.colorfull)
+end sub
+
+sub LArrow05_animate
+	pLArrow05.blenddisablelighting = 1000 * (LArrow05.GetInPlayIntensity / LArrow05.Intensity)
+	pLArrow05.color = GrayedRGB(LArrow05.colorfull)
+end sub
+
+sub LArrow06_animate
+	pLArrow06.blenddisablelighting = 1000 * (LArrow06.GetInPlayIntensity / LArrow06.Intensity)
+	pLArrow06.color = GrayedRGB(LArrow06.colorfull)
+end sub
+
+sub LArrow07_animate
+	pLArrow07.blenddisablelighting = 1000 * (LArrow07.GetInPlayIntensity / LArrow07.Intensity)
+	pLArrow07.color = GrayedRGB(LArrow07.colorfull)
+end sub
+
+sub LArrow08_animate
+	pLArrow08.blenddisablelighting = 1000 * (LArrow08.GetInPlayIntensity / LArrow08.Intensity)
+	pLArrow08.color = GrayedRGB(LArrow08.colorfull)
+end sub
+
+sub LArrow09_animate
+	pLArrow09.blenddisablelighting = 1000 * (LArrow09.GetInPlayIntensity / LArrow09.Intensity)
+	pLArrow09.color = GrayedRGB(LArrow09.colorfull)
+end sub
+
+
+'top lanes
+sub LStar01_animate
+	pLStar01.blenddisablelighting = 1000 * (LStar01.GetInPlayIntensity / LStar01.Intensity)
+	pLStar01.color = GrayedRGB(LStar01.colorfull)
+end sub
+
+sub LStar02_animate
+	pLStar02.blenddisablelighting = 1000 * (LStar02.GetInPlayIntensity / LStar02.Intensity)
+	pLStar02.color = GrayedRGB(LStar02.colorfull)
+end sub
+
+sub LStar03_animate
+	pLStar03.blenddisablelighting = 1000 * (LStar03.GetInPlayIntensity / LStar03.Intensity)
+	pLStar03.color = GrayedRGB(LStar03.colorfull)
+end sub
+
+
+Function GrayedRGB(color)
+	Dim red, green, blue
+
+	color = round(color,0)
+
+	red = color mod 256
+	green = (color \ 256) mod 256
+	blue = (color \ 65536) mod 256
+
+'	red = ((color And &H000000FF)\&H00000001) And 255
+'	green = ((color And &H0000FF00)\&H00000100) And 255
+'	blue = ((color And &H00FF0000)\&H00010000) And 255
+
+'	debug.print "in: " & red & " " & green & " " & blue
+
+	red = (red + 28) / 1.22
+	green = (green + 28) / 1.22
+	blue = (blue + 28) / 1.22
+
+'	debug.print "--------------->: " & red & " " & green & " " & blue
+
+	GrayedRGB = RGB(red, green, blue)
+End Function
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  WHY THE HELL ARE YOU READING ALL THE WAY DOWN HERE!!!  YOU MUST BE SOFA KING WE TODD ID!!! 

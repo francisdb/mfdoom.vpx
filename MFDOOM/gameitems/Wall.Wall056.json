@@ -11,7 +11,7 @@
     "image": "playfield-PLASTICS(trans)",
     "side_image": "aluminum",
     "side_material": "Metal0.2",
-    "top_material": "Plastic",
+    "top_material": "PlasticDyn",
     "slingshot_material": "",
     "height_bottom": 0.0,
     "height_top": 31.0,

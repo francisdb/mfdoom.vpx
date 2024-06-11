@@ -33,7 +33,7 @@
     "bulb_modulate_vs_add": 0.998,
     "bulb_halo_height": 30.0,
     "shadows": "none",
-    "fader": "linear",
+    "fader": "none",
     "visible": true,
     "drag_points": [
       {
