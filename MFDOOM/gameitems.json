@@ -382,7 +382,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Trigger.Triggertexttop036.json",
@@ -487,7 +487,7 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Light.LPlastic001v2.json",
@@ -1768,14 +1768,14 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall069.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Rubber.Rubber004.json",
@@ -1992,7 +1992,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.Primitive046.json",
@@ -2167,7 +2167,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall059.json",
@@ -2279,7 +2279,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall012.json",
@@ -2524,7 +2524,7 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall114.json",
@@ -2552,7 +2552,7 @@
     "is_locked": true,
     "editor_layer": 0,
     "editor_layer_name": "Slingshots",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Trigger.LeftInlane.json",
@@ -2594,7 +2594,7 @@
     "is_locked": true,
     "editor_layer": 0,
     "editor_layer_name": "Slingshots",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Trigger.RightInlane.json",
@@ -2895,21 +2895,21 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall003.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall004.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.disc10.json",
@@ -2972,7 +2972,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Ramp.Ramp001.json",
@@ -3007,7 +3007,7 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.screw018.json",
@@ -3070,7 +3070,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.screw032.json",
@@ -3105,14 +3105,14 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall018.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Trigger.Trigger001.json",
@@ -3140,28 +3140,28 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall020.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Ramp.Ramp019.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.bracket002.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.screw050.json",
@@ -3273,14 +3273,14 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.bracket004.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.screw061.json",
@@ -3413,7 +3413,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Ramp.Ramp80.json",
@@ -4274,28 +4274,28 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.bracket031.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.bracket026.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.bracket009.json",
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.PegMetalT047.json",
@@ -4330,14 +4330,14 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.Primitive039.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.Primitive040.json",
@@ -4379,7 +4379,7 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.Primitive020.json",
@@ -5177,336 +5177,336 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim002.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim033.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim004.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim005.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim006.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim008.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim010.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim012.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim013.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim014.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim015.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim016.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim017.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim018.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim019.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim007.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim009.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim011.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim020.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim021.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim022.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim023.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim024.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim025.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim026.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim027.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall043.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall062.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall063.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall064.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall065.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall066.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim028.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim029.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall067.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim030.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim031.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim034.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall068.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim035.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim036.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall070.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim037.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall071.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall072.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall074.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Wall.Wall075.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Trigger.MusicTrigger.json",
@@ -6416,7 +6416,7 @@
     "is_locked": true,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.screw030.json",
@@ -7263,14 +7263,14 @@
     "is_locked": false,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.screw063.json",
     "is_locked": false,
     "editor_layer": 2,
     "editor_layer_name": "Walls",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Light.LArrow10.json",
@@ -9489,47 +9489,355 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.RubberPostPrim040.json",
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.EndPoint1LS.json",
     "is_locked": false,
     "editor_layer": 0,
     "editor_layer_name": "Slingshots",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.EndPoint2LS.json",
     "is_locked": false,
     "editor_layer": 0,
     "editor_layer_name": "Slingshots",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.EndPoint1RS.json",
     "is_locked": false,
     "editor_layer": 0,
     "editor_layer_name": "Slingshots",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Primitive.EndPoint2RS.json",
     "is_locked": false,
     "editor_layer": 0,
     "editor_layer_name": "Slingshots",
-    "editor_layer_visibility": true
+    "editor_layer_visibility": false
   },
   {
     "file_name": "Timer.CorTimer.json",
     "is_locked": true,
     "editor_layer": 0,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Timer.HighScoreFlashTimer.json",
+    "is_locked": false,
+    "editor_layer": 0,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Timer.DMDEffectTimer.json",
+    "is_locked": false,
+    "editor_layer": 0,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit041.json",
+    "is_locked": true,
+    "editor_layer": 0,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digitgrid.json",
+    "is_locked": true,
+    "editor_layer": 0,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit001.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit002.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit003.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit004.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit005.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit006.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit007.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit008.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit009.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit010.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit011.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit012.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit013.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit014.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit016.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit017.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit018.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit019.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit020.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit021.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit022.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit023.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit024.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit025.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit026.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit027.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit028.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit029.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit030.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit031.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit032.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit033.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit034.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit035.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit036.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit037.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit038.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit039.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit040.json",
+    "is_locked": true,
+    "editor_layer": 9,
+    "editor_layer_name": "Main",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Flasher.digit015.json",
+    "is_locked": true,
+    "editor_layer": 9,
     "editor_layer_name": "Main",
     "editor_layer_visibility": true
   }

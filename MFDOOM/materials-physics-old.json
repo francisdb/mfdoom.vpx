@@ -1,0 +1,821 @@
+[
+  {
+    "name": "a_physics_Rubbers",
+    "elasticity": 0.8,
+    "elasticity_falloff": 0.4,
+    "friction": 0.6,
+    "scatter_angle": 5.0
+  },
+  {
+    "name": "BallShadow",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Default",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal0.2",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal0.8",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "ombra",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic White",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic with an image",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic with opaque image",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "PlasticTrigger",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Playfield",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Red Rubber",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber White",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Aflasher",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "domebase",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Hide",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal Black",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal Gold",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal_active",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metalbare_opaque",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "MetalRamp",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic Green",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic Purple",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic Yellow",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber Black",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber Red",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "super trans",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Transparent",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Plastic with a Light",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_RubberBands",
+    "elasticity": 0.85,
+    "elasticity_falloff": 0.13,
+    "friction": 0.8,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_RubberPegs",
+    "elasticity": 0.9,
+    "elasticity_falloff": 0.1,
+    "friction": 0.8,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_RubberPosts",
+    "elasticity": 0.9,
+    "elasticity_falloff": 0.1,
+    "friction": 0.8,
+    "scatter_angle": 1.0
+  },
+  {
+    "name": "zCol_Sleeves",
+    "elasticity": 0.765,
+    "elasticity_falloff": 0.1,
+    "friction": 0.3,
+    "scatter_angle": 1.0
+  },
+  {
+    "name": "zCol_DropTarget",
+    "elasticity": 0.4,
+    "elasticity_falloff": 0.25,
+    "friction": 0.3,
+    "scatter_angle": 1.0
+  },
+  {
+    "name": "zCol_Metal",
+    "elasticity": 0.4,
+    "elasticity_falloff": 0.0,
+    "friction": 0.2,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_MetalFO",
+    "elasticity": 0.45,
+    "elasticity_falloff": 0.05,
+    "friction": 0.2,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_MetalRamp",
+    "elasticity": 0.4,
+    "elasticity_falloff": 0.0,
+    "friction": 0.15,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_Plastics",
+    "elasticity": 0.42,
+    "elasticity_falloff": 0.0,
+    "friction": 0.3,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_Ramp",
+    "elasticity": 0.5,
+    "elasticity_falloff": 0.2,
+    "friction": 0.15,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "zCol_Slings",
+    "elasticity": 0.85,
+    "elasticity_falloff": 0.0,
+    "friction": 0.8,
+    "scatter_angle": 1.0
+  },
+  {
+    "name": "zCol_Targets",
+    "elasticity": 0.625,
+    "elasticity_falloff": 0.0,
+    "friction": 0.3,
+    "scatter_angle": 1.0
+  },
+  {
+    "name": "zCol_Wood",
+    "elasticity": 0.4,
+    "elasticity_falloff": 0.1,
+    "friction": 0.3,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial1",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial10",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial11",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial12",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial13",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial14",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial15",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial16",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial17",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial18",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial19",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial2",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial20",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial3",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial4",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial5",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial6",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial7",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial8",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Flashermaterial9",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal Purple",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertWhiteOffTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertWhiteOnTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber Purple",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow0",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow1",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow2",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow3",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow4",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow5",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "BallShadow6",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow0",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow1",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow3",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow4",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow5",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow6",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_0",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_1",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_2",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_3",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_4",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_5",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "RtxBallShadow2_6",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber Green",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber Orange",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Rubber Yellow",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal Wire",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal Green",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertPurpleOff",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertPurpleOn",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertYellowOffTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertYellowOnTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertGreenOffTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertGreenOnTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertOrangeOffTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertOrangeOnTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertRedOffTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "InsertRedOnTri",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "FlipMat",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "super trans1-purple",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "_noXtraShadingVR",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "colormaxnoreflectionhalf",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "colormaxnoreflectionquarter",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Colour_Black",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Colour_Purple",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "Metal_Black_Powdercoat",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "MetalShiny",
+    "elasticity": 0.8,
+    "elasticity_falloff": 0.25,
+    "friction": 0.4,
+    "scatter_angle": 10.0
+  },
+  {
+    "name": "CoinDoor",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "VR_outlet",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  },
+  {
+    "name": "PlasticDyn",
+    "elasticity": 0.0,
+    "elasticity_falloff": 0.0,
+    "friction": 0.0,
+    "scatter_angle": 0.0
+  }
+]

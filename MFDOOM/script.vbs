@@ -55,6 +55,7 @@
 ' 17 iaakki	 	 - Fixed the GI bug I made and adjusted some levels
 ' 18 iaakki		 - Slings fixed, callout volume option added, something must be done for primitive25
 ' 19 RobbyKingPin- Updated nFozzy/Rothbauerw physics and Fleep sounds, removed JP's ball rolling codes. Removed endpoints for the flippers and added endpoints on the slingshots
+' 22 MerlinRTP - Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup.
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -62,9 +63,14 @@
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  USER OPTIONS
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+'****** PuP Variables ******
 
-'----- PUP Pack Overlay Options -----
-	Const PupPackOverlays = 1			'0 = Two Screen Users (DMD on BG), 1 = Three Screen Users (DMD and BG separate) 
+Dim usePUP: Dim cPuPPack: Dim PUPStatus: PUPStatus=false ' dont edit this line!!!
+
+'*************************** PuP Settings for this table ********************************
+
+usePUP   = True               ' enable Pinup Player functions for this table -- not needed for audio callouts
+cPuPPack = "MFDOOM"    ' name of the PuP-Pack / PuPVideos folder for this table
 
 '----- General Sound Options -----
 	Const VolumeDial = 0.8				' Recommended values should be no greater than 1.
@@ -1938,6 +1944,231 @@ End Sub
 		End Select
 	End Sub
 
+
+' MerlinRTP  -- added for highscore conversion from Pup to FlexDMD
+' *************************************************************************
+'   JP's Reduced Display Driver Functions (based on script by Black)
+' only 5 effects: none, scroll left, scroll right, blink and blinkfast
+' 3 Lines, treats all 3 lines as text.
+' 1st and 2nd lines are 20 characters long
+' 3rd line is just 1 character
+' Example format:
+' DMD "text1","text2","backpicture", eNone, eNone, eNone, 250, True, "sound"
+' Short names:
+' dq = display queue
+' de = display effect
+' *************************************************************************
+
+Const eNone = 0        ' Instantly displayed
+Const eScrollLeft = 1  ' scroll on from the right
+Const eScrollRight = 2 ' scroll on from the left
+Const eBlink = 3       ' Blink (blinks for 'TimeOn')
+Const eBlinkFast = 4   ' Blink (blinks for 'TimeOn') at user specified intervals (fast speed)
+
+Const dqSize = 64
+
+Dim dqHead
+Dim dqTail
+Dim deSpeed
+Dim deBlinkSlowRate
+Dim deBlinkFastRate
+
+Dim dLine(2)
+Dim deCount(2)
+Dim deCountEnd(2)
+Dim deBlinkCycle(2)
+
+Dim dqText(2, 64)
+Dim dqEffect(2, 64)
+Dim dqTimeOn(64)
+Dim dqbFlush(64)
+Dim dqSound(64)
+
+
+Dim DMDScene
+
+
+Sub DMDFlush()
+    Dim i
+    DMDTimer.Enabled = False
+    dqHead = 0
+    dqTail = 0
+    For i = 0 to 2
+        deCount(i) = 0
+        deCountEnd(i) = 0
+        deBlinkCycle(i) = 0
+    Next
+End Sub
+
+
+Function ExpandLine(TempStr) 'id is the number of the dmd line
+    If TempStr = "" Then
+        TempStr = Space(20)
+    Else
+        if Len(TempStr) > Space(20)Then
+            TempStr = Left(TempStr, Space(20))
+        Else
+            if(Len(TempStr) < 20)Then
+                TempStr = TempStr & Space(20 - Len(TempStr))
+            End If
+        End If
+    End If
+    ExpandLine = TempStr
+End Function
+
+Function FormatScore(ByVal Num) 'it returns a string with commas (as in Black's original font)
+    dim i
+    dim NumString
+
+    NumString = CStr(abs(Num))
+
+    For i = Len(NumString)-3 to 1 step -3
+        if IsNumeric(mid(NumString, i, 1))then
+            NumString = left(NumString, i-1) & chr(asc(mid(NumString, i, 1)) + 48) & right(NumString, Len(NumString)- i)
+        end if
+    Next
+    FormatScore = NumString
+End function
+
+Function FL(NumString1, NumString2) 'Fill line
+    Dim Temp, TempStr
+    Temp = 20 - Len(NumString1)- Len(NumString2)
+    TempStr = NumString1 & Space(Temp) & NumString2
+    FL = TempStr
+End Function
+
+Function CL(NumString) 'center line
+    Dim Temp, TempStr
+    Temp = (20 - Len(NumString)) \ 2
+    TempStr = Space(Temp) & NumString & Space(Temp)  
+    CL = TempStr
+End Function
+
+Function RL(NumString) 'right line
+    Dim Temp, TempStr
+    Temp = 20 - Len(NumString)
+    TempStr = Space(Temp) & NumString
+    RL = TempStr
+End Function
+
+'**************
+' Update DMD
+'**************
+
+Sub DMDUpdate(id)
+    Dim digit, value
+    FlexDMD.LockRenderThread
+	Dbg "ID:" &id
+    Select Case id
+        Case 0 'top text line
+            For digit = 20 to 35
+                DMDDisplayChar mid(dLine(0), digit-19, 1), digit
+            Next
+        Case 1 'bottom text line
+            For digit = 0 to 19
+                DMDDisplayChar mid(dLine(1), digit + 1, 1), digit
+            Next
+        Case 2 ' back image - back animations
+            If dLine(2) = "" OR dLine(2) = " " Then dLine(2) = "bkempty"
+            DigitsBack(0).ImageA = dLine(2)
+           ' DMDScene.GetImage("Back").Bitmap = FlexDMD.NewImage("", "VPX." & dLine(2) & "&dmd=2").Bitmap
+    End Select
+    FlexDMD.UnlockRenderThread
+End Sub
+
+Sub DMDDisplayChar(achar, adigit)
+    If achar = "" Then achar = " "
+    achar = ASC(achar)
+	Dbg "CHAR:" &achar
+    Digits(adigit).ImageA = Chars(achar)
+   ' DMDScene.GetImage("Dig" & adigit).Bitmap = FlexDMD.NewImage("", "VPX." & Chars(achar) & "&dmd=2").Bitmap
+End Sub
+
+'****************************
+' JP's new DMD using flashers
+'****************************
+
+Dim Digits, Chars(255), Images(255)
+
+DMDInit
+
+Sub DMDInit
+    Dim i
+    'If Table1.ShowDT = true then
+    Digits = Array(digit001, digit002, digit003, digit004, digit005, digit006, digit007, digit008, digit009, digit010, _
+        digit011, digit012, digit013, digit014, digit015, digit016, digit017, digit018, digit019, digit020,            _
+        digit021, digit022, digit023, digit024, digit025, digit026, digit027, digit028, digit029, digit030,            _
+        digit031, digit032, digit033, digit034, digit035, digit036, digit037, digit038, digit039, digit040,            _
+        digit041)
+
+    For i = 0 to 255:Chars(i)  = "dempty":Next '= "dempty":Images(i) = "dempty":Next
+
+    Chars(32) = "dempty"
+    '    Chars(34) = '"
+    '    Chars(36) = '$
+    '    Chars(39) = ''
+    '    Chars(42) = '*
+    '    Chars(43) = '+
+    '    Chars(45) = '-
+    '    Chars(47) = '/
+    Chars(48) = "d0"       '0
+    Chars(49) = "d1"       '1
+    Chars(50) = "d2"       '2
+    Chars(51) = "d3"       '3
+    Chars(52) = "d4"       '4
+    Chars(53) = "d5"       '5
+    Chars(54) = "d6"       '6
+    Chars(55) = "d7"       '7
+    Chars(56) = "d8"       '8
+    Chars(57) = "d9"       '9
+    Chars(60) = "dless"    '<
+    Chars(61) = "dequal"   '=
+    Chars(62) = "dgreater" '>
+    '   Chars(64) = '@
+    Chars(65) = "da" 'A
+    Chars(66) = "db" 'B
+    Chars(67) = "dc" 'C
+    Chars(68) = "dd" 'D
+    Chars(69) = "de" 'E
+    Chars(70) = "df" 'F
+    Chars(71) = "dg" 'G
+    Chars(72) = "dh" 'H
+    Chars(73) = "di" 'I
+    Chars(74) = "dj" 'J
+    Chars(75) = "dk" 'K
+    Chars(76) = "dl" 'L
+    Chars(77) = "dm" 'M
+    Chars(78) = "dn" 'N
+    Chars(79) = "do" 'O
+    Chars(80) = "dp" 'P
+    Chars(81) = "dq" 'Q
+    Chars(82) = "dr" 'R
+    Chars(83) = "ds" 'S
+    Chars(84) = "dt" 'T
+    Chars(85) = "du" 'U
+    Chars(86) = "dv" 'V
+    Chars(87) = "dw" 'W
+    Chars(88) = "dx" 'X
+    Chars(89) = "dy" 'Y
+    Chars(90) = "dz" 'Z
+    'Chars(91) = "dball" '[
+    'Chars(92) = "dcoin" '|
+    'Chars(93) = "dpika" ']
+    '    Chars(94) = '^
+    '    Chars(95) = '_
+    Chars(96) = "d0a"  '0.
+    Chars(97) = "d1a"  '1.
+    Chars(98) = "d2a"  '2.
+    Chars(99) = "d3a"  '3.
+    Chars(100) = "d4a" '4.
+    Chars(101) = "d5a" '5.
+    Chars(102) = "d6a" '6.
+    Chars(103) = "d7a" '7.
+    Chars(104) = "d8a" '8.
+    Chars(105) = "d9a" '9
+End Sub
+
+
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  VARIABLES
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -2241,7 +2472,9 @@ End Sub
 '   TABLE INITS & MATHS
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Sub Table1_Init()
-		resetbackglass
+		if usepup Then PuPStart(cPuPPack):pupevent 500
+		
+'		resetbackglass
 		'DMD_Init
 		flexdmd_Init
 		LoadEM
@@ -2277,9 +2510,9 @@ End Sub
 		bBonusHeld = False
 		bJustStarted = True
 		GiOff
-		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":4, ""FS"":1 }"
+'		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":4, ""FS"":1 }"
 		StartAttractMode
-		RandomTopperVideoLoop    '
+'		RandomTopperVideoLoop    '
 
 		bonusbumps(CurrentPlayer) = 0   '
 		bonusleftramp(CurrentPlayer) = 0   '
@@ -2874,7 +3107,8 @@ End Sub
 		'If(Tilt> TiltSensitivity) AND(Tilt <15) Then
 		If(Tilt> TiltSensitivity) AND(Tilt <15) Then
 			PlaySoundCallOut "tilt1"
-			PuPlayer.playlistplayex pBackglass,"videos-tiltwarning","",100,29
+'			PuPlayer.playlistplayex pBackglass,"videos-tiltwarning","",100,29
+			pupevent 700
 			DMDBigText "WARNING",100,1
 			'chilloutthemusic
 			TiltWarningCallout
@@ -2883,7 +3117,8 @@ End Sub
 			Tilted = True
 			LastSwitchHit = "finaltilt"
 			PlaySoundCallOut "tiltshutdown"
-			PuPlayer.playlistplayex pBackglass,"videos-tilt","",100,30
+'			PuPlayer.playlistplayex pBackglass,"videos-tilt","",100,30
+			pupevent 700
 			DMDBigText "SOFA KING",120,0
 			vpmtimer.addtimer 1500, "TiltDelayedDMDBigText'"   
 			'chilloutthemusic
@@ -2921,7 +3156,7 @@ End Sub
 			RightFlipper.RotateToStart
 			LeftSlingshot.Disabled = 1
 			RightSlingshot.Disabled = 1
-			PuPlayer.playresume 4
+'			PuPlayer.playresume 4
 			PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
 			bWarpSpeedMultiballActive = False
 			Bumper1.Threshold = 100    
@@ -2976,7 +3211,7 @@ End Sub
 		StopAttractMode
 		GiOn
 		TotalGamesPlayed = TotalGamesPlayed + 1
-		savegp
+		'savegp
 		CurrentPlayer = 1
 		PlayersPlayingGame = 1
 		bOnTheFirstBall = True
@@ -3008,10 +3243,13 @@ End Sub
 	End Sub
 	Dim hsDelayTextActive:hsDelayTextActive = False
 	Sub DelayAttractText
+		Dbg "In Delay Attract"
 		hsDelayTextActive = TRUE
 		vpmtimer.addtimer 13000, "EnableAttractText '"     '12250 
-		PuPlayer.playlistplayex pTopper,"videos-gameover","",100,6   
-   		PuPlayer.playlistplayex pBackglass,"videos-gameoverbig","",100,4 
+'		PuPlayer.playlistplayex pTopper,"videos-gameover","",100,6   
+'   		PuPlayer.playlistplayex pBackglass,"videos-gameoverbig","",100,4 
+		pupevent 701
+		pupevent 702
 		GameOverCallout
 	End Sub
 	Sub EnableAttractText
@@ -3025,42 +3263,27 @@ End Sub
 '   PinUp Player Config
 '   Change HasPuP = True if using PinUp Player Videos
 '*********************************************************
-	Dim HasPup:HasPuP = true
+	Dim HasPup:HasPuP = false
 	Dim PuPlayer
 	Const pTopper=0
 	Const pDMD=1
-	Const pBackglass=5
+	Const pBackglass=2
 	Const pPlayfield=3
 	Const pMusic=4
 	Const pAudio=7
 	Const pCallouts=8
 
-	If HasPuP Then
-	on error resume next
-	Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay") 
-	on error goto 0
-	If not IsObject(PuPlayer) then HasPuP = False
-	End If
+Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay") 
 
 	If HasPuP Then
-	PuPlayer.Init pBackglass,cGameName
-	PuPlayer.Init pMusic,cGameName
-	PuPlayer.Init pAudio,cGameName
-	PuPlayer.Init pCallouts,cGameName
-	If toppervideo = 1 Then
-	PuPlayer.Init pTopper,cGameName
+		on error resume next
+		Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay") 
+		on error goto 0
+		If not IsObject(PuPlayer) then HasPuP = False
 	End If
-
-	PuPlayer.SetScreenex pBackglass,0,0,0,0,0       'Set PuPlayer DMD TO Always ON    <screen number> , xpos, ypos, width, height, POPUP
-	PuPlayer.SetScreenex pAudio,0,0,0,0,2
-	PuPlayer.hide pAudio
-	PuPlayer.SetScreenex pMusic,0,0,0,0,2
-	PuPlayer.hide pMusic
-	PuPlayer.SetScreenex pCallouts,0,0,0,0,2
-	PuPlayer.hide pCallouts
-	PuPlayer.SetScreenex pTopper,0,0,0,0,0
 
 	Sub chilloutthemusic
+'exit sub
 		If LWarpMultiballCounter.state = 0 Then
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":11, ""VL"":10 }"
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 4, ""FN"":11, ""VL"":10 }"
@@ -3069,10 +3292,32 @@ End Sub
 		End If
 	End Sub
 	Sub turnitbackup
+'exit sub
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":11, ""VL"":99 }"
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 4, ""FN"":11, ""VL"":99 }"
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 7, ""FN"":11, ""VL"":99 }"
 	End Sub
+
+	If HasPuP Then
+
+'		PuPlayer.Init pBackglass,cGameName
+		PuPlayer.Init pMusic,cGameName
+		PuPlayer.Init pAudio,cGameName
+		PuPlayer.Init pCallouts,cGameName
+'			If toppervideo = 1 Then
+'			PuPlayer.Init pTopper,cGameName
+'			End If
+
+'	PuPlayer.SetScreenex pBackglass,0,0,0,0,0       'Set PuPlayer DMD TO Always ON    <screen number> , xpos, ypos, width, height, POPUP
+	PuPlayer.SetScreenex pAudio,0,0,0,0,2
+	PuPlayer.hide pAudio
+	PuPlayer.SetScreenex pMusic,0,0,0,0,2
+	PuPlayer.hide pMusic
+	PuPlayer.SetScreenex pCallouts,0,0,0,0,2
+	PuPlayer.hide pCallouts
+'	PuPlayer.SetScreenex pTopper,0,0,0,0,0
+
+
 
 	PuPlayer.playlistadd pMusic,"audioattract", 1 , 0
 	PuPlayer.playlistadd pMusic,"audiobg", 1 , 0
@@ -3082,97 +3327,86 @@ End Sub
 	PuPlayer.playlistadd pCallouts,"audiocallouts", 1 , 0
 	PuPlayer.playlistadd pCallouts,"audioidle", 1 , 0
 	PuPlayer.playlistadd pCallouts,"audioidlestop", 1 , 0
-	PuPlayer.playlistadd pBackglass,"backglass", 1 , 0
-	PuPlayer.playlistadd pBackglass,"backglass-startup", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"backglass", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"backglass-startup", 1 , 0
 
-	PuPlayer.playlistadd pBackglass,"PuPOverlays", 1 , 0
-	PuPlayer.playlistadd pBackglass,"PuPOverlays2", 1 , 0   
-	PuPlayer.playlistadd pBackglass,"videoattract", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"PuPOverlays", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"PuPOverlays2", 1 , 0   
+'	PuPlayer.playlistadd pBackglass,"videoattract", 1 , 0
 	
-	PuPlayer.playlistadd pBackglass,"videos-add-a-ball", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-balllost", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-ballsaved", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-bumps", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-centertarget", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-leftorbit", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-leftramp", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-missions", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-rightramp", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-smalltarget", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonus-spinner", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonusmultiplier-2x", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonusmultiplier-3x", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-bonusmultiplier-5x", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-2way-15k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-2way-30k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-3way-20k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-3way-40k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-4way-25k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-4way-50k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-5way-30k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-combo-5way-60k", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-completed-orbits", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-completed-ramps", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-completed-spinner", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-doublescore", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-doublespinner", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-extraballislit-3shotstolight", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-gameoverbig", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-highscore", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-highscoreentry", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-level1completed", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-level2completed", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gasdrawls-balllocked", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gasdrawls-multiball", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-countdown", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-keepbombing", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-multiball", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-superjackpot", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-superjackpotislit", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-1hit", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-2hit", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-jackpot", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-multiball", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-multiballislit", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-orbits", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-plunger", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-ramps", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-readytoshootbig", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-skillshot", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-spinner", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-superorbits", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-superpops", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-superramps", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-switch-bottomlane", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-switch-toplane", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-targets-masks-standupscomplete", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-targets-wildstyle", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-tilt", 1 , 0
-	PuPlayer.playlistadd pBackglass,"videos-tiltwarning", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-add-a-ball", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-balllost", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-ballsaved", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-bumps", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-centertarget", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-leftorbit", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-leftramp", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-missions", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-rightramp", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-smalltarget", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonus-spinner", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonusmultiplier-2x", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonusmultiplier-3x", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-bonusmultiplier-5x", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-2way-15k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-2way-30k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-3way-20k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-3way-40k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-4way-25k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-4way-50k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-5way-30k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-combo-5way-60k", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-completed-orbits", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-completed-ramps", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-completed-spinner", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-doublescore", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-doublespinner", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-extraballislit-3shotstolight", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-gameoverbig", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-highscore", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-highscoreentry", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-level1completed", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-level2completed", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gasdrawls-balllocked", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gasdrawls-multiball", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-countdown", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-keepbombing", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-multiball", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-superjackpot", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-gazzillionear-superjackpotislit", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-1hit", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-2hit", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-jackpot", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-multiball", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-multiball-mostblunted-multiballislit", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-orbits", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-plunger", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-ramps", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-readytoshootbig", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-skillshot", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-spinner", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-superorbits", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-superpops", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-superramps", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-switch-bottomlane", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-switch-toplane", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-targets-masks-standupscomplete", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-targets-wildstyle", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-tilt", 1 , 0
+'	PuPlayer.playlistadd pBackglass,"videos-tiltwarning", 1 , 0
 
-	If toppervideo = 1 Then
-	PuPlayer.playlistadd pTopper,"topper", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-gameover", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-pressstart", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-readytoshoot", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-readytoshootplayer", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-sling", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-targets-masks", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-targets-masks-1000", 1 , 0
-	PuPlayer.playlistadd pTopper,"videos-targets-masks-2000", 1 , 0
-	End If
-	'Set Background Videos
-		PuPlayer.playlistplayex pBackglass,"backglass","bg.mp4",0,1   
-		If PupPackOverlays = 1 Then
-			PuPlayer.playlistplayex pBackglass,"PuPOverlays","overlay.png",0,1 
-		Else
-			If PupPackOverlays = 0 Then 
-				PuPlayer.playlistplayex pBackglass,"PuPOverlays","DMD.png",0,1 
-			Else
-				PuPlayer.playlistplayex pBackglass,"PuPOverlays","overlay.png",0,1
-			End If
+		If toppervideo = 1 Then
+'		PuPlayer.playlistadd pTopper,"topper", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-gameover", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-pressstart", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-readytoshoot", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-readytoshootplayer", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-sling", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-targets-masks", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-targets-masks-1000", 1 , 0
+'		PuPlayer.playlistadd pTopper,"videos-targets-masks-2000", 1 , 0
 		End If
-		PuPlayer.SetBackground pBackglass,1	
+
 	End if
 
 	If toppervideo = 1 Then
@@ -3186,15 +3420,17 @@ End Sub
 		End Select
 	End Sub
 	Sub TopperVideoLoop1
-		PuPlayer.playlistplayex pTopper,"topper","TopperBG1.mp4",100,6    
-		PuPlayer.SetBackground pTopper,1	
+		'PuPlayer.playlistplayex pTopper,"topper","TopperBG1.mp4",100,6    
+		pupevent 703
+		'PuPlayer.SetBackground pTopper,1	
 	End Sub
 	Sub TopperVideoLoop2
-		PuPlayer.playlistplayex pTopper,"topper","TopperBG2.mp4",100,6    
-		PuPlayer.SetBackground pTopper,1	
+		'PuPlayer.playlistplayex pTopper,"topper","TopperBG2.mp4",100,6    
+		pupevent 704
+		'PuPlayer.SetBackground pTopper,1	
 	End Sub
 
-	PuPlayer.LabelInit pBackglass
+'	PuPlayer.LabelInit pBackglass
 
 	'Setup Pages.  Note if you use fonts they must be in FONTS folder of the pupVideos\tablename\FONTS
 	'syntax - PuPlayer.LabelNew <screen# or pDMD>,<Labelname>,<fontName>,<size%>,<colour>,<rotation>,<xAlign>,<yAlign>,<xpos>,<ypos>,<PageNum>,<visible>
@@ -3216,57 +3452,58 @@ End Sub
 	'PuPlayer.LabelNew pBackglass,"gptitle",typefont,		3,8421504 	,0,1,1,77,89,1,1
 	'PuPlayer.LabelNew pBackglass,"gp",numberfont,			3,16777215 	,0,1,1,77,93,1,1
 	'PuPlayer.LabelNew pBackglass,"notetitle",numberfont,	3,16777215  ,0,1,1,50,12,1,1
-	PuPlayer.LabelNew pBackglass,"notecopy",typefont,		2,16777215 	,0,1,1,50,15,1,1
-	PuPlayer.LabelNew pBackglass,"titlebg",zoombgfont,		9,0  		,0,1,1,50,50,1,1
-	PuPlayer.LabelNew pBackglass,"title",zoomfont,			9,16777215 	,0,1,1,50,50,1,1
-	PuPlayer.LabelNew pBackglass,"titlebg2",zoombgfont,		6,0  		,0,1,1,50,50,1,1
-	PuPlayer.LabelNew pBackglass,"title2",zoomfont,			6,16777215 	,0,1,1,50,50,1,1
+''	PuPlayer.LabelNew pBackglass,"notecopy",typefont,		2,16777215 	,0,1,1,50,15,1,1
+''	PuPlayer.LabelNew pBackglass,"titlebg",zoombgfont,		9,0  		,0,1,1,50,50,1,1
+''	PuPlayer.LabelNew pBackglass,"title",zoomfont,			9,16777215 	,0,1,1,50,50,1,1
+''	PuPlayer.LabelNew pBackglass,"titlebg2",zoombgfont,		6,0  		,0,1,1,50,50,1,1
+''	PuPlayer.LabelNew pBackglass,"title2",zoomfont,			6,16777215 	,0,1,1,50,50,1,1
 	'PuPlayer.LabelNew pBackglass,"lefttitle",numberfont,	3,0			,0,1,1,11,82,1,1
 	'PuPlayer.LabelNew pBackglass,"lefttimer",numberfont,	8,16777215  ,0,1,1,11,87,1,1
 	'PuPlayer.LabelNew pBackglass,"leftdetail",typefont,	2,0	  		,0,1,1,11,93,1,1
 	'PuPlayer.LabelNew pBackglass,"righttitle",numberfont,	3,0			,0,1,1,89,82,1,1
 	'PuPlayer.LabelNew pBackglass,"righttimer",numberfont,	8,16777215  ,0,1,1,89,87,1,1
 	'PuPlayer.LabelNew pBackglass,"rightdetail",typefont,	2,0	  		,0,1,1,89,93,1,1
-	PuPlayer.LabelNew pBackglass,"high1name",typefont,		12,16777215  ,0,0,1,22,59,1,1
-	PuPlayer.LabelNew pBackglass,"high1score",numberfont,	12,16777215  ,0,2,1,78,59,1,1
-	PuPlayer.LabelNew pBackglass,"high2name",typefont,		12,16777215  ,0,0,1,22,70,1,1
-	PuPlayer.LabelNew pBackglass,"high2score",numberfont,	12,16777215  ,0,2,1,78,70,1,1
-	PuPlayer.LabelNew pBackglass,"high3name",typefont,		12,16777215  ,0,0,1,22,81,1,1
-	PuPlayer.LabelNew pBackglass,"high3score",numberfont,	12,16777215  ,0,2,1,78,81,1,1
-	PuPlayer.LabelNew pBackglass,"highgcname",typefont,		28,16777215  ,0,1,1,50,64,1,1
-	PuPlayer.LabelNew pBackglass,"highgcscore",numberfont,	18,16777215  ,0,1,1,50,81,1,1
+''	PuPlayer.LabelNew pBackglass,"high1name",typefont,		12,16777215  ,0,0,1,22,59,1,1
+''	PuPlayer.LabelNew pBackglass,"high1score",numberfont,	12,16777215  ,0,2,1,78,59,1,1
+''	PuPlayer.LabelNew pBackglass,"high2name",typefont,		12,16777215  ,0,0,1,22,70,1,1
+''	PuPlayer.LabelNew pBackglass,"high2score",numberfont,	12,16777215  ,0,2,1,78,70,1,1
+''	PuPlayer.LabelNew pBackglass,"high3name",typefont,		12,16777215  ,0,0,1,22,81,1,1
+''	PuPlayer.LabelNew pBackglass,"high3score",numberfont,	12,16777215  ,0,2,1,78,81,1,1
+''	PuPlayer.LabelNew pBackglass,"highgcname",typefont,		28,16777215  ,0,1,1,50,64,1,1
+''	PuPlayer.LabelNew pBackglass,"highgcscore",numberfont,	18,16777215  ,0,1,1,50,81,1,1
 	'PuPlayer.LabelNew pBackglass,"high4name",typefont,		12,16777215  ,0,0,1,22,92,1,1       
 	'PuPlayer.LabelNew pBackglass,"high4score",numberfont,	12,16777215  ,0,2,1,78,92,1,1       
 	'PuPlayer.LabelNew pBackglass,"HighScore",typefont,		6,16777215	,0,0,1,20,30,1,1
 	'PuPlayer.LabelNew pBackglass,"HighScore",typefont,		10,16777215	,0,0,1,9,40,1,1
-	PuPlayer.LabelNew pBackglass,"HighScoreL1",numberfont,	30,16777215	,0,0,1,32,56,1,1
-	PuPlayer.LabelNew pBackglass,"HighScoreL2",numberfont,	30,16777215	,0,0,1,45,56,1,1
-	PuPlayer.LabelNew pBackglass,"HighScoreL3",numberfont,	30,16777215	,0,0,1,58,56,1,1
-	PuPlayer.LabelNew pBackglass,"HighScoreL4",numberfont,	18,16777215	,0,1,1,50,78,1,1
+''	PuPlayer.LabelNew pBackglass,"HighScoreL1",numberfont,	30,16777215	,0,0,1,32,56,1,1
+''	PuPlayer.LabelNew pBackglass,"HighScoreL2",numberfont,	30,16777215	,0,0,1,45,56,1,1
+''	PuPlayer.LabelNew pBackglass,"HighScoreL3",numberfont,	30,16777215	,0,0,1,58,56,1,1
+''	PuPlayer.LabelNew pBackglass,"HighScoreL4",numberfont,	18,16777215	,0,1,1,50,78,1,1
 
 	Sub resetbackglass
-	Loadhs
-	PuPlayer.LabelShowPage pBackglass,1,0,""
-	PuPlayer.playlistplayex pBackglass,"scene","layout.png",0,1
-	PuPlayer.SetBackground pBackglass,1
-	PuPlayer.LabelSet pBackglass,"hstitle","HIGH SCORE",1,""
-	PuPlayer.LabelSet pBackglass,"hs","" & FormatNumber(HighScore(0),0),1,""
-	PuPlayer.LabelSet pBackglass,"gptitle","GAMES",1,""
-	PuPlayer.LabelSet pBackglass,"gp","" & FormatNumber(TotalGamesPlayed,0),1,""
-	PuPlayer.LabelSet pBackglass,"Ball","FREE PLAY",1,""
+	exit sub
+		Loadhs
+		PuPlayer.LabelShowPage pBackglass,1,0,""
+		PuPlayer.playlistplayex pBackglass,"scene","layout.png",0,1
+		PuPlayer.SetBackground pBackglass,1
+		PuPlayer.LabelSet pBackglass,"hstitle","HIGH SCORE",1,""
+		PuPlayer.LabelSet pBackglass,"hs","" & FormatNumber(HighScore(0),0),1,""
+		PuPlayer.LabelSet pBackglass,"gptitle","GAMES",1,""
+		PuPlayer.LabelSet pBackglass,"gp","" & FormatNumber(TotalGamesPlayed,0),1,""
+		PuPlayer.LabelSet pBackglass,"Ball","FREE PLAY",1,""
 
-	PuPlayer.LabelSet pBackglass,"lefttitle","DATA ITEM",1,""
-	PuPlayer.LabelSet pBackglass,"lefttimer","455",1,""
-	PuPlayer.LabelSet pBackglass,"leftdetail","PRESS\rSTART",1,""
-	PuPlayer.LabelSet pBackglass,"righttitle","DATA ITEM",1,""
-	PuPlayer.LabelSet pBackglass,"righttimer","455",1,""
-	PuPlayer.LabelSet pBackglass,"rightdetail","PRESS\rSTART",1,""
+		PuPlayer.LabelSet pBackglass,"lefttitle","DATA ITEM",1,""
+		PuPlayer.LabelSet pBackglass,"lefttimer","455",1,""
+		PuPlayer.LabelSet pBackglass,"leftdetail","PRESS\rSTART",1,""
+		PuPlayer.LabelSet pBackglass,"righttitle","DATA ITEM",1,""
+		PuPlayer.LabelSet pBackglass,"righttimer","455",1,""
+		PuPlayer.LabelSet pBackglass,"rightdetail","PRESS\rSTART",1,""
 
-	PuPlayer.LabelNew pBackglass,"Smoke",numberfont,		10,RGB(255, 255, 255)			,0,1,0 ,0,0    ,1,1
-	dim i
-	for i = 0 to 5
-		PuPlayer.LabelNew pBackglass,"BumperBG" & i,numberfont ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,0
-	Next 
+		PuPlayer.LabelNew pBackglass,"Smoke",numberfont,		10,RGB(255, 255, 255)			,0,1,0 ,0,0    ,1,1
+		dim i
+		for i = 0 to 5
+			PuPlayer.LabelNew pBackglass,"BumperBG" & i,numberfont ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,0
+		Next 
 
 	End Sub
 
@@ -3279,6 +3516,7 @@ End Sub
 	subtitle = ""
 
 	Sub titletimer_timer
+	exit sub
 		titlepos = titlepos + 1
 		Select Case titlepos
 			Case 1
@@ -3365,6 +3603,7 @@ End Sub
 	End Sub
 
 	Sub pUpdateScores
+		exit sub
 		PuPlayer.LabelSet pBackglass,"curscore",FormatNumber(Score(CurrentPlayer),0),1,""
 		PuPlayer.LabelSet pBackglass,"curplayer","Player " & CurrentPlayer,1,""
 		If CurrentPlayer = 1 Then
@@ -3447,118 +3686,63 @@ End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  HIGH SCORES
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-	Dim hschecker:hschecker = 0
-	Sub Loadhs
-		Dim x
-		x = LoadValue(TableName, "HighScore1")
-		If(x <> "") Then HighScore(0) = CDbl(x) Else HighScore(0) = 10000
+	'Dim hschecker:hschecker = 0
+Function RndNbr(n) 'returns a random number between 1 and n
+    Randomize timer
+    RndNbr = Int((n * Rnd) + 1)
+End Function
 
-		x = LoadValue(TableName, "HighScore1Name")
-		If(x <> "") Then HighScoreName(0) = x Else HighScoreName(0) = "CHI"
+Sub Loadhs
+    Dim x
+    x = LoadValue(cGameName, "HighScore1")
+    If(x <> "")Then HighScore(0) = CDbl(x)Else HighScore(0) = 1000000000 End If
+    x = LoadValue(cGameName, "HighScore1Name")
+    If(x <> "")Then HighScoreName(0) = x Else HighScoreName(0) = "AAA" End If
+    x = LoadValue(cGameName, "HighScore2")
+    If(x <> "")then HighScore(1) = CDbl(x)Else HighScore(1) = 1000000000 End If
+    x = LoadValue(cGameName, "HighScore2Name")
+    If(x <> "")then HighScoreName(1) = x Else HighScoreName(1) = "BBB" End If
+    x = LoadValue(cGameName, "HighScore3")
+    If(x <> "")then HighScore(2) = CDbl(x)Else HighScore(2) = 1000000000 End If
+    x = LoadValue(cGameName, "HighScore3Name")
+    If(x <> "")then HighScoreName(2) = x Else HighScoreName(2) = "CCC" End If
+    x = LoadValue(cGameName, "HighScore4")
+    If(x <> "")then HighScore(3) = CDbl(x)Else HighScore(3) = 1000000000 End If
+    x = LoadValue(cGameName, "HighScore4Name")
+    If(x <> "")then HighScoreName(3) = x Else HighScoreName(3) = "DDD" End If
+    x = LoadValue(cGameName, "Credits")
+    If(x <> "")then Credits = CInt(x)Else Credits = 0
+    x = LoadValue(cGameName, "TotalGamesPlayed")
+    If(x <> "")then TotalGamesPlayed = CInt(x)Else TotalGamesPlayed = 0 End If
 
-		x = LoadValue(TableName, "HighScore2")
-		If(x <> "") then HighScore(1) = CDbl(x) Else HighScore(1) = 9000
 
-		x = LoadValue(TableName, "HighScore2Name")
-		If(x <> "") then HighScoreName(1) = x Else HighScoreName(1) = "ILL"
+End Sub
 
-		x = LoadValue(TableName, "HighScore3")
-		If(x <> "") then HighScore(2) = CDbl(x) Else HighScore(2) = 8000
+Sub Savehs
+    SaveValue cGameName, "HighScore1", HighScore(0)
+    SaveValue cGameName, "HighScore1Name", HighScoreName(0)
+    SaveValue cGameName, "HighScore2", HighScore(1)
+    SaveValue cGameName, "HighScore2Name", HighScoreName(1)
+    SaveValue cGameName, "HighScore3", HighScore(2)
+    SaveValue cGameName, "HighScore3Name", HighScoreName(2)
+    SaveValue cGameName, "HighScore4", HighScore(3)
+    SaveValue cGameName, "HighScore4Name", HighScoreName(3)
+    SaveValue cGameName, "Credits", Credits
+    SaveValue cGameName, "TotalGamesPlayed", TotalGamesPlayed
+End Sub
 
-		x = LoadValue(TableName, "HighScore3Name")
-		If(x <> "") then HighScoreName(2) = x Else HighScoreName(2) = "MFK"
+Sub Reseths
+    HighScoreName(0) = "AAA"
+    HighScoreName(1) = "BBB"
+    HighScoreName(2) = "CCC"
+    HighScoreName(3) = "DDD"
+    HighScore(0) = 1500000
+    HighScore(1) = 1400000
+    HighScore(2) = 1300000
+    HighScore(3) = 1200000
+    Savehs
+End Sub
 
-		x = LoadValue(TableName, "HighScore4")
-		If(x <> "") then HighScore(3) = CDbl(x) Else HighScore(3) = 7000
-
-		x = LoadValue(TableName, "HighScore4Name")                                     '
-		If(x <> "") then HighScoreName(3) = x Else HighScoreName(3) = "MFK"   
-
-		x = LoadValue(TableName, "Credits")
-		If(x <> "") then Credits = CInt(x) Else Credits = 0 End If
-
-		x = LoadValue(TableName, "TotalGamesPlayed")
-		If(x <> "") then TotalGamesPlayed = CInt(x) Else TotalGamesPlayed = 0 End If
-
-		If hschecker = 0 Then
-		checkorder
-		End If
-	End Sub
-
-	Dim hs3,hs2,hs1,hs0,hsn3,hsn2,hsn1,hsn0,hsgc
-
-	Sub checkorder
-		hschecker = 1
-		hs3 = HighScore(3)
-		hs2 = HighScore(2)
-		hs1 = HighScore(1)
-		hs0 = HighScore(0)
-		hsn3 = HighScoreName(3)
-		hsn2 = HighScoreName(2)
-		hsn1 = HighScoreName(1)
-		hsn0 = HighScoreName(0)
-		hsgc = HighScore(0)
-		If hs3 > hs0 Then
-			HighScore(0) = hs3
-			HighScoreName(0) = hsn3	
-			HighScore(1) = hs0
-			HighScoreName(1) = hsn0	
-			HighScore(2) = hs1
-			HighScoreName(2) = hsn1	
-			HighScore(3) = hs2
-			HighScoreName(3) = hsn2
-		ElseIf hs3 > hs1 Then
-			HighScore(0) = hs0
-			HighScoreName(0) = hsn0	
-			HighScore(1) = hs3
-			HighScoreName(1) = hsn3	
-			HighScore(2) = hs1
-			HighScoreName(2) = hsn1	
-			HighScore(3) = hs2
-			HighScoreName(3) = hsn2
-		ElseIf hs3 > hs2 Then
-			HighScore(0) = hs0
-			HighScoreName(0) = hsn0	
-			HighScore(1) = hs1
-			HighScoreName(1) = hsn1	
-			HighScore(2) = hs3
-			HighScoreName(2) = hsn3	
-			HighScore(3) = hs2
-			HighScoreName(3) = hsn2
-		ElseIf hs3 < hs2 Then
-			HighScore(0) = hs0
-			HighScoreName(0) = hsn0	
-			HighScore(1) = hs1
-			HighScoreName(1) = hsn1	
-			HighScore(2) = hs2
-			HighScoreName(2) = hsn2	
-			HighScore(3) = hs3
-			HighScoreName(3) = hsn3
-		End If
-'HighScore(0) = 100004
-'HighScore(1) = 100003
-'HighScore(2) = 100002
-'HighScore(3) = 100001
-		savehs
-	End Sub
-
-	Sub Savehs
-		SaveValue TableName, "HighScore1", HighScore(0)
-		SaveValue TableName, "HighScore1Name", HighScoreName(0)
-		SaveValue TableName, "HighScore2", HighScore(1)
-		SaveValue TableName, "HighScore2Name", HighScoreName(1)
-		SaveValue TableName, "HighScore3", HighScore(2)
-		SaveValue TableName, "HighScore3Name", HighScoreName(2)
-		SaveValue TableName, "HighScore4", HighScore(3)
-		SaveValue TableName, "HighScore4Name", HighScoreName(3)
-		SaveValue TableName, "HighScoreGC", HighScore(0)
-		SaveValue TableName, "HighScoreGCName", HighScoreName(0)
-	End Sub
-
-	Sub Savegp
-		SaveValue TableName, "TotalGamesPlayed", TotalGamesPlayed
-		vpmtimer.addtimer 1000, "Loadhs'"
-	End Sub
 
 	' Initials
 	Dim hsbModeActive:hsbModeActive = False
@@ -3584,73 +3768,113 @@ End Sub
 		End If
 	End Sub
 
-	Sub HighScoreEntryInit()
-		PuPlayer.playlistplayex pBackglass,"videos-highscoreentry","HighScoresEnter.mp4",100,4     '1, then 3, test 4
-		hsbModeActive = True
 
-		hsEnteredDigits(1) = "A"
-		hsEnteredDigits(2) = " "
-		hsEnteredDigits(3) = " "
 
-		hsCurrentDigit = 1
+Sub HighScoreEntryInit()
+	pupevent 798
+    hsbModeActive = True
+    PlaySound "vo_greatscore" &RndNbr(6)
+    hsLetterFlash = 0
 
-		'pNote "YOU GOT","A HIGH SCORE!"
-		PlaySoundCallOut "fx278"
-		chilloutthemusic
-		
-		PuPlayer.SetLoop 2,1
-		KnockerSolenoid
-		DOF 136, DOFPulse  
-		HighScoreDisplayName()
-		HighScorelabels	
-	End Sub
+    hsEnteredDigits(0) = " "
+    hsEnteredDigits(1) = " "
+    hsEnteredDigits(2) = " "
+    hsCurrentDigit = 0
 
-	' flipper moving around the letters
-	Sub EnterHighScoreKey(keycode)
-		If keycode = LeftFlipperKey Then
-			RandomSoundPunch
-				If hsletter = 0 Then
-					hsletter = 26
-				Else
-					hsLetter = hsLetter - 1
-				End If
-				HighScoreDisplayName()
-		End If
+    hsValidLetters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<" ' < is back arrow
+    hsCurrentLetter = 1
+    DMDFlush()
+    HighScoreDisplayNameNow()
 
-		If keycode = RightFlipperKey Then
-			RandomSoundPunch
-				If hsletter = 26 Then
-					hsletter = 0
-				Else
-					hsLetter = hsLetter + 1
-				End If
-				HighScoreDisplayName()
-		End If
+    HighScoreFlashTimer.Interval = 250
+    HighScoreFlashTimer.Enabled = True
+End Sub
 
-		If keycode = StartGameKey or keycode = PlungerKey Then
-			PlaySoundCallOut "fx080"
-				If hsCurrentDigit = 3 Then
-					If hsletter = 0 Then
-						hsCurrentDigit = hsCurrentDigit -1
-					Else
-						assignletter
-						vpmtimer.addtimer 700, "HighScoreCommitName()'"
-					End If
-				End If
-				If hsCurrentDigit < 3 Then
-					If hsletter = 0 Then
-						If hsCurrentDigit = 1 Then
-						Else
-							hsCurrentDigit = hsCurrentDigit -1
-						End If
-					Else
-						assignletter
-						hsCurrentDigit = hsCurrentDigit + 1
-						HighScoreDisplayName()
-					End If
-				End If
-		End if
-	End Sub
+Sub HighScoreDisplayNameNow()
+    HighScoreFlashTimer.Enabled = False
+    hsLetterFlash = 0
+    HighScoreDisplayName()
+    HighScoreFlashTimer.Enabled = True
+End Sub
+
+Sub HighScoreDisplayName()
+    Dim i
+    Dim TempTopStr
+    Dim TempBotStr
+
+    TempTopStr = "YOUR NAME:"
+    dLine(0) = ExpandLine(TempTopStr)
+    DMDUpdate 0
+
+    TempBotStr = "    > "
+    if(hsCurrentDigit > 0)then TempBotStr = TempBotStr & hsEnteredDigits(0)
+    if(hsCurrentDigit > 1)then TempBotStr = TempBotStr & hsEnteredDigits(1)
+    if(hsCurrentDigit > 2)then TempBotStr = TempBotStr & hsEnteredDigits(2)
+
+    if(hsCurrentDigit <> 3)then
+        if(hsLetterFlash <> 0)then
+            TempBotStr = TempBotStr & "_"
+        else
+            TempBotStr = TempBotStr & mid(hsValidLetters, hsCurrentLetter, 1)
+        end if
+    end if
+
+    if(hsCurrentDigit < 1)then TempBotStr = TempBotStr & hsEnteredDigits(1)
+    if(hsCurrentDigit < 2)then TempBotStr = TempBotStr & hsEnteredDigits(2)
+
+    TempBotStr = TempBotStr & " <    "
+    dLine(1) = ExpandLine(TempBotStr)
+    DMDUpdate 1
+End Sub
+
+
+Sub HighScoreFlashTimer_Timer()
+    HighScoreFlashTimer.Enabled = False
+    hsLetterFlash = hsLetterFlash + 1
+    if(hsLetterFlash = 2)then hsLetterFlash = 0
+    HighScoreDisplayName()
+    HighScoreFlashTimer.Enabled = True
+End Sub
+
+Sub EnterHighScoreKey(keycode)
+    If keycode = LeftFlipperKey Then
+        playsound "fx_Previous"
+        hsCurrentLetter = hsCurrentLetter - 1
+        if(hsCurrentLetter = 0)then
+            hsCurrentLetter = len(hsValidLetters)
+        end if
+        HighScoreDisplayNameNow()
+    End If
+
+    If keycode = RightFlipperKey Then
+        playsound "fx_Next"
+        hsCurrentLetter = hsCurrentLetter + 1
+        if(hsCurrentLetter > len(hsValidLetters))then
+            hsCurrentLetter = 1
+        end if
+        HighScoreDisplayNameNow()
+    End If
+
+    If keycode = PlungerKey OR keycode = StartGameKey Then
+        if(mid(hsValidLetters, hsCurrentLetter, 1) <> "<")then
+            playsound "fx_Enter"
+            hsEnteredDigits(hsCurrentDigit) = mid(hsValidLetters, hsCurrentLetter, 1)
+            hsCurrentDigit = hsCurrentDigit + 1
+            if(hsCurrentDigit = 3)then
+                HighScoreCommitName()
+            else
+                HighScoreDisplayNameNow()
+            end if
+        else
+            playsound "fx_Esc"
+            hsEnteredDigits(hsCurrentDigit) = " "
+            if(hsCurrentDigit > 0)then
+                hsCurrentDigit = hsCurrentDigit - 1
+            end if
+            HighScoreDisplayNameNow()
+        end if
+    end if
+End Sub
 
 	Dim hsletter
 	hsletter = 1
@@ -3658,6 +3882,7 @@ End Sub
 	dim hsdigit:hsdigit = 1
 
 	Sub assignletter
+exit sub
 		if hscurrentdigit = 1 Then
 			hsdigit = 1
 		End If
@@ -3748,144 +3973,36 @@ End Sub
 
 	End Sub
 
-	Sub HighScorelabels
-		'PuPlayer.LabelSet pBackglass,"HighScore","YOU GOT A\rHIGH SCORE!",1,""
-		PuPlayer.LabelSet pBackglass,"HighScore","YOU GOT A HIGH SCORE!",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL1","A",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL2"," ",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL3"," ",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL4",FormatNumber(Score(CurrentPlayer),0),1,""
-		
-		hsletter = 1
-	End Sub
-
-	Sub HighScoreDisplayName()
-
-		Select case hsLetter
-		Case 0
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","<",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","<",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","<",1,""
-		Case 1
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","A",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","A",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","A",1,""
-		Case 2
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","B",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","B",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","B",1,""
-		Case 3
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","C",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","C",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","C",1,""
-		Case 4
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","D",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","D",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","D",1,""
-		Case 5
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","E",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","E",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","E",1,""
-		Case 6
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","F",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","F",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","F",1,""
-		Case 7
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","G",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","G",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","G",1,""
-		Case 8
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","H",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","H",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","H",1,""
-		Case 9
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","I",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","I",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","I",1,""
-		Case 10
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","J",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","J",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","J",1,""
-		Case 11
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","K",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","K",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","K",1,""
-		Case 12
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","L",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","L",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","L",1,""
-		Case 13
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","M",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","M",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","M",1,""
-		Case 14
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","N",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","N",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","N",1,""
-		Case 15
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","O",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","O",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","O",1,""
-		Case 16
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","P",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","P",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","P",1,""
-		Case 17
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","Q",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","Q",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","Q",1,""
-		Case 18
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","R",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","R",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","R",1,""
-		Case 19
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","S",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","S",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","S",1,""
-		Case 20
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","T",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","T",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","T",1,""
-		Case 21
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","U",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","U",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","U",1,""
-		Case 22
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","V",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","V",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","V",1,""
-		Case 23
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","W",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","W",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","W",1,""
-		Case 24
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","X",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","X",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","X",1,""
-		Case 25
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","Y",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","Y",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","Y",1,""
-		Case 26
-			if(hsCurrentDigit = 1) then PuPlayer.LabelSet pBackglass,"HighScoreL1","Z",1,""
-			if(hsCurrentDigit = 2) then PuPlayer.LabelSet pBackglass,"HighScoreL2","Z",1,""
-			if(hsCurrentDigit = 3) then PuPlayer.LabelSet pBackglass,"HighScoreL3","Z",1,""
-		End Select
-	End Sub
-
 	' post the high score letters
-	Sub HighScoreCommitName()
-		hsEnteredName = hsEnteredDigits(1) & hsEnteredDigits(2) & hsEnteredDigits(3)
-		HighScoreName(3) = hsEnteredName
-		checkorder
-		EndOfBallComplete()
-		PuPlayer.LabelSet pBackglass,"HighScore","",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL1","",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL2"," ",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL3"," ",1,""
-		PuPlayer.LabelSet pBackglass,"HighScoreL4"," ",1,""       '
-		hsbModeActive = false  '
-	End Sub
+Sub HighScoreCommitName()
+    HighScoreFlashTimer.Enabled = False
+    hsbModeActive = False
+
+    hsEnteredName = hsEnteredDigits(0) & hsEnteredDigits(1) & hsEnteredDigits(2)
+    if(hsEnteredName = "   ")then
+        hsEnteredName = "RTP"
+    end if
+
+    HighScoreName(3) = hsEnteredName
+    SortHighscore
+    EndOfBallComplete()
+End Sub
+
+Sub SortHighscore
+    Dim tmp, tmp2, i, j
+    For i = 0 to 3
+        For j = 0 to 2
+            If HighScore(j) < HighScore(j + 1)Then
+                tmp = HighScore(j + 1)
+                tmp2 = HighScoreName(j + 1)
+                HighScore(j + 1) = HighScore(j)
+                HighScoreName(j + 1) = HighScoreName(j)
+                HighScore(j) = tmp
+                HighScoreName(j) = tmp2
+            End If
+        Next
+    Next
+End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  ATTRACT MODE
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -3906,7 +4023,8 @@ End Sub
 		DMDattract.Enabled = 1
 		intromover.enabled = true
 		ruleshelperoff
-		PuPlayer.playlistplayex pTopper,"videos-pressstart","",100,6
+		'PuPlayer.playlistplayex pTopper,"videos-pressstart","",100,6
+		pupevent 705
 		'RandomUltraDMDSceneIntro
 		playvideo=37+int(rnd(1)*5)
 		StartPLights
@@ -5268,7 +5386,8 @@ end sub
 						PlaySound "fx_rubber"
 						RANDOMLIGHTSKICKER
 						RandomChangeGi
-						PuPlayer.playlistplayex pBackglass,"videos-multiball-gasdrawls-balllocked","",100,16
+						'PuPlayer.playlistplayex pBackglass,"videos-multiball-gasdrawls-balllocked","",100,16
+						pupevent 706
 						DMDBigText "GAS DRAWLS",410,1   
 						DMDTopSplash "FREE TRAPPED BALL!",410,0    
 						BallsOnPlayfield = BallsOnplayfield - 1
@@ -5353,7 +5472,8 @@ end sub
 		ChangeGiForJackpot
 		ChangeLights(base)
 		SmokeSpin
-		PuPlayer.playlistplayex pBackglass,"videos-multiball-gasdrawls-multiball","",100,16	
+		'PuPlayer.playlistplayex pBackglass,"videos-multiball-gasdrawls-multiball","",100,16	
+		pupevent 707
 		DOF 944, DOFOn      'DOF MX
 		DOF 115, DOFPulse   'DOF FAN
 		DOF 405, DOFPulse   'DOF Strobe	
@@ -5452,7 +5572,8 @@ end sub
 		RandomSoundPlungerShoot
 		RandomSoundFairyDust
 		vpmtimer.addtimer 500, "StopIdleSound '"
-		PuPlayer.playlistplayex pBackglass,"videos-plunger","",100,6
+		'PuPlayer.playlistplayex pBackglass,"videos-plunger","",100,6
+		pupevent 708
 		GiEffect 1
 		FlasherPlunger
 
@@ -5506,7 +5627,7 @@ end sub
 		PlaySound "fx_wireramp_exit"
 		vpmtimer.addtimer 0200, "RandomSoundWireRampRolling '"
 		RandomSoundBeat
-		PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
+		'PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
 		DMDStarL=50 : DMDStarLBG=50
 		ChangeGiForRampLeft
 		FlasherLeftRamp
@@ -5536,7 +5657,7 @@ end sub
 			IF LSupShot02.state = 1 and LBolt02.state = 1 and LSupreme02.state = 1 and L10KScore02.State = 1 and L25KScore02.State = 2 Then
 				GiEffect 1
 				LightBonus08
-				PuPlayer.playlistplayex pBackglass,"videos-completed-ramps","",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-completed-ramps","",100,6
 				DMDTopSplash "RAMP COMPLETED",100,0
 				RampsCompletedCallout				
 				LSupShot02.state = 1	'lights Sup Shot #2 completed		
@@ -5608,7 +5729,7 @@ end sub
 		PlaySound "fx_wireramp_exit"
 		vpmtimer.addtimer 0200, "RandomSoundWireRampRolling '" 
 		RandomSoundBeat
-		PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
+		'PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
 		DMDHorizontalThick=50 : DMDHorizontalThickBG=50
 		ChangeGiForRampRight
 		FlasherRightRamp
@@ -5633,7 +5754,7 @@ end sub
 			IF LSupShot04.state = 1 and LBolt06.state = 1 and LSupreme04.state = 1 and L10KScore07.State = 1 and L25KScore03.State = 2 Then
 				GiEffect 1
 				LightBonus08
-				PuPlayer.playlistplayex pBackglass,"videos-completed-ramps","",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-completed-ramps","",100,6
 				DMDTopSplash "RAMP COMPLETED",100,0
 				RampsCompletedCallout
 				LSupShot04.state = 1	'lights Sup Shot #4 completed		
@@ -5719,7 +5840,7 @@ end sub
 		Else 
 			IF LSupShot03.state = 1 and LBolt03.state = 1 and LSupreme03.state = 1 and L5KScore01.State = 1 and L10KScore06.State = 2 Then
 				LightBonus09
-				PuPlayer.playlistplayex pBackglass,"videos-completed-spinner","",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-completed-spinner","",100,6
 				DMDTopSplash "SPINNER COMPLETED",100,0
 				SpinnerCompletedCallout
 				LSupShot03.state = 1	'lights Sup Shot #3 completed		
@@ -5776,7 +5897,7 @@ end sub
 		vpmtimer.addtimer 2000, "LevelCompletedBonus '" 
 		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
 		DOF 405, DOFPulse	'DOF Strobe	
-		PuPlayer.playlistplayex pBackglass,"videos-spinner","",100,4  
+		'PuPlayer.playlistplayex pBackglass,"videos-spinner","",100,4  
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' LANE TRIGGERS
@@ -6203,7 +6324,7 @@ end sub
 			IF LSupShot01.state = 1 and LBolt01.state = 1 and LSupreme01.state = 1 and L10KScore01.State = 1 and L25KScore01.State = 2 Then
 				LightBonus08
 				vpmtimer.addtimer 2500, "LightBonus07 '" 
-				PuPlayer.playlistplayex pBackglass,"videos-completed-orbits","",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-completed-orbits","",100,6
 				DMDTopSplash "ORBITS COMPLETED",100,0
 				'chilloutthemusic
 				OrbitsCompletedCallout				
@@ -6257,7 +6378,7 @@ end sub
 		IF LWarpMultiball.state = 1 Then		
 			'Do nothing
 		Else
-			PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,4
+			'PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,4
 		End If
 
 		If LSuperOrbits.state = 2 Then
@@ -6362,7 +6483,7 @@ end sub
 		IF LWarpMultiball.state = 1 Then		
 			'Do nothing
 		Else
-			PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,3
+		'PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,3
 		End If
 
 		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
@@ -6517,7 +6638,8 @@ end sub
 			FlashForMs Light049, 5930, 50, 0
 			RotDisc8Step = 36
 			Disc8Timer.Enabled = 1
-			PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-superjackpot","",100,22
+			'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-superjackpot","",100,22
+			pupevent 709
 			'chilloutthemusic
 			vpmtimer.addtimer 3200, "GazzillionEarJackpotCallout '"	
 			AddScore 500000
@@ -6527,12 +6649,12 @@ end sub
 				IF LExtraBall01.state = 2 AND BallsOnPlayfield < 2 THEN		
 					AddMultiball 1
 					bAutoPlunger = True
-					PuPlayer.playlistplayex pBackglass,"videos-add-a-ball","",100,15
+					'PuPlayer.playlistplayex pBackglass,"videos-add-a-ball","",100,15
 					DMDBigText "BALL ADDED",100,1  '3.4sec blink
 					BallAddedCallout	
 				Else	
 					IF LExtraBall01.state = 0 THEN 
-						PuPlayer.playlistplayex pBackglass,"videos-extraballislit-3shotstolight","",100,6
+						'PuPlayer.playlistplayex pBackglass,"videos-extraballislit-3shotstolight","",100,6
 					Else
 					
 					End If
@@ -6551,7 +6673,8 @@ end sub
 
 	Sub WarpSpeedSuperJackpotNotification
 		If LWarpMultiballCounter.state = 2 AND LWarpMultiballSuperJackpotIsLit.state = 0 AND LSupreme07.state = 1 AND LSupreme08.state = 1 AND LSupreme09.state = 1 AND LSupreme10.state = 1 THEN
-			PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-superjackpotislit","",100,21
+			'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-superjackpotislit","",100,21
+			pupevent 710
 			GazzillionEarSuperJackpotIsLitCallout
 			AddScore 250000
 			LExtraBall01.state = 2
@@ -6608,10 +6731,10 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3 
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3 
 		ELSE
 			AddScore 1000 	
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
 		END IF		
 		
 		IF LSupShot01.state = 0 and LBolt01.state = 2 and LSupreme01.state = 0 Then
@@ -6660,10 +6783,10 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 	
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
 		END IF	
 
 		IF LSupShot02.state = 0 and LBolt02.state = 2 and LSupreme02.state = 0 Then
@@ -6711,10 +6834,10 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 	
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
 		END IF
 
 		IF LSupShot03.state = 0 and LBolt03.state = 2 and LSupreme03.state = 0 Then
@@ -6762,10 +6885,10 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 	
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3
 		END IF
 
 		IF LSupShot06.state = 0 and LBolt04.state = 2 and LSupreme06.state = 0 Then
@@ -6813,10 +6936,10 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3
 		END IF
 
 		IF LSupShot05.state = 0 and LBolt05.state = 2 and LSupreme05.state = 0 Then
@@ -6864,10 +6987,10 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3		
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3		
 		END IF
 
 		IF LSupShot04.state = 0 and LBolt06.state = 2 and LSupreme04.state = 0 Then
@@ -7049,7 +7172,7 @@ end sub
 		If LStandupsCompleted.state = 0 AND LBolt01.State = 1 AND LBolt02.State = 1 AND LBolt03.State = 1 AND LBolt04.State = 1 AND LBolt05.State = 1 AND LBolt06.State = 1 THEN 
 			LStandupsCompleted.state = 1
 			RANDOMLIGHTSSTANDUPSCOMPLETEDLEFT
-			PuPlayer.playlistplayex pBackglass,"videos-targets-masks-standupscomplete","",100,6
+			'PuPlayer.playlistplayex pBackglass,"videos-targets-masks-standupscomplete","",100,6
 			DMDTopSplash "STANDUPS COMPLETED",100,0
 			chilloutthemusic
 			StandupsCompleteCallout
@@ -7062,7 +7185,7 @@ end sub
 		If LStandupsCompleted.state = 0 AND LBolt01.State = 1 AND LBolt02.State = 1 AND LBolt03.State = 1 AND LBolt04.State = 1 AND LBolt05.State = 1 AND LBolt06.State = 1 THEN 
 			LStandupsCompleted.state = 1
 			RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHT
-			PuPlayer.playlistplayex pBackglass,"videos-targets-masks-standupscomplete","",100,6
+			'PuPlayer.playlistplayex pBackglass,"videos-targets-masks-standupscomplete","",100,6
 			DMDTopSplash "STANDUPS COMPLETED",100,0
 			chilloutthemusic
 			StandupsCompleteCallout
@@ -7093,7 +7216,7 @@ end sub
 	Sub DoubleScoreCheck
 		IF (bGameInPLay = True) AND(Tilted = False) AND LDoubleScoringConfirm.state = 0 AND LStar01.state = 1 AND LStar02.state = 1 AND LStar03.state = 1 THEN 
 			LDoubleScoringConfirm.state = 1			
-			PuPlayer.playlistplayex pBackglass,"videos-doublescore","",100,6 
+			'PuPlayer.playlistplayex pBackglass,"videos-doublescore","",100,6 
 			DMDBigText "2X SCORING",100,1    '3.4sec blink
 			'chilloutthemusic
 			vpmtimer.addtimer 1000, "DoubleScoringCallout '"
@@ -7102,7 +7225,7 @@ end sub
 			IF LDoubleScoring01.State = 2 OR LDoubleScoringConfirm.state = 1 Then
 			ELSE
 				If NOT LastVideoPlayed="toplane" then
-				PuPlayer.playlistplayex pBackglass,"videos-switch-toplane","",100,4
+				'PuPlayer.playlistplayex pBackglass,"videos-switch-toplane","",100,4
 				LastVideoPlayed="toplane"
 				vpmtimer.addtimer 6000, "ResetToplaneVideo '"
 				End If
@@ -7145,7 +7268,7 @@ end sub
 				LMultiplier03.state = 0
 				ResetAllLaneLights
 				LightBonus01
-				PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-2x","",100,14 
+				'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-2x","",100,14 
 				DMDBigText "2X BONUS",100,0   '3.4sec
 				DMDTopSplash "2X BONUS MULTIPLIER",100,0
 				TwoTimesBonusMultiplierCallout
@@ -7156,7 +7279,7 @@ end sub
 					LMultiplier03.state = 0
 					ResetAllLaneLights
 					LightBonus01
-					PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-3x","",100,14 
+					'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-3x","",100,14 
 				    DMDBigText "3X BONUS",100,0   '3.4sec
 					DMDTopSplash "3X BONUS MULTIPLIER",100,0
 					ThreeTimesBonusMultiplierCallout
@@ -7167,7 +7290,7 @@ end sub
 						LMultiplier03.state = 1
 						ResetAllLaneLights 
 						LightBonus01
-						PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,14 
+						'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,14 
 				        DMDBigText "5X BONUS",100,0   '3.4sec
 					    DMDTopSplash "5X BONUS MULTIPLIER",100,0
 						FiveTimesBonusMultiplierCallout
@@ -7178,7 +7301,7 @@ end sub
 							LMultiplier03.state = 1
 							ResetAllLaneLights 
 							LightBonus01
-							PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,14 
+							'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,14 
 				            DMDBigText "5X BONUS",100,0   '3.4sec
 					        DMDTopSplash "3X BONUS MULTIPLIER",100,0
 							FiveTimesBonusMultiplierCallout
@@ -7187,7 +7310,7 @@ end sub
 				END IF
 			END IF
 		ELSE
-			PuPlayer.playlistplayex pBackglass,"videos-switch-bottomlane","",100,4
+			'PuPlayer.playlistplayex pBackglass,"videos-switch-bottomlane","",100,4
 		End IF
 	End Sub
 	'***********************************************************
@@ -7201,7 +7324,7 @@ end sub
 				LMultiplier03.state = 0
 				ResetAllLaneLights
 				LightBonus01
-				PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-2x","",100,7
+				'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-2x","",100,7
 				DMDBigText "2X BONUS",100,0   '3.4sec
 				DMDTopSplash "2X BONUS MULTIPLIER",100,0
 				TwoTimesBonusMultiplierCallout
@@ -7212,7 +7335,7 @@ end sub
 					LMultiplier03.state = 0
 					ResetAllLaneLights
 					LightBonus01
-					PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-3x","",100,7 
+					'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-3x","",100,7 
 				    DMDBigText "3X BONUS",100,0   '3.4sec
 					DMDTopSplash "3X BONUS MULTIPLIER",100,0
 					ThreeTimesBonusMultiplierCallout
@@ -7223,7 +7346,7 @@ end sub
 						LMultiplier03.state = 1
 						ResetAllLaneLights 
 						LightBonus01
-						PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,7
+						'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,7
 				        DMDBigText "5X BONUS",100,0   '3.4sec
 					    DMDTopSplash "5X BONUS MULTIPLIER",100,0
 						FiveTimesBonusMultiplierCallout
@@ -7234,7 +7357,7 @@ end sub
 							LMultiplier03.state = 1
 							ResetAllLaneLights 
 							LightBonus01
-							PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,7
+							'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,7
 							DMDBigText "5X BONUS",100,0   '3.4sec
 							DMDTopSplash "5X BONUS MULTIPLIER",100,0
 							FiveTimesBonusMultiplierCallout
@@ -7370,7 +7493,8 @@ end sub
 				PlaySoundCallOut "fx067"
 				chilloutthemusic
 				vpmtimer.addtimer 0500, "AmericasMostBluntedCallout '"
-				PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-multiballislit","",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-multiballislit","",100,6
+				pupevent 711
 				DMDBigText "MB IS LIT!",100,0   '3.4sec
 				DMDTopSplash "GET BLUNTED!",100,0
 				
@@ -7384,7 +7508,7 @@ end sub
 				Next
 			End If
 		Else	
-			PuPlayer.playlistplayex pTopper,"videos-targets-masks","",100,3
+			'PuPlayer.playlistplayex pTopper,"videos-targets-masks","",100,3
 		End If	
 	End Sub
 	'*******************************************************
@@ -7406,7 +7530,8 @@ end sub
 						h.State = 1
 					Next
 					RandomSoundBong
-					PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-2hit","",100,6
+					'PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-2hit","",100,6
+					pupevent 712
 					DMDTopSplash "2 MORE HITS",100,0
 					chilloutthemusic
 					TwoMoreHitsCallout
@@ -7431,7 +7556,8 @@ end sub
 					
 						Next
 						RandomSoundBong
-						PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-1hit","",100,6
+						'PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-1hit","",100,6
+						pupevent 713
 						DMDBigText "1 MORE HIT",100,0   '3.4sec
 						chilloutthemusic
 						OneMoreHitCallout
@@ -7459,7 +7585,8 @@ end sub
 							'RandomUltraDMDSceneAmericasMostBlunted
 							playvideo=23+int(rnd(1)*4)
 							bMBDrainConfirm = True
-							PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-multiball","",100,16
+							'PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-multiball","",100,16
+							pupevent 714
 							chilloutthemusic
 							vpmtimer.addtimer 1100, "AmericasMostBluntedMultiballCallout '"
 							AddMultiball 2
@@ -7506,7 +7633,8 @@ end sub
 								ChangeLights(base)
 								chilloutthemusic
 								PlaySoundCallOut "Thunder7"
-								PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-jackpot","",100,16
+								'PuPlayer.playlistplayex pBackglass,"videos-multiball-mostblunted-jackpot","",100,16
+								pupevent 715
 								DOF 945, DOFOn   'DOF MX
 								DOF 973, DOFOn   'DOF MX - BACK
 								vpmtimer.addtimer 6000, "TurnOffMostBluntedJackpotMX '"
@@ -7544,7 +7672,7 @@ end sub
 				Else
 					AddScore 10000
 				End If
-				PuPlayer.playlistplayex pBackglass,"videos-targets-masks","",100,3
+				'PuPlayer.playlistplayex pBackglass,"videos-targets-masks","",100,3
 			END IF
 	End Sub
 
@@ -7571,7 +7699,8 @@ End Sub
 			'RandomUltraDMDSceneGazzillionEar
 			playvideo=30+int(rnd(1)*4)
 
-			PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-multiball","",100,20
+			'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-multiball","",100,20
+			pupevent 716
 			GazzillionEarMultiballCallout
 			vpmtimer.addtimer 80000, "GazzillionEar10secvideo '"
 			vpmtimer.addtimer 90000, "ResetDropTargetsSparks '"
@@ -7701,7 +7830,8 @@ End Sub
 	End Sub
 
 	Sub GazzillionEar10secvideo
-		PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-countdown","",100,23
+		'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-countdown","",100,23
+		pupevent 717
 		GazzillionEarTenSecondCountdownCallout
 			vpmtimer.addtimer 16000, "ClearMusicCallout '" 
 	End Sub
@@ -7772,52 +7902,52 @@ End Sub
 	Sub ComboLightsVideo
 		bCombo(CurrentPlayer)=bCombo(CurrentPlayer)+1
 		If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 2 Then
-			PuPlayer.playlistplayex pBackglass,"videos-combo-2way-15k","",100,6
+			'PuPlayer.playlistplayex pBackglass,"videos-combo-2way-15k","",100,6
 			DMDBigText "2WAY COMBO",100,0
 			TwoWayComboCallout
 			LightBonus05
 			vpmtimer.addtimer 2500, "LightBonus06 '" 
 		Else
 			If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 2 Then
-				PuPlayer.playlistplayex pBackglass,"videos-combo-2way-30k","",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-combo-2way-30k","",100,6
 				DMDBigText "2WAY COMBO",100,0
 				TwoWayComboCallout
 				LightBonus08
 			Else
 				If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 3 Then
-					PuPlayer.playlistplayex pBackglass,"videos-combo-3way-20k","",100,6
+					'PuPlayer.playlistplayex pBackglass,"videos-combo-3way-20k","",100,6
 					DMDBigText "3WAY COMBO",100,0
 					ThreeWayComboCallout
 					LightBonus07
 				Else
 					If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 3 Then
-						PuPlayer.playlistplayex pBackglass,"videos-combo-3way-40k","",100,6
+						'PuPlayer.playlistplayex pBackglass,"videos-combo-3way-40k","",100,6
 						DMDBigText "3WAY COMBO",100,0
 						ThreeWayComboCallout
 						LightBonus09
 					Else
 						If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 4 Then
-							PuPlayer.playlistplayex pBackglass,"videos-combo-4way-25k","",100,6
+							'PuPlayer.playlistplayex pBackglass,"videos-combo-4way-25k","",100,6
 							DMDBigText "4WAY COMBO",100,0
 							FourWayComboCallout
 							LightBonus07
 							vpmtimer.addtimer 2500, "LightBonus05 '" 
 						Else
 							If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 4 Then
-								PuPlayer.playlistplayex pBackglass,"videos-combo-4way-50k","",100,6
+								'PuPlayer.playlistplayex pBackglass,"videos-combo-4way-50k","",100,6
 								DMDBigText "4WAY COMBO",100,0
 								FourWayComboCallout
 								LightBonus09
 								vpmtimer.addtimer 2500, "LightBonus06 '" 
 							Else
 								If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 5 Then
-									PuPlayer.playlistplayex pBackglass,"videos-combo-5way-30k","",100,6
+									'PuPlayer.playlistplayex pBackglass,"videos-combo-5way-30k","",100,6
 									DMDBigText "5WAY COMBO",100,0
 									FiveWayComboCallout	
 									LightBonus08
 								Else
 									If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 5 Then
-										PuPlayer.playlistplayex pBackglass,"videos-combo-5way-60k","",100,6
+										'PuPlayer.playlistplayex pBackglass,"videos-combo-5way-60k","",100,6
 										DMDBigText "5WAY COMBO",100,0
 										FiveWayComboCallout
 										LightBonus09
@@ -7859,7 +7989,7 @@ End Sub
 	Sub SuperPopsCheck
 		bSuperPops(CurrentPlayer)=bSuperPops(CurrentPlayer)+1
 		If bSuperPops(CurrentPlayer)=30 AND LSuperPops.State = 0 Then
-			PuPlayer.playlistplayex pBackglass,"videos-superpops","",100,11
+			'PuPlayer.playlistplayex pBackglass,"videos-superpops","",100,11
 			DMDBigText "SUPER POPS",100,0   '3.4sec
 			SuperPopsCallout
 			EnableSuperPopsCountdown 60
@@ -7898,7 +8028,7 @@ End Sub
 	Sub SuperRampsCheck
 		bSuperRamps(CurrentPlayer)=bSuperRamps(CurrentPlayer)+1
 		If bSuperRamps(CurrentPlayer)=5 AND LSuperRamps.State = 0 Then
-			PuPlayer.playlistplayex pBackglass,"videos-superramps","",100,11  
+			'PuPlayer.playlistplayex pBackglass,"videos-superramps","",100,11  
             DMDBigText "SUPER RAMP",100,0   '3.4sec 
 			SuperRampsCallout
 			EnableSuperRampsCountdown 60
@@ -7937,7 +8067,7 @@ End Sub
 	Sub SuperOrbitsCheck
 		bSuperOrbits(CurrentPlayer)=bSuperOrbits(CurrentPlayer)+1
 		If bSuperOrbits(CurrentPlayer)=5 AND LSuperOrbits.State = 0 Then
-			PuPlayer.playlistplayex pBackglass,"videos-superorbits","",100,11
+			'PuPlayer.playlistplayex pBackglass,"videos-superorbits","",100,11
 			DMDBigText "SUPERORBIT",100,0   '3.4sec
 			SuperOrbitsCallout
 			EnableSuperOrbitsCountdown 60
@@ -7976,7 +8106,9 @@ End Sub
 	Sub DoubleSpinnerCheck
 		bDoubleSpinner(CurrentPlayer)=bDoubleSpinner(CurrentPlayer)+1
 		If bDoubleSpinner(CurrentPlayer)=5 AND LDoubleSpinner.State = 0 Then
-			PuPlayer.playlistplayex pBackglass,"videos-doublespinner","",100,11
+			'PuPlayer.playlistplayex pBackglass,"videos-doublespinner","",100,11
+			Dbg "Double Spinner"
+			pupevent 718
 			DMDBigText "2X SPINNER",100,0    '3.4sec
 			DoubleSpinnerCallout
 			LightBonus05          
@@ -7996,7 +8128,7 @@ End Sub
 		If LLevelOneCompleted.state = 0 AND L10KScore01.state = 1 AND L10KScore02.state = 1 AND L5KScore01.state = 1 AND L10KScore07.state = 1 AND L5KScore02.state = 1 AND L10KScore09.state = 1 Then
 			LLevelOneCompleted.state = 1
 			AddScore 75000
-			PuPlayer.playlistplayex pBackglass,"videos-level1completed","",100,17
+			'PuPlayer.playlistplayex pBackglass,"videos-level1completed","",100,17
 			DMDTopSplash "LEVEL 1 COMPLETED",100,0
 			LevelOneCompletedCallout
 			vpmtimer.addtimer 6000, "LightBonus10 '"
@@ -8005,7 +8137,7 @@ End Sub
 			If LLevelTwoCompleted.state = 0 AND L25KScore01.state = 1 AND L25KScore02.state = 1 AND L10KScore06.state = 1 AND L25KScore03.state = 1 AND L10KScore08.state = 1 AND L25KScore04.state = 1 Then
 				LLevelTwoCompleted.state = 1
 				AddScore 150000
-				PuPlayer.playlistplayex pBackglass,"videos-level2completed","",100,17
+				'PuPlayer.playlistplayex pBackglass,"videos-level2completed","",100,17
 				DMDTopSplash "LEVEL 2 COMPLETED",100,0
 				LevelTwoCompletedCallout
 				vpmtimer.addtimer 6000, "LightBonus10 '"
@@ -9930,7 +10062,8 @@ End Sub
 		AddScore SkillshotValue(CurrentPLayer)
 		DOF 939, DOFPulse   'DOF MX - Skillshot
 		vpmtimer.addtimer 1200, "SkillshotCallout '"
-		PuPlayer.playlistplayex pBackglass,"videos-skillshot","",100,14
+		'PuPlayer.playlistplayex pBackglass,"videos-skillshot","",100,14
+		pupevent 719
 		DMDBigText "SKILL SHOT",100,0 '3.4sec 
 		SkillShotValue(CurrentPLayer) = SkillShotValue(CurrentPLayer) + 10000
 	End Sub
@@ -9958,13 +10091,15 @@ End Sub
 			For each z in herbs
 			z.State = 0
 		Next
-		PuPlayer.playresume 4
+		'PuPlayer.playresume 4
 		PuPlayer.playstop pAudio
 		If PlayersPlayingGame > 1 Then
 			If CurrentPlayer = 1 Then
 				Player1Callout
-				PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
-				PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P1.mp4",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
+				'PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P1.mp4",100,6
+				pupevent 720
+				pupevent 721
 				RandomSoundKickout
 				FlasherAllBlinkOnce
 				LightSeqALLCAPS.UpdateInterval = 0
@@ -9981,8 +10116,10 @@ End Sub
 				LSlime.state = 2
 			Elseif currentplayer = 2 Then
 				Player2Callout
-				PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
-				PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P2.mp4",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
+				'PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P2.mp4",100,6
+				pupevent 720
+				pupevent 722
 				RandomSoundKickout
 				FlasherAllBlinkOnce
 				LightSeqALLCAPS.UpdateInterval = 0
@@ -9999,8 +10136,10 @@ End Sub
 				LSlime.state = 2
 			Elseif currentplayer = 3 Then
 				Player3Callout
-				PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
-				PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P3.mp4",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
+				'PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P3.mp4",100,6
+				pupevent 720
+				pupevent 723
 				RandomSoundKickout
 				FlasherAllBlinkOnce
 				LightSeqALLCAPS.UpdateInterval = 0
@@ -10017,8 +10156,10 @@ End Sub
 				LSlime.state = 2
 			Elseif currentplayer = 4 Then
 				Player4Callout
-				PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
-				PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P4.mp4",100,6
+				'PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
+				'PuPlayer.playlistplayex pTopper,"videos-readytoshootplayer","P4.mp4",100,6
+				pupevent 720
+				pupevent 724
 				RandomSoundKickout
 				FlasherAllBlinkOnce
 				LightSeqALLCAPS.UpdateInterval = 0
@@ -10214,7 +10355,8 @@ End Sub
 				chilloutthemusic
 				StartWarpMultiball
 			Else
-				PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-keepbombing","",100,24
+				'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-keepbombing","",100,24
+				pupevent 725
 				PlaySoundCallOut "fx078"
 				ClearMusicCallout
 				LWarpMultiballCounter.state = 0
@@ -10227,8 +10369,8 @@ End Sub
 		Else
 			BallsRemaining(CurrentPlayer) = BallsRemaining(CurrentPlayer) - 1
 			If(BallsRemaining(CurrentPlayer) <= 0) Then
-				CheckHighScore()
-				'EndOfBallComplete()     
+				'CheckHighScore()
+				EndOfBallComplete()     
 			Else
 				EndOfBallComplete()
 			End If
@@ -10255,7 +10397,8 @@ End Sub
 			CreateNewBall()
 			ResetAllLightsColor
 			ResetAllGILightsColor
-			PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
+			'PuPlayer.playlistplayex pBackglass,"videos-readytoshootbig","",100,6
+			pupevent 720
 			LRuby2.state = 0
 			Dim y
 				For each y in herbs
@@ -10304,7 +10447,8 @@ End Sub
 				END IF
 				AddMultiball 1
 				bAutoPlunger = True
-				PuPlayer.playlistplayex pBackglass,"videos-ballsaved","",100,13
+'				PuPlayer.playlistplayex pBackglass,"videos-ballsaved","",100,13
+				PuPEvent 203
 				DMDBigText "BALL SAVED",100,0   '3.4sec 
 				DMDTopSplash "BLUNTED AGAIN",100,0
 				If bMultiBallMode = False Then
@@ -10337,6 +10481,8 @@ End Sub
 					RandomDrainAllCapsFlashBallComplete
 					RANDOMLIGHTSDRAINLONGFADE
 					If NOT (bBallSaverActive = True) THEN 
+						PuPEvent 202
+						Dbg "Event 202"
 						DMDBigText "DOOM DRAIN",320,1   'blink
 						Select Case Int(Rnd * 15) + 1
 							Case 1: DMDTopSplash "EASY ON THE SHROOMS",320,0
@@ -10456,6 +10602,7 @@ End Sub
 	introposition = 0
 
 	Sub DMDintroloop
+	exit sub
 		PuPlayer.LabelSet pBackglass,"modetitle","",1,"{'mt':2,'color':16777215, 'size': 0, 'xpos': 80.7, 'xalign': 1, 'ypos': 72.6, 'yalign': 0}"
 		introtime = 0	
 		introposition = introposition + 1
@@ -10533,26 +10680,29 @@ End Sub
 	End Sub
 
 	Sub AttractModeGrandChampion
+
 			RandomSoundHighScores
-			PuPlayer.LabelSet pBackglass,"highgcname",HighScoreName(0),1,""
-			PuPlayer.LabelSet pBackglass,"highgcscore",FormatNumber(HighScore(0),0),1,""
-			PuPlayer.playlistplayex pBackglass,"videos-highscoreentry","Champion.mp4",100,4    
+'			PuPlayer.LabelSet pBackglass,"highgcname",HighScoreName(0),1,""
+'			PuPlayer.LabelSet pBackglass,"highgcscore",FormatNumber(HighScore(0),0),1,""
+			'PuPlayer.playlistplayex pBackglass,"videos-highscoreentry","Champion.mp4",100,4    
+			pupevent 726
 			FlasherAllBlinkOnce
 	End Sub
 
 	Sub AttractModeHighScores
 			RandomSoundHighScores
-			PuPlayer.LabelSet pBackglass,"high1name",HighScoreName(0),1,""
-			PuPlayer.LabelSet pBackglass,"high1score",FormatNumber(HighScore(0),0),1,""
-			PuPlayer.LabelSet pBackglass,"high2name",HighScoreName(1),1,""
-			PuPlayer.LabelSet pBackglass,"high2score",FormatNumber(HighScore(1),0),1,""
-			PuPlayer.LabelSet pBackglass,"high3name",HighScoreName(2),1,""
-			PuPlayer.LabelSet pBackglass,"high3score",FormatNumber(HighScore(2),0),1,""
-			PuPlayer.LabelSet pBackglass,"high4name",HighScoreName(3),1,""
-			PuPlayer.LabelSet pBackglass,"high4score",FormatNumber(HighScore(3),0),1,""  
-			PuPlayer.LabelSet pBackglass,"highgcname","",1,""
-			PuPlayer.LabelSet pBackglass,"highgcscore","",1,"" 
-			PuPlayer.playlistplayex pBackglass,"videos-highscore","",100,4      
+'			PuPlayer.LabelSet pBackglass,"high1name",HighScoreName(0),1,""
+'			PuPlayer.LabelSet pBackglass,"high1score",FormatNumber(HighScore(0),0),1,""
+'			PuPlayer.LabelSet pBackglass,"high2name",HighScoreName(1),1,""
+'			PuPlayer.LabelSet pBackglass,"high2score",FormatNumber(HighScore(1),0),1,""
+'			PuPlayer.LabelSet pBackglass,"high3name",HighScoreName(2),1,""
+'			PuPlayer.LabelSet pBackglass,"high3score",FormatNumber(HighScore(2),0),1,""
+'			PuPlayer.LabelSet pBackglass,"high4name",HighScoreName(3),1,""
+'			PuPlayer.LabelSet pBackglass,"high4score",FormatNumber(HighScore(3),0),1,""  
+'			PuPlayer.LabelSet pBackglass,"highgcname","",1,""
+'			PuPlayer.LabelSet pBackglass,"highgcscore","",1,"" 
+'			PuPlayer.playlistplayex pBackglass,"videos-highscore","",100,4    
+			pupevent 727
 			FlasherAllBlinkOnce
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -10573,33 +10723,37 @@ End Sub
 '  GAME STARTING & RESETS
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Sub Game_Init() 'called at the start of a new game
+		Dbg "=========== Starting Game ==========="
+		PuPEvent 200
 		Dim i
 		For i = 0 to 4
 			SkillshotValue(i) = 10000 ' increases by 10000 each time it is collected
 		Next
 		bExtraBallWonThisBall = False
-		PuPlayer.LabelSet pBackglass,"high1name","",1,""
-		PuPlayer.LabelSet pBackglass,"high1score","",1,""
-		PuPlayer.LabelSet pBackglass,"high2name","",1,""
-		PuPlayer.LabelSet pBackglass,"high2score","",1,""
-		PuPlayer.LabelSet pBackglass,"high3name","",1,""
-		PuPlayer.LabelSet pBackglass,"high3score","",1,""
-		PuPlayer.LabelSet pBackglass,"high4name","",1,""
-		PuPlayer.LabelSet pBackglass,"high4score","",1,""
-		PuPlayer.LabelSet pBackglass,"highgcname","",1,""
-		PuPlayer.LabelSet pBackglass,"highgcscore","",1,""
-		PuPlayer.LabelShowPage pBackglass,1,0,""
-		pUpdateScores
-		PuPlayer.playlistplayex pBackglass,"backglass-startup","",100,4  
-		PuPlayer.playlistplayex pTopper,"videos-readytoshoot","",100,13
+'		PuPlayer.LabelSet pBackglass,"high1name","",1,""
+'		PuPlayer.LabelSet pBackglass,"high1score","",1,""
+'		PuPlayer.LabelSet pBackglass,"high2name","",1,""
+'		PuPlayer.LabelSet pBackglass,"high2score","",1,""
+'		PuPlayer.LabelSet pBackglass,"high3name","",1,""
+'		PuPlayer.LabelSet pBackglass,"high3score","",1,""
+'		PuPlayer.LabelSet pBackglass,"high4name","",1,""
+'		PuPlayer.LabelSet pBackglass,"high4score","",1,""
+'		PuPlayer.LabelSet pBackglass,"highgcname","",1,""
+'		PuPlayer.LabelSet pBackglass,"highgcscore","",1,""
+'		PuPlayer.LabelShowPage pBackglass,1,0,""
+'		pUpdateScores
+'		PuPlayer.playlistplayex pBackglass,"backglass-startup","",100,4  
+		PuPEvent 201
+		PuPEvent 301
+'		PuPlayer.playlistplayex pTopper,"videos-readytoshoot","",100,13
 		ClearMusicCallout
-		PuPlayer.SetBackground pBackglass,1
-		PuPlayer.LabelSet pBackglass,"Play1","PLAYER 1",1,"{'mt':2,'color':16777215}"
-		PuPlayer.LabelSet pBackglass,"notetitle","",1,""
-		PuPlayer.LabelSet pBackglass,"notecopy","",1,""
+'		PuPlayer.SetBackground pBackglass,1
+'		PuPlayer.LabelSet pBackglass,"Play1","PLAYER 1",1,"{'mt':2,'color':16777215}"
+'		PuPlayer.LabelSet pBackglass,"notetitle","",1,""
+'		PuPlayer.LabelSet pBackglass,"notecopy","",1,""
 
-		ruleshelperon
-		resetbackglass
+'		ruleshelperon
+'		resetbackglass
 		ResetBoltLights
 		ResetAllLaneLights
 		RandomSoundStartup
@@ -10678,6 +10832,7 @@ End Sub
 	rulesposition = 0
 	turnoffrules = 1  ' change to 1 to take off the backglass helper rules text during a game
 	Sub rulestime_timer
+	exit sub
 		If turnoffrules = 1 then exit sub end if
 		rulesposition = rulesposition + 1
 		Select Case rulesposition
@@ -10730,7 +10885,8 @@ End Sub
 		RandomSoundMetalFingersRight
 		RandomSoundSlingshotRight RightInlane'RightSlingShot
 		PlaySoundAt SoundFXDOF("", 104, DOFPulse, DOFContactors), RightInlane
-		PuPlayer.playlistplayex pTopper,"videos-sling","",100,2
+'		PuPlayer.playlistplayex pTopper,"videos-sling","",100,2
+		PuPEvent 302
 
 		RSling.Visible = 0
 		RSling1.Visible = 1
@@ -10767,6 +10923,7 @@ End Sub
 		RandomSoundMetalFingersLeft
 		RandomSoundSlingshotLeft LeftInlane'LeftSlingShot
 		PlaySoundAt SoundFXDOF("", 103, DOFPulse, DOFContactors), LeftInlane
+		PuPEvent 302
 
 		LSling.Visible = 0
 		LSling1.Visible = 1
@@ -11044,7 +11201,9 @@ End Sub
 
 		LightBonus01
 		If NOT (bBallSaverActive = True) THEN 
-			PuPlayer.playlistplayex pBackglass,"videos-balllost","",100,4
+			'PuPlayer.playlistplayex pBackglass,"videos-balllost","",100,4
+			PuPEvent 202
+			Dbg "Event 202"
 		End If
 		If bMultiBallMode = False Then
 			RandomSoundOutlane
@@ -11080,7 +11239,8 @@ End Sub
 
 		LightBonus01
 		If NOT (bBallSaverActive = True) THEN
-			PuPlayer.playlistplayex pBackglass,"videos-balllost","",100,4
+			'PuPlayer.playlistplayex pBackglass,"videos-balllost","",100,4
+			PuPEvent 202
 		End If
 		If bMultiBallMode = False Then
 			RandomSoundOutlane
@@ -16395,6 +16555,7 @@ end Function
 			bonusbumps(CurrentPlayer)=bonusbumps(CurrentPlayer)+1
 			If bonusbumps(CurrentPlayer)=60 Then
 				PuPlayer.playlistplayex pBackglass,"videos-bonus-bumps","",100,18
+				pupevent 728
 				DMDBigText "VIK VAUGHN",175,0
 				LSupreme003.state = 1   
 				bonusbumps(CurrentPlayer)=0
@@ -16407,7 +16568,8 @@ end Function
 		If LSupreme002.state = 2 THEN
 			bonusleftramp(CurrentPlayer)=bonusleftramp(CurrentPlayer)+1
 			If bonusleftramp(CurrentPlayer)=4 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-leftramp","",100,18   
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-leftramp","",100,18   
+				pupevent 729
 				DMDBigText "GEEDORAH",175,0    
 				LSupreme002.state = 1   
 				bonusleftramp(CurrentPlayer)=0
@@ -16420,7 +16582,8 @@ end Function
 		If LSupreme004.state = 2 THEN
 			bonusrightramp(CurrentPlayer)=bonusrightramp(CurrentPlayer)+1
 			If bonusrightramp(CurrentPlayer)=4 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-rightramp","",100,18  
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-rightramp","",100,18  
+				pupevent 730
 				DMDBigText "MADVILLAIN",175,0    
 				LSupreme004.state = 1 
 				bonusrightramp(CurrentPlayer)=0
@@ -16433,7 +16596,8 @@ end Function
 		If LSupreme001.state = 2 THEN
 			bonusleftorbit(CurrentPlayer)=bonusleftorbit(CurrentPlayer)+1
 			If bonusleftorbit(CurrentPlayer)=4 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-leftorbit","",100,18  
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-leftorbit","",100,18  
+				pupevent 731
 				DMDBigText "ZEV LOVE X",175,0   
 				LSupreme001.state = 1  
 				bonusleftorbit(CurrentPlayer)=0
@@ -16446,7 +16610,8 @@ end Function
 		If LSupreme005.state = 2 THEN
 			bonusspinner(CurrentPlayer)=bonusspinner(CurrentPlayer)+1
 			If bonusspinner(CurrentPlayer)=4 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-spinner","",100,18  
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-spinner","",100,18  
+				pupevent 732
 				DMDBigText "DANGERDOOM",175,0  
 				LSupreme005.state = 1  
 				bonusspinner(CurrentPlayer)=0
@@ -16459,7 +16624,8 @@ end Function
 		If LStar08.state = 2 THEN
 			bonuscentertarget(CurrentPlayer)=bonuscentertarget(CurrentPlayer)+1
 			If bonuscentertarget(CurrentPlayer)=3 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-centertarget","",100,18   
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-centertarget","",100,18   
+				pupevent 733
 				DMDBigText "JJ DOOM",175,0   
 				LStar08.state = 1   
 				bonuscentertarget(CurrentPlayer)=0
@@ -16472,7 +16638,8 @@ end Function
 		If LStar09.state = 2 THEN
 			bonussmalltarget(CurrentPlayer)=bonussmalltarget(CurrentPlayer)+1
 			If bonussmalltarget(CurrentPlayer)=4 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-smalltarget","",100,18  
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-smalltarget","",100,18  
+				pupevent 734
 				DMDBigText "NEHRUVIAN",175,0   
 				LStar09.state = 1   
 				bonussmalltarget(CurrentPlayer)=0
@@ -16485,7 +16652,9 @@ end Function
 		If LArrow10.state = 2 THEN
 			BonusMission(CurrentPlayer)=BonusMission(CurrentPlayer)+1
 			If BonusMission(CurrentPlayer)=2 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-missions","",100,18 
+				'PuPlayer.playlistplayex pBackglass,"videos-bonus-missions","",100,18 
+				pupevent 735
+				Dbg "Event 935"
 				DMDBigText "MYSTERY?",100,0   '3.4sec
 				MysteryAliasMissionsUnlockedCallout
 				BonusMission(CurrentPlayer)=0
@@ -16548,6 +16717,7 @@ end Function
 				y=INT(RND*75)+8       'y=INT(RND*75)+8
 	''debug.print "BumperBG" & i &" PuPOverlays\\BumperBurst"&idx1&"-"&idx2&".png {'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
 				puPlayer.LabelSet pBackglass,"BumperBG" & idx, "PuPOverlays2\\BumperBurst"&idx1&"-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
+' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 	''debug.print  "BumperScore2 " & Score & "," & x & "," & y & "," & size & "," & idx & "," & idx2 & " '"
 				VPMTimer.AddTimer 900, "BumperScore2 """ & Score & """," & x & "," & y & "," & size & "," & idx & "," & idx2 & " '"
 				Exit sub 
@@ -16556,14 +16726,17 @@ end Function
 	End Sub
 	Sub BumperScore2(Score, x, y, size, idx, idx2)		' Display a popup Animation on the backglass 
 		puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\BumperBurst0-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
+' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		VPMTimer.AddTimer 900, "BumperScore3 " & idx & " '"
 	End Sub 
 	Sub BumperScore3(idx)		' Display a popup Animation on the backglass 
 		puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\Clear.png" ,1,""
+' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		BumperScoreFree(idx)=False
 	End Sub 
 
 	Sub ClearSmoke
+' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 0, "PuPOverlays2\\Clear.png" ,1,""
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 1, "PuPOverlays2\\Clear.png" ,1,""
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 2, "PuPOverlays2\\Clear.png" ,1,""
@@ -16590,6 +16763,7 @@ end Function
 			Case 1:	image=image&"smoke6.gif"
 					vpmtimer.AddTimer 1600, "ClearSmoke '"
 		End Select
+' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		puPlayer.LabelSet pBackglass,"Smoke", image ,1,"{'mt':2,'color':111111, 'anigif':100, 'width':100, 'height':100,'yalign':0,'xalign':0,'ypos':0,'xpos':0}"
 	End Sub
 
@@ -17108,5 +17282,54 @@ End Function
 '  WHY THE HELL ARE YOU READING ALL THE WAY DOWN HERE!!!  YOU MUST BE SOFA KING WE TODD ID!!! 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+Dim objIEDebugWindow
+Dim CurrTime
+CurrTime = Timer
+Sub Dbg( myDebugText )
+' Uncomment the next line to turn off debugging
+Exit Sub
+
+If Not IsObject( objIEDebugWindow ) Then
+Set objIEDebugWindow = CreateObject( "InternetExplorer.Application" )
+objIEDebugWindow.Navigate "about:blank"
+objIEDebugWindow.Visible = True
+objIEDebugWindow.ToolBar = False
+objIEDebugWindow.Width = 600	
+objIEDebugWindow.Height = 900
+objIEDebugWindow.Left = 2100
+objIEDebugWindow.Top = 100
+Do While objIEDebugWindow.Busy
+Loop
+objIEDebugWindow.Document.Title = "My Debug Window"
+objIEDebugWindow.Document.Body.InnerHTML = "<b>MRDOOM Debug Window -TimeStamp: " & CurrTime & "</b></br>"
+End If
+
+objIEDebugWindow.Document.Body.InnerHTML = objIEDebugWindow.Document.Body.InnerHTML & myDebugText & " --TimeStamp:<b> " & CurrTime & "</b><br>" & vbCrLf
+End Sub
 
 
+
+
+'//////////////////// PINUP PLAYER: STARTUP & CONTROL SECTION //////////////////////////
+
+' This is used for the startup and control of Pinup 
+'************ PuP-Pack Startup **************
+
+Sub PuPStart(cPuPPack)
+    If PUPStatus=true then Exit Sub
+    If usePUP=true then
+        Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay")
+        If PuPlayer is Nothing Then
+            usePUP=false
+            PUPStatus=false
+        Else
+            PuPlayer.B2SInit "",cPuPPack 'start the Pup-Pack
+            PUPStatus=true
+        End If
+    End If
+End Sub
+
+Sub PuPEvent(EventNum)
+    if (usePUP=false or PUPStatus=false) then Exit Sub
+    PuPlayer.B2SData "E"&EventNum,1  'send event to Pup-Pack
+End Sub

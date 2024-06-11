@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -325.0,
+      "y": 1974.0
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 20,
+    "name": "HighScoreFlashTimer",
+    "backglass": false
+  }
+}
