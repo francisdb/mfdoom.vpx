@@ -1,14 +1,14 @@
 {
   "Primitive": {
     "position": {
-      "x": 375.8566,
-      "y": 1862.0231,
+      "x": 674.3163,
+      "y": 1480.4122,
       "z": 0.0
     },
     "size": {
-      "x": 22.0,
-      "y": 22.0,
-      "z": 22.0
+      "x": 10.0,
+      "y": 10.0,
+      "z": 10.0
     },
     "rot_and_tra": [
       0.0,
@@ -24,7 +24,7 @@
     "image": "",
     "normal_map": "",
     "sides": 32,
-    "name": "EndPointLp",
+    "name": "EndPoint1RS",
     "material": "",
     "side_color": "#969696",
     "is_visible": false,
@@ -37,13 +37,13 @@
     "scatter": 0.0,
     "edge_factor_ui": 0.25,
     "collision_reduction_factor": 0.0,
-    "is_collidable": true,
+    "is_collidable": false,
     "is_toy": true,
     "use_3d_mesh": false,
     "static_rendering": false,
     "disable_lighting_top_old": null,
-    "disable_lighting_top": 1.0,
-    "disable_lighting_below": 1.0,
+    "disable_lighting_top": 0.0,
+    "disable_lighting_below": 0.0,
     "is_reflection_enabled": false,
     "backfaces_enabled": false,
     "physics_material": "",

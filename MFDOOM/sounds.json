@@ -36,69 +36,6 @@
     "output_target": "table"
   },
   {
-    "name": "fx_ballrolling0",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling0.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "fx_ballrolling1",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling1.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "fx_ballrolling2",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling2.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "fx_ballrolling3",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling3.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "fx_ballrolling4",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling4.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "fx_ballrolling5",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling5.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "fx_ballrolling6",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling6.wav",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
     "name": "fx_diverter",
     "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_diverter.wav",
     "internal_name": "",
@@ -5330,5 +5267,113 @@
     "volume": 0,
     "balance": 0,
     "output_target": "backglass"
+  },
+  {
+    "name": "BallRoll_0",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_0.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_1",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_1.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_2",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_2.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_3",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_3.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_4",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_4.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_5",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_5.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_6",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_6.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_7",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_7.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_8",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_8.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_9",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_9.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_10",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_10.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRoll_11",
+    "path": "C:\\nFozzy and Fleep Parts\\Fleep Sounds\\BallRoll_11.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
   }
 ]

@@ -2551,7 +2551,7 @@
     "file_name": "Wall.LeftSlingShot.json",
     "is_locked": true,
     "editor_layer": 0,
-    "editor_layer_name": "Physics",
+    "editor_layer_name": "Slingshots",
     "editor_layer_visibility": true
   },
   {
@@ -2593,7 +2593,7 @@
     "file_name": "Wall.RightSlingShot.json",
     "is_locked": true,
     "editor_layer": 0,
-    "editor_layer_name": "Physics",
+    "editor_layer_name": "Slingshots",
     "editor_layer_visibility": true
   },
   {
@@ -5510,20 +5510,6 @@
   },
   {
     "file_name": "Trigger.MusicTrigger.json",
-    "is_locked": true,
-    "editor_layer": 0,
-    "editor_layer_name": "Main",
-    "editor_layer_visibility": true
-  },
-  {
-    "file_name": "Primitive.EndPointLp.json",
-    "is_locked": true,
-    "editor_layer": 0,
-    "editor_layer_name": "Main",
-    "editor_layer_visibility": true
-  },
-  {
-    "file_name": "Primitive.EndPointRp.json",
     "is_locked": true,
     "editor_layer": 0,
     "editor_layer_name": "Main",
@@ -9510,6 +9496,41 @@
     "is_locked": true,
     "editor_layer": 3,
     "editor_layer_name": "Physics",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Primitive.EndPoint1LS.json",
+    "is_locked": false,
+    "editor_layer": 0,
+    "editor_layer_name": "Slingshots",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Primitive.EndPoint2LS.json",
+    "is_locked": false,
+    "editor_layer": 0,
+    "editor_layer_name": "Slingshots",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Primitive.EndPoint1RS.json",
+    "is_locked": false,
+    "editor_layer": 0,
+    "editor_layer_name": "Slingshots",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Primitive.EndPoint2RS.json",
+    "is_locked": false,
+    "editor_layer": 0,
+    "editor_layer_name": "Slingshots",
+    "editor_layer_visibility": true
+  },
+  {
+    "file_name": "Timer.CorTimer.json",
+    "is_locked": true,
+    "editor_layer": 0,
+    "editor_layer_name": "Main",
     "editor_layer_visibility": true
   }
 ]
