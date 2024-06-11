@@ -1,0 +1,16 @@
+{
+  "LightSequencer": {
+    "center": {
+      "x": -67.210846,
+      "y": 1792.7455
+    },
+    "collection": "attractlights3",
+    "pos_x": 500.0,
+    "pos_y": 1000.0,
+    "update_interval": 25,
+    "is_timer_enabled": false,
+    "timer_interval": 100,
+    "name": "LightSeqAttract3",
+    "backglass": false
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -211.37036,
+      "y": 2044.3331
+    },
+    "is_timer_enabled": true,
+    "timer_interval": 75,
+    "name": "Bongtimer",
+    "backglass": false
+  }
+}

@@ -1,0 +1,78 @@
+{
+  "Trigger": {
+    "center": {
+      "x": 307.21814,
+      "y": 249.72682
+    },
+    "radius": 32.0,
+    "rotation": 0.0,
+    "wire_thickness": 0.0,
+    "scale_x": 0.8,
+    "scale_y": 0.8,
+    "is_timer_enabled": false,
+    "timer_interval": 10,
+    "material": "Metal",
+    "surface": "",
+    "is_visible": true,
+    "is_enabled": true,
+    "hit_height": 60.0,
+    "name": "TriggerTopLane01",
+    "shape": "wire_d",
+    "anim_speed": 1.0,
+    "is_reflection_enabled": true,
+    "drag_points": [
+      {
+        "x": 291.84836,
+        "y": 212.3094,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      },
+      {
+        "x": 291.96542,
+        "y": 287.38342,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      },
+      {
+        "x": 323.66626,
+        "y": 287.229,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      },
+      {
+        "x": 322.67197,
+        "y": 212.29045,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      }
+    ]
+  }
+}

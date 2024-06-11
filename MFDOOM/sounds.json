@@ -1,0 +1,5334 @@
+[
+  {
+    "name": "Autoplunger",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\Autoplunger.wav",
+    "internal_name": "autoplunger",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "ball_trough",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\ball_trough.wav",
+    "internal_name": "ball_trough",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\BallRelease.wav",
+    "internal_name": "ballrelease",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrampdrop",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrampdrop.wav",
+    "internal_name": "fx_ballrampdrop",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling0",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling0.wav",
+    "internal_name": "fx_ballrolling0",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling1",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling1.wav",
+    "internal_name": "fx_ballrolling1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling2",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling2.wav",
+    "internal_name": "fx_ballrolling2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling3",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling3.wav",
+    "internal_name": "fx_ballrolling3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling4",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling4.wav",
+    "internal_name": "fx_ballrolling4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling5",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling5.wav",
+    "internal_name": "fx_ballrolling5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_ballrolling6",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_ballrolling6.wav",
+    "internal_name": "fx_ballrolling6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_diverter",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_diverter.wav",
+    "internal_name": "fx_diverter",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_kicker",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_kicker.wav",
+    "internal_name": "fx_kicker",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_metalrolling",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_metalrolling.wav",
+    "internal_name": "fx_metalrolling",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_postrubber",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_postrubber.wav",
+    "internal_name": "fx_postrubber",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_resetdrop",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_resetdrop.wav",
+    "internal_name": "fx_resetdrop",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_rubber",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_rubber.wav",
+    "internal_name": "fx_rubber",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_rubber_hit_1",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_rubber_hit_1.wav",
+    "internal_name": "fx_rubber_hit_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_rubber_hit_2",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_rubber_hit_2.wav",
+    "internal_name": "fx_rubber_hit_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_rubber_hit_3",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_rubber_hit_3.wav",
+    "internal_name": "fx_rubber_hit_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_rubber2",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_rubber2.wav",
+    "internal_name": "fx_rubber2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_sensor",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_sensor.wav",
+    "internal_name": "fx_sensor",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_solenoid",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_solenoid.wav",
+    "internal_name": "fx_solenoid",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_spinner",
+    "path": "C:\\Users\\rolan\\Desktop\\fx_spinner.wav",
+    "internal_name": "fx_spinner",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_wireramp_exit",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_wireramp_exit.wav",
+    "internal_name": "fx_wireramp_exit",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx_wirerampexit",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\fx_wirerampexit.wav",
+    "internal_name": "fx_wirerampexit",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "powerdownn",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\powerdownn.wav",
+    "internal_name": "powerdownn",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "ramp_hit1",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\ramp_hit1.wav",
+    "internal_name": "ramp_hit1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "ramp_hit2",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\ramp_hit2.wav",
+    "internal_name": "ramp_hit2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "ramp_hit3",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\ramp_hit3.wav",
+    "internal_name": "ramp_hit3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "rampbump1",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\rampbump1.wav",
+    "internal_name": "rampbump1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "rampbump5",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\rampbump5.wav",
+    "internal_name": "rampbump5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "rampbump6",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\rampbump6.wav",
+    "internal_name": "rampbump6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "rampbump7",
+    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\rampbump7.wav",
+    "internal_name": "rampbump7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Supreme_fx_11",
+    "path": "C:\\Visual Pinball\\Music\\Supreme\\Supreme_fx_11.wav",
+    "internal_name": "supreme_fx_11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt1.wav",
+    "internal_name": "tilt1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt2.wav",
+    "internal_name": "tilt2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt3.wav",
+    "internal_name": "tilt3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Thunder7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\Thunder7.wav",
+    "internal_name": "thunder7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt.wav",
+    "internal_name": "tilt",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tiltshutdown",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\tiltshutdown.wav",
+    "internal_name": "tiltshutdown",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Drain_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_1.wav",
+    "internal_name": "drain_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_2.wav",
+    "internal_name": "drain_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_3.wav",
+    "internal_name": "drain_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_4.wav",
+    "internal_name": "drain_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_5.wav",
+    "internal_name": "drain_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_6.wav",
+    "internal_name": "drain_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_7.wav",
+    "internal_name": "drain_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_8",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_8.wav",
+    "internal_name": "drain_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_9",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_9.wav",
+    "internal_name": "drain_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_10",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_10.wav",
+    "internal_name": "drain_10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drain_11",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Drain_11.wav",
+    "internal_name": "drain_11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease1.wav",
+    "internal_name": "ballrelease1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease2.wav",
+    "internal_name": "ballrelease2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease3.wav",
+    "internal_name": "ballrelease3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease4.wav",
+    "internal_name": "ballrelease4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease5.wav",
+    "internal_name": "ballrelease5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease6.wav",
+    "internal_name": "ballrelease6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "BallRelease7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\BallRelease7.wav",
+    "internal_name": "ballrelease7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R01",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R01.wav",
+    "internal_name": "flipper_r01",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R02",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R02.wav",
+    "internal_name": "flipper_r02",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R03",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R03.wav",
+    "internal_name": "flipper_r03",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R04",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R04.wav",
+    "internal_name": "flipper_r04",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R05",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R05.wav",
+    "internal_name": "flipper_r05",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R06",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R06.wav",
+    "internal_name": "flipper_r06",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R07",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R07.wav",
+    "internal_name": "flipper_r07",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R08",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R08.wav",
+    "internal_name": "flipper_r08",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R09",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R09.wav",
+    "internal_name": "flipper_r09",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R10",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R10.wav",
+    "internal_name": "flipper_r10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_R11",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_R11.wav",
+    "internal_name": "flipper_r11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_1.wav",
+    "internal_name": "flipper_left_down_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_2.wav",
+    "internal_name": "flipper_left_down_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_3.wav",
+    "internal_name": "flipper_left_down_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_4.wav",
+    "internal_name": "flipper_left_down_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_5.wav",
+    "internal_name": "flipper_left_down_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_6.wav",
+    "internal_name": "flipper_left_down_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Left_Down_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Left_Down_7.wav",
+    "internal_name": "flipper_left_down_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_1.wav",
+    "internal_name": "flipper_right_down_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_2.wav",
+    "internal_name": "flipper_right_down_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_3.wav",
+    "internal_name": "flipper_right_down_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_4.wav",
+    "internal_name": "flipper_right_down_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_5.wav",
+    "internal_name": "flipper_right_down_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_6.wav",
+    "internal_name": "flipper_right_down_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_7.wav",
+    "internal_name": "flipper_right_down_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Right_Down_8",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Flipper_Right_Down_8.wav",
+    "internal_name": "flipper_right_down_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_1.wav",
+    "internal_name": "ball_collide_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_2.wav",
+    "internal_name": "ball_collide_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_3.wav",
+    "internal_name": "ball_collide_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_4.wav",
+    "internal_name": "ball_collide_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_5.wav",
+    "internal_name": "ball_collide_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_6.wav",
+    "internal_name": "ball_collide_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Collide_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Ball_Collide_7.wav",
+    "internal_name": "ball_collide_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Nudge_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Nudge_1.wav",
+    "internal_name": "nudge_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Nudge_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Nudge_2.wav",
+    "internal_name": "nudge_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Nudge_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Nudge_3.wav",
+    "internal_name": "nudge_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpersnew",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM-wavs-abbreviated\\Bumpersnew.wav",
+    "internal_name": "bumpersnew",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L1.wav",
+    "internal_name": "sling_l1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L2.wav",
+    "internal_name": "sling_l2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L3.wav",
+    "internal_name": "sling_l3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L4.wav",
+    "internal_name": "sling_l4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L5.wav",
+    "internal_name": "sling_l5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L6.wav",
+    "internal_name": "sling_l6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L7.wav",
+    "internal_name": "sling_l7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L8",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L8.wav",
+    "internal_name": "sling_l8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L9",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L9.wav",
+    "internal_name": "sling_l9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_L10",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_L10.wav",
+    "internal_name": "sling_l10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R1.wav",
+    "internal_name": "sling_r1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R2.wav",
+    "internal_name": "sling_r2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R3.wav",
+    "internal_name": "sling_r3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R4.wav",
+    "internal_name": "sling_r4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R5.wav",
+    "internal_name": "sling_r5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R6.wav",
+    "internal_name": "sling_r6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R7.wav",
+    "internal_name": "sling_r7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Sling_R8",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (wavs-numbers)\\Sling_R8.wav",
+    "internal_name": "sling_r8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Bottom_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Bottom_1.wav",
+    "internal_name": "bumpers_bottom_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Bottom_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Bottom_2.wav",
+    "internal_name": "bumpers_bottom_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Bottom_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Bottom_3.wav",
+    "internal_name": "bumpers_bottom_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Bottom_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Bottom_4.wav",
+    "internal_name": "bumpers_bottom_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Bottom_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Bottom_5.wav",
+    "internal_name": "bumpers_bottom_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Middle_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Middle_1.wav",
+    "internal_name": "bumpers_middle_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Middle_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Middle_2.wav",
+    "internal_name": "bumpers_middle_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Middle_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Middle_3.wav",
+    "internal_name": "bumpers_middle_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Middle_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Middle_4.wav",
+    "internal_name": "bumpers_middle_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Middle_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Middle_5.wav",
+    "internal_name": "bumpers_middle_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Top_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Top_1.wav",
+    "internal_name": "bumpers_top_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Top_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Top_2.wav",
+    "internal_name": "bumpers_top_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Top_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Top_3.wav",
+    "internal_name": "bumpers_top_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Top_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Top_4.wav",
+    "internal_name": "bumpers_top_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Bumpers_Top_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Sounds\\Bumpers_Top_5.wav",
+    "internal_name": "bumpers_top_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Drop_Playfield_1_Delayed",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Ball_Drop_Playfield_1_Delayed.wav",
+    "internal_name": "ball_drop_playfield_1_delayed",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Drop_Playfield_2_Delayed",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Ball_Drop_Playfield_2_Delayed.wav",
+    "internal_name": "ball_drop_playfield_2_delayed",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Drop_Playfield_3_Delayed",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Ball_Drop_Playfield_3_Delayed.wav",
+    "internal_name": "ball_drop_playfield_3_delayed",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Drop_Playfield_4_Delayed",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Ball_Drop_Playfield_4_Delayed.wav",
+    "internal_name": "ball_drop_playfield_4_delayed",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Drop_Playfield_5_Delayed",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Ball_Drop_Playfield_5_Delayed.wav",
+    "internal_name": "ball_drop_playfield_5_delayed",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Gate_FastTrigger_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Gate_FastTrigger_1.wav",
+    "internal_name": "gate_fasttrigger_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Gate_FastTrigger_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Gate_FastTrigger_2.wav",
+    "internal_name": "gate_fasttrigger_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Coin_In_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Coin_In_1.wav",
+    "internal_name": "coin_in_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Coin_In_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Coin_In_2.wav",
+    "internal_name": "coin_in_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Coin_In_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Coin_In_3.wav",
+    "internal_name": "coin_in_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_1.wav",
+    "internal_name": "metal_touch_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_2.wav",
+    "internal_name": "metal_touch_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_3.wav",
+    "internal_name": "metal_touch_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_4",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_4.wav",
+    "internal_name": "metal_touch_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_5",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_5.wav",
+    "internal_name": "metal_touch_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_6",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_6.wav",
+    "internal_name": "metal_touch_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_7",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_7.wav",
+    "internal_name": "metal_touch_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_8",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_8.wav",
+    "internal_name": "metal_touch_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_9",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_9.wav",
+    "internal_name": "metal_touch_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_10",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_10.wav",
+    "internal_name": "metal_touch_10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_11",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_11.wav",
+    "internal_name": "metal_touch_11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_12",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_12.wav",
+    "internal_name": "metal_touch_12",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_13",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_13.wav",
+    "internal_name": "metal_touch_13",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rollover_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rollover_1.wav",
+    "internal_name": "rollover_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rollover_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rollover_2.wav",
+    "internal_name": "rollover_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rollover_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rollover_3.wav",
+    "internal_name": "rollover_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rollover_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Rollover_4.wav",
+    "internal_name": "rollover_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Medium_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Apron_Medium_1.wav",
+    "internal_name": "apron_medium_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Medium_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Apron_Medium_2.wav",
+    "internal_name": "apron_medium_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Medium_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Apron_Medium_3.wav",
+    "internal_name": "apron_medium_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_1.wav",
+    "internal_name": "wall_hit_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_2.wav",
+    "internal_name": "wall_hit_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_3.wav",
+    "internal_name": "wall_hit_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_4",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_4.wav",
+    "internal_name": "wall_hit_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_5",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_5.wav",
+    "internal_name": "wall_hit_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_6",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_6.wav",
+    "internal_name": "wall_hit_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_7",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_7.wav",
+    "internal_name": "wall_hit_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_8",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_8.wav",
+    "internal_name": "wall_hit_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Wall_Hit_9",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Wall_Hit_9.wav",
+    "internal_name": "wall_hit_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_1.wav",
+    "internal_name": "rubber_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_2.wav",
+    "internal_name": "rubber_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_3.wav",
+    "internal_name": "rubber_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_4",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_4.wav",
+    "internal_name": "rubber_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_5",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_5.wav",
+    "internal_name": "rubber_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_6",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_6.wav",
+    "internal_name": "rubber_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_7",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_7.wav",
+    "internal_name": "rubber_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_8",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_8.wav",
+    "internal_name": "rubber_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_9",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_9.wav",
+    "internal_name": "rubber_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_1.wav",
+    "internal_name": "rubber_strong_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_2",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_2.wav",
+    "internal_name": "rubber_strong_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_3",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_3.wav",
+    "internal_name": "rubber_strong_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_4",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_4.wav",
+    "internal_name": "rubber_strong_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_5",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_5.wav",
+    "internal_name": "rubber_strong_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_6",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_6.wav",
+    "internal_name": "rubber_strong_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_7",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_7.wav",
+    "internal_name": "rubber_strong_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_8",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_8.wav",
+    "internal_name": "rubber_strong_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_Strong_9",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rubber_Strong_9.wav",
+    "internal_name": "rubber_strong_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx001",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx001.wav",
+    "internal_name": "fx001",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx002",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx002.wav",
+    "internal_name": "fx002",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx003",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx003.wav",
+    "internal_name": "fx003",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx004",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx004.wav",
+    "internal_name": "fx004",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx005",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx005.wav",
+    "internal_name": "fx005",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx006",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx006.wav",
+    "internal_name": "fx006",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx007",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx007.wav",
+    "internal_name": "fx007",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx008",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx008.wav",
+    "internal_name": "fx008",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx009",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx009.wav",
+    "internal_name": "fx009",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx010",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx010.wav",
+    "internal_name": "fx010",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx011",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx011.wav",
+    "internal_name": "fx011",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx013",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx013.wav",
+    "internal_name": "fx013",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx014",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx014.wav",
+    "internal_name": "fx014",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx015",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx015.wav",
+    "internal_name": "fx015",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx016",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx016.wav",
+    "internal_name": "fx016",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx017",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx017.wav",
+    "internal_name": "fx017",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx018",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx018.wav",
+    "internal_name": "fx018",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx019",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx019.wav",
+    "internal_name": "fx019",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx020",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx020.wav",
+    "internal_name": "fx020",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx021",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx021.wav",
+    "internal_name": "fx021",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx022",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx022.wav",
+    "internal_name": "fx022",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx023",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx023.wav",
+    "internal_name": "fx023",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx024",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx024.wav",
+    "internal_name": "fx024",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx025",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx025.wav",
+    "internal_name": "fx025",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx026",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx026.wav",
+    "internal_name": "fx026",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx027",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx027.wav",
+    "internal_name": "fx027",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx028",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx028.wav",
+    "internal_name": "fx028",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx029",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx029.wav",
+    "internal_name": "fx029",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx030",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx030.wav",
+    "internal_name": "fx030",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx031",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx031.wav",
+    "internal_name": "fx031",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx032",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx032.wav",
+    "internal_name": "fx032",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx033",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx033.wav",
+    "internal_name": "fx033",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx034",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx034.wav",
+    "internal_name": "fx034",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx035",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx035.wav",
+    "internal_name": "fx035",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx036",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx036.wav",
+    "internal_name": "fx036",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx037",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx037.wav",
+    "internal_name": "fx037",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx038",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx038.wav",
+    "internal_name": "fx038",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx039",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx039.wav",
+    "internal_name": "fx039",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx040",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx040.wav",
+    "internal_name": "fx040",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx041",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx041.wav",
+    "internal_name": "fx041",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx042",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx042.wav",
+    "internal_name": "fx042",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx043",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx043.wav",
+    "internal_name": "fx043",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx044",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx044.wav",
+    "internal_name": "fx044",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx045",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx045.wav",
+    "internal_name": "fx045",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx046",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx046.wav",
+    "internal_name": "fx046",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx047",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx047.wav",
+    "internal_name": "fx047",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx049",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx049.wav",
+    "internal_name": "fx049",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx050",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx050.wav",
+    "internal_name": "fx050",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx051",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx051.wav",
+    "internal_name": "fx051",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx052",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx052.wav",
+    "internal_name": "fx052",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx053",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx053.wav",
+    "internal_name": "fx053",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx054",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx054.wav",
+    "internal_name": "fx054",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx056",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx056.wav",
+    "internal_name": "fx056",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx057",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx057.wav",
+    "internal_name": "fx057",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx058",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx058.wav",
+    "internal_name": "fx058",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx061",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx061.wav",
+    "internal_name": "fx061",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx062",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx062.wav",
+    "internal_name": "fx062",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx063",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx063.wav",
+    "internal_name": "fx063",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx064",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx064.wav",
+    "internal_name": "fx064",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx065",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx065.wav",
+    "internal_name": "fx065",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx066",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx066.wav",
+    "internal_name": "fx066",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx067",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx067.wav",
+    "internal_name": "fx067",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx068",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx068.wav",
+    "internal_name": "fx068",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx069",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx069.wav",
+    "internal_name": "fx069",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx071",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx071.wav",
+    "internal_name": "fx071",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx072",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx072.wav",
+    "internal_name": "fx072",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx074",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx074.wav",
+    "internal_name": "fx074",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx075",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx075.wav",
+    "internal_name": "fx075",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx076",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx076.wav",
+    "internal_name": "fx076",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx077",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx077.wav",
+    "internal_name": "fx077",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx078",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx078.wav",
+    "internal_name": "fx078",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx079",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx079.wav",
+    "internal_name": "fx079",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx080",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx080.wav",
+    "internal_name": "fx080",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx081",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx081.wav",
+    "internal_name": "fx081",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx082",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx082.wav",
+    "internal_name": "fx082",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx083",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx083.wav",
+    "internal_name": "fx083",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx084",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx084.wav",
+    "internal_name": "fx084",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx085",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx085.wav",
+    "internal_name": "fx085",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx086",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx086.wav",
+    "internal_name": "fx086",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx087",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx087.wav",
+    "internal_name": "fx087",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx088",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx088.wav",
+    "internal_name": "fx088",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx089",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx089.wav",
+    "internal_name": "fx089",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx090",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx090.wav",
+    "internal_name": "fx090",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx091",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx091.wav",
+    "internal_name": "fx091",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx092",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx092.wav",
+    "internal_name": "fx092",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx093",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx093.wav",
+    "internal_name": "fx093",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx094",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx094.wav",
+    "internal_name": "fx094",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx096",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx096.wav",
+    "internal_name": "fx096",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx097",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx097.wav",
+    "internal_name": "fx097",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx098",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx098.wav",
+    "internal_name": "fx098",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx099",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx099.wav",
+    "internal_name": "fx099",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx102",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx102.wav",
+    "internal_name": "fx102",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx104",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx104.wav",
+    "internal_name": "fx104",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx105",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx105.wav",
+    "internal_name": "fx105",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx106",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx106.wav",
+    "internal_name": "fx106",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx107",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx107.wav",
+    "internal_name": "fx107",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx108",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx108.wav",
+    "internal_name": "fx108",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx109",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx109.wav",
+    "internal_name": "fx109",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx110",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx110.wav",
+    "internal_name": "fx110",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx111",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx111.wav",
+    "internal_name": "fx111",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx112",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx112.wav",
+    "internal_name": "fx112",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx113",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx113.wav",
+    "internal_name": "fx113",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx114",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx114.wav",
+    "internal_name": "fx114",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx115",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx115.wav",
+    "internal_name": "fx115",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx116",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx116.wav",
+    "internal_name": "fx116",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx117",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx117.wav",
+    "internal_name": "fx117",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx118",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx118.wav",
+    "internal_name": "fx118",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx119",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx119.wav",
+    "internal_name": "fx119",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx120",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx120.wav",
+    "internal_name": "fx120",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx125",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx125.wav",
+    "internal_name": "fx125",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx126",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx126.wav",
+    "internal_name": "fx126",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx127",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx127.wav",
+    "internal_name": "fx127",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx128",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx128.wav",
+    "internal_name": "fx128",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx129",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx129.wav",
+    "internal_name": "fx129",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx130",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx130.wav",
+    "internal_name": "fx130",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx132",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx132.wav",
+    "internal_name": "fx132",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx133",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx133.wav",
+    "internal_name": "fx133",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx134",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx134.wav",
+    "internal_name": "fx134",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx135",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx135.wav",
+    "internal_name": "fx135",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx136",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx136.wav",
+    "internal_name": "fx136",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx137",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx137.wav",
+    "internal_name": "fx137",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx139",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx139.wav",
+    "internal_name": "fx139",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx140",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx140.wav",
+    "internal_name": "fx140",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx144",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx144.wav",
+    "internal_name": "fx144",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx145",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx145.wav",
+    "internal_name": "fx145",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx146",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx146.wav",
+    "internal_name": "fx146",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx147",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx147.wav",
+    "internal_name": "fx147",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx148",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx148.wav",
+    "internal_name": "fx148",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx149",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx149.wav",
+    "internal_name": "fx149",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx151",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx151.wav",
+    "internal_name": "fx151",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx154",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx154.wav",
+    "internal_name": "fx154",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx155",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx155.wav",
+    "internal_name": "fx155",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx157",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx157.wav",
+    "internal_name": "fx157",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx159",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx159.wav",
+    "internal_name": "fx159",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx160",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx160.wav",
+    "internal_name": "fx160",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx162",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx162.wav",
+    "internal_name": "fx162",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx163",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx163.wav",
+    "internal_name": "fx163",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx164",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx164.wav",
+    "internal_name": "fx164",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx166",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx166.wav",
+    "internal_name": "fx166",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx167",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx167.wav",
+    "internal_name": "fx167",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx168",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx168.wav",
+    "internal_name": "fx168",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx171",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx171.wav",
+    "internal_name": "fx171",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx173",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx173.wav",
+    "internal_name": "fx173",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx174",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx174.wav",
+    "internal_name": "fx174",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx179",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx179.wav",
+    "internal_name": "fx179",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx180",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx180.wav",
+    "internal_name": "fx180",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx181",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx181.wav",
+    "internal_name": "fx181",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx182",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx182.wav",
+    "internal_name": "fx182",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx183",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx183.wav",
+    "internal_name": "fx183",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx184",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx184.wav",
+    "internal_name": "fx184",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx185",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx185.wav",
+    "internal_name": "fx185",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx189",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx189.wav",
+    "internal_name": "fx189",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx190",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx190.wav",
+    "internal_name": "fx190",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx192",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx192.wav",
+    "internal_name": "fx192",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx193",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx193.wav",
+    "internal_name": "fx193",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx195",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx195.wav",
+    "internal_name": "fx195",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx196",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx196.wav",
+    "internal_name": "fx196",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx197",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx197.wav",
+    "internal_name": "fx197",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx198",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx198.wav",
+    "internal_name": "fx198",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx199",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx199.wav",
+    "internal_name": "fx199",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx200",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx200.wav",
+    "internal_name": "fx200",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx201",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx201.wav",
+    "internal_name": "fx201",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx202",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx202.wav",
+    "internal_name": "fx202",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx203",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx203.wav",
+    "internal_name": "fx203",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx204",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx204.wav",
+    "internal_name": "fx204",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx205",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx205.wav",
+    "internal_name": "fx205",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx206",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx206.wav",
+    "internal_name": "fx206",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx207",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx207.wav",
+    "internal_name": "fx207",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx209",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx209.wav",
+    "internal_name": "fx209",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx210",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx210.wav",
+    "internal_name": "fx210",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx211",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx211.wav",
+    "internal_name": "fx211",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx212",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx212.wav",
+    "internal_name": "fx212",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx213",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx213.wav",
+    "internal_name": "fx213",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx214",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx214.wav",
+    "internal_name": "fx214",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx216",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx216.wav",
+    "internal_name": "fx216",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx217",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx217.wav",
+    "internal_name": "fx217",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx218",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx218.wav",
+    "internal_name": "fx218",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx222",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx222.wav",
+    "internal_name": "fx222",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx223",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx223.wav",
+    "internal_name": "fx223",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx224",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx224.wav",
+    "internal_name": "fx224",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx225",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx225.wav",
+    "internal_name": "fx225",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx226",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx226.wav",
+    "internal_name": "fx226",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx227",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx227.wav",
+    "internal_name": "fx227",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx228",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx228.wav",
+    "internal_name": "fx228",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx229",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx229.wav",
+    "internal_name": "fx229",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx230",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx230.wav",
+    "internal_name": "fx230",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx231",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx231.wav",
+    "internal_name": "fx231",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx232",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx232.wav",
+    "internal_name": "fx232",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx233",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx233.wav",
+    "internal_name": "fx233",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx234",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx234.wav",
+    "internal_name": "fx234",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx235",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx235.wav",
+    "internal_name": "fx235",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx236",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx236.wav",
+    "internal_name": "fx236",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx237",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx237.wav",
+    "internal_name": "fx237",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx238",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx238.wav",
+    "internal_name": "fx238",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx239",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx239.wav",
+    "internal_name": "fx239",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx240",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx240.wav",
+    "internal_name": "fx240",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx241",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx241.wav",
+    "internal_name": "fx241",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx242",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx242.wav",
+    "internal_name": "fx242",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx243",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx243.wav",
+    "internal_name": "fx243",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx244",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx244.wav",
+    "internal_name": "fx244",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx245",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx245.wav",
+    "internal_name": "fx245",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx246",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx246.wav",
+    "internal_name": "fx246",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx247",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx247.wav",
+    "internal_name": "fx247",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx248",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx248.wav",
+    "internal_name": "fx248",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx249",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx249.wav",
+    "internal_name": "fx249",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx250",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx250.wav",
+    "internal_name": "fx250",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx251",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx251.wav",
+    "internal_name": "fx251",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx252",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx252.wav",
+    "internal_name": "fx252",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx253",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx253.wav",
+    "internal_name": "fx253",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx254",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx254.wav",
+    "internal_name": "fx254",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx255",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx255.wav",
+    "internal_name": "fx255",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx256",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx256.wav",
+    "internal_name": "fx256",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx257",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx257.wav",
+    "internal_name": "fx257",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx259",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx259.wav",
+    "internal_name": "fx259",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx260",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx260.wav",
+    "internal_name": "fx260",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx261",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx261.wav",
+    "internal_name": "fx261",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx262",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx262.wav",
+    "internal_name": "fx262",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx263",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx263.wav",
+    "internal_name": "fx263",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx264",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx264.wav",
+    "internal_name": "fx264",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx265",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx265.wav",
+    "internal_name": "fx265",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx266",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx266.wav",
+    "internal_name": "fx266",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx267",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx267.wav",
+    "internal_name": "fx267",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx268",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx268.wav",
+    "internal_name": "fx268",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx269",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx269.wav",
+    "internal_name": "fx269",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx270",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx270.wav",
+    "internal_name": "fx270",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx271",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx271.wav",
+    "internal_name": "fx271",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx272",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx272.wav",
+    "internal_name": "fx272",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx273",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx273.wav",
+    "internal_name": "fx273",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx274",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx274.wav",
+    "internal_name": "fx274",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx275",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx275.wav",
+    "internal_name": "fx275",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx276",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx276.wav",
+    "internal_name": "fx276",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx277",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx277.wav",
+    "internal_name": "fx277",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx278",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx278.wav",
+    "internal_name": "fx278",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx279",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx279.wav",
+    "internal_name": "fx279",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx286",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx286.wav",
+    "internal_name": "fx286",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx287",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx287.wav",
+    "internal_name": "fx287",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx288",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx288.wav",
+    "internal_name": "fx288",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx289",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx289.wav",
+    "internal_name": "fx289",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx290",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx290.wav",
+    "internal_name": "fx290",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx291",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx291.wav",
+    "internal_name": "fx291",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx292",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx292.wav",
+    "internal_name": "fx292",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx293",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx293.wav",
+    "internal_name": "fx293",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx294",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx294.wav",
+    "internal_name": "fx294",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx295",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx295.wav",
+    "internal_name": "fx295",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx296",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx296.wav",
+    "internal_name": "fx296",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx297",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx297.wav",
+    "internal_name": "fx297",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx298",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx298.wav",
+    "internal_name": "fx298",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx299",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx299.wav",
+    "internal_name": "fx299",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx300",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx300.wav",
+    "internal_name": "fx300",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx301",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx301.wav",
+    "internal_name": "fx301",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx302",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx302.wav",
+    "internal_name": "fx302",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx303",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx303.wav",
+    "internal_name": "fx303",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx304",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx304.wav",
+    "internal_name": "fx304",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx305",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx305.wav",
+    "internal_name": "fx305",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx306",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx306.wav",
+    "internal_name": "fx306",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Knocker_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Knocker_1.wav",
+    "internal_name": "knocker_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx313",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx313.wav",
+    "internal_name": "fx313",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx314",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx314.wav",
+    "internal_name": "fx314",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx315",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx315.wav",
+    "internal_name": "fx315",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx316",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx316.wav",
+    "internal_name": "fx316",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx317",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx317.wav",
+    "internal_name": "fx317",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx318",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx318.wav",
+    "internal_name": "fx318",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx319",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx319.wav",
+    "internal_name": "fx319",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx320",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx320.wav",
+    "internal_name": "fx320",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx321",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx321.wav",
+    "internal_name": "fx321",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx322",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx322.wav",
+    "internal_name": "fx322",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx323",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx323.wav",
+    "internal_name": "fx323",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx324",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx324.wav",
+    "internal_name": "fx324",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx325",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx325.wav",
+    "internal_name": "fx325",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx326",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx326.wav",
+    "internal_name": "fx326",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx327",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx327.wav",
+    "internal_name": "fx327",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx328",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx328.wav",
+    "internal_name": "fx328",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx329",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx329.wav",
+    "internal_name": "fx329",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx331",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx331.wav",
+    "internal_name": "fx331",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx332",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx332.wav",
+    "internal_name": "fx332",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Plunger_Pull_1",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Plunger_Pull_1.wav",
+    "internal_name": "plunger_pull_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Plunger_Release_Ball",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Plunger_Release_Ball.wav",
+    "internal_name": "plunger_release_ball",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Plunger_Release_No_Ball",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Plunger_Release_No_Ball.wav",
+    "internal_name": "plunger_release_no_ball",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Start_Button",
+    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Start_Button.wav",
+    "internal_name": "start_button",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx340",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx340-fx.wav",
+    "internal_name": "fx340",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx341",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx341-fx.wav",
+    "internal_name": "fx341",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx342",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx342-fx.wav",
+    "internal_name": "fx342",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx281",
+    "path": "C:\\Users\\rolan\\Desktop\\fx281.wav",
+    "internal_name": "fx281",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx282",
+    "path": "C:\\Users\\rolan\\Desktop\\fx282.wav",
+    "internal_name": "fx282",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx283",
+    "path": "C:\\Users\\rolan\\Desktop\\fx283.wav",
+    "internal_name": "fx283",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx284",
+    "path": "C:\\Users\\rolan\\Desktop\\fx284.wav",
+    "internal_name": "fx284",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Flipper_Rubber_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_1.wav",
+    "internal_name": "flipper_rubber_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Rubber_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_2.wav",
+    "internal_name": "flipper_rubber_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Rubber_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_3.wav",
+    "internal_name": "flipper_rubber_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Rubber_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_4.wav",
+    "internal_name": "flipper_rubber_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Rubber_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_5.wav",
+    "internal_name": "flipper_rubber_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Rubber_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_6.wav",
+    "internal_name": "flipper_rubber_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Rubber_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP SOUNDS\\Fleep\\Flipper_Rubber_7.wav",
+    "internal_name": "flipper_rubber_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx343",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx343.wav",
+    "internal_name": "fx343",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Apron_Bounce_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Bounce_1.wav",
+    "internal_name": "apron_bounce_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Bounce_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Bounce_2.wav",
+    "internal_name": "apron_bounce_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Bounce_Soft_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Bounce_Soft_1.wav",
+    "internal_name": "apron_bounce_soft_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Hard_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Hard_1.wav",
+    "internal_name": "apron_hard_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Hard_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Hard_2.wav",
+    "internal_name": "apron_hard_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Hard_Hit_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Hard_Hit_1.wav",
+    "internal_name": "apron_hard_hit_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Hard_Hit_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Hard_Hit_2.wav",
+    "internal_name": "apron_hard_hit_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Hard_Hit_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Hard_Hit_3.wav",
+    "internal_name": "apron_hard_hit_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_1.wav",
+    "internal_name": "apron_soft_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_2.wav",
+    "internal_name": "apron_soft_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_3.wav",
+    "internal_name": "apron_soft_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_4.wav",
+    "internal_name": "apron_soft_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_5.wav",
+    "internal_name": "apron_soft_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_6.wav",
+    "internal_name": "apron_soft_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Apron_Soft_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Apron_Soft_7.wav",
+    "internal_name": "apron_soft_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_L1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_L1.wav",
+    "internal_name": "arch_l1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_L2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_L2.wav",
+    "internal_name": "arch_l2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_L3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_L3.wav",
+    "internal_name": "arch_l3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_L4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_L4.wav",
+    "internal_name": "arch_l4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_R1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_R1.wav",
+    "internal_name": "arch_r1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_R2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_R2.wav",
+    "internal_name": "arch_r2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_R3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_R3.wav",
+    "internal_name": "arch_r3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Arch_R4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Arch_R4.wav",
+    "internal_name": "arch_r4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_1.wav",
+    "internal_name": "ball_bounce_playfield_hard_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_2.wav",
+    "internal_name": "ball_bounce_playfield_hard_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_3.wav",
+    "internal_name": "ball_bounce_playfield_hard_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_4.wav",
+    "internal_name": "ball_bounce_playfield_hard_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_5.wav",
+    "internal_name": "ball_bounce_playfield_hard_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_6.wav",
+    "internal_name": "ball_bounce_playfield_hard_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Hard_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Hard_7.wav",
+    "internal_name": "ball_bounce_playfield_hard_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Soft_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Soft_1.wav",
+    "internal_name": "ball_bounce_playfield_soft_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Soft_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Soft_2.wav",
+    "internal_name": "ball_bounce_playfield_soft_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Soft_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Soft_3.wav",
+    "internal_name": "ball_bounce_playfield_soft_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Soft_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Soft_4.wav",
+    "internal_name": "ball_bounce_playfield_soft_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Ball_Bounce_Playfield_Soft_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Ball_Bounce_Playfield_Soft_5.wav",
+    "internal_name": "ball_bounce_playfield_soft_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Attack-L01",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_Attack-L01.wav",
+    "internal_name": "flipper_attack-l01",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_Attack-R01",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_Attack-R01.wav",
+    "internal_name": "flipper_attack-r01",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Metal_Touch_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_1.wav",
+    "internal_name": "metal_touch_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_1_dedup1"
+  },
+  {
+    "name": "Metal_Touch_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_2.wav",
+    "internal_name": "metal_touch_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_2_dedup2"
+  },
+  {
+    "name": "Metal_Touch_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_3.wav",
+    "internal_name": "metal_touch_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_3_dedup3"
+  },
+  {
+    "name": "Metal_Touch_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_4.wav",
+    "internal_name": "metal_touch_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_4_dedup4"
+  },
+  {
+    "name": "Metal_Touch_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_5.wav",
+    "internal_name": "metal_touch_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_5_dedup5"
+  },
+  {
+    "name": "Metal_Touch_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_6.wav",
+    "internal_name": "metal_touch_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_6_dedup6"
+  },
+  {
+    "name": "Metal_Touch_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_7.wav",
+    "internal_name": "metal_touch_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_7_dedup7"
+  },
+  {
+    "name": "Metal_Touch_8",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_8.wav",
+    "internal_name": "metal_touch_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_8_dedup8"
+  },
+  {
+    "name": "Metal_Touch_9",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_9.wav",
+    "internal_name": "metal_touch_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_9_dedup9"
+  },
+  {
+    "name": "Metal_Touch_10",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_10.wav",
+    "internal_name": "metal_touch_10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_10_dedup10"
+  },
+  {
+    "name": "Metal_Touch_11",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_11.wav",
+    "internal_name": "metal_touch_11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_11_dedup11"
+  },
+  {
+    "name": "Metal_Touch_12",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_12.wav",
+    "internal_name": "metal_touch_12",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_12_dedup12"
+  },
+  {
+    "name": "Metal_Touch_13",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Metal_Touch_13.wav",
+    "internal_name": "metal_touch_13",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table",
+    "name_dedup": "Metal_Touch_13_dedup13"
+  },
+  {
+    "name": "Target_Hit_1",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_1.wav",
+    "internal_name": "target_hit_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_2",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_2.wav",
+    "internal_name": "target_hit_2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_3",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_3.wav",
+    "internal_name": "target_hit_3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_4",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_4.wav",
+    "internal_name": "target_hit_4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_5",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_5.wav",
+    "internal_name": "target_hit_5",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_6",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_6.wav",
+    "internal_name": "target_hit_6",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_7",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_7.wav",
+    "internal_name": "target_hit_7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_8",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_8.wav",
+    "internal_name": "target_hit_8",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Target_Hit_9",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Target_Hit_9.wav",
+    "internal_name": "target_hit_9",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L01",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L01.wav",
+    "internal_name": "flipper_l01",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L02",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L02.wav",
+    "internal_name": "flipper_l02",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L03",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L03.wav",
+    "internal_name": "flipper_l03",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L04",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L04.wav",
+    "internal_name": "flipper_l04",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L05",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L05.wav",
+    "internal_name": "flipper_l05",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L06",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L06.wav",
+    "internal_name": "flipper_l06",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L07",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L07.wav",
+    "internal_name": "flipper_l07",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L08",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L08.wav",
+    "internal_name": "flipper_l08",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L09",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L09.wav",
+    "internal_name": "flipper_l09",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L10",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L10.wav",
+    "internal_name": "flipper_l10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_L11",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Flipper_L11.wav",
+    "internal_name": "flipper_l11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Rubber_1_Hard",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\FLEEP\\Rubber_1_Hard.wav",
+    "internal_name": "rubber_1_hard",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx344",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx344.wav",
+    "internal_name": "fx344",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx345",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx345.wav",
+    "internal_name": "fx345",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx346",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx346.wav",
+    "internal_name": "fx346",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx347",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx347.wav",
+    "internal_name": "fx347",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx348",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx348.wav",
+    "internal_name": "fx348",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx349",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx349.wav",
+    "internal_name": "fx349",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx350",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx350.wav",
+    "internal_name": "fx350",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx351",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx351.wav",
+    "internal_name": "fx351",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx352",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx352.wav",
+    "internal_name": "fx352",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx353",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx353.wav",
+    "internal_name": "fx353",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx354",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx354.wav",
+    "internal_name": "fx354",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx355",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx355.wav",
+    "internal_name": "fx355",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx357",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx357.wav",
+    "internal_name": "fx357",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx359",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx359.wav",
+    "internal_name": "fx359",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx360",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx360.wav",
+    "internal_name": "fx360",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx361",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx361.wav",
+    "internal_name": "fx361",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx362",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx362.wav",
+    "internal_name": "fx362",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx363",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx363.wav",
+    "internal_name": "fx363",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx364",
+    "path": "C:\\Users\\rolan\\Desktop\\fx364.wav",
+    "internal_name": "fx364",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx365",
+    "path": "C:\\Users\\rolan\\Desktop\\fx365.wav",
+    "internal_name": "fx365",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "flip_hit_1",
+    "path": "C:\\Users\\rolan\\Desktop\\flip_hit_1louder.wav",
+    "internal_name": "flip_hit_1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "fx366",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx366.wav",
+    "internal_name": "fx366",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx367",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx367.wav",
+    "internal_name": "fx367",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx368",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx368.wav",
+    "internal_name": "fx368",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx369",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx369.wav",
+    "internal_name": "fx369",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx370",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx370.wav",
+    "internal_name": "fx370",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx371",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx371.wav",
+    "internal_name": "fx371",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx372",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx372.wav",
+    "internal_name": "fx372",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx373",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx373.wav",
+    "internal_name": "fx373",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx374",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx374.wav",
+    "internal_name": "fx374",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx375",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx375.wav",
+    "internal_name": "fx375",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx376",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx376.wav",
+    "internal_name": "fx376",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx377",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx377.wav",
+    "internal_name": "fx377",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx378",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx378.wav",
+    "internal_name": "fx378",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx379",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx379.wav",
+    "internal_name": "fx379",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx380",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx380.wav",
+    "internal_name": "fx380",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx381",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx381.wav",
+    "internal_name": "fx381",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx382",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx382.wav",
+    "internal_name": "fx382",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx383",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx383.wav",
+    "internal_name": "fx383",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx384",
+    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx384.wav",
+    "internal_name": "fx384",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "LightSequencer": {
+    "center": {
+      "x": -137.34924,
+      "y": 1758.3105
+    },
+    "collection": "GI",
+    "pos_x": 500.0,
+    "pos_y": 1000.0,
+    "update_interval": 25,
+    "is_timer_enabled": false,
+    "timer_interval": 100,
+    "name": "LightSeqGi",
+    "backglass": false
+  }
+}

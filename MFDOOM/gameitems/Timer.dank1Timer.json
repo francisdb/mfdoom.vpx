@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -283.2554,
+      "y": 1976.3616
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 10,
+    "name": "dank1Timer",
+    "backglass": false
+  }
+}

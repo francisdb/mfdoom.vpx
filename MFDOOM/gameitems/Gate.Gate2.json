@@ -1,0 +1,30 @@
+{
+  "Gate": {
+    "center": {
+      "x": 591.35724,
+      "y": 108.33127
+    },
+    "length": 150.0,
+    "height": 67.0,
+    "rotation": -90.0,
+    "material": "Metal",
+    "is_timer_enabled": false,
+    "show_bracket": true,
+    "is_collidable": true,
+    "timer_interval": 100,
+    "imgf": null,
+    "imgb": null,
+    "surface": "",
+    "elasticity": 0.4,
+    "angle_max": 1.5707964,
+    "angle_min": 0.0,
+    "friction": 0.15,
+    "damping": 0.985,
+    "gravity_factor": 0.25,
+    "is_visible": true,
+    "name": "Gate2",
+    "two_way": true,
+    "is_reflection_enabled": true,
+    "gate_type": "wire_rectangle"
+  }
+}

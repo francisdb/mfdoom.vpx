@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -103.08778,
+      "y": 2153.205
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 15000,
+    "name": "ResetSkillShotTimer",
+    "backglass": false
+  }
+}

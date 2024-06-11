@@ -1,0 +1,16 @@
+{
+  "LightSequencer": {
+    "center": {
+      "x": -138.78734,
+      "y": 1863.5082
+    },
+    "collection": "alights",
+    "pos_x": 430.0,
+    "pos_y": 1000.0,
+    "update_interval": 25,
+    "is_timer_enabled": false,
+    "timer_interval": 100,
+    "name": "LightSeqhit",
+    "backglass": false
+  }
+}

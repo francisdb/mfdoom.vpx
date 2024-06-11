@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -171.45393,
+      "y": 2297.1338
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 1000,
+    "name": "tilttableclear",
+    "backglass": false
+  }
+}

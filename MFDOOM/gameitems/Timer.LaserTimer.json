@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -195.07408,
+      "y": 2012.9259
+    },
+    "is_timer_enabled": true,
+    "timer_interval": 75,
+    "name": "LaserTimer",
+    "backglass": false
+  }
+}

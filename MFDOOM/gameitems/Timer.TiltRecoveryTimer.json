@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -175.63959,
+      "y": 2115.821
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 1000,
+    "name": "TiltRecoveryTimer",
+    "backglass": false
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "LightSequencer": {
+    "center": {
+      "x": -103.20048,
+      "y": 1828.271
+    },
+    "collection": "alights2",
+    "pos_x": 500.0,
+    "pos_y": 1000.0,
+    "update_interval": 25,
+    "is_timer_enabled": false,
+    "timer_interval": 100,
+    "name": "LightSeqSwitch2",
+    "backglass": false
+  }
+}

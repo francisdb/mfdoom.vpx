@@ -1,0 +1,27 @@
+{
+  "Decal": {
+    "center": {
+      "x": 478.58072,
+      "y": 12.129861
+    },
+    "width": 23.0,
+    "height": 962.0,
+    "rotation": 90.0,
+    "image": "backwall.001",
+    "surface": "Wall350",
+    "name": "",
+    "text": "",
+    "decal_type": "image",
+    "material": "Plastic with an image",
+    "color": "#ffffff",
+    "sizing_type": "manual_size",
+    "vertical_text": false,
+    "backglass": false,
+    "font": {
+      "style": [],
+      "weight": 900,
+      "size": 142500,
+      "name": "Arial Black"
+    }
+  }
+}

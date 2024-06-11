@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -101.61731,
+      "y": 2188.889
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 300,
+    "name": "LutSlctr",
+    "backglass": false
+  }
+}

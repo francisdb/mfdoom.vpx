@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -173.57826,
+      "y": 2261.1685
+    },
+    "is_timer_enabled": true,
+    "timer_interval": 20000,
+    "name": "SuperPopsTimerExpired",
+    "backglass": false
+  }
+}

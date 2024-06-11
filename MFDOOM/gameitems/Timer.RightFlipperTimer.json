@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -209.01558,
+      "y": 2298.3335
+    },
+    "is_timer_enabled": true,
+    "timer_interval": 100,
+    "name": "RightFlipperTimer",
+    "backglass": false
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "Flasher": {
+    "height": 1.0,
+    "pos_x": 475.90952,
+    "pos_y": 1080.6947,
+    "rot_x": 0.0,
+    "rot_y": 0.0,
+    "rot_z": 0.0,
+    "color": "#969696",
+    "is_timer_enabled": false,
+    "timer_interval": 100,
+    "name": "Playfield/INSERT TEXT",
+    "image_a": "TS insertsA",
+    "image_b": "",
+    "alpha": 100,
+    "modulate_vs_add": 1.0,
+    "is_visible": true,
+    "add_blend": false,
+    "is_dmd": false,
+    "display_texture": true,
+    "depth_bias": -100.0,
+    "image_alignment": "world",
+    "filter": "none",
+    "filter_amount": 0,
+    "light_map": null,
+    "drag_points": [
+      {
+        "x": -0.80842257,
+        "y": -0.2636538,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      },
+      {
+        "x": 0.5814359,
+        "y": 2161.653,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      },
+      {
+        "x": 952.2499,
+        "y": 2160.8347,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      },
+      {
+        "x": 952.62744,
+        "y": -0.25909325,
+        "z": 0.0,
+        "smooth": false,
+        "is_slingshot": false,
+        "has_auto_texture": true,
+        "tex_coord": 0.0,
+        "is_locked": false,
+        "editor_layer": 0,
+        "editor_layer_name": "",
+        "editor_layer_visibility": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "Decal": {
+    "center": {
+      "x": 940.0,
+      "y": 1081.6589
+    },
+    "width": 23.0,
+    "height": 2162.0,
+    "rotation": 0.0,
+    "image": "black wood grain.001",
+    "surface": "Wall350",
+    "name": "",
+    "text": "",
+    "decal_type": "image",
+    "material": "Plastic with opaque image",
+    "color": "#ffffff",
+    "sizing_type": "manual_size",
+    "vertical_text": false,
+    "backglass": false,
+    "font": {
+      "style": [],
+      "weight": 900,
+      "size": 142500,
+      "name": "Arial Black"
+    }
+  }
+}

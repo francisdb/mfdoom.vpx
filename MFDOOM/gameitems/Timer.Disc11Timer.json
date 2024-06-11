@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -243.35272,
+      "y": 2333.8142
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 10,
+    "name": "Disc11Timer",
+    "backglass": false
+  }
+}
