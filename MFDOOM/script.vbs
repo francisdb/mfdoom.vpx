@@ -5372,7 +5372,7 @@ end sub
 
 	Sub Trigger005_hit()
 		PlaySound "fx_wireramp_exit"
-		AudioQueue.Add "andomSoundWireRampRolling","andomSoundWireRampRolling",20,200,0,0,0,false
+		AudioQueue.Add "RandomSoundWireRampRolling","RandomSoundWireRampRolling",20,200,0,0,0,false
 		RandomSoundBeat
 		'PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
 		DMDHorizontalThick=50 : DMDHorizontalThickBG=50
