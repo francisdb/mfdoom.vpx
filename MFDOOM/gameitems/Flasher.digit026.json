@@ -22,7 +22,7 @@
     "image_alignment": "wrap",
     "filter": "overlay",
     "filter_amount": 100,
-    "light_map": null,
+    "light_map": "",
     "drag_points": [
       {
         "x": -910.66266,
