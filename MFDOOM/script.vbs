@@ -55,7 +55,8 @@
 ' 17 iaakki	 	 - Fixed the GI bug I made and adjusted some levels
 ' 18 iaakki		 - Slings fixed, callout volume option added, something must be done for primitive25
 ' 19 RobbyKingPin- Updated nFozzy/Rothbauerw physics and Fleep sounds, removed JP's ball rolling codes. Removed endpoints for the flippers and added endpoints on the slingshots
-' 22 MerlinRTP - Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup, removed extraneous code and timers
+' 22 MerlinRTP 	- Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup, removed extraneous code and timers
+'				- added sequence stopplay to the 4 long routines, converted vpmtimer to queue/tick timers
 
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -138,6 +139,11 @@ Dim BIP							 'Balls in play
 BIP = 0
 Dim BIPL							'Ball in plunger lane
 BIPL = False
+
+Dim BallHandlingQueue : Set BallHandlingQueue = New vpwQueueManager
+Dim AudioQueue : Set AudioQueue = New vpwQueueManager
+Dim LightQueue : Set LightQueue = New vpwQueueManager
+Dim GeneralPupQueue: Set GeneralPupQueue = New vpwQueueManager
 																		
 '*************************************************
 '******** FLEXDMD ********************************
@@ -3117,8 +3123,7 @@ End Sub
 			PlaySoundCallOut "tiltshutdown"
 			pupevent 700
 			DMDBigText "SOFA KING",120,0
-			vpmtimer.addtimer 1500, "TiltDelayedDMDBigText'"   
-			'chilloutthemusic
+			BallHandlingQueue.Add "TiltDelayedDMDBigText","TiltDelayedDMDBigText",95,1500,0,0,0,True
 			TiltCallout
 			DisableTable True
 			tilttableclear.enabled = true
@@ -3220,7 +3225,7 @@ End Sub
 		Next
 		Tilt = 0
 		Game_Init()
-		vpmtimer.addtimer 1500, "FirstBall '"
+		BallHandlingQueue.Add "FirstBall","FirstBall",30,1500,0,0,0,False
 	End Sub
 	Sub EndOfGame()
 		PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
@@ -3237,7 +3242,7 @@ End Sub
 	Sub DelayAttractText
 		Dbg "In Delay Attract"
 		hsDelayTextActive = TRUE
-		vpmtimer.addtimer 13000, "EnableAttractText '"     '12250 
+		BallHandlingQueue.Add "EnableAttractText","EnableAttractText",30,13000,0,0,0,False
 		pupevent 701
 		pupevent 702
 		GameOverCallout
@@ -3269,7 +3274,7 @@ End Sub
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":11, ""VL"":10 }"
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 4, ""FN"":11, ""VL"":10 }"
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 7, ""FN"":11, ""VL"":10 }"
-			vpmtimer.addtimer 2200, "turnitbackup'"    
+			BallHandlingQueue.Add "turnitbackup","turnitbackup",20,2200,0,0,0,false
 		End If
 	End Sub
 	Sub turnitbackup
@@ -3658,8 +3663,8 @@ End Sub
 		ChangeAttractLights2(lightpurple)
 		ChangeAttractLights3(purple)
 		StartLightSeq
-		vpmtimer.addtimer 0150, "StartLightSeq2'"  '0200
-		vpmtimer.addtimer 0300, "StartLightSeq3'"   '0400
+		LightQueue.Add "StartLightSeq2","StartLightSeq2",20,150,0,0,0,false
+		LightQueue.Add "StartLightSeq3","StartLightSeq3",20,300,0,0,0,false
 		'ShowTableInfo
 		DMDintroloop
 		FlasherAttract
@@ -5019,10 +5024,10 @@ end sub
 					Else
 						EndMusic
 						PuPlayer.playstop pAudio
-						vpmtimer.addtimer 7900, "DelayGasDrawlsMBMX '"
+						LightQueue.Add "DelayGasDrawlsMBMX","DelayGasDrawlsMBMX",20,7900,0,0,0,false
 						RandomSoundGas
 						BallLockedCallout
-						vpmtimer.addtimer 1250, "GasDrawlsCallout '"
+						AudioQueue.Add "GasDrawlsCallout","GasDrawlsCallout",20,1250,0,0,0,false
 						FlasherBallLocked
 						LightBonus06    
 						LKicker.state = 1
@@ -5115,16 +5120,16 @@ end sub
 		ChangeGiForJackpot
 		ChangeLights(base)
 		SmokeSpin
-		'PuPlayer.playlistplayex pBackglass,"videos-multiball-gasdrawls-multiball","",100,16	
 		pupevent 707
 		DOF 944, DOFOn      'DOF MX
 		DOF 115, DOFPulse   'DOF FAN
 		DOF 405, DOFPulse   'DOF Strobe	
 		chilloutthemusic
-		vpmtimer.addtimer 8000, "StopGasDrawlsMBMX '"
-		vpmtimer.addtimer 1300, "GasDrawlsMultiballCallout '"
-		vpmtimer.addtimer 4700, "RescueJackpotBonus '"
-		vpmtimer.addtimer 4700, "GasDrawlsJackpotCallout '"
+
+		LightQueue.Add "StopGasDrawlsMBMX","StopGasDrawlsMBMX",20,8000,0,0,0,false
+		AudioQueue.Add "GasDrawlsMultiballCallout","GasDrawlsMultiballCallout",20,1300,0,0,0,false
+		AudioQueue.Add "RescueJackpotBonus","RescueJackpotBonus",20,4700,0,0,0,false
+		AudioQueue.Add "GasDrawlsJackpotCallout","GasDrawlsJackpotCallout",20,4700,0,0,0,false
 		BallsOnPlayfield = BallsOnplayfield + 1
 		BallsLocked = Ballslocked - 1
 		RotDisc1Step = 36
@@ -5159,7 +5164,7 @@ end sub
 
 	Sub RescueJackpotBonus
 		LightBonus07
-		vpmtimer.addtimer 2500, "LightBonus05 '"
+		LightQueue.Add "LightBonus05","LightBonus05",20,2500,0,0,0,false
 	End Sub
 	Sub RandomKickerEjectFast()
 		Select Case Int(Rnd * 6) + 1
@@ -5214,7 +5219,7 @@ end sub
 		DOF 968, DOFPulse   'DOF MX - BACK
 		RandomSoundPlungerShoot
 		RandomSoundFairyDust
-		vpmtimer.addtimer 500, "StopIdleSound '"
+		AudioQueue.Add "StopIdleSound","StopIdleSound",20,500,0,0,0,false
 		pupevent 708
 		GiEffect 1
 		FlasherPlunger
@@ -5267,7 +5272,7 @@ end sub
 
 	Sub Trigger002_hit()
 		PlaySound "fx_wireramp_exit"
-		vpmtimer.addtimer 0200, "RandomSoundWireRampRolling '"
+		AudioQueue.Add "RandomSoundWireRampRolling","RandomSoundWireRampRolling",20,200,0,0,0,false
 		RandomSoundBeat
 		DMDStarL=50 : DMDStarLBG=50
 		ChangeGiForRampLeft
@@ -5348,10 +5353,10 @@ end sub
 
 		ComboLightsVideo
 		TriggerWarpMultiballLight
-		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
-		vpmtimer.addtimer 2000, "LevelCompletedBonus '"
-		vpmtimer.addtimer 2000, "SuperRampsCheck '" 
-		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
+		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
+		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
+		LightQueue.Add "SuperRampsCheck","SuperRampsCheck",20,2000,0,0,0,false
+		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
 		BonusLeftRampCount
 	End Sub
 
@@ -5367,7 +5372,7 @@ end sub
 
 	Sub Trigger005_hit()
 		PlaySound "fx_wireramp_exit"
-		vpmtimer.addtimer 0200, "RandomSoundWireRampRolling '" 
+		AudioQueue.Add "andomSoundWireRampRolling","andomSoundWireRampRolling",20,200,0,0,0,false
 		RandomSoundBeat
 		'PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
 		DMDHorizontalThick=50 : DMDHorizontalThickBG=50
@@ -5443,11 +5448,11 @@ end sub
 		End If
 		
 		ComboLightsVideo
-		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
 		TriggerWarpMultiballLight
-		vpmtimer.addtimer 2000, "LevelCompletedBonus '"
-		vpmtimer.addtimer 2000, "SuperRampsCheck '" 
-		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
+		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
+		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
+		LightQueue.Add "SuperRampsCheck","SuperRampsCheck",20,2000,0,0,0,false
+		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
 		BonusRightRampCount
 	End Sub
 
@@ -5530,10 +5535,10 @@ end sub
 		End If
 		
 		ComboLightsVideo
-		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
 		TriggerWarpMultiballLight
-		vpmtimer.addtimer 2000, "LevelCompletedBonus '" 
-		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
+		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
+		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
+		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
 		DOF 405, DOFPulse	'DOF Strobe	
 		'PuPlayer.playlistplayex pBackglass,"videos-spinner","",100,4  
 	End Sub
@@ -5961,7 +5966,7 @@ end sub
 		Else 
 			IF LSupShot01.state = 1 and LBolt01.state = 1 and LSupreme01.state = 1 and L10KScore01.State = 1 and L25KScore01.State = 2 Then
 				LightBonus08
-				vpmtimer.addtimer 2500, "LightBonus07 '" 
+				LightQueue.Add "LightBonus07","LightBonus07",20,2500,0,0,0,false
 				DMDTopSplash "ORBITS COMPLETED",100,0
 				'chilloutthemusic
 				OrbitsCompletedCallout				
@@ -6025,11 +6030,12 @@ end sub
 		RandomSoundWind
 		RandomSoundBeat
 		ComboLightsVideo
-		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
 		TriggerWarpMultiballLight
-		vpmtimer.addtimer 2000, "LevelCompletedBonus '"
-		vpmtimer.addtimer 2000, "SuperOrbitsCheck '"
-		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
+		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
+		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
+		LightQueue.Add "SuperOrbitsCheck","SuperOrbitsCheck",20,2000,0,0,0,false
+		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
+
 		Flash1
 		RandomSoundLeftArch
 		BonusLeftOrbitCount
@@ -6123,10 +6129,10 @@ end sub
 		'PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,3
 		End If
 
-		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
 		TriggerWarpMultiballLight
-		vpmtimer.addtimer 2000, "LevelCompletedBonus '"
-		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
+		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
+		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
+		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
 	End Sub
 
 	Sub TriggerOrbit05_hit()
@@ -6212,10 +6218,11 @@ end sub
 		End If
 
 		RandomSoundSwitch
-		vpmtimer.addtimer 2000, "CheckBoxLogoLights '"
 		TriggerWarpMultiballLight
-		vpmtimer.addtimer 2000, "LevelCompletedBonus '"
-		vpmtimer.addtimer 1200, "WarpSpeedSuperJackpotNotification '"	
+		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
+		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
+		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
+
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' HIT TARGETS
@@ -6278,7 +6285,7 @@ end sub
 			'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-superjackpot","",100,22
 			pupevent 709
 			'chilloutthemusic
-			vpmtimer.addtimer 3200, "GazzillionEarJackpotCallout '"	
+			AudioQueue.Add "GazzillionEarJackpotCallout","GazzillionEarJackpotCallout",20,3200,0,0,0,false
 			AddScore 500000
 		Else
 			IF LKicker.state = 0 and LWarpMultiballCounter.state = 2 and LWarpMultiballSuperJackpotIsLit.state = 0 THEN		
@@ -6405,7 +6412,7 @@ end sub
 		End If
 
 		RandomSoundTarget
-		vpmtimer.addtimer 1000, "StandupsCompleteNotificationL  '"
+		AudioQueue.Add "StandupsCompleteNotificationL","StandupsCompleteNotificationL",20,1000,0,0,0,false
 		RandomFlasherSideTargetsLeft
 		PLightsFlashL
 	End Sub
@@ -6456,7 +6463,7 @@ end sub
 		End If
 
 		RandomSoundSideTargets
-		vpmtimer.addtimer 1000, "StandupsCompleteNotificationL  '"
+		AudioQueue.Add "StandupsCompleteNotificationL","StandupsCompleteNotificationL",20,1000,0,0,0,false
 		RandomFlasherSideTargetsLeft
 		PLightsFlashL
 	End Sub
@@ -6507,7 +6514,7 @@ end sub
 		End If
 		
 		RandomSoundSideTargets
-		vpmtimer.addtimer 1000, "StandupsCompleteNotificationL  '"
+		AudioQueue.Add "StandupsCompleteNotificationL","StandupsCompleteNotificationL",20,1000,0,0,0,false
 		RandomFlasherSideTargetsLeft
 		PLightsFlashL
 	End Sub
@@ -6558,7 +6565,7 @@ end sub
 		End If
 		
 		RandomSoundTarget
-		vpmtimer.addtimer 1000, "StandupsCompleteNotificationR  '"
+		AudioQueue.Add "StandupsCompleteNotificationR","StandupsCompleteNotificationR",20,1000,0,0,0,false
 		RandomFlasherSideTargetsRight
 		PLightsFlashR
 	End Sub
@@ -6609,7 +6616,7 @@ end sub
 		End If	
 		
 		RandomSoundSideTargets
-		vpmtimer.addtimer 1000, "StandupsCompleteNotificationR  '"
+		AudioQueue.Add "StandupsCompleteNotificationR","StandupsCompleteNotificationR",20,1000,0,0,0,false
 		RandomFlasherSideTargetsRight
 		PLightsFlashR
 	End Sub
@@ -6660,7 +6667,7 @@ end sub
 		End If
 		
 		RandomSoundSideTargets
-		vpmtimer.addtimer 1000, "StandupsCompleteNotificationR  '"
+		AudioQueue.Add "StandupsCompleteNotificationR","StandupsCompleteNotificationR",20,1000,0,0,0,false
 		RandomFlasherSideTargetsRight
 		PLightsFlashR
 	End Sub
@@ -6851,14 +6858,14 @@ end sub
 		IF (bGameInPLay = True) AND(Tilted = False) AND LDoubleScoringConfirm.state = 0 AND LStar01.state = 1 AND LStar02.state = 1 AND LStar03.state = 1 THEN 
 			LDoubleScoringConfirm.state = 1			
 			DMDBigText "2X SCORING",100,1    '3.4sec blink
-			vpmtimer.addtimer 1000, "DoubleScoringCallout '"
+			AudioQueue.Add "DoubleScoringCallout","DoubleScoringCallout",20,1000,0,0,0,false
 			EnableDoubleScoring 30
 		ELSE
 			IF LDoubleScoring01.State = 2 OR LDoubleScoringConfirm.state = 1 Then
 			ELSE
 				If NOT LastVideoPlayed="toplane" then
 				LastVideoPlayed="toplane"
-				vpmtimer.addtimer 6000, "ResetToplaneVideo '"
+				GeneralPupQueue.Add "ResetToplaneVideo","ResetToplaneVideo",20,6000,0,0,0,false
 				End If
 			END IF
 		End If
@@ -6880,7 +6887,7 @@ end sub
 		DoubleScoringTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 0500
-		vpmtimer.addtimer waittime, "DoubleScoringGrace'"
+		GeneralPupQueue.Add "DoubleScoringGrace","DoubleScoringGrace",20,waittime,0,0,0,false
 		LDoubleScoring01.State = 0
 		LDoubleScoringConfirm.state = 0
 	End Sub
@@ -7123,7 +7130,7 @@ end sub
 				FlasherAttract
 				PlaySoundCallOut "fx067"
 				chilloutthemusic
-				vpmtimer.addtimer 0500, "AmericasMostBluntedCallout '"
+				AudioQueue.Add "AmericasMostBluntedCallout","AmericasMostBluntedCallout",20,500,0,0,0,false
 				pupevent 711
 				DMDBigText "MB IS LIT!",100,0   '3.4sec
 				DMDTopSplash "GET BLUNTED!",100,0
@@ -7215,7 +7222,7 @@ end sub
 							bMBDrainConfirm = True
 							pupevent 714
 							chilloutthemusic
-							vpmtimer.addtimer 1100, "AmericasMostBluntedMultiballCallout '"
+							AudioQueue.Add "AmericasMostBluntedMultiballCallout","AmericasMostBluntedMultiballCallout",20,1100,0,0,0,false
 							AddMultiball 2
 							bAutoPlunger = True
 								If LDoubleScoring01.state = 2 THEN
@@ -7263,11 +7270,11 @@ end sub
 								pupevent 715
 								DOF 945, DOFOn   'DOF MX
 								DOF 973, DOFOn   'DOF MX - BACK
-								vpmtimer.addtimer 6000, "TurnOffMostBluntedJackpotMX '"
-								vpmtimer.addtimer 1200, "AmericasMostBluntedJackpotCallout '"
-								vpmtimer.addtimer 1200, "ResetDropTargetsSparks '"
+								AudioQueue.Add "TurnOffMostBluntedJackpotMX","TurnOffMostBluntedJackpotMX",20,6000,0,0,0,false
+								AudioQueue.Add "AmericasMostBluntedJackpotCallout","AmericasMostBluntedJackpotCallout",20,1200,0,0,0,false
+								AudioQueue.Add "ResetDropTargetsSparks","ResetDropTargetsSparks",20,1200,0,0,0,false
+								LightQueue.Add "LightBonus06","LightBonus06",20,2500,0,0,0,false
 								LightBonus09
-								vpmtimer.addtimer 2500, "LightBonus06 '"
 								If LDoubleScoring01.state = 2 THEN
 									AddScore 50000
 								Else
@@ -7327,21 +7334,21 @@ End Sub
 
 			pupevent 716
 			GazzillionEarMultiballCallout
-			vpmtimer.addtimer 80000, "GazzillionEar10secvideo '"
-			vpmtimer.addtimer 90000, "ResetDropTargetsSparks '"
-			vpmtimer.addtimer 90000, "ResetLWarpMultiballLight '"
-			vpmtimer.addtimer 91000, "ResetWarpSpeedSuperJackpotNotification '"
-			vpmtimer.addtimer 91000, "PackItUpKeepBombing '"    
+			GeneralPupQueue.Add "GazzillionEar10secvideo","GazzillionEar10secvideo",20,80000,0,0,0,false
+			GeneralPupQueue.Add "ResetDropTargetsSparks","ResetDropTargetsSparks",20,90000,0,0,0,false
+			GeneralPupQueue.Add "ResetLWarpMultiballLight","ResetLWarpMultiballLight",20,90000,0,0,0,false
+			GeneralPupQueue.Add "ResetWarpSpeedSuperJackpotNotification","ResetWarpSpeedSuperJackpotNotification",20,91000,0,0,0,false
+			GeneralPupQueue.Add "PackItUpKeepBombing","PackItUpKeepBombing",20,91000,0,0,0,false
 
 			EnableWarpSpeedMultiballCountdown 90
-			vpmtimer.addtimer 1000, "ResetBoltLights '"
-			vpmtimer.addtimer 1000, "ResetSupShotLights '"
-			vpmtimer.addtimer 1000, "ResetDropTargetsSparks '"
-			vpmtimer.addtimer 1000, "CheckBoxLogoLights '"
-			vpmtimer.addtimer 1000, "ResetLWarpMultiballLight '"
-			vpmtimer.addtimer 1000, "ResetLSupreme08confirm '"
-			vpmtimer.addtimer 4000, "DelayWarpSpeedMultiballPlunger '"
-			vpmtimer.addtimer 5000, "WarpSpeedLightsSetup '"
+			GeneralPupQueue.Add "ResetBoltLights","ResetBoltLights",20,1000,0,0,0,false
+			GeneralPupQueue.Add "ResetSupShotLights","ResetSupShotLights",20,1000,0,0,0,false
+			GeneralPupQueue.Add "ResetDropTargetsSparks","ResetDropTargetsSparks",20,1000,0,0,0,false
+			GeneralPupQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,1000,0,0,0,false
+			GeneralPupQueue.Add "ResetLWarpMultiballLight","ResetLWarpMultiballLight",20,1000,0,0,0,false
+			GeneralPupQueue.Add "ResetLSupreme08confirm","ResetLSupreme08confirm",20,1000,0,0,0,false
+			GeneralPupQueue.Add "DelayWarpSpeedMultiballPlunger","DelayWarpSpeedMultiballPlunger",20,4000,0,0,0,false
+			GeneralPupQueue.Add "WarpSpeedLightsSetup","WarpSpeedLightsSetup",20,5000,0,0,0,false
 
 			ChangeGiBlink(yellow)
 			ChangeLights(purple)
@@ -7368,22 +7375,22 @@ End Sub
 	Sub SpecialBlinky
 			ChangeGiBlink(yellow)
 			ChangeLights(purple)
-			vpmtimer.addtimer 10000, "ChangeGiBlink(green) '"
-			vpmtimer.addtimer 10000, "ChangeLights(white) '"
-			vpmtimer.addtimer 20000, "ChangeGiBlink(purple) '"
-			vpmtimer.addtimer 20000, "ChangeLights(yellow) '"
-			vpmtimer.addtimer 30000, "ChangeGiBlink(white) '"
-			vpmtimer.addtimer 30000, "ChangeLights(green) '"
-			vpmtimer.addtimer 40000, "ChangeGiBlink(yellow) '"
-			vpmtimer.addtimer 40000, "ChangeLights(purple) '"
-			vpmtimer.addtimer 50000, "ChangeGiBlink(green) '"
-			vpmtimer.addtimer 50000, "ChangeLights(white) '"
-			vpmtimer.addtimer 60000, "ChangeGiBlink(purple) '"
-			vpmtimer.addtimer 60000, "ChangeLights(yellow) '"
-			vpmtimer.addtimer 70000, "ChangeGiBlink(white) '"
-			vpmtimer.addtimer 70000, "ChangeLights(green) '"
-			vpmtimer.addtimer 80000, "ChangeGiBlink(yellow) '"
-			vpmtimer.addtimer 80000, "ChangeLights(purple) '"
+			LightQueue.Add "ChangeGiBlink(green)","ChangeGiBlink(green)",20,10000,0,0,0,false
+			LightQueue.Add "ChangeLights(white)","ChangeLights(white)",20,10000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(purple)","ChangeGiBlink(purple)",20,20000,0,0,0,false
+			LightQueue.Add "ChangeLights(yellow)","ChangeLights(yellow)",20,20000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(white)","ChangeGiBlink(white)",20,30000,0,0,0,false
+			LightQueue.Add "ChangeLights(green)","ChangeLights(green)",20,30000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(yellow)","ChangeGiBlink(yellow)",20,40000,0,0,0,false
+			LightQueue.Add "ChangeLights(purple)","ChangeLights(purple)",20,40000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(green)","ChangeGiBlink(green)",20,50000,0,0,0,false
+			LightQueue.Add "ChangeLights(white)","ChangeLights(white)",20,50000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(purple)","ChangeGiBlink(purple)",20,60000,0,0,0,false
+			LightQueue.Add "ChangeLights(yellow)","ChangeLights(yellow)",20,60000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(white)","ChangeGiBlink(white)",20,70000,0,0,0,false
+			LightQueue.Add "ChangeLights(green)","ChangeLights(green)",20,70000,0,0,0,false
+			LightQueue.Add "ChangeGiBlink(yellow)","ChangeGiBlink(yellow)",20,80000,0,0,0,false
+			LightQueue.Add "ChangeLights(purple)","ChangeLights(purple)",20,80000,0,0,0,false
 	End Sub
 
 	Sub DelayWarpSpeedMultiballPlunger
@@ -7457,7 +7464,7 @@ End Sub
 	Sub GazzillionEar10secvideo
 		pupevent 717
 		GazzillionEarTenSecondCountdownCallout
-			vpmtimer.addtimer 16000, "ClearMusicCallout '" 
+			AudioQueue.Add "ClearMusicCallout","ClearMusicCallout",20,16000,0,0,0,false
 	End Sub
 	'************************************************************************************************
 	'   RESETS ALL GAZZILLION EAR MULTIBALL LIGHT TRIGGERS TO OFF AFTER MULTIBALL STARTS
@@ -7487,7 +7494,7 @@ End Sub
 		WarpSpeedMultiballTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 1000
-		vpmtimer.addtimer waittime, "WarpSpeedMultiballCountdownGrace'"
+		BallHandlingQueue.Add "WarpSpeedMultiballCountdownGrace","WarpSpeedMultiballCountdownGrace",20,waittime,0,0,0,false
 		LWarpMultiballCounter.State = 0
 		LightShootAgain.State = 0
 	End Sub
@@ -7512,7 +7519,7 @@ End Sub
 		ComboTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 2000
-		vpmtimer.addtimer waittime, "ComboCountdownGrace'"
+		BallHandlingQueue.Add "ComboCountdownGrace","ComboCountdownGrace",20,waittime,0,0,0,false
 		LCombo.State = 0
 		bCombo(CurrentPlayer)=0
 	End Sub
@@ -7530,7 +7537,7 @@ End Sub
 			DMDBigText "2WAY COMBO",100,0
 			TwoWayComboCallout
 			LightBonus05
-			vpmtimer.addtimer 2500, "LightBonus06 '" 
+			LightQueue.Add "LightBonus06","LightBonus06",20,2500,0,0,0,false
 		Else
 			If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 2 Then
 				'PuPlayer.playlistplayex pBackglass,"videos-combo-2way-30k","",100,6
@@ -7555,14 +7562,14 @@ End Sub
 							DMDBigText "4WAY COMBO",100,0
 							FourWayComboCallout
 							LightBonus07
-							vpmtimer.addtimer 2500, "LightBonus05 '" 
+							LightQueue.Add "LightBonus05","LightBonus05",20,2500,0,0,0,false
 						Else
 							If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 4 Then
 								'PuPlayer.playlistplayex pBackglass,"videos-combo-4way-50k","",100,6
 								DMDBigText "4WAY COMBO",100,0
 								FourWayComboCallout
 								LightBonus09
-								vpmtimer.addtimer 2500, "LightBonus06 '" 
+								LightQueue.Add "LightBonus06","LightBonus06",20,2500,0,0,0,false
 							Else
 								If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 5 Then
 									'PuPlayer.playlistplayex pBackglass,"videos-combo-5way-30k","",100,6
@@ -7575,7 +7582,7 @@ End Sub
 										DMDBigText "5WAY COMBO",100,0
 										FiveWayComboCallout
 										LightBonus09
-										vpmtimer.addtimer 2500, "LightBonus07 '"
+										LightQueue.Add "LightBonus07","LightBonus07",20,2500,0,0,0,false
 									End If
 								End If
 							End If
@@ -7601,7 +7608,7 @@ End Sub
 		SuperPopsTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 2000
-		vpmtimer.addtimer waittime, "SuperPopsCountdownGrace'"
+		BallHandlingQueue.Add "SuperPopsCountdownGrace","SuperPopsCountdownGrace",20,waittime,0,0,0,false
 		LSuperPops.State = 0
 		bSuperPops(CurrentPlayer)=0
 	End Sub
@@ -7617,7 +7624,7 @@ End Sub
 			DMDBigText "SUPER POPS",100,0   '3.4sec
 			SuperPopsCallout
 			EnableSuperPopsCountdown 60
-			vpmtimer.addtimer 60000, "ResetSuperPopsLight '"
+			LightQueue.Add "ResetSuperPopsLight","ResetSuperPopsLight",20,60000,0,0,0,false
 		End If
 	End Sub
 
@@ -7640,7 +7647,7 @@ End Sub
 		SuperRampsTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 2000
-		vpmtimer.addtimer waittime, "SuperRampsCountdownGrace'"
+		BallHandlingQueue.Add "SuperRampsCountdownGrace","SuperRampsCountdownGrace",20,waittime,0,0,0,false
 		LSuperRamps.State = 0
 		bSuperRamps(CurrentPlayer)=0
 	End Sub
@@ -7656,7 +7663,7 @@ End Sub
             DMDBigText "SUPER RAMP",100,0   '3.4sec 
 			SuperRampsCallout
 			EnableSuperRampsCountdown 60
-			vpmtimer.addtimer 60000, "ResetSuperRampsLight '"
+			LightQueue.Add "ResetSuperRampsLight","ResetSuperRampsLight",20,60000,0,0,0,false
 		End If
 	End Sub
 
@@ -7679,7 +7686,7 @@ End Sub
 		SuperOrbitsTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 2000
-		vpmtimer.addtimer waittime, "SuperOrbitsCountdownGrace'"
+		BallHandlingQueue.Add "SuperOrbitsCountdownGrace","SuperOrbitsCountdownGrace",20,waittime,0,0,0,false
 		LSuperOrbits.State = 0
 		bSuperOrbits(CurrentPlayer)=0
 	End Sub
@@ -7695,7 +7702,7 @@ End Sub
 			DMDBigText "SUPERORBIT",100,0   '3.4sec
 			SuperOrbitsCallout
 			EnableSuperOrbitsCountdown 60
-			vpmtimer.addtimer 60000, "ResetSuperOrbitsLight '"
+			LightQueue.Add "ResetSuperOrbitsLight","ResetSuperOrbitsLight",20,60000,0,0,0,false
 		End If
 	End Sub
 
@@ -7718,7 +7725,7 @@ End Sub
 		DoubleSpinnerTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 2000
-		vpmtimer.addtimer waittime, "DoubleSpinnerCountdownGrace'"
+		BallHandlingQueue.Add "DoubleSpinnerCountdownGrace","DoubleSpinnerCountdownGrace",20,waittime,0,0,0,false
 		LDoubleSpinner.State = 0
 		bDoubleSpinner(CurrentPlayer)=0
 	End Sub
@@ -7736,7 +7743,7 @@ End Sub
 			DoubleSpinnerCallout
 			LightBonus05          
 			EnableDoubleSpinnerCountdown 60
-			vpmtimer.addtimer 60000, "ResetDoubleSpinnerLight '"
+			LightQueue.Add "ResetDoubleSpinnerLight","ResetDoubleSpinnerLight",20,60000,0,0,0,false
 		End If
 	End Sub
 
@@ -7754,8 +7761,8 @@ End Sub
 			'PuPlayer.playlistplayex pBackglass,"videos-level1completed","",100,17
 			DMDTopSplash "LEVEL 1 COMPLETED",100,0
 			LevelOneCompletedCallout
-			vpmtimer.addtimer 6000, "LightBonus10 '"
-			vpmtimer.addtimer 6500, "MysteryBonusCallout '"
+			LightQueue.Add "LightBonus10","LightBonus10",20,6000,0,0,0,false
+			AudioQueue.Add "MysteryBonusCallout","MysteryBonusCallout",20,6500,0,0,0,false		
 		Else
 			If LLevelTwoCompleted.state = 0 AND L25KScore01.state = 1 AND L25KScore02.state = 1 AND L10KScore06.state = 1 AND L25KScore03.state = 1 AND L10KScore08.state = 1 AND L25KScore04.state = 1 Then
 				LLevelTwoCompleted.state = 1
@@ -7763,8 +7770,8 @@ End Sub
 				'PuPlayer.playlistplayex pBackglass,"videos-level2completed","",100,17
 				DMDTopSplash "LEVEL 2 COMPLETED",100,0
 				LevelTwoCompletedCallout
-				vpmtimer.addtimer 6000, "LightBonus10 '"
-				vpmtimer.addtimer 6500, "MysteryBonusCallout '"
+				LightQueue.Add "LightBonus10","LightBonus10",20,6000,0,0,0,false
+				AudioQueue.Add "MysteryBonusCallout","MysteryBonusCallout",20,6500,0,0,0,false	
 			End If
 		End If
 	End Sub
@@ -7812,133 +7819,134 @@ End Sub
 	End Sub
 
 	Sub LightBonus01
-		vpmtimer.addtimer 0450, "FlashForMs LBonus01, 5000, 10, 0 '"
-		vpmtimer.addtimer 0400, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0350, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0300, "LightBonusFlash04 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0000, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus01-1","FlashForMs LBonus01, 5000, 10, 0",20,450,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,400,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,0,0,0,0,false
+
 		LightBonusScore01
 	End Sub
 	Sub LightBonus02
-		vpmtimer.addtimer 0350, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0400, "FlashForMs LBonus02, 5000, 10, 0 '"
-		vpmtimer.addtimer 0350, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0300, "LightBonusFlash04 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0000, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus02-1","FlashForMs LBonus02, 5000, 10, 0",20,400,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,0,0,0,0,false
 		LightBonusScore02
 	End Sub
 	Sub LightBonus03
-		vpmtimer.addtimer 0250, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0300, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0350, "FlashForMs LBonus03, 5000, 10, 0 '" 
-		vpmtimer.addtimer 0300, "LightBonusFlash04 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0000, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus03-1","FlashForMs LBonus03, 5000, 10, 0",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,0,0,0,0,false
 		LightBonusScore03
 	End Sub
 	Sub LightBonus04
-		vpmtimer.addtimer 0150, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0300, "FlashForMs LBonus04, 5000, 10, 0 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0000, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus04-1","FlashForMs LBonus04, 5000, 10, 0",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,0,0,0,0,false
 		LightBonusScore04
 	End Sub
 	Sub LightBonus05
-		vpmtimer.addtimer 0050, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash04 '" 
-		vpmtimer.addtimer 0250, "FlashForMs LBonus05, 5000, 10, 0 '" 
-		vpmtimer.addtimer 0200, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0000, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus05-1","FlashForMs LBonus05, 5000, 10, 0",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,0,0,0,0,false
 		LightBonusScore05
 	End Sub
 	Sub LightBonus06
-		vpmtimer.addtimer 0000, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash04 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0250, "FlashForMs LBonus06, 5000, 10, 0 '"   
-		vpmtimer.addtimer 0200, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus06-1","FlashForMs LBonus06, 5000, 10, 0",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,0,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,50,0,0,0,false
 		LightBonusScore06
 	End Sub
 	Sub LightBonus07
-		vpmtimer.addtimer 0000, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash04 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash05 '"  
-		vpmtimer.addtimer 0250, "LightBonusFlash06 '" 
-		vpmtimer.addtimer 0300, "FlashForMs LBonus07, 5000, 10, 0 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus07-1","FlashForMs LBonus07, 5000, 10, 0",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,0,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,150,0,0,0,false
 		LightBonusScore07
 	End Sub
 	Sub LightBonus08
-		vpmtimer.addtimer 0000, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash04 '"
-		vpmtimer.addtimer 0200, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash06 '" 
-		vpmtimer.addtimer 0300, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0350, "FlashForMs LBonus08, 5000, 10, 0 '" 
-		vpmtimer.addtimer 0300, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus08-1","FlashForMs LBonus08, 5000, 10, 0",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,0,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,250,0,0,0,false
 		LightBonusScore08
 	End Sub
 	Sub LightBonus09
-		vpmtimer.addtimer 0000, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash04 '" 
-		vpmtimer.addtimer 0200, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash06 '" 
-		vpmtimer.addtimer 0300, "LightBonusFlash07 '" 
-		vpmtimer.addtimer 0350, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0400, "FlashForMs LBonus09, 5000, 10, 0 '" 
-		vpmtimer.addtimer 0350, "LightBonusFlash10 '"
+		LightQueue.Add "FlashForMs LBonus09-1","FlashForMs LBonus09, 5000, 10, 0",20,400,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,0,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",20,400,0,0,0,false
+		LightQueue.Add "LightBonusFlash10","LightBonusFlash10",20,350,0,0,0,false
 		LightBonusScore09
 	End Sub
 	Sub LightBonus10
-		vpmtimer.addtimer 0000, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash04 '" 
-		vpmtimer.addtimer 0200, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0300, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0350, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0400, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0450, "FlashForMs LBonus10, 5000, 10, 0 '"
+		LightQueue.Add "FlashForMs LBonus010-1","FlashForMs LBonus10, 5000, 10, 0",20,450,0,0,0,false
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",20,0,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",20,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",20,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",20,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",20,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",20,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",20,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",20,400,0,0,0,false
+		LightQueue.Add "LightBonusFlash2","LightBonusFlash02",20,50,0,0,0,false
 		RandomLightBonusQuestionMark
 	End Sub
 	'*******************************************
@@ -8486,6 +8494,7 @@ Sub StartLightSeq()
 	For each a in attractlights
 		a.State = 1
 	Next
+LightSeqAttract.stopplay
 		LightSeqAttract.UpdateInterval = 4          
 		LightSeqAttract.Play SeqDownOn, 70, 1  
 		LightSeqAttract.UpdateInterval = 4
@@ -8666,6 +8675,7 @@ Sub StartLightSeq()
 		a.State = 1
 		a.Intensity = 23
 	Next
+LightSeqGi.stopplay
 		LightSeqGi.UpdateInterval = 4          
 		LightSeqGi.Play SeqDownOn, 70, 1  
 		LightSeqGi.UpdateInterval = 4
@@ -8849,6 +8859,7 @@ Sub StartLightSeq2()
 	For each a in attractlights2
 		a.State = 1
 	Next
+LightSeqAttract2.stopplay
 		LightSeqAttract2.UpdateInterval = 4          
 		LightSeqAttract2.Play SeqDownOn, 70, 1  
 		LightSeqAttract2.UpdateInterval = 4
@@ -9032,6 +9043,7 @@ Sub StartLightSeq3()
 	For each a in attractlights3
 		a.State = 1
 	Next
+LightSeqAttract3.stopplay
 		LightSeqAttract3.UpdateInterval = 4          
 		LightSeqAttract3.Play SeqDownOn, 70, 1  
 		LightSeqAttract3.UpdateInterval = 4
@@ -9455,47 +9467,50 @@ End Sub
 	'*************************************************
 	Sub GIStrobeYellowGreen
 		ChangeGi(yellow)
-		vpmtimer.addtimer 0050, "ChangeGI(green) '" 	
-		vpmtimer.addtimer 0100, "ChangeGI(yellow) '" 
-		vpmtimer.addtimer 0150, "ChangeGI(green) '"  
-		vpmtimer.addtimer 0200, "ChangeGI(yellow) '" 
-		vpmtimer.addtimer 0250, "ChangeGI(green) '" 
-		vpmtimer.addtimer 0300, "ChangeGI(yellow) '"  	
-		vpmtimer.addtimer 0350, "ChangeGI(green) '" 
-		vpmtimer.addtimer 0400, "ChangeGI(yellow) '"  
-		vpmtimer.addtimer 0450, "ChangeGI(green) '" 
-		vpmtimer.addtimer 0500, "ChangeGI(yellow) '" 
-		vpmtimer.addtimer 0550, "ChangeGI(green) '"
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,50,0,0,0,false
+		LightQueue.Add "ChangeGI(yellow)","ChangeGI(yellow)",20,100,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,150,0,0,0,false
+		LightQueue.Add "ChangeGI(yellow)","ChangeGI(yellow)",20,200,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,250,0,0,0,false
+		LightQueue.Add "ChangeGI(yellow)","ChangeGI(yellow)",20,300,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,350,0,0,0,false
+		LightQueue.Add "ChangeGI(yellow)","ChangeGI(yellow)",20,400,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,450,0,0,0,false
+		LightQueue.Add "ChangeGI(yellow)","ChangeGI(yellow)",20,500,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,550,0,0,0,false
+
 	End Sub
 	Sub GIStrobeAmberWhite
 		ChangeGi(amber)
-		vpmtimer.addtimer 0050, "ChangeGI(white) '" 	
-		vpmtimer.addtimer 0100, "ChangeGi(amber) '" 
-		vpmtimer.addtimer 0150, "ChangeGI(white) '"  
-		vpmtimer.addtimer 0200, "ChangeGi(amber) '" 
-		vpmtimer.addtimer 0250, "ChangeGI(white) '" 
-		vpmtimer.addtimer 0300, "ChangeGi(amber) '"  	
-		vpmtimer.addtimer 0350, "ChangeGI(white) '" 
-		vpmtimer.addtimer 0400, "ChangeGi(amber) '"  
-		vpmtimer.addtimer 0450, "ChangeGI(white) '" 
-		vpmtimer.addtimer 0500, "ChangeGi(amber) '" 
-		vpmtimer.addtimer 0550, "ChangeGI(white) '"
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,50,0,0,0,false
+		LightQueue.Add "ChangeGI(amber)","ChangeGI(amber)",20,100,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,150,0,0,0,false
+		LightQueue.Add "ChangeGI(amber)","ChangeGI(amber)",20,200,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,250,0,0,0,false
+		LightQueue.Add "ChangeGI(amber)","ChangeGI(amber)",20,300,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,350,0,0,0,false
+		LightQueue.Add "ChangeGI(amber)","ChangeGI(amber)",20,400,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,450,0,0,0,false
+		LightQueue.Add "ChangeGI(amber)","ChangeGI(amber)",20,500,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,550,0,0,0,false
+
 	End Sub
 	Sub GIStrobeGreenWhite
 		ChangeGI(green)
-		vpmtimer.addtimer 0050, "ChangeGI(white) '" 	
-		vpmtimer.addtimer 0100, "ChangeGI(green) '" 
-		vpmtimer.addtimer 0150, "ChangeGI(white) '"  
-		vpmtimer.addtimer 0200, "ChangeGI(green) '" 
-		vpmtimer.addtimer 0250, "ChangeGI(white) '"  
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,50,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,100,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,150,0,0,0,false
+		LightQueue.Add "ChangeGI(green)","ChangeGI(green)",20,200,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,250,0,0,0,false
 	End Sub
 	Sub GIStrobePurpleWhite
 		ChangeGI(purple)
-		vpmtimer.addtimer 0050, "ChangeGI(white) '" 	
-		vpmtimer.addtimer 0100, "ChangeGI(purple) '" 
-		vpmtimer.addtimer 0150, "ChangeGI(white) '"  
-		vpmtimer.addtimer 0200, "ChangeGI(purple) '" 
-		vpmtimer.addtimer 0250, "ChangeGI(white) '"  
+
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,50,0,0,0,false
+		LightQueue.Add "ChangeGI(purple)","ChangeGI(purple)",20,100,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,150,0,0,0,false
+		LightQueue.Add "ChangeGI(purple)","ChangeGI(purple)",20,200,0,0,0,false
+		LightQueue.Add "ChangeGI(white)","ChangeGI(white)",20,250,0,0,0,false
 	End Sub
 	'**************************************************
 	' Change GI blinking colors for specific triggers
@@ -9538,7 +9553,7 @@ End Sub
 
 	Sub ChangeGiForJackpot
 		ChangeGiBlink(amber)
-		vpmtimer.addtimer 6900, "ChangeGiLit(base) '"
+		LightQueue.Add "ChangeGiLit(base)","ChangeGiLit(base)",20,6900,0,0,0,false
 	End Sub
 
 	Sub TurnOffGIMultiball
@@ -9547,7 +9562,7 @@ End Sub
 
 	Sub ChangeGiForKeepBombing
 		ChangeGiBlink(white)
-		vpmtimer.addtimer 4000, "ChangeGiLit(base) '"
+		LightQueue.Add "ChangeGiLit(base)","ChangeGiLit(base)",20,4000,0,0,0,false
 	End Sub
 
 	Sub ChangeGiForDrainLeft
@@ -9558,7 +9573,7 @@ End Sub
 				If LWarpMultiballCounter.state = 2 then
 				Else
 					ChangeGiBlinkDrainLeft(purple)
-					vpmtimer.addtimer 2250, "ChangeGiLit(base) '"
+					LightQueue.Add "ChangeGiLit(base)","ChangeGiLit(base)",20,2250,0,0,0,false
 				End If
 			End If
 		End If
@@ -9572,7 +9587,7 @@ End Sub
 				If LWarpMultiballCounter.state = 2 then
 				Else		
 					ChangeGiBlinkDrainRight(purple)
-					vpmtimer.addtimer 2250, "ChangeGiLit(base) '"
+					LightQueue.Add "ChangeGiLit(base)","ChangeGiLit(base)",20,2250,0,0,0,false
 				End If
 			End If
 		End If
@@ -9586,7 +9601,7 @@ End Sub
 				If LWarpMultiballCounter.state = 2 then
 				Else
 					ChangeGiBlinkDrainLeft(purple)
-					vpmtimer.addtimer 1600, "ChangeGiLit(base) '"
+					LightQueue.Add "ChangeGiLit(base)","ChangeGiLit(base)",20,1600,0,0,0,false
 				End If
 			End If
 		End If
@@ -9600,7 +9615,7 @@ End Sub
 				If LWarpMultiballCounter.state = 2 then
 				Else
 					ChangeGiBlinkDrainRight(purple)
-					vpmtimer.addtimer 1600, "ChangeGiLit(base) '"
+					LightQueue.Add "ChangeGiLit(base)","ChangeGiLit(base)",20,1600,0,0,0,false
 				End If
 			End If
 		End If
@@ -9682,8 +9697,7 @@ End Sub
 		ResetSkillShotTimer_Timer
 		AddScore SkillshotValue(CurrentPLayer)
 		DOF 939, DOFPulse   'DOF MX - Skillshot
-		vpmtimer.addtimer 1200, "SkillshotCallout '"
-		'PuPlayer.playlistplayex pBackglass,"videos-skillshot","",100,14
+		AudioQueue.Add "SkillshotCallout","SkillshotCallout",20,1200,0,0,0,false
 		pupevent 719
 		DMDBigText "SKILL SHOT",100,0 '3.4sec 
 		SkillShotValue(CurrentPLayer) = SkillShotValue(CurrentPLayer) + 10000
@@ -9727,7 +9741,7 @@ End Sub
 				LightSeqhit.Play SeqBlinking, , 2, 5
 				'RandomUltraDMDSceneKickout
 				playvideo=1+int(rnd(1)*3)
-				vpmtimer.addtimer 500, "RandomSoundPlungerIdle '"
+				AudioQueue.Add "RandomSoundPlungerIdle","RandomSoundPlungerIdle",20,500,0,0,0,false
 				DOF 942, DOFOn   'DOF MX
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
@@ -9745,7 +9759,7 @@ End Sub
 				LightSeqhit.Play SeqBlinking, , 2, 5
 				'RandomUltraDMDSceneKickout
 				playvideo=1+int(rnd(1)*3)
-				vpmtimer.addtimer 500, "RandomSoundPlungerIdle '"	
+				AudioQueue.Add "RandomSoundPlungerIdle","RandomSoundPlungerIdle",20,500,0,0,0,false
 				DOF 942, DOFOn   'DOF MX
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
@@ -9763,7 +9777,7 @@ End Sub
 				LightSeqhit.Play SeqBlinking, , 2, 5
 				'RandomUltraDMDSceneKickout
 				playvideo=1+int(rnd(1)*3)
-				vpmtimer.addtimer 500, "RandomSoundPlungerIdle '"	
+				AudioQueue.Add "RandomSoundPlungerIdle","RandomSoundPlungerIdle",20,500,0,0,0,false
 				DOF 942, DOFOn   'DOF MX	
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
@@ -9781,7 +9795,7 @@ End Sub
 				LightSeqhit.Play SeqBlinking, , 2, 5
 				'RandomUltraDMDSceneKickout
 				playvideo=1+int(rnd(1)*3)
-				vpmtimer.addtimer 500, "RandomSoundPlungerIdle '"
+				AudioQueue.Add "RandomSoundPlungerIdle","RandomSoundPlungerIdle",20,500,0,0,0,false
 				DOF 942, DOFOn   'DOF MX	
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
@@ -9797,7 +9811,7 @@ End Sub
 			LightSeqhit.Play SeqBlinking, , 2, 5			
 			'RandomUltraDMDSceneKickout
 			playvideo=1+int(rnd(1)*3)
-			vpmtimer.addtimer 500, "RandomSoundPlungerIdle '"
+			AudioQueue.Add "RandomSoundPlungerIdle","RandomSoundPlungerIdle",20,500,0,0,0,false
 			DOF 942, DOFOn   'DOF MX	
 			DOF 971, DOFOn   'DOF MX - BACK
 		    PuPlayer.playstop pAudio
@@ -9882,12 +9896,12 @@ End Sub
 		EndMusic
 		PuPlayer.playstop pAudio
 		RandomSoundFood
-		vpmtimer.addtimer 6025, "BallForBallLock '"
-		vpmtimer.addtimer 1000, "RandomSoundGas '"
-		vpmtimer.addtimer 2500, "RandomSoundGas '"
-		vpmtimer.addtimer 3000, "RandomSoundFoods '"
-		vpmtimer.addtimer 2500, "FlasherBallLocked '"
-		vpmtimer.addtimer 4000, "RandomSoundGas '"
+		BallHandlingQueue.Add "BallForBallLock","BallForBallLock",20,6025,0,0,0,false
+		AudioQueue.Add "RandomSoundGas","RandomSoundGas",20,1000,0,0,0,false
+		AudioQueue.Add "RandomSoundGas","RandomSoundGas",20,2500,0,0,0,false	
+		AudioQueue.Add "RandomSoundFoods","RandomSoundFoods",20,3000,0,0,0,false	
+		BallHandlingQueue.Add "FlasherBallLocked","FlasherBallLocked",20,2500,0,0,0,false
+		AudioQueue.Add "RandomSoundGas","RandomSoundGas",20,4000,0,0,0,false			
 	End Sub
 
 	Sub BallForBallLock()
@@ -9933,9 +9947,9 @@ End Sub
 		bMultiBallMode = False
 		bOnTheFirstBall = False
 		If NOT Tilted Then
-			vpmtimer.addtimer 500, "EndOfBall2 '"
+			BallHandlingQueue.Add "EndOfBall2","EndOfBall2",20,500,0,0,0,false
 		Else 
-			vpmtimer.addtimer 500, "EndOfBall2 '"
+			BallHandlingQueue.Add "EndOfBall2","EndOfBall2",20,500,0,0,0,false
 		End If
 	End Sub
 	'**************************
@@ -9962,7 +9976,7 @@ End Sub
 			LightSeqFlasher.UpdateInterval = 150
 			LightSeqFlasher.Play SeqRandom, 18, , 3900
 
-			vpmtimer.addtimer 4000, "CreateNewBall() '"
+			BallHandlingQueue.Add "CreateNewBall()","CreateNewBall()",20,4000,0,0,0,false
 			ResetForNewPlayerBall
 			If LWarpMultiball.state = 1 THEN
 				chilloutthemusic
@@ -10039,7 +10053,7 @@ End Sub
 		PuPlayer.playstop pAudio
 		RandomSoundDrainBottom
 		RandomSoundDrain drain
-		vpmtimer.addtimer 6000, "RandomRestartMusicSelection '"
+		AudioQueue.Add "RandomRestartMusicSelection","RandomRestartMusicSelection",20,6000,0,0,0,false
 
 		If Tilted Then
 			StopEndOfBallMode
@@ -10063,7 +10077,7 @@ End Sub
 				DMDTopSplash "BLUNTED AGAIN",100,0
 				If bMultiBallMode = False Then
 					chilloutthemusic
-					vpmtimer.addtimer 2800, "BallSavedCallout '"
+					AudioQueue.Add "BallSavedCallout","BallSavedCallout",20,2800,0,0,0,false
 				End If
 				RANDOMLIGHTSDRAINQUICKFADE
 			Else
@@ -10085,8 +10099,8 @@ End Sub
 					playvideo=100
 					bMultiBallMode = False
 					ChangeGi "white"
-					vpmtimer.addtimer 1000, "Balldrained '"
-					vpmtimer.addtimer 6000, "EndOfBall '"
+					BallHandlingQueue.Add "Balldrained","Balldrained",20,1000,0,0,0,false
+					BallHandlingQueue.Add "EndOfBall","EndOfBall",20,6000,0,0,0,false
 					StopEndOfBallMode
 					RandomDrainAllCapsFlashBallComplete
 					RANDOMLIGHTSDRAINLONGFADE
@@ -10188,7 +10202,7 @@ End Sub
 		BallSaverTimerExpired.Enabled = False
 		Dim waittime
 		waittime = 1000
-		vpmtimer.addtimer waittime, "BallSaveGrace'"
+		BallHandlingQueue.Add "BallSaveGrace","BallSaveGrace",20,waittime,0,0,0,false
 		If bExtraBallWonThisBall = True Then
 			LightShootAgain.State = 1
 		Else
@@ -10495,8 +10509,8 @@ End Sub
 		Else	
 			Exit Sub
 		End If
-							
-		vpmtimer.addtimer 2000, "SuperPopsCheck '" 
+		
+		BallHandlingQueue.Add "SuperPopsCheck","SuperPopsCheck",20,2000,0,0,0,false
 		If LSuperPops.state = 2 Then
 			LightBonus03
 		End If
@@ -10533,7 +10547,7 @@ End Sub
 			Exit Sub
 		End If
 
-		vpmtimer.addtimer 2000, "SuperPopsCheck '" 
+		BallHandlingQueue.Add "SuperPopsCheck","SuperPopsCheck",20,2000,0,0,0,false
 		If LSuperPops.state = 2 Then
 			LightBonus03
 		End If
@@ -10576,7 +10590,7 @@ End Sub
 			Exit Sub
 		End If
 
-		vpmtimer.addtimer 2000, "SuperPopsCheck '" 
+		BallHandlingQueue.Add "SuperPopsCheck","SuperPopsCheck",20,2000,0,0,0,false
 		If LSuperPops.state = 2 Then
 			LightBonus03
 		End If
@@ -11116,427 +11130,454 @@ Sub FlasherFlash16_Timer() : FlashFlasher(16) : End Sub
 
 	Sub FlasherRightRamp
 		RandomSoundFairyDust
-		vpmtimer.addtimer 0050, "Flash12 '" 
-		vpmtimer.addtimer 0100, "Flash11 '" 	
-		vpmtimer.addtimer 0150, "Flash9 '" 
-		vpmtimer.addtimer 0200, "Flash4 '" 
-		vpmtimer.addtimer 0250, "Flash3 '" 
-		vpmtimer.addtimer 0300, "Flash8 '" 
-		vpmtimer.addtimer 0350, "Flash10 '" 
-		vpmtimer.addtimer 0400, "Flash6 '" 
-		vpmtimer.addtimer 0450, "Flash1 '" 
-		vpmtimer.addtimer 0500, "Flash13 '" 
-		vpmtimer.addtimer 0550, "Flash5 '" 	
-		vpmtimer.addtimer 0600, "Flash14 '" 
-		vpmtimer.addtimer 0650, "Flash15 '" 
-		vpmtimer.addtimer 0700, "Flash7 '" 
-		vpmtimer.addtimer 0750, "Flash16 '" 
-		vpmtimer.addtimer 0800, "Flash2 '" 
-		vpmtimer.addtimer 0850, "Flash12 '" 
-		vpmtimer.addtimer 0900, "Flash11 '" 
-		vpmtimer.addtimer 0950, "Flash9 '" 
-		vpmtimer.addtimer 1000, "Flash4 '" 	
-		vpmtimer.addtimer 1050, "Flash3 '" 
-		vpmtimer.addtimer 1100, "Flash8 '" 
-		vpmtimer.addtimer 1150, "Flash10 '" 
-		vpmtimer.addtimer 1200, "Flash6 '" 
-		vpmtimer.addtimer 1250, "Flash1 '" 
-		vpmtimer.addtimer 1300, "Flash13 '" 
-		vpmtimer.addtimer 1350, "Flash5 '"
- 		vpmtimer.addtimer 1400, "Flash14 '"
- 		vpmtimer.addtimer 1450, "Flash15 '"
- 		vpmtimer.addtimer 1500, "Flash7 '"
- 		vpmtimer.addtimer 1550, "Flash16 '"
- 		vpmtimer.addtimer 1600, "Flash2 '"
-		vpmtimer.addtimer 1650, "Flash12 '" 
-		vpmtimer.addtimer 1700, "Flash11 '" 
-		vpmtimer.addtimer 1750, "Flash9 '" 
-		vpmtimer.addtimer 1800, "Flash4 '" 	
-		vpmtimer.addtimer 1850, "Flash3 '" 
-		vpmtimer.addtimer 1900, "Flash8 '" 
-		vpmtimer.addtimer 1950, "Flash10 '" 
-		vpmtimer.addtimer 2000, "Flash6 '" 
-		vpmtimer.addtimer 2050, "Flash1 '" 
-		vpmtimer.addtimer 2100, "Flash13 '" 
-		vpmtimer.addtimer 2150, "Flash5 '"
- 		vpmtimer.addtimer 2200, "Flash14 '"
- 		vpmtimer.addtimer 2250, "Flash15 '"
- 		vpmtimer.addtimer 2300, "Flash7 '"
- 		vpmtimer.addtimer 2350, "Flash16 '"
- 		vpmtimer.addtimer 2400, "Flash2 '"
+		LightQueue.Add "Flash12","Flash12",10,50,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,100,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,150,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,200,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,250,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,300,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,350,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,400,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,450,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,500,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,550,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,600,0,0,0,false
+		LightQueue.Add "Flash15","Flash15",10,650,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,700,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,750,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,800,0,0,0,false
+		LightQueue.Add "Flash12","Flash12",10,850,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,900,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,950,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,1000,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,1050,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,1100,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1150,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,1200,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,1250,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,1300,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,1350,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,1400,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,1450,0,0,0,false
+		LightQueue.Add "Flash15","Flash15",10,1500,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,1550,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,1600,0,0,0,false
+		LightQueue.Add "Flash12","Flash12",10,1650,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1700,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,1750,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,1800,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,1850,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,1900,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1950,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,2000,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,2050,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,2100,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,2150,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,2200,0,0,0,false
+		LightQueue.Add "Flash15","Flash15",10,2250,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,2300,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,2350,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,2400,0,0,0,false
 	End Sub
 
 	Sub FlasherLeftRamp
 		RandomSoundFairyDust
-		vpmtimer.addtimer 0050, "Flash12 '" 
-		vpmtimer.addtimer 0100, "Flash6 '" 	
-		vpmtimer.addtimer 0150, "Flash10 '" 
-		vpmtimer.addtimer 0200, "Flash8 '" 
-		vpmtimer.addtimer 0250, "Flash3 '" 
-		vpmtimer.addtimer 0300, "Flash4 '" 
-		vpmtimer.addtimer 0350, "Flash9 '" 
-		vpmtimer.addtimer 0400, "Flash11 '" 
-		vpmtimer.addtimer 0450, "Flash2 '" 
-		vpmtimer.addtimer 0500, "Flash16 '" 
-		vpmtimer.addtimer 0550, "Flash7 '" 	
-		vpmtimer.addtimer 0600, "Flash15 '" 
-		vpmtimer.addtimer 0650, "Flash14 '" 
-		vpmtimer.addtimer 0700, "Flash5 '" 
-		vpmtimer.addtimer 0750, "Flash13 '" 
-		vpmtimer.addtimer 0800, "Flash1 '" 
-		vpmtimer.addtimer 0850, "Flash12 '" 
-		vpmtimer.addtimer 0900, "Flash6 '" 
-		vpmtimer.addtimer 0950, "Flash10 '" 
-		vpmtimer.addtimer 1000, "Flash8 '" 	
-		vpmtimer.addtimer 1050, "Flash3 '" 
-		vpmtimer.addtimer 1100, "Flash4 '" 
-		vpmtimer.addtimer 1150, "Flash9 '" 
-		vpmtimer.addtimer 1200, "Flash11 '" 
-		vpmtimer.addtimer 1250, "Flash2 '" 
-		vpmtimer.addtimer 1300, "Flash16 '" 
-		vpmtimer.addtimer 1350, "Flash7 '" 
-		vpmtimer.addtimer 1400, "Flash15 '"
-		vpmtimer.addtimer 1450, "Flash14 '"
-		vpmtimer.addtimer 1500, "Flash5 '"
-		vpmtimer.addtimer 1550, "Flash13 '"
-		vpmtimer.addtimer 1600, "Flash1 '"
-		vpmtimer.addtimer 1650, "Flash12 '" 
-		vpmtimer.addtimer 1700, "Flash6 '" 
-		vpmtimer.addtimer 1750, "Flash10 '" 
-		vpmtimer.addtimer 1800, "Flash8 '" 	
-		vpmtimer.addtimer 1850, "Flash3 '" 
-		vpmtimer.addtimer 1900, "Flash4 '" 
-		vpmtimer.addtimer 1950, "Flash9 '" 
-		vpmtimer.addtimer 2000, "Flash11 '" 
-		vpmtimer.addtimer 2050, "Flash2 '" 
-		vpmtimer.addtimer 2100, "Flash16 '" 
-		vpmtimer.addtimer 2150, "Flash7 '" 
-		vpmtimer.addtimer 2200, "Flash15 '"
-		vpmtimer.addtimer 2250, "Flash14 '"
-		vpmtimer.addtimer 2300, "Flash5 '"
-		vpmtimer.addtimer 2350, "Flash13 '"
-		vpmtimer.addtimer 2400, "Flash1 '"
+		LightQueue.Add "Flash12","Flash12",10,50,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,100,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,150,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,200,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,250,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,300,0,0,0,false
+
+		LightQueue.Add "Flash9","Flash9",10,350,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,400,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,450,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,500,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,550,0,0,0,false
+
+		LightQueue.Add "Flash15","Flash15",10,600,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,650,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,700,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,750,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,800,0,0,0,false
+
+		LightQueue.Add "Flash12","Flash12",10,850,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,900,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,950,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,1000,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,1050,0,0,0,false
+
+		LightQueue.Add "Flash4","Flash4",10,1100,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,1150,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1200,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,1250,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,1300,0,0,0,false
+
+		LightQueue.Add "Flash7","Flash7",10,1350,0,0,0,false
+		LightQueue.Add "Flash15","Flash15",10,1400,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,1450,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,1500,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,1550,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,1600,0,0,0,false
+
+		LightQueue.Add "Flash1","Flash1",10,1650,0,0,0,false
+		LightQueue.Add "Flash12","Flash12",10,1700,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,1750,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1800,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,1850,0,0,0,false
+
+		LightQueue.Add "Flash3","Flash3",10,1900,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,1950,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,2000,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,2050,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,2100,0,0,0,false
+
+		LightQueue.Add "Flash16","Flash16",10,2150,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,2200,0,0,0,false
+		LightQueue.Add "Flash15","Flash15",10,2250,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,2300,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,2350,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,2400,0,0,0,false
 	End Sub
 
 	Sub FlasherPlunger
-		vpmtimer.addtimer 0050, "Flash9 '" 
-		vpmtimer.addtimer 0100, "Flash11 '" 	
-		vpmtimer.addtimer 0150, "Flash2 '" 
-		vpmtimer.addtimer 0200, "Flash16 '" 
-		vpmtimer.addtimer 0250, "Flash7 '" 
-		vpmtimer.addtimer 0300, "Flash15 '" 
-		vpmtimer.addtimer 0350, "Flash14 '" 
-		vpmtimer.addtimer 0400, "Flash5 '" 
-		vpmtimer.addtimer 0450, "Flash13 '" 
-		vpmtimer.addtimer 0500, "Flash1 '" 
-		vpmtimer.addtimer 0550, "Flash12 '" 	
-		vpmtimer.addtimer 0600, "Flash6 '" 
-		vpmtimer.addtimer 0650, "Flash10 '" 
-		vpmtimer.addtimer 0700, "Flash8 '" 
-		vpmtimer.addtimer 0750, "Flash3 '" 
-		vpmtimer.addtimer 0800, "Flash4 '" 
-		vpmtimer.addtimer 0850, "Flash9 '" 
-		vpmtimer.addtimer 0900, "Flash11 '" 
-		vpmtimer.addtimer 0950, "Flash2 '" 
-		vpmtimer.addtimer 1000, "Flash16 '" 	
-		vpmtimer.addtimer 1050, "Flash7 '" 
-		vpmtimer.addtimer 1100, "Flash15 '" 
-		vpmtimer.addtimer 1150, "Flash14 '" 
-		vpmtimer.addtimer 1200, "Flash5 '" 
-		vpmtimer.addtimer 1250, "Flash13 '" 
-		vpmtimer.addtimer 1300, "Flash1 '" 
-		vpmtimer.addtimer 1350, "Flash12 '" 
-		vpmtimer.addtimer 1400, "Flash6 '"
-		vpmtimer.addtimer 1450, "Flash10 '"
-		vpmtimer.addtimer 1500, "Flash8 '"
-		vpmtimer.addtimer 1550, "Flash3 '"
-		vpmtimer.addtimer 1600, "Flash4 '"
-		vpmtimer.addtimer 1650, "Flash9 '" 
-		vpmtimer.addtimer 1700, "Flash11 '" 
-		vpmtimer.addtimer 1750, "Flash2 '" 
-		vpmtimer.addtimer 1800, "Flash16 '" 	
-		vpmtimer.addtimer 1850, "Flash7 '" 
-		vpmtimer.addtimer 1900, "Flash15 '" 
-		vpmtimer.addtimer 1950, "Flash14 '" 
-		vpmtimer.addtimer 2000, "Flash5 '" 
-		vpmtimer.addtimer 2050, "Flash13 '" 
-		vpmtimer.addtimer 2100, "Flash1 '" 
-		vpmtimer.addtimer 2150, "Flash12 '" 
-		vpmtimer.addtimer 2200, "Flash6 '"
-		vpmtimer.addtimer 2250, "Flash10 '"
-		vpmtimer.addtimer 2300, "Flash8 '"
-		vpmtimer.addtimer 2350, "Flash3 '"
-		vpmtimer.addtimer 2400, "Flash4 '"
+		LightQueue.Add "Flash9","Flash9",10,50,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,100,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,150,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,200,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,250,0,0,0,false
+		LightQueue.Add "Flash15","Flash15",10,300,0,0,0,false
+
+		LightQueue.Add "Flash14","Flash14",10,350,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,400,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,450,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,500,0,0,0,false
+		LightQueue.Add "Flash12","Flash12",10,550,0,0,0,false
+
+		LightQueue.Add "Flash6","Flash6",10,600,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,650,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,700,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,750,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,800,0,0,0,false
+
+		LightQueue.Add "Flash9","Flash9",10,850,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,900,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,950,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,1000,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,1050,0,0,0,false
+
+		LightQueue.Add "Flash4","Flash4",10,1100,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,1150,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1200,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,1250,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,1300,0,0,0,false
+
+		LightQueue.Add "Flash5","Flash15",10,1350,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,1400,0,0,0,false
+		LightQueue.Add "Flash14","Flash5",10,1450,0,0,0,false
+		LightQueue.Add "Flash15","Flas13",10,1500,0,0,0,false
+		LightQueue.Add "Flash7","Flash1",10,1550,0,0,0,false
+		LightQueue.Add "Flash16","Flash4",10,1600,0,0,0,false
+
+		LightQueue.Add "Flash9","Flash9",10,1650,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1700,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,1750,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,1800,0,0,0,false
+		LightQueue.Add "Flash7","Flash7",10,1850,0,0,0,false
+
+		LightQueue.Add "Flash15","Flash15",10,1900,0,0,0,false
+		LightQueue.Add "Flash14","Flash14",10,1950,0,0,0,false
+		LightQueue.Add "Flash5","Flash5",10,2000,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,2050,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,2100,0,0,0,false
+
+		LightQueue.Add "Flash12","Flash12",10,2150,0,0,0,false
+		LightQueue.Add "Flash6","Flash6",10,2200,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,2250,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,2300,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,2350,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,2400,0,0,0,false
 	End Sub
 
 	Sub FlasherTopToBottom
-		vpmtimer.addtimer 0050, "Flash13 '" 
-		vpmtimer.addtimer 0050, "Flash16 '" 	
-		vpmtimer.addtimer 0200, "Flash1 '" 
-		vpmtimer.addtimer 0200, "Flash2 '" 
-		vpmtimer.addtimer 0350, "Flash10 '" 
-		vpmtimer.addtimer 0350, "Flash11 '" 
-		vpmtimer.addtimer 0500, "Flash8 '" 
-		vpmtimer.addtimer 0500, "Flash9 '" 
-		vpmtimer.addtimer 0650, "Flash3 '" 
-		vpmtimer.addtimer 0650, "Flash4 '" 
-		vpmtimer.addtimer 0800, "Flash13 '" 
-		vpmtimer.addtimer 0800, "Flash16 '" 	
-		vpmtimer.addtimer 0950, "Flash1 '" 
-		vpmtimer.addtimer 0950, "Flash2 '" 
-		vpmtimer.addtimer 1100, "Flash10 '" 
-		vpmtimer.addtimer 1100, "Flash11 '" 
-		vpmtimer.addtimer 1250, "Flash8 '" 
-		vpmtimer.addtimer 1250, "Flash9 '" 
-		vpmtimer.addtimer 1400, "Flash3 '" 
-		vpmtimer.addtimer 1400, "Flash4 '" 
-		vpmtimer.addtimer 1550, "Flash13 '" 	
-		vpmtimer.addtimer 1550, "Flash16 '" 
-		vpmtimer.addtimer 1700, "Flash1 '" 
-		vpmtimer.addtimer 1700, "Flash2 '" 
-		vpmtimer.addtimer 1850, "Flash10 '" 
-		vpmtimer.addtimer 1850, "Flash11 '" 
-		vpmtimer.addtimer 2000, "Flash8 '" 
-		vpmtimer.addtimer 2000, "Flash9 '"
-		vpmtimer.addtimer 2150, "Flash3 '" 
-		vpmtimer.addtimer 2150, "Flash4 '"
+		LightQueue.Add "Flash13","Flash13",10,50,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,50,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,200,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,200,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,350,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,350,0,0,0,false
+
+		LightQueue.Add "Flash8","Flash8",10,500,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,500,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,650,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,650,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,800,0,0,0,false
+
+		LightQueue.Add "Flash16","Flash16",10,800,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,950,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,950,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1100,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1100,0,0,0,false
+
+		LightQueue.Add "Flash8","Flash8",10,1250,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,1250,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,1400,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,1400,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,1550,0,0,0,false
+
+		LightQueue.Add "Flash16","Flash16",10,1550,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,1700,0,0,0,false
+		LightQueue.Add "Flash2","Flash2",10,1700,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1850,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1850,0,0,0,false
+
+		LightQueue.Add "Flash8","Flash8",10,2000,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,2000,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,2150,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,2150,0,0,0,false
 	End Sub
 
 	Sub FlasherTopToBottomShortLeft
-		vpmtimer.addtimer 0050, "Objlevel(13) = 1 : Flasherflash13_Timer '" 	
-		vpmtimer.addtimer 0100, "Objlevel(1) = 1 : Flasherflash1_Timer '" 
-		vpmtimer.addtimer 0150, "Objlevel(10) = 1 : Flasherflash10_Timer '"  
-		vpmtimer.addtimer 0200, "Objlevel(8) = 1 : Flasherflash8_Timer '" 
-		vpmtimer.addtimer 0250, "Objlevel(3) = 1 : Flasherflash3_Timer '" 
-		vpmtimer.addtimer 0300, "Objlevel(13) = 1 : Flasherflash13_Timer '"  	
-		vpmtimer.addtimer 0350, "Objlevel(1) = 1 : Flasherflash1_Timer '" 
-		vpmtimer.addtimer 0400, "Objlevel(10) = 1 : Flasherflash10_Timer '"  
-		vpmtimer.addtimer 0450, "Objlevel(8) = 1 : Flasherflash8_Timer '" 
-		vpmtimer.addtimer 0500, "Objlevel(3) = 1 : Flasherflash3_Timer '" 
+		LightQueue.Add "Objlevel(13) = 1 : Flasherflash13_Timer","Objlevel(13) = 1 : Flasherflash13_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(1) = 1 : Flasherflash1_Timer",10,100,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,150,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,250,0,0,0,false
+		LightQueue.Add "Objlevel(13) = 1 : Flasherflash13_Timer","Objlevel(13) = 1 : Flasherflash13_Timer",10,300,0,0,0,false
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(1) = 1 : Flasherflash1_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,400,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,450,0,0,0,false
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,500,0,0,0,false
+
 	End Sub
 
 	Sub FlasherTopToBottomShortRight
-		vpmtimer.addtimer 0050, "Objlevel(16) = 1 : Flasherflash16_Timer '" 	
-		vpmtimer.addtimer 0100, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 0150, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0200, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 0250, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 0300, "Objlevel(16) = 1 : Flasherflash16_Timer '"  	
-		vpmtimer.addtimer 0350, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 0400, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0450, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 0500, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
+		LightQueue.Add "Objlevel(16) = 1 : Flasherflash16_Timer","Objlevel(16) = 1 : Flasherflash16_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,100,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,150,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,250,0,0,0,false
+		LightQueue.Add "Objlevel(16) = 1 : Flasherflash16_Timer","Objlevel(16) = 1 : Flasherflash16_Timer",10,300,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,400,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,450,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,500,0,0,0,false
 	End Sub
 
 	Sub FlasherBottomToTop
-		vpmtimer.addtimer 0050, "Flash4 '" 
-		vpmtimer.addtimer 0050, "Flash3 '" 	
-		vpmtimer.addtimer 0200, "Flash9 '" 
-		vpmtimer.addtimer 0200, "Flash8 '" 
-		vpmtimer.addtimer 0350, "Flash11 '" 
-		vpmtimer.addtimer 0350, "Flash10 '" 
-		vpmtimer.addtimer 0500, "Flash2 '" 
-		vpmtimer.addtimer 0500, "Flash1 '" 
-		vpmtimer.addtimer 0650, "Flash16 '" 
-		vpmtimer.addtimer 0650, "Flash13 '" 
-		vpmtimer.addtimer 0800, "Flash4 '" 
-		vpmtimer.addtimer 0800, "Flash3 '" 	
-		vpmtimer.addtimer 0950, "Flash9 '" 
-		vpmtimer.addtimer 0950, "Flash8 '" 
-		vpmtimer.addtimer 1100, "Flash11 '" 
-		vpmtimer.addtimer 1100, "Flash10 '" 
-		vpmtimer.addtimer 1250, "Flash2 '" 
-		vpmtimer.addtimer 1250, "Flash1 '" 
-		vpmtimer.addtimer 1400, "Flash16 '" 
-		vpmtimer.addtimer 1400, "Flash13 '" 
-		vpmtimer.addtimer 1550, "Flash4 '" 	
-		vpmtimer.addtimer 1550, "Flash3 '" 
-		vpmtimer.addtimer 1700, "Flash9 '" 
-		vpmtimer.addtimer 1700, "Flash8 '" 
-		vpmtimer.addtimer 1850, "Flash11 '" 
-		vpmtimer.addtimer 1850, "Flash10 '" 
-		vpmtimer.addtimer 2000, "Flash2 '" 
-		vpmtimer.addtimer 2000, "Flash1 '"
-		vpmtimer.addtimer 2150, "Flash16 '" 
-		vpmtimer.addtimer 2150, "Flash13 '"
+		LightQueue.Add "Flash4","Flash4",10,50,0,0,0,false
+		LightQueue.Add "Flash3","Flash3",10,50,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,200,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,200,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,350,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,350,0,0,0,false
+
+		LightQueue.Add "Flash2","Flash2",10,500,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,500,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,650,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,650,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,800,0,0,0,false
+
+		LightQueue.Add "Flash3","Flash3",10,800,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,950,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,950,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1100,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1100,0,0,0,false
+
+		LightQueue.Add "Flash2","Flash2",10,1250,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,1250,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,1400,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,1400,0,0,0,false
+		LightQueue.Add "Flash4","Flash4",10,1550,0,0,0,false
+
+		LightQueue.Add "Flash3","Flash3",10,1550,0,0,0,false
+		LightQueue.Add "Flash9","Flash9",10,1700,0,0,0,false
+		LightQueue.Add "Flash8","Flash8",10,1700,0,0,0,false
+		LightQueue.Add "Flash11","Flash11",10,1850,0,0,0,false
+		LightQueue.Add "Flash10","Flash10",10,1850,0,0,0,false
+
+		LightQueue.Add "Flash2","Flash2",10,2000,0,0,0,false
+		LightQueue.Add "Flash1","Flash1",10,2000,0,0,0,false
+		LightQueue.Add "Flash16","Flash16",10,2150,0,0,0,false
+		LightQueue.Add "Flash13","Flash13",10,2150,0,0,0,false
 	End Sub
 
 	Sub FlasherBottomToTopShortRight
-		vpmtimer.addtimer 0050, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 0100, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 0150, "Objlevel(11) = 1 : Flasherflash11_Timer '"
-		vpmtimer.addtimer 0200, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 0250, "Objlevel(16) = 1 : Flasherflash16_Timer '"  
-		vpmtimer.addtimer 0300, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 0350, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 0400, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0450, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 0500, "Objlevel(16) = 1 : Flasherflash16_Timer '"  
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,100,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,150,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(16) = 1 : Flasherflash16_Timer","Objlevel(16) = 1 : Flasherflash16_Timer",10,250,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,300,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,400,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,450,0,0,0,false
+		LightQueue.Add "Objlevel(16) = 1 : Flasherflash16_Timer","Objlevel(16) = 1 : Flasherflash16_Timer",10,500,0,0,0,false
 	End Sub
 
 	Sub FlasherBottomToTopShortLeft
-		vpmtimer.addtimer 0050, "Objlevel(3) = 1 : Flasherflash3_Timer '" 
-		vpmtimer.addtimer 0100, "Objlevel(8) = 1 : Flasherflash8_Timer '" 
-		vpmtimer.addtimer 0150, "Objlevel(10) = 1 : Flasherflash10_Timer '"
-		vpmtimer.addtimer 0200, "Objlevel(1) = 1 : Flasherflash1_Timer '" 
-		vpmtimer.addtimer 0250, "Objlevel(13) = 1 : Flasherflash13_Timer '"  
-		vpmtimer.addtimer 0300, "Objlevel(3) = 1 : Flasherflash3_Timer '" 
-		vpmtimer.addtimer 0350, "Objlevel(8) = 1 : Flasherflash8_Timer '" 
-		vpmtimer.addtimer 0400, "Objlevel(10) = 1 : Flasherflash10_Timer '"  
-		vpmtimer.addtimer 0450, "Objlevel(1) = 1 : Flasherflash1_Timer '" 
-		vpmtimer.addtimer 0500, "Objlevel(13) = 1 : Flasherflash13_Timer '"  
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,100,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,150,0,0,0,false
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(1) = 1 : Flasherflash1_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(13) = 1 : Flasherflash13_Timer","Objlevel(13) = 1 : Flasherflash13_Timer",10,250,0,0,0,false
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,300,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,400,0,0,0,false
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(1) = 1 : Flasherflash1_Timer",10,450,0,0,0,false
+		LightQueue.Add "Objlevel(13) = 1 : Flasherflash13_Timer","Objlevel(13) = 1 : Flasherflash13_Timer",10,500,0,0,0,false
 	End Sub
 
 	Sub FlasherDrainLeft
-		vpmtimer.addtimer 0050, "Objlevel(1) = 1 : Flasherflash1_Timer	 '"  	
-		vpmtimer.addtimer 0200, "Objlevel(10) = 1 : Flasherflash10_Timer	 '"  
-		vpmtimer.addtimer 0350, "Objlevel(8) = 1 : Flasherflash8_Timer	 '" 
-		vpmtimer.addtimer 0500, "Objlevel(3) = 1 : Flasherflash3_Timer	 '" 
-		vpmtimer.addtimer 0650, "Objlevel(1) = 1 : Flasherflash1_Timer	 '" 
-		vpmtimer.addtimer 0800, "Objlevel(10) = 1 : Flasherflash10_Timer	 '"  
-		vpmtimer.addtimer 0950, "Objlevel(8) = 1 : Flasherflash8_Timer	 '" 
-		vpmtimer.addtimer 1100, "Objlevel(3) = 1 : Flasherflash3_Timer	 '" 
-		vpmtimer.addtimer 1250, "Objlevel(1) = 1 : Flasherflash1_Timer	 '" 
-		vpmtimer.addtimer 1400, "Objlevel(10) = 1 : Flasherflash10_Timer	 '" 
-		vpmtimer.addtimer 1550, "Objlevel(8) = 1 : Flasherflash8_Timer	 '" 
-		vpmtimer.addtimer 1700, "Objlevel(3) = 1 : Flasherflash3_Timer	 '" 
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,500,0,0,0,false
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(1) = 1 : Flasherflash1_Timer",10,650,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,800,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,950,0,0,0,false
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,1100,0,0,0,false
+		LightQueue.Add "Objlevel(1) = 1 : Flasherflash1_Timer","Objlevel(1) = 1 : Flasherflash1_Timer",10,1250,0,0,0,false
+		LightQueue.Add "Objlevel(10) = 1 : Flasherflash10_Timer","Objlevel(10) = 1 : Flasherflash10_Timer",10,1400,0,0,0,false
+		LightQueue.Add "Objlevel(8) = 1 : Flasherflash8_Timer","Objlevel(8) = 1 : Flasherflash8_Timer",10,1550,0,0,0,false
+		LightQueue.Add "Objlevel(3) = 1 : Flasherflash3_Timer","Objlevel(3) = 1 : Flasherflash3_Timer",10,1700,0,0,0,false
 	End Sub
 
 	Sub FlasherDrainRight
-		vpmtimer.addtimer 0050, "Objlevel(2) = 1 : Flasherflash2_Timer '"  	
-		vpmtimer.addtimer 0200, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0350, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 0500, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 0650, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 0800, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0950, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 1100, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 1250, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 1400, "Objlevel(11) = 1 : Flasherflash11_Timer '" 
-		vpmtimer.addtimer 1550, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 1700, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,500,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,650,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,800,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,950,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,1100,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,1250,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,1400,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,1550,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,1700,0,0,0,false
 	End Sub
 
 	Sub FlasherDrainMask
-		vpmtimer.addtimer 0050, "Objlevel(2) = 1 : Flasherflash2_Timer '"  	
-		vpmtimer.addtimer 0200, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0350, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 0500, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 0650, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 0800, "Objlevel(11) = 1 : Flasherflash11_Timer '"  
-		vpmtimer.addtimer 0950, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 1100, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
-		vpmtimer.addtimer 1250, "Objlevel(2) = 1 : Flasherflash2_Timer '" 
-		vpmtimer.addtimer 1400, "Objlevel(11) = 1 : Flasherflash11_Timer '" 
-		vpmtimer.addtimer 1550, "Objlevel(9) = 1 : Flasherflash9_Timer '" 
-		vpmtimer.addtimer 1700, "Objlevel(4) = 1 : Flasherflash4_Timer '" 
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,50,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,200,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,350,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,500,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,650,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,800,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,950,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,1100,0,0,0,false
+		LightQueue.Add "Objlevel(2) = 1 : Flasherflash2_Timer","Objlevel(2) = 1 : Flasherflash2_Timer",10,1250,0,0,0,false
+		LightQueue.Add "Objlevel(11) = 1 : Flasherflash11_Timer","Objlevel(11) = 1 : Flasherflash11_Timer",10,1400,0,0,0,false
+		LightQueue.Add "Objlevel(9) = 1 : Flasherflash9_Timer","Objlevel(9) = 1 : Flasherflash9_Timer",10,1550,0,0,0,false
+		LightQueue.Add "Objlevel(4) = 1 : Flasherflash4_Timer","Objlevel(4) = 1 : Flasherflash4_Timer",10,1700,0,0,0,false
 	End Sub
 
 	Sub FlasherColorCycle
-		vpmtimer.addtimer 0050, "FlasherWhiteBlinkOnce '"  
-		vpmtimer.addtimer 0650, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 1250, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 1850, "FlasherWhiteBlinkOnce '" 
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,50,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,650,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,1250,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,1850,0,0,0,false
 
-		vpmtimer.addtimer 0250, "FlasherYellowBlinkOnce '"  
-		vpmtimer.addtimer 0850, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 1450, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 2050, "FlasherYellowBlinkOnce '" 
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,250,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,8500,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,1450,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,2050,0,0,0,false
 
-		vpmtimer.addtimer 0450, "FlasherGreenBlinkOnce '"  
-		vpmtimer.addtimer 1050, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 1650, "FlasherGreenBlinkOnce '" 
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1450,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1050,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1650,0,0,0,false
 	End Sub
 
 	Sub FlasherAttract
-		vpmtimer.addtimer 0050, "FlasherWhiteBlinkOnce '"  
-		vpmtimer.addtimer 0650, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 1250, "FlasherWhiteBlinkOnce '" 
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,50,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,650,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,1250,0,0,0,false
 
-		vpmtimer.addtimer 0250, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 0850, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 1450, "FlasherYellowBlinkOnce '" 
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,250,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,8500,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,1450,0,0,0,false
 
-		vpmtimer.addtimer 0450, "FlasherGreenBlinkOnce '"  
-		vpmtimer.addtimer 1050, "FlasherGreenBlinkOnce '" 
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1450,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1050,0,0,0,false
+
 	End Sub
 
 	Sub FlasherBallLocked
-		vpmtimer.addtimer 0050, "FlasherWhiteBlinkOnce '"  
-		vpmtimer.addtimer 0250, "FlasherYellowBlinkOnce '"  
-		vpmtimer.addtimer 0450, "FlasherGreenBlinkOnce '"  
-		vpmtimer.addtimer 0650, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 0850, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 1050, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 1250, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 1450, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 1650, "FlasherGreenBlinkOnce '"  
-		vpmtimer.addtimer 1850, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 2050, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 2250, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 2450, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 2650, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 2850, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 3050, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 3250, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 3450, "FlasherGreenBlinkOnce '"  
-		vpmtimer.addtimer 3650, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 3850, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 4050, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 4250, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 4450, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 4650, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 4850, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 5050, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 5250, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 5450, "FlasherWhiteBlinkOnce '"  
-		vpmtimer.addtimer 5650, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 5850, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 6050, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 6250, "FlasherYellowBlinkOnce '" 
-		vpmtimer.addtimer 6450, "FlasherGreenBlinkOnce '" 
-		vpmtimer.addtimer 6650, "FlasherWhiteBlinkOnce '" 
-		vpmtimer.addtimer 6850, "FlasherYellowBlinkOnce '" 
-		'vpmtimer.addtimer 7050, "FlasherGreenBlinkOnce '" 
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,50,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,250,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,450,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,650,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,850,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1050,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,1250,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,1450,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,1650,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,1850,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,2050,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,2250,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,2450,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,2650,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,2850,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,3050,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,3250,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,3450,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,3650,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,3850,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,4050,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,4250,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,4450,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,4650,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,4850,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,5050,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,5250,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,5450,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,5650,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,5850,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,6050,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,6250,0,0,0,false
+		LightQueue.Add "FlasherGreenBlinkOnce","FlasherGreenBlinkOnce",10,6450,0,0,0,false
+		LightQueue.Add "FlasherWhiteBlinkOnce","FlasherWhiteBlinkOnce",10,6650,0,0,0,false
+		LightQueue.Add "FlasherYellowBlinkOnce","FlasherYellowBlinkOnce",10,6850,0,0,0,false
 	End Sub
 
 	Sub FlasherMaskQuick
 		FlashMasks	 
-		vpmtimer.addtimer 0500, "FlashMasks '"   
- 		vpmtimer.addtimer 0750, "Flash19 '"  
-		vpmtimer.addtimer 1000, "FlashMasks '"  
-		vpmtimer.addtimer 1250, "Flash19 '"  
-		vpmtimer.addtimer 1500, "FlashMasks '"
+		LightQueue.Add "FlashMasks","FlashMasks",10,500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,1000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,1250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,1500,0,0,0,false
 	End Sub
 
 	Sub FlasherMaskLong
 		FlashMasks	 
-		vpmtimer.addtimer 0250, "Flash19 '"
-		vpmtimer.addtimer 0500, "FlashMasks '"
-		vpmtimer.addtimer 0750, "Flash19 '"    
-		vpmtimer.addtimer 1000, "FlashMasks '"  
-		vpmtimer.addtimer 1250, "Flash19 '"
-		vpmtimer.addtimer 1500, "FlashMasks '" 
- 		vpmtimer.addtimer 1750, "Flash19 '"
-		vpmtimer.addtimer 2000, "FlashMasks '" 
-		vpmtimer.addtimer 2250, "Flash19 '"
-		vpmtimer.addtimer 2500, "FlashMasks '" 
-		vpmtimer.addtimer 2750, "Flash19 '"
-		vpmtimer.addtimer 3000, "FlashMasks '" 
-		vpmtimer.addtimer 3250, "Flash19 '"
-		vpmtimer.addtimer 3500, "FlashMasks '" 
-		vpmtimer.addtimer 3750, "Flash19 '"
-		vpmtimer.addtimer 4000, "FlashMasks '" 
-		vpmtimer.addtimer 4250, "Flash19 '"
-		vpmtimer.addtimer 4500, "FlashMasks '"  
- 		vpmtimer.addtimer 4750, "Flash19 '"
-		vpmtimer.addtimer 5000, "FlashMasks '" 
-		vpmtimer.addtimer 5250, "Flash19 '"
-		vpmtimer.addtimer 5500, "FlashMasks '" 
-		vpmtimer.addtimer 5750, "Flash19 '"
-		vpmtimer.addtimer 6000, "FlashMasks '"
-		vpmtimer.addtimer 6250, "Flash19 '"
-		vpmtimer.addtimer 6500, "FlashMasks '"  
+		LightQueue.Add "Flash19","Flash19",10,250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,1000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,1250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,1500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,1750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,2000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,2250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,2500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,2750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,3000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,3250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,3500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,3750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,4000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,4250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,4500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,4750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,5000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,5250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,5500,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,5750,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,6000,0,0,0,false
+		LightQueue.Add "Flash19","Flash19",10,6250,0,0,0,false
+		LightQueue.Add "FlashMasks","FlashMasks",10,6500,0,0,0,false
 	End Sub
 	'*************************************************
 	'	RANDOM FLASHER HITS
@@ -14764,8 +14805,8 @@ end Function
 						LightSeqSwitch.Play SeqScrewLeftOn, 95, 1
 						LightSeqGI2.UpdateInterval = 2     
 						LightSeqGI2.Play SeqScrewLeftOn, 95, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSRAMPSLEFTCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSRAMPSLEFTCASE1c'"			
+				LightQueue.Add "RANDOMLIGHTSRAMPSLEFTCASE1b","RANDOMLIGHTSRAMPSLEFTCASE1b",20,100,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSRAMPSLEFTCASE1c","RANDOMLIGHTSRAMPSLEFTCASE1c",20,200,0,0,0,false	
 		End Sub
 		Sub RANDOMLIGHTSRAMPSLEFTCASE1b()
 						LightSeqSwitch2.UpdateInterval = 2     
@@ -14783,8 +14824,8 @@ end Function
 						LightSeqSwitch.Play SeqStripe2VertOn, 100, 1
 						LightSeqGI2.UpdateInterval = 3    
 						LightSeqGI2.Play SeqStripe2VertOn, 100, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSRAMPSLEFTCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSRAMPSLEFTCASE2c'"			
+				LightQueue.Add "RANDOMLIGHTSRAMPSLEFTCASE2b","RANDOMLIGHTSRAMPSLEFTCASE2b",20,100,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSRAMPSLEFTCASE2c","RANDOMLIGHTSRAMPSLEFTCASE2c",20,200,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSRAMPSLEFTCASE2b()
 						LightSeqSwitch2.UpdateInterval = 3    
@@ -14809,8 +14850,8 @@ end Function
 						LightSeqSwitch.Play SeqScrewRightOn, 95, 1
 						LightSeqGI2.UpdateInterval = 2 
 						LightSeqGI2.Play SeqScrewRightOn, 95, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSRAMPSRIGHTCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSRAMPSRIGHTCASE1c'"			
+				LightQueue.Add "RANDOMLIGHTSRAMPsRIGHTCASE1b","RANDOMLIGHTSRAMPSRIGHTCASE1b",20,100,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSRAMPSRIGHTCASE1c","RANDOMLIGHTSRAMPSRIGHTCASE1c",20,200,0,0,0,false		
 		End Sub
 		Sub RANDOMLIGHTSRAMPSRIGHTCASE1b()
 						LightSeqSwitch2.UpdateInterval = 2 
@@ -14828,8 +14869,8 @@ end Function
 						LightSeqSwitch.Play SeqStripe1VertOn, 100, 1
 						LightSeqGI2.UpdateInterval = 3    
 						LightSeqGI2.Play SeqStripe1VertOn, 100, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSRAMPSRIGHTCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSRAMPSRIGHTCASE2c'"			
+				LightQueue.Add "RANDOMLIGHTSRAMPSRIGHTCASE2b","RANDOMLIGHTSRAMPSRIGHTCASE2b",20,100,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSRAMPSRIGHTCASE2c","RANDOMLIGHTSRAMPSRIGHTCASE2c",20,200,0,0,0,false		
 		End Sub
 		Sub RANDOMLIGHTSRAMPSRIGHTCASE2b()
 						LightSeqSwitch2.UpdateInterval = 3    
@@ -14862,8 +14903,8 @@ end Function
 					LightSeqLogo.Play SeqDownOn, 125, 0 
 					LightSeqGI2.UpdateInterval = 9          
 					LightSeqGI2.Play SeqDownOn, 125, 0
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE1c'"	
+				LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE1b","RANDOMLIGHTSDRAINQUICKCASE1b",20,100,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE1c","RANDOMLIGHTSDRAINQUICKCASE1c",20,200,0,0,0,false	
 					FlasherMaskQuick		
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE1b()
@@ -14886,8 +14927,8 @@ end Function
 					LightSeqGI2.Play SeqDiagDownRightOn, 50, 1 
 					LightSeqGI2.UpdateInterval = 3 
 					LightSeqGI2.Play SeqDiagDownLeftOn, 50, 1 
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE2c'"		
+				LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE2b","RANDOMLIGHTSDRAINQUICKCASE2b",20,100,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE2c","RANDOMLIGHTSDRAINQUICKCASE2c",20,200,0,0,0,false		
 					FlasherMaskQuick	
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE2b() 
@@ -14915,8 +14956,8 @@ end Function
 					LightSeqGI2.Play SeqFanRightDownOn, 90, 1 
 					LightSeqGI2.UpdateInterval = 3         
 					LightSeqGI2.Play SeqFanLeftUpOn, 90, 1 
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE3b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE3c'"
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE3b","RANDOMLIGHTSDRAINQUICKCASE3b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE3c","RANDOMLIGHTSDRAINQUICKCASE3c",20,200,0,0,0,false	
 					FlasherMaskQuick			
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE3b()
@@ -14943,8 +14984,8 @@ end Function
 					LightSeqGI2.Play SeqCircleOutOn, 110, 1 
 					LightSeqGI2.UpdateInterval = 4
 					LightSeqGI2.Play SeqCircleInOn, 110, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE4b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE4c'"	
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE4b","RANDOMLIGHTSDRAINQUICKCASE4b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE4c","RANDOMLIGHTSDRAINQUICKCASE4c",20,200,0,0,0,false	
 					FlasherMaskQuick		
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE4b()
@@ -14967,8 +15008,8 @@ end Function
 					LightSeqLogo.Play SeqClockRightOn, 70, 1
 					LightSeqGI2.UpdateInterval = 4
 					LightSeqGI2.Play SeqClockRightOn, 70, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE5b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE5c'"		
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE5b","RANDOMLIGHTSDRAINQUICKCASE5b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE5c","RANDOMLIGHTSDRAINQUICKCASE5c",20,200,0,0,0,false		
 					FlasherMaskQuick	
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE5b()
@@ -14987,8 +15028,8 @@ end Function
 					LightSeqLogo.Play SeqRandom, 5,, 1650 
 					LightSeqGI2.UpdateInterval = 100          
 					LightSeqGI2.Play SeqRandom, 5,, 1650 
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE6b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE6c'"	
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE6b","RANDOMLIGHTSDRAINQUICKCASE6b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE6c","RANDOMLIGHTSDRAINQUICKCASE6c",20,200,0,0,0,false	
 					FlasherMaskQuick 		
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE6b()
@@ -15007,8 +15048,8 @@ end Function
 					LightSeqLogo.Play SeqClockLeftOn, 70, 1
 					LightSeqGI2.UpdateInterval = 4
 					LightSeqGI2.Play SeqClockLeftOn, 70, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE7b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE7c'"		
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE7b","RANDOMLIGHTSDRAINQUICKCASE1b7b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE7c","RANDOMLIGHTSDRAINQUICKCASE7c",20,200,0,0,0,false	
 					FlasherMaskQuick	
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE7b()
@@ -15036,8 +15077,8 @@ end Function
 					LightSeqGI2.Play SeqArcTopLeftUpOn, 85, 1 
 					LightSeqGI2.UpdateInterval = 3 
 					LightSeqGI2.Play SeqDownOn, 85, 1 
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINQUICKCASE8b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINQUICKCASE8c'"
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE8b","RANDOMLIGHTSDRAINQUICKCASE8b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE8c","RANDOMLIGHTSDRAINQUICKCASE8c",20,200,0,0,0,false	
 					FlasherMaskQuick			
 		End Sub
 		Sub RANDOMLIGHTSDRAINQUICKCASE8b() 
@@ -15097,8 +15138,8 @@ end Function
 						LightSeqGI2.Play SeqDiagDownLeftOn, 75, 1
 						LightSeqGI2.UpdateInterval = 7
 						LightSeqGI2.Play SeqCircleOutOn, 75, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE1c'"	
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE1b","RANDOMLIGHTSDRAINLONGCASE1b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE1c","RANDOMLIGHTSDRAINLONGCASE1c",20,200,0,0,0,false	
 						FlasherMaskLong			
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE1b()
@@ -15158,8 +15199,8 @@ end Function
 						LightSeqGI2.Play SeqFanLeftUpOn, 75, 1  
 						LightSeqGI2.UpdateInterval = 5          
 						LightSeqGI2.Play SeqDownOn, 75, 2
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE2c'"	
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE2b","RANDOMLIGHTSDRAINLONGCASE2b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE2c","RANDOMLIGHTSDRAINLONGCASE2c",20,200,0,0,0,false	
 						FlasherMaskLong			
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE2b()
@@ -15202,8 +15243,8 @@ end Function
 						LightSeqLogo.Play SeqRandom, 7,, 6200  
 						LightSeqGI2.UpdateInterval = 100          
 						LightSeqGI2.Play SeqRandom, 15,, 6200
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE3b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE3c'"
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE3b","RANDOMLIGHTSDRAINLONGCASE3b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE3c","RANDOMLIGHTSDRAINLONGCASE3c",20,200,0,0,0,false	
 						FlasherMaskLong				
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE3b()
@@ -15235,8 +15276,8 @@ end Function
 						LightSeqGI2.Play SeqUpOn, 70, 1  
 						LightSeqGI2.UpdateInterval = 25          
 						LightSeqGI2.Play SeqDownOn, 70, 1  
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE4b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE4c'"	
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE4b","RANDOMLIGHTSDRAINLONGCASE4b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE4c","RANDOMLIGHTSDRAINLONGCASE4c",20,200,0,0,0,false	
 						FlasherMaskLong			
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE4b()
@@ -15284,8 +15325,8 @@ end Function
 						LightSeqGI2.Play SeqDiagUpRightOn, 75, 1
 						LightSeqGI2.UpdateInterval = 5          
 						LightSeqGI2.Play SeqCircleOutOn, 75, 1  
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE5b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE5c'"	
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE5b","RANDOMLIGHTSDRAINLONGCASE5b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE5c","RANDOMLIGHTSDRAINLONGCASE5c",20,200,0,0,0,false		
 						FlasherMaskLong			
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE5b()
@@ -15344,9 +15385,9 @@ end Function
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqStripe2VertOn, 75, 1 	
 						LightSeqGI2.UpdateInterval = 4          
-						LightSeqGI2.Play SeqCircleOutOn, 70, 1 				
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE6b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE6c'"
+						LightSeqGI2.Play SeqCircleOutOn, 70, 1 		
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE6b","RANDOMLIGHTSDRAINLONGCASE6b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE6c","RANDOMLIGHTSDRAINLONGCASE6c",20,200,0,0,0,false			
 						FlasherMaskLong				
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE6b()
@@ -15415,8 +15456,8 @@ end Function
 						LightSeqGI2.UpdateInterval = 8          
 						LightSeqGI2.Play SeqStripe2HorizOn, 75, 1 
 			
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE7b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE7c'"	
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE7b","RANDOMLIGHTSDRAINLONGCASE7b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE7c","RANDOMLIGHTSDRAINLONGCASE7c",20,200,0,0,0,false	
 						FlasherMaskLong			
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE7b()
@@ -15485,8 +15526,8 @@ end Function
 						LightSeqGI2.UpdateInterval = 8          
 						LightSeqGI2.Play SeqStripe1HorizOn, 75, 1 
 			
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSDRAINLONGCASE8b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSDRAINLONGCASE8c'"	
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE8b","RANDOMLIGHTSDRAINLONGCASE8b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSDRAINLONGCASE8c","RANDOMLIGHTSDRAINLONGCASE8c",20,200,0,0,0,false	
 						FlasherMaskLong			
 		End Sub
 		Sub RANDOMLIGHTSDRAINLONGCASE8b()
@@ -15542,9 +15583,9 @@ end Function
 						LightSeqCustom.UpdateInterval = 4
 						LightSeqCustom.Play SeqDiagDownLeftOn, 50, 0
 						LightSeqGI2.UpdateInterval = 4
-						LightSeqGI2.Play SeqDiagDownLeftOn, 50, 0			
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSINLANESLEFTCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSINLANESLEFTCASE1c'"			
+						LightSeqGI2.Play SeqDiagDownLeftOn, 50, 0	
+						LightQueue.Add "RANDOMLIGHTSINLANESLEFTCASE1b","RANDOMLIGHTSINLANESLEFTCASE1b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSINLANESLEFTCASE1c","RANDOMLIGHTSINLANESLEFTCASE1c",20,200,0,0,0,false						
 		End Sub
 		Sub RANDOMLIGHTSINLANESLEFTCASE1b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15562,8 +15603,8 @@ end Function
 						LightSeqCustom.Play SeqDiagUpRightOn, 50, 0	
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqDiagUpRightOn, 50, 0			
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSINLANESLEFTCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSINLANESLEFTCASE2c'"			
+						LightQueue.Add "RANDOMLIGHTSINLANESLEFTCASE2b","RANDOMLIGHTSINLANESLEFTCASE2b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSINLANESLEFTCASE2c","RANDOMLIGHTSINLANESLEFTCASE2c",20,200,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSINLANESLEFTCASE2b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15581,8 +15622,8 @@ end Function
 						LightSeqCustom.Play SeqFanRightUpOn, 50, 1	
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqFanRightUpOn, 50, 1				
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSINLANESLEFTCASE3b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSINLANESLEFTCASE3c'"			
+						LightQueue.Add "RANDOMLIGHTSINLANESLEFTCASE3b","RANDOMLIGHTSINLANESLEFTCASE3b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSINLANESLEFTCASE3c","RANDOMLIGHTSINLANESLEFTCASE3c",20,200,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSINLANESLEFTCASE3b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15612,9 +15653,9 @@ end Function
 						LightSeqCustom.UpdateInterval = 4
 						LightSeqCustom.Play SeqDiagDownRightOn, 50, 0
 						LightSeqGI2.UpdateInterval = 4
-						LightSeqGI2.Play SeqDiagDownRightOn, 50, 0	
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSINLANESRIGHTCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSINLANESRIGHTCASE1c'"			
+						LightSeqGI2.Play SeqDiagDownRightOn, 50, 0
+						LightQueue.Add "RANDOMLIGHTSINLANESRIGHTCASE1b","RANDOMLIGHTSINLANESRIGHTCASE1b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSINLANESRIGHTCASE1c","RANDOMLIGHTSINLANESRIGHTCASE1c",20,200,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSINLANESRIGHTCASE1b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15632,8 +15673,8 @@ end Function
 						LightSeqCustom.Play SeqDiagUpLeftOn, 50, 0
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqDiagUpLeftOn, 50, 0				
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSINLANESRIGHTCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSINLANESRIGHTCASE2c'"			
+						LightQueue.Add "RANDOMLIGHTSINLANESRIGHTCASE2b","RANDOMLIGHTSINLANESRIGHTCASE2b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSINLANESRIGHTCASE2c","RANDOMLIGHTSINLANESRIGHTCASE2c",20,200,0,0,0,false			
 		End Sub
 
 		Sub RANDOMLIGHTSINLANESRIGHTCASE2b()
@@ -15652,8 +15693,8 @@ end Function
 						LightSeqCustom.Play SeqFanLeftDownOn, 50, 1	
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqFanLeftDownOn, 50, 1				
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSINLANESRIGHTCASE3b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSINLANESRIGHTCASE3c'"			
+						LightQueue.Add "RANDOMLIGHTSINLANESRIGHTCASE3b","RANDOMLIGHTSINLANESRIGHTCASE3b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSINLANESRIGHTCASE3c","RANDOMLIGHTSINLANESRIGHTCASE3c",20,200,0,0,0,false				
 		End Sub
 
 		Sub RANDOMLIGHTSINLANESRIGHTCASE3b()
@@ -15681,8 +15722,8 @@ end Function
 						LightSeqCustom.Play SeqStripe2VertOn, 124, 1
 						LightSeqGI2.UpdateInterval = 5
 						LightSeqGI2.Play SeqStripe2VertOn, 124, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSOUTLANESLEFTCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSOUTLANESLEFTCASE1c'"			
+						LightQueue.Add "RANDOMLIGHTSOUTLANESLEFTCASE1b","RANDOMLIGHTSOUTLANESLEFTCASE1b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSOUTLANESLEFTCASE1c","RANDOMLIGHTSOUTLANESLEFTCASE1c",20,200,0,0,0,false				
 		End Sub
 		Sub RANDOMLIGHTSOUTLANESLEFTCASE1b()
 						LightSeqCustom2.UpdateInterval = 5
@@ -15700,8 +15741,8 @@ end Function
 						LightSeqCustom.Play SeqFanRightUpOn, 100, 1
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqFanRightUpOn, 100, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSOUTLANESLEFTCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSOUTLANESLEFTCASE2c'"			
+						LightQueue.Add "RANDOMLIGHTSOUTLANESLEFTCASE2b","RANDOMLIGHTSOUTLANESLEFTCASE2b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSOUTLANESLEFTCASE2c","RANDOMLIGHTSOUTLANESLEFTCASE2c",20,200,0,0,0,false					
 		End Sub
 		Sub RANDOMLIGHTSOUTLANESLEFTCASE2b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15719,8 +15760,8 @@ end Function
 						LightSeqCustom.Play SeqScrewLeftOn, 100, 1
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqScrewLeftOn, 100, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSOUTLANESLEFTCASE3b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSOUTLANESLEFTCASE3c'"			
+						LightQueue.Add "RANDOMLIGHTSOUTLANESLEFTCASE3b","RANDOMLIGHTSOUTLANESLEFTCASE3b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSOUTLANESLEFTCASE3c","RANDOMLIGHTSOUTLANESLEFTCASE3c",20,200,0,0,0,false					
 		End Sub
 		Sub RANDOMLIGHTSOUTLANESLEFTCASE3b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15747,8 +15788,8 @@ end Function
 						LightSeqCustom.Play SeqStripe1VertOn, 124, 1
 						LightSeqGI2.UpdateInterval = 5
 						LightSeqGI2.Play SeqStripe1VertOn, 124, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSOUTLANESRIGHTCASE1b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSOUTLANESRIGHTCASE1c'"			
+						LightQueue.Add "RANDOMLIGHTSOUTLANESRIGHTCASE1b","RANDOMLIGHTSOUTLANESRIGHTCASE1b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSOUTLANESRIGHTCASE1c","RANDOMLIGHTSOUTLANESRIGHTCASE1c",20,200,0,0,0,false				
 		End Sub
 		Sub RANDOMLIGHTSOUTLANESRIGHTCASE1b()
 						LightSeqCustom2.UpdateInterval = 5
@@ -15766,8 +15807,8 @@ end Function
 						LightSeqCustom.Play SeqFanLeftDownOn, 100, 1
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqFanLeftDownOn, 100, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSOUTLANESRIGHTCASE2b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSOUTLANESRIGHTCASE2c'"			
+						LightQueue.Add "RANDOMLIGHTSOUTLANESRIGHTCASE2b","RANDOMLIGHTSOUTLANESRIGHTCASE2b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSOUTLANESRIGHTCASE2c","RANDOMLIGHTSOUTLANESRIGHTCASE2c",20,200,0,0,0,false		
 		End Sub
 		Sub RANDOMLIGHTSOUTLANESRIGHTCASE2b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15785,8 +15826,8 @@ end Function
 						LightSeqCustom.Play SeqScrewRightOn, 100, 1
 						LightSeqGI2.UpdateInterval = 4
 						LightSeqGI2.Play SeqScrewRightOn, 100, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSOUTLANESRIGHTCASE3b'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSOUTLANESRIGHTCASE3c'"			
+						LightQueue.Add "RANDOMLIGHTSOUTLANESRIGHTCASE3b","RANDOMLIGHTSOUTLANESRIGHTCASE3b",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSOUTLANESRIGHTCASE3c","RANDOMLIGHTSOUTLANESRIGHTCASE3c",20,200,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSOUTLANESRIGHTCASE3b()
 						LightSeqCustom2.UpdateInterval = 4
@@ -15821,8 +15862,8 @@ end Function
 				LightSeqGI.Play SeqStripe1VertOn, 100, 1
 				LightSeqGI.UpdateInterval = 4
 				LightSeqGI.Play SeqStripe2VertOn, 100, 1
-				vpmtimer.addtimer 0150, "RANDOMLIGHTSSKILLSHOTFADECASE1b'"
-				vpmtimer.addtimer 0300, "RANDOMLIGHTSSKILLSHOTFADECASE1c'"			
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE1b","RANDOMLIGHTSSKILLSHOTFADECASE1b",20,150,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE1c","RANDOMLIGHTSSKILLSHOTFADECASE1c",20,300,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSSKILLSHOTFADECASE1b()
 				LightSeqCustom2.UpdateInterval = 4
@@ -15848,8 +15889,8 @@ end Function
 					LightSeqGi.Play SeqDownOn, 100, 1 
 					LightSeqGi.UpdateInterval = 4         
 					LightSeqGi.Play SeqUpOn, 100, 1 
-				vpmtimer.addtimer 0150, "RANDOMLIGHTSSKILLSHOTFADECASE2b'"
-				vpmtimer.addtimer 0300, "RANDOMLIGHTSSKILLSHOTFADECASE2c'"			
+					LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE2b","RANDOMLIGHTSSKILLSHOTFADECASE2b",20,150,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE2c","RANDOMLIGHTSSKILLSHOTFADECASE2c",20,300,0,0,0,false				
 		End Sub
 		Sub RANDOMLIGHTSSKILLSHOTFADECASE2b()
 					LightSeqCustom2.UpdateInterval = 4         
@@ -15875,8 +15916,8 @@ end Function
 					LightSeqGi.Play SeqUpOn, 100, 1 
 					LightSeqGi.UpdateInterval = 4         
 					LightSeqGi.Play SeqDownOn, 100, 1 
-				vpmtimer.addtimer 0150, "RANDOMLIGHTSSKILLSHOTFADECASE3b'"
-				vpmtimer.addtimer 0300, "RANDOMLIGHTSSKILLSHOTFADECASE3c'"			
+					LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE3b","RANDOMLIGHTSSKILLSHOTFADECASE3b",20,150,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE3c","RANDOMLIGHTSSKILLSHOTFADECASE3c",20,300,0,0,0,false					
 		End Sub
 		Sub RANDOMLIGHTSSKILLSHOTFADECASE3b()
 					LightSeqCustom2.UpdateInterval = 4         
@@ -15902,8 +15943,8 @@ end Function
 				LightSeqGI.Play SeqStripe2VertOn, 100, 1
 				LightSeqGI.UpdateInterval = 4
 				LightSeqGI.Play SeqStripe1VertOn, 100, 1
-				vpmtimer.addtimer 0150, "RANDOMLIGHTSSKILLSHOTFADECASE4b'"
-				vpmtimer.addtimer 0300, "RANDOMLIGHTSSKILLSHOTFADECASE4c'"			
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE4b","RANDOMLIGHTSSKILLSHOTFADECASE4b",20,150,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE4c","RANDOMLIGHTSSKILLSHOTFADECASE4c",20,300,0,0,0,false				
 		End Sub
 		Sub RANDOMLIGHTSSKILLSHOTFADECASE4b()
 				LightSeqCustom2.UpdateInterval = 4
@@ -15925,8 +15966,8 @@ end Function
 				LightSeqCustom.Play SeqClockRightOn, 70, 1
 				LightSeqGI.UpdateInterval = 4
 				LightSeqGI.Play SeqClockRightOn, 70, 1
-				vpmtimer.addtimer 0150, "RANDOMLIGHTSSKILLSHOTFADECASE5b'"
-				vpmtimer.addtimer 0300, "RANDOMLIGHTSSKILLSHOTFADECASE5c'"			
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE5b","RANDOMLIGHTSSKILLSHOTFADECASE5b",20,150,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE5c","RANDOMLIGHTSSKILLSHOTFADECASE5c",20,300,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSSKILLSHOTFADECASE5b()
 				LightSeqCustom2.UpdateInterval = 4
@@ -15944,8 +15985,8 @@ end Function
 				LightSeqCustom.Play SeqClockLeftOn, 70, 1
 				LightSeqGI.UpdateInterval = 4
 				LightSeqGI.Play SeqClockLeftOn, 70, 1
-				vpmtimer.addtimer 0150, "RANDOMLIGHTSSKILLSHOTFADECASE6b'"
-				vpmtimer.addtimer 0300, "RANDOMLIGHTSSKILLSHOTFADECASE6c'"			
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE6b","RANDOMLIGHTSSKILLSHOTFADECASE6b",20,150,0,0,0,false
+				LightQueue.Add "RANDOMLIGHTSSKILLSHOTFADECASE6c","RANDOMLIGHTSSKILLSHOTFADECASE6c",20,300,0,0,0,false				
 		End Sub
 		Sub RANDOMLIGHTSSKILLSHOTFADECASE6b()
 				LightSeqCustom2.UpdateInterval = 4
@@ -15989,8 +16030,8 @@ end Function
 						LightSeqLogo.Play SeqLeftOn, 75, 1
 						LightSeqGI2.UpdateInterval = 8
 						LightSeqGI2.Play SeqLeftOn, 75, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEb'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEc'"				
+						LightQueue.Add "RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEb","RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEb",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEc","RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEc",20,200,0,0,0,false					
 		End Sub
 		Sub RANDOMLIGHTSSTANDUPSCOMPLETEDLEFTCASEb()
 						LightSeqLogo2.UpdateInterval = 8
@@ -16008,8 +16049,8 @@ end Function
 						LightSeqLogo.Play SeqRightOn, 75, 1
 						LightSeqGI2.UpdateInterval = 8
 						LightSeqGI2.Play SeqRightOn, 75, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEb'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEc'"				
+						LightQueue.Add "RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEb","RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEb",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEc","RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEc",20,200,0,0,0,false			
 		End Sub
 		Sub RANDOMLIGHTSSTANDUPSCOMPLETEDRIGHTCASEb()
 						LightSeqLogo2.UpdateInterval = 8
@@ -16040,8 +16081,8 @@ end Function
 						LightSeqLogo.Play SeqCircleOutOn, 75, 1  
 						LightSeqGI2.UpdateInterval = 7          
 						LightSeqGI2.Play SeqCircleOutOn, 75, 1
-				vpmtimer.addtimer 0100, "RANDOMLIGHTSKICKEREJECTCASEb'"
-				vpmtimer.addtimer 0200, "RANDOMLIGHTSKICKEREJECTCASEc'"				
+						LightQueue.Add "RANDOMLIGHTSKICKEREJECTCASEb","RANDOMLIGHTSKICKEREJECTCASEb",20,100,0,0,0,false
+						LightQueue.Add "RANDOMLIGHTSKICKEREJECTCASEc","RANDOMLIGHTSKICKEREJECTCASEc",20,200,0,0,0,false				
 		End Sub
 		Sub RANDOMLIGHTSKICKEREJECTCASEb()
 						LightSeqLogo2.UpdateInterval = 7          
@@ -16176,16 +16217,16 @@ end Function
 	End Sub
 	Sub RandomBonusMissionLight
 		MysteryBonusCallout
-		vpmtimer.addtimer 0000, "LightBonusFlash01 '"
-		vpmtimer.addtimer 0050, "LightBonusFlash02 '"
-		vpmtimer.addtimer 0100, "LightBonusFlash03 '"
-		vpmtimer.addtimer 0150, "LightBonusFlash04 '" 
-		vpmtimer.addtimer 0200, "LightBonusFlash05 '"
-		vpmtimer.addtimer 0250, "LightBonusFlash06 '"
-		vpmtimer.addtimer 0300, "LightBonusFlash07 '"
-		vpmtimer.addtimer 0350, "LightBonusFlash08 '"
-		vpmtimer.addtimer 0400, "LightBonusFlash09 '"
-		vpmtimer.addtimer 0450, "FlashForMs LBonus10, 5000, 10, 0 '"
+		LightQueue.Add "LightBonusFlash01","LightBonusFlash01",10,0,0,0,0,false
+		LightQueue.Add "LightBonusFlash02","LightBonusFlash02",10,50,0,0,0,false
+		LightQueue.Add "LightBonusFlash03","LightBonusFlash03",10,100,0,0,0,false
+		LightQueue.Add "LightBonusFlash04","LightBonusFlash04",10,150,0,0,0,false
+		LightQueue.Add "LightBonusFlash05","LightBonusFlash05",10,200,0,0,0,false
+		LightQueue.Add "LightBonusFlash06","LightBonusFlash06",10,250,0,0,0,false
+		LightQueue.Add "LightBonusFlash07","LightBonusFlash07",10,300,0,0,0,false
+		LightQueue.Add "LightBonusFlash08","LightBonusFlash08",10,350,0,0,0,false
+		LightQueue.Add "LightBonusFlash09","LightBonusFlash09",10,400,0,0,0,false
+		LightQueue.Add "FlashForMs LBonus10, 5000, 10, 0","FlashForMs LBonus10, 5000, 10, 0",10,450,0,0,0,false
 	End Sub
 	Sub RandomBonusMissionScore
 		Select Case Int(Rnd * 5) + 1
@@ -16223,7 +16264,7 @@ end Function
 				puPlayer.LabelSet pBackglass,"BumperBG" & idx, "PuPOverlays2\\BumperBurst"&idx1&"-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 	''debug.print  "BumperScore2 " & Score & "," & x & "," & y & "," & size & "," & idx & "," & idx2 & " '"
-				VPMTimer.AddTimer 900, "BumperScore2 """ & Score & """," & x & "," & y & "," & size & "," & idx & "," & idx2 & " '"
+BallHandlingQueue.Add "BumperScore2","BumperScore2 """ & Score & """," & x & "," & y & "," & size & "," & idx & "," & idx2 & "",20,900,0,0,0,false
 				Exit sub 
 			End if 
 		Next 
@@ -16231,7 +16272,7 @@ end Function
 	Sub BumperScore2(Score, x, y, size, idx, idx2)		' Display a popup Animation on the backglass 
 		puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\BumperBurst0-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
-		VPMTimer.AddTimer 900, "BumperScore3 " & idx & " '"
+BallHandlingQueue.Add "BumperScore3","BumperScore3 " & idx & "",20,900,0,0,0,false
 	End Sub 
 	Sub BumperScore3(idx)		' Display a popup Animation on the backglass 
 		puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\Clear.png" ,1,""
@@ -16265,7 +16306,7 @@ end Function
 		image=PupAniFolder&"\\"
 		Select Case Int(Rnd * 1) + 1
 			Case 1:	image=image&"smoke6.gif"
-					vpmtimer.AddTimer 1600, "ClearSmoke '"
+					GeneralPupQueue.Add "ClearSmoke","ClearSmoke",20,1600,0,0,0,false
 		End Select
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		puPlayer.LabelSet pBackglass,"Smoke", image ,1,"{'mt':2,'color':111111, 'anigif':100, 'width':100, 'height':100,'yalign':0,'xalign':0,'ypos':0,'xpos':0}"
@@ -16837,4 +16878,598 @@ Sub PuPEvent(EventNum)
     if (UsePuPEvents=false or PUPStatus=false) then Exit Sub
 	Dbg "Event: " &EventNum
     PuPlayer.B2SData "E"&EventNum,1  'send event to Pup-Pack
+End Sub
+
+'===========================================
+' vpwQueueManager
+' This class manages a queue of
+' vpwQueueItems and executes them.
+'===========================================
+Class vpwQueueManager
+	Public qItems ' A dictionary of vpwQueueItems in the queue (do NOT use native Scripting.Dictionary.Add/Remove; use the vpwQueueManager's Add/Remove methods instead!)
+	Public preQItems ' A dictionary of vpwQueueItems pending to be added to qItems
+	Public debugOn 'Null = no debug. String = activate debug by using this unique label for the queue. REQUIRES baldgeek's error logs.
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.qCurrentItem
+	' This contains a string of the key currently active / at
+	' the top of the queue. An empty string means no items are
+	' active right now.
+	' This is an important property; it should be monitored
+	' in another timer or routine whenever you Add a queue item
+	' with a -1 (indefinite) preDelay or postDelay. Then, for
+	' preDelay, ExecuteCurrentItem should be called to run the
+	' queue item. And for postDelay, DoNextItem should be
+	' called to move to the next item in the queue.
+	'
+	' For example, let's say you add a queue item with the
+	' key "kickTheBall" and an indefinite preDelay. You want
+	' to wait until another timer fires before this queue item
+	' executes and kicks the ball out of a scoop. In the other
+	' timer, you will monitor qCurrentItem. Once it equals
+	' "kickTheBall", call ExecuteCurrentItem, which will run
+	' the queue item and presumably kick out the ball.
+	'
+	' WARNING!: If you do not properly execute one of these
+	' callback routines on an indefinite delayed item, then
+	' the queue will effectively freeze / stop until you do.
+	'---------------------------------------------------------
+	Public qCurrentItem
+	
+	Public preDelayTime ' The GameTime the preDelay for the qCurrentItem was started
+	Public postDelayTime ' The GameTime the postDelay for the qCurrentItem was started
+	
+	Private onQueueEmpty ' A string or object to be called every time the queue empties (use the QueueEmpty property to get/set this)
+	Private queueWasEmpty ' Boolean to determine if the queue was already empty when firing DoNextItem
+	Private preDelayTransfer ' Number of milliseconds of preDelay to transfer over to the next queue item when doNextItem is called
+	
+	Private Sub Class_Initialize
+		Set qItems = CreateObject("Scripting.Dictionary")
+		Set preQItems = CreateObject("Scripting.Dictionary")
+		qCurrentItem = ""
+		onQueueEmpty = ""
+		queueWasEmpty = True
+		debugOn = Null
+		preDelayTransfer = 0
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.Tick
+	' This is where all the magic happens! Call this method in
+	' your timer's _timer routine to check the queue and
+	' execute the necessary methods. We do not iterate over
+	' every item in the queue here, which allows for superior
+	' performance even if you have hundreds of items in the
+	' queue.
+	'----------------------------------------------------------
+	Public Sub Tick()
+		Dim item
+		If qItems.Count > 0 Then ' Don't waste precious resources if we have nothing in the queue
+			
+			' If no items are active, or the currently active item no longer exists, move to the next item in the queue.
+			' (This is also a failsafe to ensure the queue continues to work even if an item gets manually deleted from the dictionary).
+			If qCurrentItem = "" Or Not qItems.Exists(qCurrentItem) Then
+				DoNextItem
+			Else ' We are good; do stuff as normal
+				Set item = qItems.item(qCurrentItem)
+				
+				If item.Executed Then
+					' If the current item was executed and the post delay passed, go to the next item in the queue
+					If item.postDelay >= 0 And GameTime >= (postDelayTime + item.postDelay) Then
+						DebugLog qCurrentItem & " - postDelay of " & item.postDelay & " passed."
+						DoNextItem
+					End If
+				Else
+					' If the current item expires before it can be executed, go to the next item in the queue
+					If item.timeToLive > 0 And GameTime >= (item.queuedOn + item.timeToLive) Then
+						DebugLog qCurrentItem & " - expired (Time To live). Moving To the Next queue item."
+						DoNextItem
+					End If
+					
+					' If the current item was not executed yet and the pre delay passed, then execute it
+					If item.preDelay >= 0 And GameTime >= (preDelayTime + item.preDelay) Then
+						DebugLog qCurrentItem & " - preDelay of " & item.preDelay & " passed. Executing callback."
+						item.Execute
+						preDelayTime = 0
+						postDelayTime = GameTime
+					End If
+				End If
+			End If
+		End If
+		
+		' Loop through each item in the pre-queue to find any that is ready to be added
+		If preQItems.Count > 0 Then
+			Dim k, key
+			k = preQItems.Keys
+			For Each key In k
+				Set item = preQItems.Item(key)
+				
+				' If a queue item was pre-queued and is ready to be considered as actually in the queue, add it
+				If GameTime >= (item.queuedOn + item.preQueueDelay) Then
+					DebugLog key & " (preQueue) - preQueueDelay of " & item.preQueueDelay & " passed. Item added To the main queue."
+					preQItems.Remove key
+					Me.Add key, item.Callback, item.priority, 0, item.preDelay, item.postDelay, item.timeToLive, item.executeNow
+				End If
+			Next
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.DoNextItem
+	' Goes to the next item in the queue and deletes the
+	' currently active one.
+	'----------------------------------------------------------
+	Public Sub DoNextItem()
+		If Not qCurrentItem = "" Then
+			If qItems.Exists(qCurrentItem) Then qItems.Remove qCurrentItem ' Remove the current item from the queue if it still exists
+			qCurrentItem = ""
+		End If
+		
+		If qItems.Count > 0 Then
+			Dim k, key
+			Dim nextItem
+			Dim nextItemPriority
+			Dim item
+			nextItemPriority = 0
+			nextItem = ""
+			
+			' Find which item needs to run next based on priority first, queue order second (ignore items with an active preQueueDelay)
+			k = qItems.Keys
+			For Each key In k
+				Set item = qItems.Item(key)
+				
+				If item.preQueueDelay <= 0 And item.priority > nextItemPriority Then
+					nextItem = key
+					nextItemPriority = item.priority
+				End If
+			Next
+			
+			If qItems.Exists(nextItem) Then
+				Set item = qItems.Item(nextItem)
+				DebugLog "DoNextItem - checking " & nextItem & " (priority " & item.priority & ")"
+				
+				' Make sure the item is not expired and not already executed. If it is, remove it and re-call doNextItem
+				If (item.timeToLive > 0 And GameTime >= (item.queuedOn + item.timeToLive + preDelayTransfer)) Or item.executed = True Then
+					DebugLog "DoNextItem - " & nextItem & " expired (Time To live) Or already executed. Removing And going To the Next item."
+					qItems.Remove nextItem
+					DoNextItem
+					Exit Sub
+				End If
+				
+				'Transfer preDelay time when applicable
+				If preDelayTransfer > 0 And item.preDelay > -1 Then
+					DebugLog "DoNextItem " & nextItem & " - Transferred remaining postDelay of " & preDelayTransfer & " milliseconds from previously overridden queue item To its preDelay And timeToLive"
+					qItems.Item(nextItem).preDelay = item.preDelay + preDelayTransfer
+					If item.timeToLive > 0 Then qItems.Item(nextItem).timeToLive = item.timeToLive + preDelayTransfer
+					preDelayTransfer = 0
+				End If
+				
+				' Set item as current / active, and execute if it has no pre-delay (otherwise Tick will take care of pre-delay)
+				qCurrentItem = nextItem
+				If item.preDelay = 0 Then
+					DebugLog "DoNextItem - " & nextItem & " Now active. It has no preDelay, so executing callback immediately."
+					item.Execute
+					preDelayTime = 0
+					postDelayTime = GameTime
+				Else
+					DebugLog "DoNextItem - " & nextItem & " Now active. Waiting For a preDelay of " & item.preDelay & " before executing."
+					preDelayTime = GameTime
+					postDelayTime = 0
+				End If
+			End If
+		ElseIf queueWasEmpty = False Then
+			DebugLog "DoNextItem - Queue Is Now Empty; executing queueEmpty callback."
+			CallQueueEmpty() ' Call QueueEmpty if this was the last item in the queue
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.ExecuteCurrentItem
+	' Helper routine that can be used when the current item is
+	' on an indefinite preDelay. Call this when you are ready
+	' for that item to execute.
+	'----------------------------------------------------------
+	Public Sub ExecuteCurrentItem()
+		If Not qCurrentItem = "" And qItems.Exists(qCurrentItem) Then
+			DebugLog "ExecuteCurrentItem - Executing the callback For " & qCurrentItem & "."
+			Dim item
+			Set item = qItems.Item(qCurrentItem)
+			item.Execute
+			preDelayTime = 0
+			postDelayTime = GameTime
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.Add
+	' REQUIRES Class vpwQueueItem
+	'
+	' Add an item to the queue.
+	'
+	' PARAMETERS:
+	'
+	' key (string) - Unique name for this queue item
+	' WARNING: Specifying a key that already exists will
+	' overwrite the item in the queue. This is by design. Also
+	' note the following behaviors:
+	' * Tickers / clocks for tracking delay times will NOT be
+	' restarted for this item (but the total duration will be
+	' updated. For example, if the old preDelay was 3 seconds
+	' and 2 seconds elapsed, but Add was called to update
+	' preDelay to 5 seconds, then the queue item will now
+	' execute in 3 more seconds (new preDelay - time elapsed)).
+	' However, timeToLive WILL be restarted.
+	' * Items will maintain their same place in the queue.
+	' * If key = qCurrentItem (overwriting the currently active
+	' item in the queue) and qCurrentItem already executed
+	' the callback (but is waiting for a postDelay), then the
+	' current queue item's remaining postDelay will be added to
+	' the preDelay of the next item, and this item will be
+	' added to the bottom of the queue for re-execution.
+	' If you do not want it to re-execute, then add an If
+	' guard on your call to the Add method checking
+	' "If Not vpwQueueManager.qCurrentItem = key".
+	'
+	' qCallback (object|string) - An object to be called,
+	' or string to be executed globally, when this queue item
+	' runs. I highly recommend making sub routines for groups
+	' of things that should be executed by the queue so that
+	' your qCallback string does not get long, and you can
+	' easily organize your callbacks. Also, use double
+	' double-quotes when the call itself has quotes in it
+	' (VBScript escaping).
+	' Example: "playsound ""Plunger"""
+	'
+	' priority (number) - Items in the queue will be executed
+	' in order from highest priority to lowest. Items with the
+	' same priority will be executed in order according to
+	' when they were added to the queue. Use any number
+	' greater than 0. My recommendation is to make a plan for
+	' your table on how you will prioritize various types of
+	' queue items and what priority number each type should
+	' have. Also, you should reserve priority 1 (lowest) to
+	' items which should wait until everything else in the
+	' queue is done (such as ejecting a ball from a scoop).
+	'
+	' preQueueDelay (number) - The number of
+	' milliseconds before the queue actually considers this
+	' item as "in the queue" (pretend you started a timer to
+	' add this item into the queue after this delay; this
+	' logically works in a similar way; the only difference is
+	' timeToLive is still considered even when an item is
+	' pre-queued.) Set to 0 to add to the queue immediately.
+	' NOTE: this should be less than timeToLive.
+	'
+	' preDelay (number) - The number of milliseconds before
+	' the qCallback executes once this item is active (top)
+	' in the queue. Set this to 0 to immediately execute the
+	' qCallback when this item becomes active.
+	' Set this to -1 to have an indefinite delay until
+	' vpwQueueManager.ExecuteCurrentItem is called (see the
+	' comment for qCurrentItem for more information).
+	' NOTE: this should be less than timeToLive. And, if
+	' timeToLive runs out before preDelay runs out, the item
+	' will be removed and will not execute.
+	'
+	' postDelay (number) - After the qCallback executes, the
+	' number of milliseconds before moving on to the next item
+	' in the queue. Set this to -1 to have an indefinite delay
+	' until vpwQueueManager.DoNextItem is called (see the
+	' comment for qCurrentItem for more information).
+	'
+	' timeToLive (number) - After this item is added to the
+	' queue, the number of milliseconds before this queue item
+	' expires / is removed if the qCallback is not executed by
+	' then. Set to 0 to never expire. NOTE: If not 0, this
+	' should be greater than preDelay + preQueueDelay or the
+	' item will expire before the qCallback is executed.
+	' Example use case: Maybe a player scored a jackpot, but
+	' it would be awkward / irrelevant to play that jackpot
+	' sequence if it hasn't played after a few seconds (e.g.
+	' other items in the queue took priority).
+	'
+	' executeNow (boolean) - Specify true if this item
+	' should interrupt the queue and run immediately. This
+	' will only happen, however, if the currently active item
+	' has a priority less than or equal to the item you are
+	' adding. Note this does not bypass preQueueDelay nor
+	' preDelay if set.
+	' Example: If a player scores an extra ball, you might
+	' want that to interrupt everything else going on as it
+	' is an important milestone.
+	'----------------------------------------------------------
+	Public Sub Add(key, qCallback, priority, preQueueDelay, preDelay, postDelay, timeToLive, executeNow)
+		DebugLog "Adding queue item " & key
+		
+		'Construct the item class
+		Dim newClass
+		Set newClass = New vpwQueueItem
+		With newClass
+			.Callback = qCallback
+			.priority = priority
+			.preQueueDelay = preQueueDelay
+			.preDelay = preDelay
+			.postDelay = postDelay
+			.timeToLive = timeToLive
+			.executeNow = executeNow
+		End With
+		
+		'If we are attempting to overwrite the current queue item which already executed, take the remaining postDelay and add it to the preDelay of the next item. And set us up to immediately go to the next item while re-adding this item to the queue.
+		If preQueueDelay <= 0 And qItems.Exists(key) And qCurrentItem = key Then
+			If qItems.Item(key).executed = True Then
+				DebugLog key & " (Add) - Attempting To overwrite the current queue item which already executed. Immediately re-queuing this item To the bottom of the queue, transferring the remaining postDelay To the Next item, And going To the Next item."
+				If qItems.Item(key).postDelay >= 0 Then
+					preDelayTransfer = ((postDelayTime + qItems.Item(key).postDelay) - GameTime)
+				End If
+				
+				'Remove current queue item so we can go to the next item, this can be re-queued to the bottom, and the remaining postDelay transferred to the preDelay of the next item
+				qItems.Remove qCurrentItem
+				qCurrentItem = ""
+			End If
+		End If
+		
+		' Determine execution stuff if this item does not have a pre-queue delay
+		If preQueueDelay <= 0 Then
+			If executeNow = True Then
+				' Make sure this item does not immediately execute if the current item has a higher priority
+				If Not qCurrentItem = "" And qItems.Exists(qCurrentItem) Then
+					Dim item
+					Set item = qItems.Item(qCurrentItem)
+					If item.priority <= priority Then
+						DebugLog key & " (Add) - Execute Now was Set To True And this item's priority (" & priority & ") Is >= the active item's priority (" & item.priority & " from " & qCurrentItem & "). Making it the current active queue item."
+						qCurrentItem = key
+						If preDelay = 0 And preDelayTransfer = 0 Then
+							DebugLog key & " (Add) - No pre-delay. Executing the callback immediately."
+							newClass.Execute
+							preDelayTime = 0
+							postDelayTime = GameTime
+						Else
+							DebugLog key & " (Add) - Waiting For a pre-delay of " & (preDelay + preDelayTransfer) & " before executing the callback."
+							preDelayTime = GameTime
+							postDelayTime = 0
+						End If
+					Else
+						DebugLog key & " (Add) - Execute Now was Set To True, but this item's priority (" & priority & ") Is Not >= the active item's priority (" & item.priority & " from " & qCurrentItem & "). This item will Not be executed Now And will be added To the queue normally."
+					End If
+				Else
+					DebugLog key & " (Add) - Execute Now was Set To True And no item was active In the queue. Making it the current active queue item."
+					qCurrentItem = key
+					If preDelay = 0 Then
+						DebugLog key & " (Add) - No pre-delay. Executing the callback immediately."
+						preDelayTransfer = 0 'No preDelay transfer if we are immediately re-executing the same queue item
+						newClass.Execute
+						preDelayTime = 0
+						postDelayTime = GameTime
+					Else
+						DebugLog key & " (Add) - Waiting For a pre-delay of " & preDelay & " before executing the callback."
+						preDelayTime = GameTime
+						postDelayTime = 0
+					End If
+				End If
+			End If
+			If qItems.Exists(key) Then 'Overwrite existing item in the queue if it exists
+				DebugLog key & " (Add) - Already exists In the queue. Updating the item With the new parameters passed In Add."
+				Set qItems.Item(key) = newClass
+			Else
+				DebugLog key & " (Add) - Added To the queue."
+				qItems.Add key, newClass
+			End If
+			queueWasEmpty = False
+		Else
+			If preQItems.Exists(key) Then 'Overwrite existing item in the preQueue if it exists
+				DebugLog key & " (Add) - Already exists In the preQueue. Updating the item With the new parameters passed In Add."
+				Set preQItems.Item(key) = newClass
+			Else
+				DebugLog key & " (Add) - Added To the preQueue."
+				preQItems.Add key, newClass
+			End If
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.Remove
+	'
+	' Removes an item from the queue. It is better to use this
+	' than to remove the item from qItems directly as this sub
+	' will also call DoNextItem to advance the queue if
+	' the item removed was the active item.
+	' NOTE: This only removes items from qItems; to remove
+	' an item from preQItems, use the standard
+	' Scripting.Dictionary Remove method.
+	'
+	' PARAMETERS:
+	'
+	' key (string) - Unique name of the queue item to remove.
+	'----------------------------------------------------------
+	Public Sub Remove(key)
+		If qItems.Exists(key) Then
+			DebugLog key & " (Remove)"
+			qItems.Remove key
+			If qCurrentItem = key Or qCurrentItem = "" Then DoNextItem ' Ensure the queue does not get stuck
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueManager.RemoveAll
+	'
+	' Removes all items from the queue / clears the queue.
+	' It is better to call this sub than to remove all items
+	' from qItems directly because this sub cleans up the queue
+	' to ensure it continues to work properly.
+	'
+	' PARAMETERS:
+	'
+	' preQueue (boolean) - Also clear the pre-queue.
+	'----------------------------------------------------------
+	Public Sub RemoveAll(preQueue)
+		DebugLog "Queue was emptied via RemoveAll."
+		
+		' Loop through each item in the queue and remove it
+		Dim k, key
+		k = qItems.Keys
+		For Each key In k
+			qItems.Remove key
+		Next
+		qCurrentItem = ""
+		
+		If queueWasEmpty = False Then CallQueueEmpty() ' Queue is now empty, so call our callback if applicable
+		
+		If preQueue Then
+			k = preQItems.Keys
+			For Each key In k
+				preQItems.Remove key
+			Next
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' Get vpwQueueManager.QueueEmpty
+	' Get the current callback for when the queue is empty.
+	'----------------------------------------------------------
+	Public Property Get QueueEmpty()
+		If IsObject(onQueueEmpty) Then
+			Set QueueEmpty = onQueueEmpty
+		Else
+			QueueEmpty = onQueueEmpty
+		End If
+	End Property
+	
+	'----------------------------------------------------------
+	' Let vpwQueueManager.QueueEmpty
+	' Set the callback to call every time the queue empties.
+	' This could be useful for setting a sub routine to be
+	' called each time the queue empties for doing things such
+	' as ejecting balls from scoops. Unlike using the Add
+	' method, this callback is immune from getting removed by
+	' higher priority items in the queue and will be called
+	' every time the queue is emptied, not just once.
+	'
+	' PARAMETERS:
+	'
+	' callback (object|string) - The callback to call every
+	' time the queue empties.
+	'----------------------------------------------------------
+	Public Property Let QueueEmpty(callback)
+		If IsObject(callback) Then
+			Set onQueueEmpty = callback
+		ElseIf VarType(callback) = vbString Then
+			onQueueEmpty = callback
+		End If
+	End Property
+	
+	'----------------------------------------------------------
+	' Get vpwQueueManager.CallQueueEmpty
+	' Private method that actually calls the QueueEmpty
+	' callback.
+	'----------------------------------------------------------
+	Private Sub CallQueueEmpty()
+		If queueWasEmpty = True Then Exit Sub
+		queueWasEmpty = True
+		
+		If IsObject(onQueueEmpty) Then
+			Call onQueueEmpty(0)
+		ElseIf VarType(onQueueEmpty) = vbString Then
+			If onQueueEmpty > "" Then ExecuteGlobal onQueueEmpty
+		End If
+	End Sub
+	
+	'----------------------------------------------------------
+	' DebugLog
+	' Log something if debugOn is not null.
+	' REQUIRES / uses the WriteToLog sub from Baldgeek's
+	' error log library.
+	'----------------------------------------------------------
+	Private Sub DebugLog(message)
+		If Not IsNull(debugOn) Then
+			WriteToLog "VPW Queue " & debugOn, message
+		End If
+	End Sub
+End Class
+
+'===========================================
+' vpwQueueItem
+' Represents a single item for the queue
+' system. Do NOT use this class directly.
+' Instead, use the vpwQueueManager.Add
+' routine.
+
+' You can, however, access an individual
+' item in the queue via
+' vpwQueueManager.qItems and then modify
+' its properties while it is still in the
+' queue.
+'===========================================
+Class vpwQueueItem  ' Do not construct this class directly; use vpwQueueManager.Add instead, and vpwQueueManager.qItems.Item(key) to modify an item's properties.
+	Public priority ' The item's set priority
+	Public timeToLive ' The item's set timeToLive milliseconds requested
+	Public preQueueDelay ' The item's pre-queue milliseconds requested
+	Public preDelay ' The item's pre delay milliseconds requested
+	Public postDelay ' The item's post delay milliseconds requested
+	Public executeNow ' Whether the item was set to Execute immediately
+	Private qCallback ' The item's callback object or string (use the Callback property on the class to get/set it)
+	
+	Public executed ' Whether or not this item's qCallback was executed yet
+	Public queuedOn ' The game time this item was added to the queue
+	Public executedOn ' The game time this item was executed
+	
+	Private Sub Class_Initialize
+		' Defaults
+		priority = 0
+		timeToLive = 0
+		preQueueDelay = 0
+		preDelay = 0
+		postDelay = 0
+		qCallback = ""
+		executeNow = False
+		
+		queuedOn = GameTime
+		executedOn = 0
+	End Sub
+	
+	'----------------------------------------------------------
+	' vpwQueueItem.Execute
+	' Executes the qCallback on this item if it was not yet
+	' already executed.
+	'----------------------------------------------------------
+	Public Sub Execute()
+		If executed Then Exit Sub ' Do not allow an item's qCallback to ever Execute more than one time
+		
+		'Mark as execute before actually executing callback; that way, if callback recursively adds the item back into the queue, then we can properly handle it.
+		executed = True
+		executedOn = GameTime
+		
+		' Execute qCallback
+		If IsObject(qCallback) Then
+			Call qCallback(0)
+		ElseIf VarType(qCallback) = vbString Then
+			If qCallback > "" Then ExecuteGlobal qCallback
+		End If
+	End Sub
+	
+	Public Property Get Callback()
+		If IsObject(qCallback) Then
+			Set Callback = qCallback
+		Else
+			Callback = qCallback
+		End If
+	End Property
+	
+	Public Property Let Callback(cb)
+		If IsObject(cb) Then
+			Set qCallback = cb
+		ElseIf VarType(cb) = vbString Then
+			qCallback = cb
+		End If
+	End Property
+End Class
+
+'***************************************************************
+' END VPIN WORKSHOP ADVANCED QUEUING SYSTEM
+'***************************************************************
+
+Sub QueueTimer_Timer()
+	BallHandlingQueue.Tick
+	GeneralPupQueue.Tick
+	LightQueue.Tick
+	AudioQueue.Tick
 End Sub

@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -373.0,
+      "y": 2002.0
+    },
+    "is_timer_enabled": true,
+    "timer_interval": 100,
+    "name": "QueueTimer",
+    "backglass": false
+  }
+}
