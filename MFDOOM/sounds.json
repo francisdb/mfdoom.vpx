@@ -1188,123 +1188,6 @@
     "output_target": "table"
   },
   {
-    "name": "Metal_Touch_1",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_1.wav",
-    "internal_name": "metal_touch_1",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_2",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_2.wav",
-    "internal_name": "metal_touch_2",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_3",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_3.wav",
-    "internal_name": "metal_touch_3",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_4",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_4.wav",
-    "internal_name": "metal_touch_4",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_5",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_5.wav",
-    "internal_name": "metal_touch_5",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_6",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_6.wav",
-    "internal_name": "metal_touch_6",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_7",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_7.wav",
-    "internal_name": "metal_touch_7",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_8",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_8.wav",
-    "internal_name": "metal_touch_8",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_9",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_9.wav",
-    "internal_name": "metal_touch_9",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_10",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_10.wav",
-    "internal_name": "metal_touch_10",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_11",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_11.wav",
-    "internal_name": "metal_touch_11",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_12",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_12.wav",
-    "internal_name": "metal_touch_12",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
-    "name": "Metal_Touch_13",
-    "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Metal_Touch_13.wav",
-    "internal_name": "metal_touch_13",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "table"
-  },
-  {
     "name": "Rollover_1",
     "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Rollover_1.wav",
     "internal_name": "rollover_1",
@@ -4596,8 +4479,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_1_dedup1"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_2",
@@ -4606,8 +4488,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_2_dedup2"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_3",
@@ -4616,8 +4497,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_3_dedup3"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_4",
@@ -4626,8 +4506,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_4_dedup4"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_5",
@@ -4636,8 +4515,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_5_dedup5"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_6",
@@ -4646,8 +4524,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_6_dedup6"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_7",
@@ -4656,8 +4533,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_7_dedup7"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_8",
@@ -4666,8 +4542,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_8_dedup8"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_9",
@@ -4676,8 +4551,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_9_dedup9"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_10",
@@ -4686,8 +4560,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_10_dedup10"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_11",
@@ -4696,8 +4569,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_11_dedup11"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_12",
@@ -4706,8 +4578,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_12_dedup12"
+    "output_target": "table"
   },
   {
     "name": "Metal_Touch_13",
@@ -4716,8 +4587,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table",
-    "name_dedup": "Metal_Touch_13_dedup13"
+    "output_target": "table"
   },
   {
     "name": "Target_Hit_1",
