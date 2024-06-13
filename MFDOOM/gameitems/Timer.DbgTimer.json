@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -320.40747,
+      "y": 888.44446
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 500,
+    "name": "DbgTimer",
+    "backglass": false
+  }
+}

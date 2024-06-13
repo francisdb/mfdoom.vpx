@@ -139,6 +139,7 @@ Dim BIP							 'Balls in play
 BIP = 0
 Dim BIPL							'Ball in plunger lane
 BIPL = False
+Dim CurrBall
 
 Dim BallHandlingQueue : Set BallHandlingQueue = New vpwQueueManager
 Dim AudioQueue : Set AudioQueue = New vpwQueueManager
@@ -761,6 +762,7 @@ Sub DMDTimer_Timer
 
 	If VRroom>0 then FlexFlasher  'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
+if Not hsbModeActive Then
 	If PlayVideo>0 Then
 		If PLayvideo> OldVideo Then
 			If Not OldVideo=0 Then 
@@ -819,6 +821,8 @@ Sub DMDTimer_Timer
 '	For i = 1 To LastVideo
 '		If DMD_Video(i,1)=Frame Then FlexDMD.Stage.GetVideo("vidvid"&i).Visible=False
 '	Next
+End If
+
 
 	If (Frame Mod 2) = 0 Then
 		For i = 1 to 4
@@ -966,7 +970,9 @@ Sub DMDTimer_Timer
 		FlexDMD.Stage.GetLabel("Topsplash").Visible=False
 	End If
 
-		FlexDMD.Stage.GetLabel("Ball").Text = "Ball " & 4 - BallsRemaining(CurrentPlayer)
+	CurrBall = 4 - BallsRemaining(CurrentPlayer)
+	if CurrBall > 3 Then CurrBall = 3
+		FlexDMD.Stage.GetLabel("Ball").Text = "Ball " & CurrBall
 		FlexDMD.Stage.GetLabel("Ball").SetAlignedPosition 0, 33, FlexDMD_Align_BottomLeft
 
 		FlexDMD.Stage.GetLabel("Player").Text = "Villain " & (CurrentPlayer)
@@ -1952,228 +1958,6 @@ End Sub
 	End Sub
 
 
-' MerlinRTP  -- added for highscore conversion from Pup to FlexDMD
-' *************************************************************************
-'   JP's Reduced Display Driver Functions (based on script by Black)
-' only 5 effects: none, scroll left, scroll right, blink and blinkfast
-' 3 Lines, treats all 3 lines as text.
-' 1st and 2nd lines are 20 characters long
-' 3rd line is just 1 character
-' Example format:
-' DMD "text1","text2","backpicture", eNone, eNone, eNone, 250, True, "sound"
-' Short names:
-' dq = display queue
-' de = display effect
-' *************************************************************************
-
-Const eNone = 0        ' Instantly displayed
-Const eScrollLeft = 1  ' scroll on from the right
-Const eScrollRight = 2 ' scroll on from the left
-Const eBlink = 3       ' Blink (blinks for 'TimeOn')
-Const eBlinkFast = 4   ' Blink (blinks for 'TimeOn') at user specified intervals (fast speed)
-
-Const dqSize = 64
-
-Dim dqHead
-Dim dqTail
-Dim deSpeed
-Dim deBlinkSlowRate
-Dim deBlinkFastRate
-
-Dim dLine(2)
-Dim deCount(2)
-Dim deCountEnd(2)
-Dim deBlinkCycle(2)
-
-Dim dqText(2, 64)
-Dim dqEffect(2, 64)
-Dim dqTimeOn(64)
-Dim dqbFlush(64)
-Dim dqSound(64)
-
-
-Dim DMDScene
-
-
-Sub DMDFlush()
-    Dim i
-    DMDTimer.Enabled = False
-    dqHead = 0
-    dqTail = 0
-    For i = 0 to 2
-        deCount(i) = 0
-        deCountEnd(i) = 0
-        deBlinkCycle(i) = 0
-    Next
-End Sub
-
-
-Function ExpandLine(TempStr) 'id is the number of the dmd line
-    If TempStr = "" Then
-        TempStr = Space(20)
-    Else
-        if Len(TempStr) > Space(20)Then
-            TempStr = Left(TempStr, Space(20))
-        Else
-            if(Len(TempStr) < 20)Then
-                TempStr = TempStr & Space(20 - Len(TempStr))
-            End If
-        End If
-    End If
-    ExpandLine = TempStr
-End Function
-
-Function FormatScore(ByVal Num) 'it returns a string with commas (as in Black's original font)
-    dim i
-    dim NumString
-
-    NumString = CStr(abs(Num))
-
-    For i = Len(NumString)-3 to 1 step -3
-        if IsNumeric(mid(NumString, i, 1))then
-            NumString = left(NumString, i-1) & chr(asc(mid(NumString, i, 1)) + 48) & right(NumString, Len(NumString)- i)
-        end if
-    Next
-    FormatScore = NumString
-End function
-
-Function FL(NumString1, NumString2) 'Fill line
-    Dim Temp, TempStr
-    Temp = 20 - Len(NumString1)- Len(NumString2)
-    TempStr = NumString1 & Space(Temp) & NumString2
-    FL = TempStr
-End Function
-
-Function CL(NumString) 'center line
-    Dim Temp, TempStr
-    Temp = (20 - Len(NumString)) \ 2
-    TempStr = Space(Temp) & NumString & Space(Temp)  
-    CL = TempStr
-End Function
-
-Function RL(NumString) 'right line
-    Dim Temp, TempStr
-    Temp = 20 - Len(NumString)
-    TempStr = Space(Temp) & NumString
-    RL = TempStr
-End Function
-
-'**************
-' Update DMD
-'**************
-
-Sub DMDUpdate(id)
-    Dim digit, value
-    FlexDMD.LockRenderThread
-	Dbg "ID:" &id
-    Select Case id
-        Case 0 'top text line
-            For digit = 20 to 35
-                DMDDisplayChar mid(dLine(0), digit-19, 1), digit
-            Next
-        Case 1 'bottom text line
-            For digit = 0 to 19
-                DMDDisplayChar mid(dLine(1), digit + 1, 1), digit
-            Next
-        Case 2 ' back image - back animations
-            If dLine(2) = "" OR dLine(2) = " " Then dLine(2) = "bkempty"
-            DigitsBack(0).ImageA = dLine(2)
-           ' DMDScene.GetImage("Back").Bitmap = FlexDMD.NewImage("", "VPX." & dLine(2) & "&dmd=2").Bitmap
-    End Select
-    FlexDMD.UnlockRenderThread
-End Sub
-
-Sub DMDDisplayChar(achar, adigit)
-    If achar = "" Then achar = " "
-    achar = ASC(achar)
-	Dbg "CHAR:" &achar
-    Digits(adigit).ImageA = Chars(achar)
-   ' DMDScene.GetImage("Dig" & adigit).Bitmap = FlexDMD.NewImage("", "VPX." & Chars(achar) & "&dmd=2").Bitmap
-End Sub
-
-'****************************
-' JP's new DMD using flashers
-'****************************
-
-Dim Digits, Chars(255), Images(255)
-
-DMDInit
-
-Sub DMDInit
-    Dim i
-    'If Table1.ShowDT = true then
-    Digits = Array(digit001, digit002, digit003, digit004, digit005, digit006, digit007, digit008, digit009, digit010, _
-        digit011, digit012, digit013, digit014, digit015, digit016, digit017, digit018, digit019, digit020,            _
-        digit021, digit022, digit023, digit024, digit025, digit026, digit027, digit028, digit029, digit030,            _
-        digit031, digit032, digit033, digit034, digit035, digit036, digit037, digit038, digit039, digit040,            _
-        digit041)
-
-    For i = 0 to 255:Chars(i)  = "dempty":Next '= "dempty":Images(i) = "dempty":Next
-
-    Chars(32) = "dempty"
-    '    Chars(34) = '"
-    '    Chars(36) = '$
-    '    Chars(39) = ''
-    '    Chars(42) = '*
-    '    Chars(43) = '+
-    '    Chars(45) = '-
-    '    Chars(47) = '/
-    Chars(48) = "d0"       '0
-    Chars(49) = "d1"       '1
-    Chars(50) = "d2"       '2
-    Chars(51) = "d3"       '3
-    Chars(52) = "d4"       '4
-    Chars(53) = "d5"       '5
-    Chars(54) = "d6"       '6
-    Chars(55) = "d7"       '7
-    Chars(56) = "d8"       '8
-    Chars(57) = "d9"       '9
-    Chars(60) = "dless"    '<
-    Chars(61) = "dequal"   '=
-    Chars(62) = "dgreater" '>
-    '   Chars(64) = '@
-    Chars(65) = "da" 'A
-    Chars(66) = "db" 'B
-    Chars(67) = "dc" 'C
-    Chars(68) = "dd" 'D
-    Chars(69) = "de" 'E
-    Chars(70) = "df" 'F
-    Chars(71) = "dg" 'G
-    Chars(72) = "dh" 'H
-    Chars(73) = "di" 'I
-    Chars(74) = "dj" 'J
-    Chars(75) = "dk" 'K
-    Chars(76) = "dl" 'L
-    Chars(77) = "dm" 'M
-    Chars(78) = "dn" 'N
-    Chars(79) = "do" 'O
-    Chars(80) = "dp" 'P
-    Chars(81) = "dq" 'Q
-    Chars(82) = "dr" 'R
-    Chars(83) = "ds" 'S
-    Chars(84) = "dt" 'T
-    Chars(85) = "du" 'U
-    Chars(86) = "dv" 'V
-    Chars(87) = "dw" 'W
-    Chars(88) = "dx" 'X
-    Chars(89) = "dy" 'Y
-    Chars(90) = "dz" 'Z
-    'Chars(91) = "dball" '[
-    'Chars(92) = "dcoin" '|
-    'Chars(93) = "dpika" ']
-    '    Chars(94) = '^
-    '    Chars(95) = '_
-    Chars(96) = "d0a"  '0.
-    Chars(97) = "d1a"  '1.
-    Chars(98) = "d2a"  '2.
-    Chars(99) = "d3a"  '3.
-    Chars(100) = "d4a" '4.
-    Chars(101) = "d5a" '5.
-    Chars(102) = "d6a" '6.
-    Chars(103) = "d7a" '7.
-    Chars(104) = "d8a" '8.
-    Chars(105) = "d9a" '9
-End Sub
 
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -2671,6 +2455,8 @@ End Function
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 	Sub Table1_KeyDown(ByVal Keycode)
+
+if keycode = "7" Then RTP
 
 		If keycode = AddCreditKey Then
 			Select Case Int(rnd*3)
@@ -3382,10 +3168,10 @@ Sub Savehs
 End Sub
 
 Sub Reseths
-    HighScoreName(0) = "AAA"
-    HighScoreName(1) = "BBB"
-    HighScoreName(2) = "CCC"
-    HighScoreName(3) = "DDD"
+    HighScoreName(0) = "RTP"
+    HighScoreName(1) = "ILL"
+    HighScoreName(2) = "IAK"
+    HighScoreName(3) = "OQQ"
     HighScore(0) = 1500000
     HighScore(1) = 1400000
     HighScore(2) = 1300000
@@ -3419,11 +3205,13 @@ End Sub
 	End Sub
 
 
-
 Sub HighScoreEntryInit()
+	DbgTimer.Enabled = 1
+	Dbg "Entering High Score Entry"
+
+	PlayVideo = 0
 	pupevent 798
     hsbModeActive = True
-    PlaySound "vo_greatscore" &RndNbr(6)
     hsLetterFlash = 0
 
     hsEnteredDigits(0) = " "
@@ -3433,7 +3221,6 @@ Sub HighScoreEntryInit()
 
     hsValidLetters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<" ' < is back arrow
     hsCurrentLetter = 1
-    DMDFlush()
     HighScoreDisplayNameNow()
 
     HighScoreFlashTimer.Interval = 250
@@ -3453,8 +3240,7 @@ Sub HighScoreDisplayName()
     Dim TempBotStr
 
     TempTopStr = "YOUR NAME:"
-    dLine(0) = ExpandLine(TempTopStr)
-    DMDUpdate 0
+	DMDTopSplash TempTopStr, 9999, 1
 
     TempBotStr = "    > "
     if(hsCurrentDigit > 0)then TempBotStr = TempBotStr & hsEnteredDigits(0)
@@ -3463,7 +3249,7 @@ Sub HighScoreDisplayName()
 
     if(hsCurrentDigit <> 3)then
         if(hsLetterFlash <> 0)then
-            TempBotStr = TempBotStr & "_"
+            TempBotStr = TempBotStr & " "
         else
             TempBotStr = TempBotStr & mid(hsValidLetters, hsCurrentLetter, 1)
         end if
@@ -3473,8 +3259,7 @@ Sub HighScoreDisplayName()
     if(hsCurrentDigit < 2)then TempBotStr = TempBotStr & hsEnteredDigits(2)
 
     TempBotStr = TempBotStr & " <    "
-    dLine(1) = ExpandLine(TempBotStr)
-    DMDUpdate 1
+	DMDBigText TempBotStr,9999,0
 End Sub
 
 
@@ -3526,102 +3311,6 @@ Sub EnterHighScoreKey(keycode)
     end if
 End Sub
 
-	Dim hsletter
-	hsletter = 1
-
-	dim hsdigit:hsdigit = 1
-
-	Sub assignletter
-exit sub
-		if hscurrentdigit = 1 Then
-			hsdigit = 1
-		End If
-		if hscurrentdigit = 2 Then
-			hsdigit = 2
-		End If
-		if hscurrentdigit = 3 Then
-			hsdigit = 3
-		End If
-		If hsletter = 1 Then 
-			hsEnteredDigits(hsdigit) = "A"
-		End If
-		If hsletter = 2 Then 
-			hsEnteredDigits(hsdigit) = "B"
-		End If
-		If hsletter = 3 Then 
-			hsEnteredDigits(hsdigit) = "C"
-		End If
-		If hsletter = 4 Then 
-			hsEnteredDigits(hsdigit) = "D"
-		End If
-		If hsletter = 5 Then 
-			hsEnteredDigits(hsdigit) = "E"
-		End If
-		If hsletter = 6 Then 
-			hsEnteredDigits(hsdigit) = "F"
-		End If
-		If hsletter = 7 Then 
-			hsEnteredDigits(hsdigit) = "G"
-		End If
-		If hsletter = 8 Then 
-			hsEnteredDigits(hsdigit) = "H"
-		End If
-		If hsletter = 9 Then 
-			hsEnteredDigits(hsdigit) = "I"
-		End If
-		If hsletter = 10 Then 
-			hsEnteredDigits(hsdigit) = "J"
-		End If
-		If hsletter = 11 Then 
-			hsEnteredDigits(hsdigit) = "K"
-		End If
-		If hsletter = 12 Then 
-			hsEnteredDigits(hsdigit) = "L"
-		End If
-		If hsletter = 13 Then 
-			hsEnteredDigits(hsdigit) = "M"
-		End If
-		If hsletter = 14 Then 
-			hsEnteredDigits(hsdigit) = "N"
-		End If
-		If hsletter = 15 Then 
-			hsEnteredDigits(hsdigit) = "O"
-		End If
-		If hsletter = 16 Then 
-			hsEnteredDigits(hsdigit) = "P"
-		End If
-		If hsletter = 17 Then 
-			hsEnteredDigits(hsdigit) = "Q"
-		End If
-		If hsletter = 18 Then 
-			hsEnteredDigits(hsdigit) = "R"
-		End If
-		If hsletter = 19 Then 
-			hsEnteredDigits(hsdigit) = "S"
-		End If
-		If hsletter = 20 Then 
-			hsEnteredDigits(hsdigit) = "T"
-		End If
-		If hsletter = 21 Then 
-			hsEnteredDigits(hsdigit) = "U"
-		End If
-		If hsletter = 22 Then 
-			hsEnteredDigits(hsdigit) = "V"
-		End If
-		If hsletter = 23 Then 
-			hsEnteredDigits(hsdigit) = "W"
-		End If
-		If hsletter = 24 Then 
-			hsEnteredDigits(hsdigit) = "X"
-		End If
-		If hsletter = 25 Then 
-			hsEnteredDigits(hsdigit) = "Y"
-		End If
-		If hsletter = 26 Then 
-			hsEnteredDigits(hsdigit) = "Z"
-		End If
-
-	End Sub
 
 	' post the high score letters
 Sub HighScoreCommitName()
@@ -9995,8 +9684,8 @@ End Sub
 		Else
 			BallsRemaining(CurrentPlayer) = BallsRemaining(CurrentPlayer) - 1
 			If(BallsRemaining(CurrentPlayer) <= 0) Then
-				'CheckHighScore()
-				EndOfBallComplete()     
+				CheckHighScore()
+				'EndOfBallComplete()     
 			Else
 				EndOfBallComplete()
 			End If
@@ -10330,6 +10019,8 @@ End Sub
 		FlashForMs LDoubleScoring01, 1500, 50, 0
 		FlashForMs LSlimeb, 1500, 50, 0
 		DOOMLightsFlash
+		DMDTopSplash "",1,0
+		DMDBigText "",1,0
 	End Sub
 
 	Sub StopEndOfBallMode()              'called after the last ball is drained
@@ -15048,7 +14739,7 @@ end Function
 					LightSeqLogo.Play SeqClockLeftOn, 70, 1
 					LightSeqGI2.UpdateInterval = 4
 					LightSeqGI2.Play SeqClockLeftOn, 70, 1
-					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE7b","RANDOMLIGHTSDRAINQUICKCASE1b7b",20,100,0,0,0,false
+					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE7b","RANDOMLIGHTSDRAINQUICKCASE7b",20,100,0,0,0,false
 					LightQueue.Add "RANDOMLIGHTSDRAINQUICKCASE7c","RANDOMLIGHTSDRAINQUICKCASE7c",20,200,0,0,0,false	
 					FlasherMaskQuick	
 		End Sub
@@ -16828,8 +16519,6 @@ End Function
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Dim objIEDebugWindow
-Dim CurrTime
-CurrTime = Timer
 Sub Dbg( myDebugText )
 ' Uncomment the next line to turn off debugging
 Exit Sub
@@ -16846,10 +16535,10 @@ objIEDebugWindow.Top = 100
 Do While objIEDebugWindow.Busy
 Loop
 objIEDebugWindow.Document.Title = "My Debug Window"
-objIEDebugWindow.Document.Body.InnerHTML = "<b>MRDOOM Debug Window -TimeStamp: " & CurrTime & "</b></br>"
+objIEDebugWindow.Document.Body.InnerHTML = "<b>MRDOOM Debug Window -TimeStamp: " & GameTime& "</b></br>"
 End If
 
-objIEDebugWindow.Document.Body.InnerHTML = objIEDebugWindow.Document.Body.InnerHTML & myDebugText & " --TimeStamp:<b> " & CurrTime & "</b><br>" & vbCrLf
+objIEDebugWindow.Document.Body.InnerHTML = objIEDebugWindow.Document.Body.InnerHTML & myDebugText & " --TimeStamp:<b> " & GameTime & "</b><br>" & vbCrLf
 End Sub
 
 
@@ -17472,4 +17161,20 @@ Sub QueueTimer_Timer()
 	GeneralPupQueue.Tick
 	LightQueue.Tick
 	AudioQueue.Tick
+End Sub
+
+Sub RTP
+Dim TempTopStr
+    TempTopStr = "YOUR NAME:"
+
+DMDTopSplash "YOUR NAME:", 9999, 1
+
+Dim TempBotStr
+    TempBotStr = TempBotStr & " <A    "
+    'dLine(1) = ExpandLine(TempBotStr)
+	DMDBigText TempBotStr,9999,0
+End Sub
+
+Sub DbgTimer_Timer()
+	Dbg "Video: " &PlayVideo
 End Sub

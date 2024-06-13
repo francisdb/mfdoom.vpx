@@ -2,1898 +2,1498 @@
   {
     "name": "emkicker-t1",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\emkicker-t1.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT2",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Scratches",
     "path": "C:\\Users\\rolan\\Desktop\\Scratches.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "rubber-post-t1-black",
     "path": "C:\\UPin\\rubber-post-t1-black.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT0",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flippers_shadow",
     "path": "C:\\Users\\HP i7\\Downloads\\VP_old\\makeover stuff\\flippers_shadow.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "metal3",
     "path": "E:\\Pinball\\Tables\\!Fire\\Images\\metal3.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "sidewood._h",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images\\sidewood_h.png",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "sidewood_h"
   },
   {
     "name": "LUT1",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT3",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT4",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT6",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT10",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT10.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "square1on_",
     "path": "C:\\Users\\rolan\\Desktop\\square1on_.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT7",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ballshadow",
     "path": "C:\\Users\\HP i7\\Downloads\\VP_old\\makeover stuff\\ballshadow.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT11",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT11.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT5",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT14",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT14.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT8",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT12",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT12.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT13",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT13.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "CustomWhiteTip",
     "path": "D:\\temp\\CustomWhiteTip.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT9",
     "path": "C:\\Users\\rolan\\Desktop\\LUT\\LUT9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "square1off3_",
     "path": "C:\\Users\\rolan\\Desktop\\square1off3_.png",
-    "alpha_test_value": 128.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 128.0
   },
   {
     "name": "HitTargetBolt",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\KEYNOTE-DropTargeSmall03 copy 2.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-DropTargeSmall03 copy 2.001"
   },
   {
     "name": "aluminum",
     "path": "E:\\Pinball\\Tables\\!Fire\\Images\\aluminum.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "HitTarget-Add-A-Ballv1",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\ADD-A-BALL.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "ADD-A-BALL.001"
   },
   {
     "name": "hittargettrain",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-DropTargeSmall03 copy 2.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-DropTargeSmall03 copy 2.001"
   },
   {
     "name": "spinner",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-Spinner Graphics new.001.jpeg",
     "alpha_test_value": 128.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-Spinner Graphics new.001"
   },
   {
     "name": "dome2basepurple",
     "path": "C:\\Users\\rolan\\Desktop\\flupper\\dome2basepurple.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LockdownBarreal-JR",
     "path": "E:\\Pinball\\Tables\\Materials\\LockdownBarreal-JR.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bumpercap-green",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\cap2.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "cap2"
   },
   {
     "name": "flare2",
     "path": "C:\\Users\\rolan\\Desktop\\flare2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "PlungerCover",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-Plunger Cover2.png",
     "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-Plunger Cover2"
   },
   {
     "name": "level",
     "path": "C:\\Users\\rolan\\Desktop\\level.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ball_black",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\black.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_signed": false,
     "jpeg_name": "black.001"
   },
   {
     "name": "black.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\black.001.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dome2litpurple",
     "path": "C:\\Users\\rolan\\Desktop\\flupper\\dome2litpurple.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "round3on_",
     "path": "C:\\Users\\rolan\\Desktop\\round3on_.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "round3off_",
     "path": "C:\\Users\\rolan\\Desktop\\round3off_.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bsrtx7",
     "path": "C:\\Users\\rolan\\Desktop\\bsrtx7.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ball_purpleswirl",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\ball_purplesolid.png",
     "alpha_test_value": 1.0,
-    "is_signed": false,
     "jpeg_name": "ball_purplesolid"
   },
   {
     "name": "red lights",
     "path": "C:\\Users\\rolan\\Desktop\\red lights.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke0",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "droptargetnew2",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\droptargetnew2.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ronddomebasegreen",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\Flupper Domes\\ronddomebasegreen.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke1",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "droptargetnew1",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\droptargetnew1.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke3",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "domewhitelit",
     "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\Orbital Framework\\artwork\\domewhitelit.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LED_RED",
     "path": "C:\\Users\\rolan\\Desktop\\LED_RED.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ronddomelitgreen",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\Flupper Domes\\ronddomelitgreen.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ronddomelitpurple",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\Flupper Domes\\ronddomelitpurple.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke4",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke2",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ronddomebasepurple",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\Flupper Domes\\ronddomebasepurple.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke5",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke9",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke6",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke7",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke10",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke10.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "domeyellowlit",
     "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\Orbital Framework\\artwork\\domeyellowlit.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ball_purpledisco",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\ball_purpledisco-small.jpg",
     "alpha_test_value": 1.0,
-    "is_signed": false,
     "jpeg_name": "ball_purpledisco-small"
   },
   {
     "name": "bluntsmoke13",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke13.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "droptargetnew3",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\droptargetnew3.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke12",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke12.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke14",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke14.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke8",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke11",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke11.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "pole2.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\pole2.001.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Cigar_baseColor",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\Cigar_baseColor.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke16",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke16.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke15",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke15.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke19",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke19.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "domewhitebase",
     "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\Orbital Framework\\artwork\\domewhitebase.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke17",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke17.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke23",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke23.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke21",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke21.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bump3.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bump3.001.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke20",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke20.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke24",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke24.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke18",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke18.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke0",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ball_HDR",
     "path": "C:\\Users\\rolan\\Desktop\\ball_HDR.hdr",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke3",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke1",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke2",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "pole3.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\pole3.001.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke4",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke7",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "record new.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\record new.001-512.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "record new.001-512"
   },
   {
     "name": "prim-bluntwrap",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\prim-bluntwrap512.png",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "prim-bluntwrap512"
   },
   {
     "name": "spliffsmoke6",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke5",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke9",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke8",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke12",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke12.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke10",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke10.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke11",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke11.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke13",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke13.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke14",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke14.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke22",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke22.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke19",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke19.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke16",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke16.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke18",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke18.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke15",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke15.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LED_Green",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\Flupper Domes & lights\\LED_Green.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke17",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke17.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bluntsmoke22",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bluntsmoke22.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke24",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke24.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke23",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke23.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "LUT15",
     "path": "C:\\Users\\rolan\\Desktop\\LUT15.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke21",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke21.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spliffsmoke20",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\spliffsmoke20.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "domeyellowbase",
     "path": "C:\\Users\\rolan\\Desktop\\domeyellowbase.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs0",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs2",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs3",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs4",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs7",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs6",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs5",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs16",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs16.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs10",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs10.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs8",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs17",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs17.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "levelrivetshadows",
     "path": "C:\\Users\\rolan\\Desktop\\levelrivetshadows.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs13",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs13.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Insert_round1on_",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_round1on_.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs18",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs18.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs9",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs20",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs20.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs19",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs19.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs12",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs12.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs14",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs14.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ball_purplegreenswirl",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\ball3.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_signed": false,
     "jpeg_name": "ball3.001"
   },
   {
     "name": "Insert_triangle3on_",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_triangle3on_.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs11",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs11.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs1",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Insert_triangle3off_",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_triangle3off_.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "bongs15",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\bongs15.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "metalbrushedlight",
     "path": "C:\\Users\\rolan\\Desktop\\metalbrushedlight.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Insert_RectangleDDOn",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_RectangleDDOn.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Insert_RectangleDDOff",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_RectangleDDOff.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Insert_round1onb",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_round1onb.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Insert_round1off5b",
     "path": "C:\\Users\\rolan\\Desktop\\Insert_round1off5b.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "spot4",
     "path": "C:\\Users\\rolan\\Desktop\\spot4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ashes_baseColor",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\ashes_baseColor.jpeg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "levelscrewshadows",
     "path": "C:\\Users\\rolan\\Desktop\\levelscrewshadows.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "domeredflash",
     "path": "C:\\Users\\rolan\\Desktop\\domeredflash.jpg",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flipper-left-solid-white",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\flipper-left-solid-white.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ball_purplestripes",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\ball_purplestripes.jpeg",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "domegreenflash",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\Flupper Domes & lights\\domegreenflash.jpg",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flipper-right-solid-white",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\flipper-right-solid-white.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flipper-right-solid-yellow",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\flipper-right-solid-yellow.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flipper-left-solid-yellow",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\flipper-left-solid-yellow.png",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "Pincab_Speaker",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\Pincab_DMD_Grill_NoLogo.png",
     "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false,
     "jpeg_name": "Pincab_DMD_Grill_NoLogo"
   },
   {
     "name": "VR-LOGO-QUASIMOTO",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\VR-LOGO-QUASIMOTO.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "prim-weedstatic",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\prim-weedstatic1024.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "prim-weedstatic1024"
   },
   {
     "name": "shinyenvironment3blur4",
     "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Art Resources\\shinyenvironment3blur4.hdr",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "VR-LOGO-MFDOOM",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\VR-LOGO-MFDOOM.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "VR_Roof",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\ROOF-MFDOOM.png",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "ROOF-MFDOOM"
   },
   {
     "name": "backwall.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-Back Wall.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-Back Wall.001"
   },
   {
     "name": "MetalNuevo",
     "path": "C:\\Users\\rolan\\Desktop\\MetalNuevo.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "black wood grain.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\black wood grain.001.jpeg",
-    "width": 213,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ApronGenericWilliams",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-Apron (paint splatter) copy 5.001.jpeg",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-Apron (paint splatter) copy 5.001"
   },
   {
     "name": "Pincab_Cabinet",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\Pincab_Cabinet.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "VR_FLOOR-purple 2",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\FLOOR-doom purple 2.png",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "FLOOR-doom purple 2"
   },
   {
     "name": "Desktop",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\DT.jpg",
     "alpha_test_value": 1.0,
-    "is_signed": false,
     "jpeg_name": "DT"
   },
   {
     "name": "VR_Wall_Right",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\VR_Wall_Right.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flasherbloomCenter",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomCenter.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flasherbloomCenterRight",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomCenterRight.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "VR_Wall_Left",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\VR_Wall_Left.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "BackglassImage",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\VR-WPC95-MFDOOM\\BackglassImage.jpg",
-    "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "TS insertsA",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\t.001.png",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
-    "is_signed": false,
     "jpeg_name": "t.001"
   },
   {
     "name": "Plastics3.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\p3.001.png",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false,
     "jpeg_name": "p3.001"
   },
   {
     "name": "flasherbloomLowerRight",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomLowerRight.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flasherbloomCenterLeft",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomCenterLeft.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flasherbloomUpperLeft",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomUpperLeft.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flasherbloomLowerLeft",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomLowerLeft.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "flasherbloomUpperRight",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomUpperRight.png",
-    "width": 1369,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "playfield-4k",
     "path": "C:\\Users\\rolan\\Desktop\\PF.001.png",
-    "width": 1352,
-    "height": 3072,
-    "alpha_test_value": 50.000008,
-    "is_opaque": false,
-    "is_signed": false,
+    "alpha_test_value": 50.00001,
     "jpeg_name": "PF.001"
   },
   {
     "name": "Pincab_Backbox",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\Pincab_Backbox(white tag).jpg",
-    "width": 1536,
-    "height": 3072,
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "Pincab_Backbox(white tag)"
   },
   {
     "name": "testlight",
     "path": "C:\\Users\\rolan\\Desktop\\testlight.png",
-    "width": 1536,
-    "height": 3072,
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "playfield-PLASTICS(trans)",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\P.001.png",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
-    "is_opaque": false,
-    "is_signed": false,
     "jpeg_name": "P.001"
   },
   {
     "name": "PLASTICS (Green Paint Splatter)",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-PLASTICS (Black & Green Paint Splatter) copy 2.001.jpeg",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "KEYNOTE-PLASTICS (Black & Green Paint Splatter) copy 2.001"
   },
   {
     "name": "green-bg1.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\splatter.001.jpeg",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
-    "is_opaque": true,
-    "is_signed": false,
     "jpeg_name": "splatter.001"
   },
   {
     "name": "d_0",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_0a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_0a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_1",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_1a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_1a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_2",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_2a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_2a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_3",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_3a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_3a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_4",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_4a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_4a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_5",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_5a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_5a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_6",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_6a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_6a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_7",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_7a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_7a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_8",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_8a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_8a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_9",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_9a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_9a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_b",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_b.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_c",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_c.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_d",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_d.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_dot",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_dot.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_down",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_down.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_e",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_e.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_empty",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_empty.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_f",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_f.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_g",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_g.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_h",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_h.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_i",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_i.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_j",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_j.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_k",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_k.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_l",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_l.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_less",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_less.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_m",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_m.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_minus",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_minus.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_more",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_more.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_n",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_n.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_o",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_o.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_p",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_p.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_plus",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_plus.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_q",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_q.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_r",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_r.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_s",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_s.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_t",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_t.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_u",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_u.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_up",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_up.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_v",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_v.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_w",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_w.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_x",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_x.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_y",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_y.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_z",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_z.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_bkempty",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\new\\d_bkempty.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_border",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\new\\d_border.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d_title",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\new\\d_title.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d0",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d0a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d0a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d1",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d1a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d1a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d2",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d2a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d2a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d3",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d3a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d3a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d4",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d4a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d4a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d5",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d5a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d5a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d6",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d6a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d6a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d7",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d7a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d7a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d8",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d8a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d8a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d9",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "d9a",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d9a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "da",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\da.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "db",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\db.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dc",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dc.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dd",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dd.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "de",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\de.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dempty",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dempty.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "df",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\df.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dg",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dg.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dgreater",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dgreater.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dh",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dh.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "di",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\di.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dj",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dj.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dk",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dk.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dl",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dl.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dless",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dless.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dm",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dm.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dn",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dn.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "do",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\do.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dp",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dp.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dq",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dq.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dr",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dr.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "ds",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\ds.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dt",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dt.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "du",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\du.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dv",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dv.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dw",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dw.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dx",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dx.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dy",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dy.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   },
   {
     "name": "dz",
     "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dz.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
+    "alpha_test_value": 1.0
   }
 ]
