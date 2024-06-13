@@ -2509,118 +2509,119 @@ if keycode = "7" Then RTP
 
 		If hsbModeActive = True Then
 			EnterHighScoreKey(keycode)
-			elseif bGameInPlay Then
+		elseif bGameInPlay Then
 			If keycode = LeftTiltKey Then Nudge 90, 6:SoundNudgeLeft:CheckTilt
 			If keycode = RightTiltKey Then Nudge 270, 6:SoundNudgeRight:CheckTilt
 			If keycode = CenterTiltKey Then Nudge 0, 7:SoundNudgeCenter:CheckTilt
-			If NOT Tilted Then
 
-			If keycode = LeftFlipperKey Then
-				SolLFlipper True	'This would be called by the solenoid callbacks if using a ROM
+				If NOT Tilted Then
 
-                If leftflipper.currentangle < leftflipper.endangle + ReflipAngle Then 
-                        RandomSoundReflipUpLeft LeftFlipper
-						FlipperLightOnLeft    'test
-                Else 
-                        SoundFlipperUpAttackLeft LeftFlipper
-                        RandomSoundFlipperUpLeft LeftFlipper
-						FlipperLightOnLeft    'test
-                End If 
-				
-				ldown = 1
-				checkdown
-				If bSkillshotReady AND bSkillshotRotateLights Then 
-				RotateLaneLightsLeft
-				End If
-			Else
-                'LeftFlipper.RotateToStart
-                'If LeftFlipper.currentangle < LeftFlipper.startAngle - 5 Then
-                 '       RandomSoundFlipperDownLeft LeftFlipper
-                'End If
-                'FlipperLeftHitParm = FlipperUpSoundLevel
-			End If
+					If keycode = LeftFlipperKey Then
+						SolLFlipper True	'This would be called by the solenoid callbacks if using a ROM
 
-			If keycode = RightFlipperKey Then 
-				SolRFlipper True	'This would be called by the solenoid callbacks if using a ROM
-
-                If rightflipper.currentangle > rightflipper.endangle - ReflipAngle Then
-                        RandomSoundReflipUpRight RightFlipper
-						FlipperLightOnRight    'test
-                Else 
-                        SoundFlipperUpAttackRight RightFlipper
-                        RandomSoundFlipperUpRight RightFlipper
-						FlipperLightOnRight    'test
-                End If
-
-				rdown = 1
-				checkdown
-				If bSkillshotReady AND bSkillshotRotateLights Then  
-				RotateLaneLightsRight
-				End If
-
-			Else
-                'RightFlipper.RotateToStart
-                'If RightFlipper.currentangle > RightFlipper.startAngle + 5 Then
-                '        RandomSoundFlipperDownRight RightFlipper
-                'End If        
-                'FlipperRightHitParm = FlipperUpSoundLevel
-			End If
-
-			If keycode = StartGameKey Then
-				If((PlayersPlayingGame <MaxPlayers) AND(bOnTheFirstBall = True) ) Then
-						PlayersPlayingGame = PlayersPlayingGame + 1
-							RandomSoundStartup
-							SoundStartButton
-							chilloutthemusic
-							DrainAllCapsAttract
-							FlashForMs LDoubleScoring01, 1500, 50, 0
-							FlashForMs LSupreme008, 1500, 50, 0
-							DOOMLightsFlash
-							FlasherAttract
-						If PlayersPlayingGame = 2 Then
-							RandomSoundStartup
-							SoundStartButton
-							chilloutthemusic
-							DrainAllCapsAttract
-							FlashForMs LDoubleScoring01, 1500, 50, 0
-							FlashForMs LSupreme008, 1500, 50, 0
-							DOOMLightsFlash
-							FlasherAttract
+						If leftflipper.currentangle < leftflipper.endangle + ReflipAngle Then 
+								RandomSoundReflipUpLeft LeftFlipper
+								FlipperLightOnLeft    'test
+						Else 
+								SoundFlipperUpAttackLeft LeftFlipper
+								RandomSoundFlipperUpLeft LeftFlipper
+								FlipperLightOnLeft    'test
+						End If 
+						
+						ldown = 1
+						checkdown
+						If bSkillshotReady AND bSkillshotRotateLights Then 
+						RotateLaneLightsLeft
 						End If
-						If PlayersPlayingGame = 3 Then
-							RandomSoundStartup
-							SoundStartButton
-							chilloutthemusic
-							DrainAllCapsAttract
-							FlashForMs LDoubleScoring01, 1500, 50, 0
-							FlashForMs LSupreme008, 1500, 50, 0
-							DOOMLightsFlash
-							FlasherAttract
-						End If
-						If PlayersPlayingGame = 4 Then	
-							RandomSoundStartup
-							SoundStartButton
-							chilloutthemusic
-							DrainAllCapsAttract
-							FlashForMs LDoubleScoring01, 1500, 50, 0
-							FlashForMs LSupreme008, 1500, 50, 0
-							DOOMLightsFlash
-							FlasherAttract
-						End If
-						TotalGamesPlayed = TotalGamesPlayed + 1
-				End If
-			End If
-			End If
-			Else
-			If NOT Tilted Then
-				If keycode = LeftFlipperKey Then helptime.enabled = true:DMDintroloop:introtime = 0
-				If keycode = RightFlipperKey Then helptime.enabled = true:DMDintroloop:introtime = 0
-					If keycode = StartGameKey Then
-							If(BallsOnPlayfield = 0) Then
-								ResetForNewGame()
-							End If
+					Else
+						'LeftFlipper.RotateToStart
+						'If LeftFlipper.currentangle < LeftFlipper.startAngle - 5 Then
+						 '       RandomSoundFlipperDownLeft LeftFlipper
+						'End If
+						'FlipperLeftHitParm = FlipperUpSoundLevel
 					End If
-			End If
+
+					If keycode = RightFlipperKey Then 
+						SolRFlipper True	'This would be called by the solenoid callbacks if using a ROM
+
+						If rightflipper.currentangle > rightflipper.endangle - ReflipAngle Then
+								RandomSoundReflipUpRight RightFlipper
+								FlipperLightOnRight    'test
+						Else 
+								SoundFlipperUpAttackRight RightFlipper
+								RandomSoundFlipperUpRight RightFlipper
+								FlipperLightOnRight    'test
+						End If
+
+						rdown = 1
+						checkdown
+						If bSkillshotReady AND bSkillshotRotateLights Then  
+						RotateLaneLightsRight
+						End If
+
+					Else
+						'RightFlipper.RotateToStart
+						'If RightFlipper.currentangle > RightFlipper.startAngle + 5 Then
+						'        RandomSoundFlipperDownRight RightFlipper
+						'End If        
+						'FlipperRightHitParm = FlipperUpSoundLevel
+					End If
+
+					If keycode = StartGameKey Then
+						If((PlayersPlayingGame <MaxPlayers) AND(bOnTheFirstBall = True) ) Then
+								PlayersPlayingGame = PlayersPlayingGame + 1
+									RandomSoundStartup
+									SoundStartButton
+									chilloutthemusic
+									DrainAllCapsAttract
+									FlashForMs LDoubleScoring01, 1500, 50, 0
+									FlashForMs LSupreme008, 1500, 50, 0
+									DOOMLightsFlash
+									FlasherAttract
+								If PlayersPlayingGame = 2 Then
+									RandomSoundStartup
+									SoundStartButton
+									chilloutthemusic
+									DrainAllCapsAttract
+									FlashForMs LDoubleScoring01, 1500, 50, 0
+									FlashForMs LSupreme008, 1500, 50, 0
+									DOOMLightsFlash
+									FlasherAttract
+								End If
+								If PlayersPlayingGame = 3 Then
+									RandomSoundStartup
+									SoundStartButton
+									chilloutthemusic
+									DrainAllCapsAttract
+									FlashForMs LDoubleScoring01, 1500, 50, 0
+									FlashForMs LSupreme008, 1500, 50, 0
+									DOOMLightsFlash
+									FlasherAttract
+								End If
+								If PlayersPlayingGame = 4 Then	
+									RandomSoundStartup
+									SoundStartButton
+									chilloutthemusic
+									DrainAllCapsAttract
+									FlashForMs LDoubleScoring01, 1500, 50, 0
+									FlashForMs LSupreme008, 1500, 50, 0
+									DOOMLightsFlash
+									FlasherAttract
+								End If
+								TotalGamesPlayed = TotalGamesPlayed + 1
+						End If
+					End If
+				End If
+			Else ' else hsbmodeactive
+				If NOT Tilted Then
+					If keycode = LeftFlipperKey Then helptime.enabled = true:DMDintroloop:introtime = 0
+					If keycode = RightFlipperKey Then helptime.enabled = true:DMDintroloop:introtime = 0
+						If keycode = StartGameKey Then
+								If(BallsOnPlayfield = 0) Then
+									ResetForNewGame()
+								End If
+						End If
+				End If
 			End If 
 
 	If keycode = RightMagnaSave Then 
@@ -3017,7 +3018,7 @@ End Sub
 		PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
 		DelayAttractText
 		StartAttractMode
-		introposition = 2     '0
+		introposition = 0     '0
 		bGameInPLay = False
 		bJustStarted = False
 		Dim i
@@ -3363,7 +3364,7 @@ End Sub
 		intromover.enabled = true
 		pupevent 705
 		'RandomUltraDMDSceneIntro
-		playvideo=37+int(rnd(1)*5)
+		'playvideo=37+int(rnd(1)*5)
 		StartPLights
 		LRuby2.state = 2
 	End Sub
@@ -9916,7 +9917,7 @@ End Sub
 
 	Sub DMDintroloop
 
-		PuPlayer.LabelSet pBackglass,"modetitle","",1,"{'mt':2,'color':16777215, 'size': 0, 'xpos': 80.7, 'xalign': 1, 'ypos': 72.6, 'yalign': 0}"
+		'PuPlayer.LabelSet pBackglass,"modetitle","",1,"{'mt':2,'color':16777215, 'size': 0, 'xpos': 80.7, 'xalign': 1, 'ypos': 72.6, 'yalign': 0}"
 		introtime = 0	
 		introposition = introposition + 1
 		Select Case introposition
@@ -9924,13 +9925,17 @@ End Sub
 	Dbg "In the DMD Loop"
 				PupEvent 736
 				PupEvent 836
+				DMDTopSplash HighScoreName(0),1000,0
+				DMDBigText HighScore(0),1000,0
 			Case 2
-
+				DMDTopSplash HighScoreName(1),1000,0
+				DMDBigText HighScore(1),1000,0
 			Case 3
-                      
+   				DMDTopSplash HighScoreName(2),1000,0
+				DMDBigText HighScore(2),1000,0                   
 			Case 4
-				PupEvent 737
-				PupEvent 837
+			'	PupEvent 737
+			'	PupEvent 837
 				FlasherAllBlinkOnce
 				introposition = 0 
 		End Select
@@ -9976,6 +9981,46 @@ End Sub
 			pupevent 727
 			FlasherAllBlinkOnce
 	End Sub
+
+Sub ShowTableInfo
+    Dim i
+    ' DMDBlink "black.jpg", " ", "EXTRA BALL IS LIT", 50, 20
+    'info goes in a loop only stopped by the credits and the startkey
+ '       DMDFlush
+  '      DMD "black.jpg", "ACT I", "Trial of Strength!", 8000
+
+
+    If Score(1) Then
+        DMD "black.jpg", "PLAYER1", Score(1), 3000
+    End If
+    If Score(2) Then
+        DMD "black.jpg", "PLAYER2", Score(2), 3000
+    End If
+    If Score(3) Then
+        DMD "black.jpg", "PLAYER3", Score(3), 3000
+    End If
+    If Score(4) Then
+        DMD "black.jpg", "PLAYER4", Score(4), 3000
+    End If
+
+    'coins or freeplay
+    If bFreePlay Then
+        DMD "black.jpg", " ", "FREE PLAY", 2000
+       ' DMD "intro-freeplay.wmv", "", "", 63000
+    Else
+        If Credits> 0 Then
+            DMD "black.jpg", "CREDITS " &credits, "PRESS START", 2000
+        Else
+            DMD "black.jpg", "CREDITS " &credits, "INSERT COIN", 2000
+        End If
+        'DMD "intro-coins.wmv", "", "", 65000
+    End If
+
+    DMD "black.jpg", "HIGHSCORES", "1> " & HighScoreName(0) & " " & FormatNumber(HighScore(0), 0, , , -1), 3000
+    DMD "black.jpg", "HIGHSCORES", "2> " & HighScoreName(1) & " " & FormatNumber(HighScore(1), 0, , , -1), 3000
+    DMD "black.jpg", "HIGHSCORES", "3> " & HighScoreName(2) & " " & FormatNumber(HighScore(2), 0, , , -1), 3000
+    DMD "black.jpg", "HIGHSCORES", "4> " & HighScoreName(3) & " " & FormatNumber(HighScore(3), 0, , , -1), 3000
+End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  TABLE VARIABLES
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -17177,4 +17222,8 @@ End Sub
 
 Sub DbgTimer_Timer()
 	Dbg "Video: " &PlayVideo
+End Sub
+
+Sub dmdattract_Timer()
+	DMDintroloop
 End Sub
