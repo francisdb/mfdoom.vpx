@@ -3220,7 +3220,7 @@ Sub HighScoreEntryInit()
     hsEnteredDigits(2) = " "
     hsCurrentDigit = 0
 
-    hsValidLetters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789<" ' < is back arrow
+    hsValidLetters = " ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789(" ' ( is back arrow
     hsCurrentLetter = 1
     HighScoreDisplayNameNow()
 
@@ -3259,7 +3259,7 @@ Sub HighScoreDisplayName()
     if(hsCurrentDigit < 1)then TempBotStr = TempBotStr & hsEnteredDigits(1)
     if(hsCurrentDigit < 2)then TempBotStr = TempBotStr & hsEnteredDigits(2)
 
-    TempBotStr = TempBotStr & " <    "
+    TempBotStr = TempBotStr & " (    "
 	DMDBigText TempBotStr,9999,0
 End Sub
 
@@ -3292,7 +3292,7 @@ Sub EnterHighScoreKey(keycode)
     End If
 
     If keycode = PlungerKey OR keycode = StartGameKey Then
-        if(mid(hsValidLetters, hsCurrentLetter, 1) <> "<")then
+        if(mid(hsValidLetters, hsCurrentLetter, 1) <> "(")then
             playsound "fx_Enter"
             hsEnteredDigits(hsCurrentDigit) = mid(hsValidLetters, hsCurrentLetter, 1)
             hsCurrentDigit = hsCurrentDigit + 1
