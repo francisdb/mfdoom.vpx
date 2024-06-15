@@ -2269,7 +2269,7 @@ End Sub
 			PuPStart(cPuPPack)
 			'pupevent 500
 		End If
-		'LoadOrbital
+		LoadOrbital
 		
 		resetbackglass
 		flexdmd_Init
