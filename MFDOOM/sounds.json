@@ -171,15 +171,6 @@
     "output_target": "table"
   },
   {
-    "name": "powerdownn",
-    "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\powerdownn.wav",
-    "internal_name": "powerdownn",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
     "name": "ramp_hit1",
     "path": "C:\\Users\\scott\\Dropbox (Wick Creative)\\pin\\the Leprechaun King\\Audio\\sound pack\\ramp_hit1.wav",
     "internal_name": "ramp_hit1",
@@ -241,69 +232,6 @@
     "volume": 0,
     "balance": 0,
     "output_target": "table"
-  },
-  {
-    "name": "Supreme_fx_11",
-    "path": "C:\\Visual Pinball\\Music\\Supreme\\Supreme_fx_11.wav",
-    "internal_name": "supreme_fx_11",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "tilt1",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt1.wav",
-    "internal_name": "tilt1",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "tilt2",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt2.wav",
-    "internal_name": "tilt2",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "tilt3",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt3.wav",
-    "internal_name": "tilt3",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "Thunder7",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\Thunder7.wav",
-    "internal_name": "thunder7",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "tilt",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\tilt.wav",
-    "internal_name": "tilt",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "tiltshutdown",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\tiltshutdown.wav",
-    "internal_name": "tiltshutdown",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
   },
   {
     "name": "Drain_1",
@@ -1494,2301 +1422,6 @@
     "output_target": "table"
   },
   {
-    "name": "fx001",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx001.wav",
-    "internal_name": "fx001",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx002",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx002.wav",
-    "internal_name": "fx002",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx003",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx003.wav",
-    "internal_name": "fx003",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx004",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx004.wav",
-    "internal_name": "fx004",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx005",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx005.wav",
-    "internal_name": "fx005",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx006",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx006.wav",
-    "internal_name": "fx006",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx007",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx007.wav",
-    "internal_name": "fx007",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx008",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx008.wav",
-    "internal_name": "fx008",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx009",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx009.wav",
-    "internal_name": "fx009",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx010",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx010.wav",
-    "internal_name": "fx010",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx011",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx011.wav",
-    "internal_name": "fx011",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx013",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx013.wav",
-    "internal_name": "fx013",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx014",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx014.wav",
-    "internal_name": "fx014",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx015",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx015.wav",
-    "internal_name": "fx015",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx016",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx016.wav",
-    "internal_name": "fx016",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx017",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx017.wav",
-    "internal_name": "fx017",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx018",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx018.wav",
-    "internal_name": "fx018",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx019",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx019.wav",
-    "internal_name": "fx019",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx020",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx020.wav",
-    "internal_name": "fx020",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx021",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx021.wav",
-    "internal_name": "fx021",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx022",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx022.wav",
-    "internal_name": "fx022",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx023",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx023.wav",
-    "internal_name": "fx023",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx024",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx024.wav",
-    "internal_name": "fx024",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx025",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx025.wav",
-    "internal_name": "fx025",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx026",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx026.wav",
-    "internal_name": "fx026",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx027",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx027.wav",
-    "internal_name": "fx027",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx028",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx028.wav",
-    "internal_name": "fx028",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx029",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx029.wav",
-    "internal_name": "fx029",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx030",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx030.wav",
-    "internal_name": "fx030",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx031",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx031.wav",
-    "internal_name": "fx031",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx032",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx032.wav",
-    "internal_name": "fx032",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx033",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx033.wav",
-    "internal_name": "fx033",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx034",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx034.wav",
-    "internal_name": "fx034",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx035",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx035.wav",
-    "internal_name": "fx035",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx036",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx036.wav",
-    "internal_name": "fx036",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx037",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx037.wav",
-    "internal_name": "fx037",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx038",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx038.wav",
-    "internal_name": "fx038",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx039",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx039.wav",
-    "internal_name": "fx039",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx040",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx040.wav",
-    "internal_name": "fx040",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx041",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx041.wav",
-    "internal_name": "fx041",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx042",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx042.wav",
-    "internal_name": "fx042",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx043",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx043.wav",
-    "internal_name": "fx043",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx044",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx044.wav",
-    "internal_name": "fx044",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx045",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx045.wav",
-    "internal_name": "fx045",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx046",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx046.wav",
-    "internal_name": "fx046",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx047",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx047.wav",
-    "internal_name": "fx047",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx049",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx049.wav",
-    "internal_name": "fx049",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx050",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx050.wav",
-    "internal_name": "fx050",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx051",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx051.wav",
-    "internal_name": "fx051",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx052",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx052.wav",
-    "internal_name": "fx052",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx053",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx053.wav",
-    "internal_name": "fx053",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx054",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx054.wav",
-    "internal_name": "fx054",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx056",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx056.wav",
-    "internal_name": "fx056",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx057",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx057.wav",
-    "internal_name": "fx057",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx058",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx058.wav",
-    "internal_name": "fx058",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx061",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx061.wav",
-    "internal_name": "fx061",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx062",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx062.wav",
-    "internal_name": "fx062",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx063",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx063.wav",
-    "internal_name": "fx063",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx064",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx064.wav",
-    "internal_name": "fx064",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx065",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx065.wav",
-    "internal_name": "fx065",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx066",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx066.wav",
-    "internal_name": "fx066",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx067",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx067.wav",
-    "internal_name": "fx067",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx068",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx068.wav",
-    "internal_name": "fx068",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx069",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx069.wav",
-    "internal_name": "fx069",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx071",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx071.wav",
-    "internal_name": "fx071",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx072",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx072.wav",
-    "internal_name": "fx072",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx074",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx074.wav",
-    "internal_name": "fx074",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx075",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx075.wav",
-    "internal_name": "fx075",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx076",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx076.wav",
-    "internal_name": "fx076",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx077",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx077.wav",
-    "internal_name": "fx077",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx078",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx078.wav",
-    "internal_name": "fx078",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx079",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx079.wav",
-    "internal_name": "fx079",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx080",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx080.wav",
-    "internal_name": "fx080",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx081",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx081.wav",
-    "internal_name": "fx081",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx082",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx082.wav",
-    "internal_name": "fx082",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx083",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx083.wav",
-    "internal_name": "fx083",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx084",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx084.wav",
-    "internal_name": "fx084",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx085",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx085.wav",
-    "internal_name": "fx085",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx086",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx086.wav",
-    "internal_name": "fx086",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx087",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx087.wav",
-    "internal_name": "fx087",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx088",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx088.wav",
-    "internal_name": "fx088",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx089",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx089.wav",
-    "internal_name": "fx089",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx090",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx090.wav",
-    "internal_name": "fx090",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx091",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx091.wav",
-    "internal_name": "fx091",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx092",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx092.wav",
-    "internal_name": "fx092",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx093",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx093.wav",
-    "internal_name": "fx093",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx094",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx094.wav",
-    "internal_name": "fx094",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx096",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx096.wav",
-    "internal_name": "fx096",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx097",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx097.wav",
-    "internal_name": "fx097",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx098",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx098.wav",
-    "internal_name": "fx098",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx099",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx099.wav",
-    "internal_name": "fx099",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx102",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx102.wav",
-    "internal_name": "fx102",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx104",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx104.wav",
-    "internal_name": "fx104",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx105",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx105.wav",
-    "internal_name": "fx105",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx106",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx106.wav",
-    "internal_name": "fx106",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx107",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx107.wav",
-    "internal_name": "fx107",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx108",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx108.wav",
-    "internal_name": "fx108",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx109",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx109.wav",
-    "internal_name": "fx109",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx110",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx110.wav",
-    "internal_name": "fx110",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx111",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx111.wav",
-    "internal_name": "fx111",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx112",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx112.wav",
-    "internal_name": "fx112",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx113",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx113.wav",
-    "internal_name": "fx113",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx114",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx114.wav",
-    "internal_name": "fx114",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx115",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx115.wav",
-    "internal_name": "fx115",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx116",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx116.wav",
-    "internal_name": "fx116",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx117",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx117.wav",
-    "internal_name": "fx117",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx118",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx118.wav",
-    "internal_name": "fx118",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx119",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx119.wav",
-    "internal_name": "fx119",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx120",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx120.wav",
-    "internal_name": "fx120",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx125",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx125.wav",
-    "internal_name": "fx125",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx126",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx126.wav",
-    "internal_name": "fx126",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx127",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx127.wav",
-    "internal_name": "fx127",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx128",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx128.wav",
-    "internal_name": "fx128",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx129",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx129.wav",
-    "internal_name": "fx129",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx130",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx130.wav",
-    "internal_name": "fx130",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx132",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx132.wav",
-    "internal_name": "fx132",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx133",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx133.wav",
-    "internal_name": "fx133",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx134",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx134.wav",
-    "internal_name": "fx134",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx135",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx135.wav",
-    "internal_name": "fx135",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx136",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx136.wav",
-    "internal_name": "fx136",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx137",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx137.wav",
-    "internal_name": "fx137",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx139",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx139.wav",
-    "internal_name": "fx139",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx140",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx140.wav",
-    "internal_name": "fx140",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx144",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx144.wav",
-    "internal_name": "fx144",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx145",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx145.wav",
-    "internal_name": "fx145",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx146",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx146.wav",
-    "internal_name": "fx146",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx147",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx147.wav",
-    "internal_name": "fx147",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx148",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx148.wav",
-    "internal_name": "fx148",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx149",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx149.wav",
-    "internal_name": "fx149",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx151",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx151.wav",
-    "internal_name": "fx151",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx154",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx154.wav",
-    "internal_name": "fx154",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx155",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx155.wav",
-    "internal_name": "fx155",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx157",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx157.wav",
-    "internal_name": "fx157",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx159",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx159.wav",
-    "internal_name": "fx159",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx160",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx160.wav",
-    "internal_name": "fx160",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx162",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx162.wav",
-    "internal_name": "fx162",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx163",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx163.wav",
-    "internal_name": "fx163",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx164",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx164.wav",
-    "internal_name": "fx164",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx166",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx166.wav",
-    "internal_name": "fx166",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx167",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx167.wav",
-    "internal_name": "fx167",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx168",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx168.wav",
-    "internal_name": "fx168",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx171",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx171.wav",
-    "internal_name": "fx171",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx173",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx173.wav",
-    "internal_name": "fx173",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx174",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx174.wav",
-    "internal_name": "fx174",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx179",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx179.wav",
-    "internal_name": "fx179",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx180",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx180.wav",
-    "internal_name": "fx180",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx181",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx181.wav",
-    "internal_name": "fx181",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx182",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx182.wav",
-    "internal_name": "fx182",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx183",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx183.wav",
-    "internal_name": "fx183",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx184",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx184.wav",
-    "internal_name": "fx184",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx185",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx185.wav",
-    "internal_name": "fx185",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx189",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx189.wav",
-    "internal_name": "fx189",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx190",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx190.wav",
-    "internal_name": "fx190",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx192",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx192.wav",
-    "internal_name": "fx192",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx193",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx193.wav",
-    "internal_name": "fx193",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx195",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx195.wav",
-    "internal_name": "fx195",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx196",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx196.wav",
-    "internal_name": "fx196",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx197",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx197.wav",
-    "internal_name": "fx197",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx198",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx198.wav",
-    "internal_name": "fx198",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx199",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx199.wav",
-    "internal_name": "fx199",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx200",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx200.wav",
-    "internal_name": "fx200",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx201",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx201.wav",
-    "internal_name": "fx201",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx202",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx202.wav",
-    "internal_name": "fx202",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx203",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx203.wav",
-    "internal_name": "fx203",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx204",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx204.wav",
-    "internal_name": "fx204",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx205",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx205.wav",
-    "internal_name": "fx205",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx206",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx206.wav",
-    "internal_name": "fx206",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx207",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx207.wav",
-    "internal_name": "fx207",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx209",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx209.wav",
-    "internal_name": "fx209",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx210",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx210.wav",
-    "internal_name": "fx210",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx211",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx211.wav",
-    "internal_name": "fx211",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx212",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx212.wav",
-    "internal_name": "fx212",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx213",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx213.wav",
-    "internal_name": "fx213",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx214",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx214.wav",
-    "internal_name": "fx214",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx216",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx216.wav",
-    "internal_name": "fx216",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx217",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx217.wav",
-    "internal_name": "fx217",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx218",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx218.wav",
-    "internal_name": "fx218",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx222",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx222.wav",
-    "internal_name": "fx222",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx223",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx223.wav",
-    "internal_name": "fx223",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx224",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx224.wav",
-    "internal_name": "fx224",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx225",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx225.wav",
-    "internal_name": "fx225",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx226",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx226.wav",
-    "internal_name": "fx226",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx227",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx227.wav",
-    "internal_name": "fx227",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx228",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx228.wav",
-    "internal_name": "fx228",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx229",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx229.wav",
-    "internal_name": "fx229",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx230",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx230.wav",
-    "internal_name": "fx230",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx231",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx231.wav",
-    "internal_name": "fx231",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx232",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx232.wav",
-    "internal_name": "fx232",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx233",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx233.wav",
-    "internal_name": "fx233",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx234",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx234.wav",
-    "internal_name": "fx234",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx235",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx235.wav",
-    "internal_name": "fx235",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx236",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx236.wav",
-    "internal_name": "fx236",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx237",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx237.wav",
-    "internal_name": "fx237",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx238",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx238.wav",
-    "internal_name": "fx238",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx239",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx239.wav",
-    "internal_name": "fx239",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx240",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx240.wav",
-    "internal_name": "fx240",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx241",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx241.wav",
-    "internal_name": "fx241",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx242",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx242.wav",
-    "internal_name": "fx242",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx243",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx243.wav",
-    "internal_name": "fx243",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx244",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx244.wav",
-    "internal_name": "fx244",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx245",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx245.wav",
-    "internal_name": "fx245",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx246",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx246.wav",
-    "internal_name": "fx246",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx247",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx247.wav",
-    "internal_name": "fx247",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx248",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx248.wav",
-    "internal_name": "fx248",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx249",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx249.wav",
-    "internal_name": "fx249",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx250",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx250.wav",
-    "internal_name": "fx250",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx251",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx251.wav",
-    "internal_name": "fx251",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx252",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx252.wav",
-    "internal_name": "fx252",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx253",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx253.wav",
-    "internal_name": "fx253",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx254",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx254.wav",
-    "internal_name": "fx254",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx255",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx255.wav",
-    "internal_name": "fx255",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx256",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx256.wav",
-    "internal_name": "fx256",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx257",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx257.wav",
-    "internal_name": "fx257",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx259",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx259.wav",
-    "internal_name": "fx259",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx260",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx260.wav",
-    "internal_name": "fx260",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx261",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx261.wav",
-    "internal_name": "fx261",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx262",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx262.wav",
-    "internal_name": "fx262",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx263",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx263.wav",
-    "internal_name": "fx263",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx264",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx264.wav",
-    "internal_name": "fx264",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx265",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx265.wav",
-    "internal_name": "fx265",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx266",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx266.wav",
-    "internal_name": "fx266",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx267",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx267.wav",
-    "internal_name": "fx267",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx268",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx268.wav",
-    "internal_name": "fx268",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx269",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx269.wav",
-    "internal_name": "fx269",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx270",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx270.wav",
-    "internal_name": "fx270",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx271",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx271.wav",
-    "internal_name": "fx271",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx272",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx272.wav",
-    "internal_name": "fx272",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx273",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx273.wav",
-    "internal_name": "fx273",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx274",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx274.wav",
-    "internal_name": "fx274",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx275",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx275.wav",
-    "internal_name": "fx275",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx276",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx276.wav",
-    "internal_name": "fx276",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx277",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx277.wav",
-    "internal_name": "fx277",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx278",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx278.wav",
-    "internal_name": "fx278",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx279",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx279.wav",
-    "internal_name": "fx279",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx286",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx286.wav",
-    "internal_name": "fx286",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx287",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx287.wav",
-    "internal_name": "fx287",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx288",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx288.wav",
-    "internal_name": "fx288",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx289",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx289.wav",
-    "internal_name": "fx289",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx290",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx290.wav",
-    "internal_name": "fx290",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx291",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx291.wav",
-    "internal_name": "fx291",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx292",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx292.wav",
-    "internal_name": "fx292",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx293",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx293.wav",
-    "internal_name": "fx293",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx294",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx294.wav",
-    "internal_name": "fx294",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx295",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx295.wav",
-    "internal_name": "fx295",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx296",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx296.wav",
-    "internal_name": "fx296",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx297",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx297.wav",
-    "internal_name": "fx297",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx298",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx298.wav",
-    "internal_name": "fx298",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx299",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx299.wav",
-    "internal_name": "fx299",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx300",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx300.wav",
-    "internal_name": "fx300",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx301",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx301.wav",
-    "internal_name": "fx301",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx302",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx302.wav",
-    "internal_name": "fx302",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx303",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx303.wav",
-    "internal_name": "fx303",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx304",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx304.wav",
-    "internal_name": "fx304",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx305",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx305.wav",
-    "internal_name": "fx305",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx306",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compressed wavs-MF DOOM\\fx306.wav",
-    "internal_name": "fx306",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
     "name": "Knocker_1",
     "path": "C:\\Users\\rolan\\Desktop\\Fleep\\Knocker_1.wav",
     "internal_name": "knocker_1",
@@ -3796,177 +1429,6 @@
     "volume": 0,
     "balance": 0,
     "output_target": "table"
-  },
-  {
-    "name": "fx313",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx313.wav",
-    "internal_name": "fx313",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx314",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx314.wav",
-    "internal_name": "fx314",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx315",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx315.wav",
-    "internal_name": "fx315",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx316",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx316.wav",
-    "internal_name": "fx316",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx317",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx317.wav",
-    "internal_name": "fx317",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx318",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx318.wav",
-    "internal_name": "fx318",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx319",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx319.wav",
-    "internal_name": "fx319",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx320",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx320.wav",
-    "internal_name": "fx320",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx321",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx321.wav",
-    "internal_name": "fx321",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx322",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx322.wav",
-    "internal_name": "fx322",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx323",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx323.wav",
-    "internal_name": "fx323",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx324",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx324.wav",
-    "internal_name": "fx324",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx325",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx325.wav",
-    "internal_name": "fx325",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx326",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx326.wav",
-    "internal_name": "fx326",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx327",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx327.wav",
-    "internal_name": "fx327",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx328",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx328.wav",
-    "internal_name": "fx328",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx329",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx329.wav",
-    "internal_name": "fx329",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx331",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx331.wav",
-    "internal_name": "fx331",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx332",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx332.wav",
-    "internal_name": "fx332",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
   },
   {
     "name": "Plunger_Pull_1",
@@ -4003,69 +1465,6 @@
     "volume": 0,
     "balance": 0,
     "output_target": "table"
-  },
-  {
-    "name": "fx340",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx340-fx.wav",
-    "internal_name": "fx340",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx341",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx341-fx.wav",
-    "internal_name": "fx341",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx342",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx342-fx.wav",
-    "internal_name": "fx342",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx281",
-    "path": "C:\\Users\\rolan\\Desktop\\fx281.wav",
-    "internal_name": "fx281",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx282",
-    "path": "C:\\Users\\rolan\\Desktop\\fx282.wav",
-    "internal_name": "fx282",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx283",
-    "path": "C:\\Users\\rolan\\Desktop\\fx283.wav",
-    "internal_name": "fx283",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx284",
-    "path": "C:\\Users\\rolan\\Desktop\\fx284.wav",
-    "internal_name": "fx284",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
   },
   {
     "name": "Flipper_Rubber_1",
@@ -4129,15 +1528,6 @@
     "volume": 0,
     "balance": 0,
     "output_target": "table"
-  },
-  {
-    "name": "fx343",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx343.wav",
-    "internal_name": "fx343",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
   },
   {
     "name": "Apron_Bounce_1",
@@ -4779,186 +2169,6 @@
     "output_target": "table"
   },
   {
-    "name": "fx344",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx344.wav",
-    "internal_name": "fx344",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx345",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx345.wav",
-    "internal_name": "fx345",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx346",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx346.wav",
-    "internal_name": "fx346",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx347",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx347.wav",
-    "internal_name": "fx347",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx348",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx348.wav",
-    "internal_name": "fx348",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx349",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx349.wav",
-    "internal_name": "fx349",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx350",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx350.wav",
-    "internal_name": "fx350",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx351",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx351.wav",
-    "internal_name": "fx351",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx352",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx352.wav",
-    "internal_name": "fx352",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx353",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx353.wav",
-    "internal_name": "fx353",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx354",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx354.wav",
-    "internal_name": "fx354",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx355",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx355.wav",
-    "internal_name": "fx355",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx357",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx357.wav",
-    "internal_name": "fx357",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx359",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx359.wav",
-    "internal_name": "fx359",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx360",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx360.wav",
-    "internal_name": "fx360",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx361",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx361.wav",
-    "internal_name": "fx361",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx362",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx362.wav",
-    "internal_name": "fx362",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx363",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx363.wav",
-    "internal_name": "fx363",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx364",
-    "path": "C:\\Users\\rolan\\Desktop\\fx364.wav",
-    "internal_name": "fx364",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx365",
-    "path": "C:\\Users\\rolan\\Desktop\\fx365.wav",
-    "internal_name": "fx365",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
     "name": "flip_hit_1",
     "path": "C:\\Users\\rolan\\Desktop\\flip_hit_1louder.wav",
     "internal_name": "flip_hit_1",
@@ -4966,177 +2176,6 @@
     "volume": 0,
     "balance": 0,
     "output_target": "table"
-  },
-  {
-    "name": "fx366",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx366.wav",
-    "internal_name": "fx366",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx367",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx367.wav",
-    "internal_name": "fx367",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx368",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx368.wav",
-    "internal_name": "fx368",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx369",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx369.wav",
-    "internal_name": "fx369",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx370",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx370.wav",
-    "internal_name": "fx370",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx371",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx371.wav",
-    "internal_name": "fx371",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx372",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx372.wav",
-    "internal_name": "fx372",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx373",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx373.wav",
-    "internal_name": "fx373",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx374",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx374.wav",
-    "internal_name": "fx374",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx375",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx375.wav",
-    "internal_name": "fx375",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx376",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx376.wav",
-    "internal_name": "fx376",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx377",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx377.wav",
-    "internal_name": "fx377",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx378",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx378.wav",
-    "internal_name": "fx378",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx379",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx379.wav",
-    "internal_name": "fx379",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx380",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx380.wav",
-    "internal_name": "fx380",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx381",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx381.wav",
-    "internal_name": "fx381",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx382",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx382.wav",
-    "internal_name": "fx382",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx383",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx383.wav",
-    "internal_name": "fx383",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "fx384",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DOOM (compressed wavs)\\fx384.wav",
-    "internal_name": "fx384",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
   },
   {
     "name": "BallRoll_0",
@@ -5245,5 +2284,3704 @@
     "volume": 0,
     "balance": 0,
     "output_target": "table"
+  },
+  {
+    "name": "Attract1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\Attract1.mp3",
+    "internal_name": "attract1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Attract2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\Attract2.mp3",
+    "internal_name": "attract2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "clear",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\clear.mp3",
+    "internal_name": "clear",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ar",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ar.mp3",
+    "internal_name": "co_ar",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_bg1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_bg1.mp3",
+    "internal_name": "co_bg1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_bg2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_bg2.mp3",
+    "internal_name": "co_bg2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_blescoring",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_blescoring.mp3",
+    "internal_name": "co_blescoring",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_blespinner",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_blespinner.mp3",
+    "internal_name": "co_blespinner",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_drawls",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_drawls.mp3",
+    "internal_name": "co_drawls",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_drawlsmultiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_drawlsmultiball.mp3",
+    "internal_name": "co_drawlsmultiball",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_eetimesbonusmultiplier",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eetimesbonusmultiplier.mp3",
+    "internal_name": "co_eetimesbonusmultiplier",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_eewaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eewaycombo.mp3",
+    "internal_name": "co_eewaycombo",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_elonecompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_elonecompleted.mp3",
+    "internal_name": "co_elonecompleted",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_eltwocompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eltwocompleted.mp3",
+    "internal_name": "co_eltwocompleted",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_eover",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eover.mp3",
+    "internal_name": "co_eover",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_erorbits",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_erorbits.mp3",
+    "internal_name": "co_erorbits",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_erpops",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_erpops.mp3",
+    "internal_name": "co_erpops",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_erramps",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_erramps.mp3",
+    "internal_name": "co_erramps",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_etimesbonusmultiplier",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_etimesbonusmultiplier.mp3",
+    "internal_name": "co_etimesbonusmultiplier",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ewaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ewaycombo.mp3",
+    "internal_name": "co_ewaycombo",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_itscompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_itscompleted.mp3",
+    "internal_name": "co_itscompleted",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_kslikeihitthejackpot",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_kslikeihitthejackpot.mp3",
+    "internal_name": "co_kslikeihitthejackpot",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ladded",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ladded.mp3",
+    "internal_name": "co_ladded",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_llocked",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_llocked.mp3",
+    "internal_name": "co_llocked",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_llshot",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_llshot.mp3",
+    "internal_name": "co_llshot",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_lsaved",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_lsaved.mp3",
+    "internal_name": "co_lsaved",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_morehit",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_morehit.mp3",
+    "internal_name": "co_morehit",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_morehits",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_morehits.mp3",
+    "internal_name": "co_morehits",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ndupscomplete",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ndupscomplete.mp3",
+    "internal_name": "co_ndupscomplete",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_nnercompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_nnercompleted.mp3",
+    "internal_name": "co_nnercompleted",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_pscompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_pscompleted.mp3",
+    "internal_name": "co_pscompleted",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ricasmostblunted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ricasmostblunted.mp3",
+    "internal_name": "co_ricasmostblunted",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ricasmostbluntedmultiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ricasmostbluntedmultiball.mp3",
+    "internal_name": "co_ricasmostbluntedmultiball",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_rwaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_rwaycombo.mp3",
+    "internal_name": "co_rwaycombo",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_t",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_t.mp3",
+    "internal_name": "co_t",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_teryaliasmissionsunlocked",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_teryaliasmissionsunlocked.mp3",
+    "internal_name": "co_teryaliasmissionsunlocked",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_terybonus",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_terybonus.mp3",
+    "internal_name": "co_terybonus",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_tiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tiball.mp3",
+    "internal_name": "co_tiball",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_timesbonusmultiplier",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_timesbonusmultiplier.mp3",
+    "internal_name": "co_timesbonusmultiplier",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_tshutdown",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tshutdown.mp3",
+    "internal_name": "co_tshutdown",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_twarning",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_twarning.mp3",
+    "internal_name": "co_twarning",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_waycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_waycombo.mp3",
+    "internal_name": "co_waycombo",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_zillionear",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear.mp3",
+    "internal_name": "co_zillionear",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_zillionear-10sec",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-10sec.mp3",
+    "internal_name": "co_zillionear-10sec",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_zillionear-multiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-multiball.mp3",
+    "internal_name": "co_zillionear-multiball",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_zillionear-superjackpot",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-superjackpot.mp3",
+    "internal_name": "co_zillionear-superjackpot",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_zillionear-superjackpotislit",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-superjackpotislit.mp3",
+    "internal_name": "co_zillionear-superjackpotislit",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx001",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx001.mp3",
+    "internal_name": "fx001",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx002",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx002.mp3",
+    "internal_name": "fx002",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx003",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx003.mp3",
+    "internal_name": "fx003",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx004",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx004.mp3",
+    "internal_name": "fx004",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx005",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx005.mp3",
+    "internal_name": "fx005",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx006",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx006.mp3",
+    "internal_name": "fx006",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx007",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx007.mp3",
+    "internal_name": "fx007",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx008",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx008.mp3",
+    "internal_name": "fx008",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx009",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx009.mp3",
+    "internal_name": "fx009",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx010",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx010.mp3",
+    "internal_name": "fx010",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx011",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx011.mp3",
+    "internal_name": "fx011",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx013",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx013.mp3",
+    "internal_name": "fx013",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx014",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx014.mp3",
+    "internal_name": "fx014",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx015",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx015.mp3",
+    "internal_name": "fx015",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx016",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx016.mp3",
+    "internal_name": "fx016",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx017",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx017.mp3",
+    "internal_name": "fx017",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx018",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx018.mp3",
+    "internal_name": "fx018",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx019",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx019.mp3",
+    "internal_name": "fx019",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx020",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx020.mp3",
+    "internal_name": "fx020",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx021",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx021.mp3",
+    "internal_name": "fx021",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx022",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx022.mp3",
+    "internal_name": "fx022",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx023",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx023.mp3",
+    "internal_name": "fx023",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx024",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx024.mp3",
+    "internal_name": "fx024",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx025",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx025.mp3",
+    "internal_name": "fx025",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx026",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx026.mp3",
+    "internal_name": "fx026",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx027",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx027.mp3",
+    "internal_name": "fx027",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx028",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx028.mp3",
+    "internal_name": "fx028",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx029",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx029.mp3",
+    "internal_name": "fx029",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx030",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx030.mp3",
+    "internal_name": "fx030",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx031",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx031.mp3",
+    "internal_name": "fx031",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx032",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx032.mp3",
+    "internal_name": "fx032",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx033",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx033.mp3",
+    "internal_name": "fx033",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx034",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx034.mp3",
+    "internal_name": "fx034",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx035",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx035.mp3",
+    "internal_name": "fx035",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx036",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx036.mp3",
+    "internal_name": "fx036",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx037",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx037.mp3",
+    "internal_name": "fx037",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx038",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx038.mp3",
+    "internal_name": "fx038",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx039",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx039.mp3",
+    "internal_name": "fx039",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx040",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx040.mp3",
+    "internal_name": "fx040",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx041",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx041.mp3",
+    "internal_name": "fx041",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx042",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx042.mp3",
+    "internal_name": "fx042",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx043",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx043.mp3",
+    "internal_name": "fx043",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx044",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx044.mp3",
+    "internal_name": "fx044",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx045",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx045.mp3",
+    "internal_name": "fx045",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx046",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx046.mp3",
+    "internal_name": "fx046",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx047",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx047.mp3",
+    "internal_name": "fx047",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx049",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx049.mp3",
+    "internal_name": "fx049",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx050",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx050.mp3",
+    "internal_name": "fx050",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx051",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx051.mp3",
+    "internal_name": "fx051",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx052",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx052.mp3",
+    "internal_name": "fx052",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx053",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx053.mp3",
+    "internal_name": "fx053",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx054",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx054.mp3",
+    "internal_name": "fx054",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx056",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx056.mp3",
+    "internal_name": "fx056",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx057",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx057.mp3",
+    "internal_name": "fx057",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx058",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx058.mp3",
+    "internal_name": "fx058",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx061",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx061.mp3",
+    "internal_name": "fx061",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx062",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx062.mp3",
+    "internal_name": "fx062",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx063",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx063.mp3",
+    "internal_name": "fx063",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx064",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx064.mp3",
+    "internal_name": "fx064",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx065",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx065.mp3",
+    "internal_name": "fx065",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx066",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx066.mp3",
+    "internal_name": "fx066",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx067",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx067.mp3",
+    "internal_name": "fx067",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx068",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx068.mp3",
+    "internal_name": "fx068",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx069",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx069.mp3",
+    "internal_name": "fx069",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx071",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx071.mp3",
+    "internal_name": "fx071",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx072",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx072.mp3",
+    "internal_name": "fx072",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx074",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx074.mp3",
+    "internal_name": "fx074",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx075",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx075.mp3",
+    "internal_name": "fx075",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx076",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx076.mp3",
+    "internal_name": "fx076",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx077",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx077.mp3",
+    "internal_name": "fx077",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx078",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx078.mp3",
+    "internal_name": "fx078",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx079",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx079.mp3",
+    "internal_name": "fx079",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx080",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx080.mp3",
+    "internal_name": "fx080",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx081",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx081.mp3",
+    "internal_name": "fx081",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx082",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx082.mp3",
+    "internal_name": "fx082",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx083",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx083.mp3",
+    "internal_name": "fx083",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx084",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx084.mp3",
+    "internal_name": "fx084",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx085",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx085.mp3",
+    "internal_name": "fx085",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx086",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx086.mp3",
+    "internal_name": "fx086",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx087",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx087.mp3",
+    "internal_name": "fx087",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx088",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx088.mp3",
+    "internal_name": "fx088",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx089",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx089.mp3",
+    "internal_name": "fx089",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx090",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx090.mp3",
+    "internal_name": "fx090",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx091",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx091.mp3",
+    "internal_name": "fx091",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx092",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx092.mp3",
+    "internal_name": "fx092",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx093",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx093.mp3",
+    "internal_name": "fx093",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx094",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx094.mp3",
+    "internal_name": "fx094",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx096",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx096.mp3",
+    "internal_name": "fx096",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx097",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx097.mp3",
+    "internal_name": "fx097",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx098",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx098.mp3",
+    "internal_name": "fx098",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx099",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx099.mp3",
+    "internal_name": "fx099",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx102",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx102.mp3",
+    "internal_name": "fx102",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx104",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx104.mp3",
+    "internal_name": "fx104",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx105",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx105.mp3",
+    "internal_name": "fx105",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx106",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx106.mp3",
+    "internal_name": "fx106",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx107",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx107.mp3",
+    "internal_name": "fx107",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx108",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx108.mp3",
+    "internal_name": "fx108",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx109",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx109.mp3",
+    "internal_name": "fx109",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx110",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx110.mp3",
+    "internal_name": "fx110",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx111",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx111.mp3",
+    "internal_name": "fx111",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx112",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx112.mp3",
+    "internal_name": "fx112",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx113",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx113.mp3",
+    "internal_name": "fx113",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx114",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx114.mp3",
+    "internal_name": "fx114",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx115",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx115.mp3",
+    "internal_name": "fx115",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx116",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx116.mp3",
+    "internal_name": "fx116",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx117",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx117.mp3",
+    "internal_name": "fx117",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx118",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx118.mp3",
+    "internal_name": "fx118",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx119",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx119.mp3",
+    "internal_name": "fx119",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx120",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx120.mp3",
+    "internal_name": "fx120",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx125",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx125.mp3",
+    "internal_name": "fx125",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx126",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx126.mp3",
+    "internal_name": "fx126",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx127",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx127.mp3",
+    "internal_name": "fx127",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx128",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx128.mp3",
+    "internal_name": "fx128",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx129",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx129.mp3",
+    "internal_name": "fx129",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx130",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx130.mp3",
+    "internal_name": "fx130",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx132",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx132.mp3",
+    "internal_name": "fx132",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx133",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx133.mp3",
+    "internal_name": "fx133",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx134",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx134.mp3",
+    "internal_name": "fx134",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx135",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx135.mp3",
+    "internal_name": "fx135",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx136",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx136.mp3",
+    "internal_name": "fx136",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx137",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx137.mp3",
+    "internal_name": "fx137",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx139",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx139.mp3",
+    "internal_name": "fx139",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx140",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx140.mp3",
+    "internal_name": "fx140",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx144",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx144.mp3",
+    "internal_name": "fx144",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx145",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx145.mp3",
+    "internal_name": "fx145",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx146",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx146.mp3",
+    "internal_name": "fx146",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx147",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx147.mp3",
+    "internal_name": "fx147",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx148",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx148.mp3",
+    "internal_name": "fx148",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx149",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx149.mp3",
+    "internal_name": "fx149",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx151",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx151.mp3",
+    "internal_name": "fx151",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx154",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx154.mp3",
+    "internal_name": "fx154",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx155",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx155.mp3",
+    "internal_name": "fx155",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx157",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx157.mp3",
+    "internal_name": "fx157",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx159",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx159.mp3",
+    "internal_name": "fx159",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx160",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx160.mp3",
+    "internal_name": "fx160",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx162",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx162.mp3",
+    "internal_name": "fx162",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx163",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx163.mp3",
+    "internal_name": "fx163",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx164",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx164.mp3",
+    "internal_name": "fx164",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx166",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx166.mp3",
+    "internal_name": "fx166",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx167",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx167.mp3",
+    "internal_name": "fx167",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx168",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx168.mp3",
+    "internal_name": "fx168",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx171",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx171.mp3",
+    "internal_name": "fx171",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx173",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx173.mp3",
+    "internal_name": "fx173",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx174",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx174.mp3",
+    "internal_name": "fx174",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx179",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx179.mp3",
+    "internal_name": "fx179",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx180",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx180.mp3",
+    "internal_name": "fx180",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx181",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx181.mp3",
+    "internal_name": "fx181",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx182",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx182.mp3",
+    "internal_name": "fx182",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx183",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx183.mp3",
+    "internal_name": "fx183",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx184",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx184.mp3",
+    "internal_name": "fx184",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx185",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx185.mp3",
+    "internal_name": "fx185",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx189",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx189.mp3",
+    "internal_name": "fx189",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx190",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx190.mp3",
+    "internal_name": "fx190",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx192",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx192.mp3",
+    "internal_name": "fx192",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx193",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx193.mp3",
+    "internal_name": "fx193",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx195",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx195.mp3",
+    "internal_name": "fx195",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx196",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx196.mp3",
+    "internal_name": "fx196",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx197",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx197.mp3",
+    "internal_name": "fx197",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx198",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx198.mp3",
+    "internal_name": "fx198",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx199",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx199.mp3",
+    "internal_name": "fx199",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx200",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx200.mp3",
+    "internal_name": "fx200",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx201",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx201.mp3",
+    "internal_name": "fx201",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx202",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx202.mp3",
+    "internal_name": "fx202",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx203",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx203.mp3",
+    "internal_name": "fx203",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx204",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx204.mp3",
+    "internal_name": "fx204",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx205",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx205.mp3",
+    "internal_name": "fx205",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx206",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx206.mp3",
+    "internal_name": "fx206",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx207",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx207.mp3",
+    "internal_name": "fx207",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx209",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx209.mp3",
+    "internal_name": "fx209",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx210",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx210.mp3",
+    "internal_name": "fx210",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx211",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx211.mp3",
+    "internal_name": "fx211",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx212",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx212.mp3",
+    "internal_name": "fx212",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx213",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx213.mp3",
+    "internal_name": "fx213",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx214",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx214.mp3",
+    "internal_name": "fx214",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx216",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx216.mp3",
+    "internal_name": "fx216",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx217",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx217.mp3",
+    "internal_name": "fx217",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx218",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx218.mp3",
+    "internal_name": "fx218",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx222",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx222.mp3",
+    "internal_name": "fx222",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx223",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx223.mp3",
+    "internal_name": "fx223",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx224",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx224.mp3",
+    "internal_name": "fx224",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx225",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx225.mp3",
+    "internal_name": "fx225",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx226",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx226.mp3",
+    "internal_name": "fx226",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx227",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx227.mp3",
+    "internal_name": "fx227",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx228",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx228.mp3",
+    "internal_name": "fx228",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx229",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx229.mp3",
+    "internal_name": "fx229",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx230",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx230.mp3",
+    "internal_name": "fx230",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx231",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx231.mp3",
+    "internal_name": "fx231",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx232",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx232.mp3",
+    "internal_name": "fx232",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx233",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx233.mp3",
+    "internal_name": "fx233",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx234",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx234.mp3",
+    "internal_name": "fx234",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx235",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx235.mp3",
+    "internal_name": "fx235",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx236",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx236.mp3",
+    "internal_name": "fx236",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx237",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx237.mp3",
+    "internal_name": "fx237",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx238",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx238.mp3",
+    "internal_name": "fx238",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx239",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx239.mp3",
+    "internal_name": "fx239",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx240",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx240.mp3",
+    "internal_name": "fx240",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx241",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx241.mp3",
+    "internal_name": "fx241",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx242",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx242.mp3",
+    "internal_name": "fx242",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx243",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx243.mp3",
+    "internal_name": "fx243",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx244",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx244.mp3",
+    "internal_name": "fx244",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx245",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx245.mp3",
+    "internal_name": "fx245",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx246",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx246.mp3",
+    "internal_name": "fx246",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx247",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx247.mp3",
+    "internal_name": "fx247",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx248",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx248.mp3",
+    "internal_name": "fx248",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx249",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx249.mp3",
+    "internal_name": "fx249",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx250",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx250.mp3",
+    "internal_name": "fx250",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx251",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx251.mp3",
+    "internal_name": "fx251",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx252",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx252.mp3",
+    "internal_name": "fx252",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx253",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx253.mp3",
+    "internal_name": "fx253",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx254",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx254.mp3",
+    "internal_name": "fx254",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx255",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx255.mp3",
+    "internal_name": "fx255",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx256",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx256.mp3",
+    "internal_name": "fx256",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx257",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx257.mp3",
+    "internal_name": "fx257",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx259",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx259.mp3",
+    "internal_name": "fx259",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx260",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx260.mp3",
+    "internal_name": "fx260",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx261",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx261.mp3",
+    "internal_name": "fx261",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx262",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx262.mp3",
+    "internal_name": "fx262",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx263",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx263.mp3",
+    "internal_name": "fx263",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx264",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx264.mp3",
+    "internal_name": "fx264",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx265",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx265.mp3",
+    "internal_name": "fx265",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx266",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx266.mp3",
+    "internal_name": "fx266",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx267",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx267.mp3",
+    "internal_name": "fx267",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx268",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx268.mp3",
+    "internal_name": "fx268",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx269",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx269.mp3",
+    "internal_name": "fx269",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx270",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx270.mp3",
+    "internal_name": "fx270",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx271",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx271.mp3",
+    "internal_name": "fx271",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx272",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx272.mp3",
+    "internal_name": "fx272",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx273",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx273.mp3",
+    "internal_name": "fx273",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx274",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx274.mp3",
+    "internal_name": "fx274",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx275",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx275.mp3",
+    "internal_name": "fx275",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx276",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx276.mp3",
+    "internal_name": "fx276",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx277",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx277.mp3",
+    "internal_name": "fx277",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx278",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx278.mp3",
+    "internal_name": "fx278",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx279",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx279.mp3",
+    "internal_name": "fx279",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx281",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx281.mp3",
+    "internal_name": "fx281",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx282",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx282.mp3",
+    "internal_name": "fx282",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx283",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx283.mp3",
+    "internal_name": "fx283",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx284",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx284.mp3",
+    "internal_name": "fx284",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx286",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx286.mp3",
+    "internal_name": "fx286",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx287",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx287.mp3",
+    "internal_name": "fx287",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx288",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx288.mp3",
+    "internal_name": "fx288",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx289",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx289.mp3",
+    "internal_name": "fx289",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx290",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx290.mp3",
+    "internal_name": "fx290",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx291",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx291.mp3",
+    "internal_name": "fx291",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx292",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx292.mp3",
+    "internal_name": "fx292",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx293",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx293.mp3",
+    "internal_name": "fx293",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx294",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx294.mp3",
+    "internal_name": "fx294",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx295",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx295.mp3",
+    "internal_name": "fx295",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx296",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx296.mp3",
+    "internal_name": "fx296",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx297",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx297.mp3",
+    "internal_name": "fx297",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx298",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx298.mp3",
+    "internal_name": "fx298",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx299",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx299.mp3",
+    "internal_name": "fx299",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx300",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx300.mp3",
+    "internal_name": "fx300",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx301",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx301.mp3",
+    "internal_name": "fx301",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx302",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx302.mp3",
+    "internal_name": "fx302",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx303",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx303.mp3",
+    "internal_name": "fx303",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx304",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx304.mp3",
+    "internal_name": "fx304",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx305",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx305.mp3",
+    "internal_name": "fx305",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx306",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx306.mp3",
+    "internal_name": "fx306",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx308-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx308-idle.mp3",
+    "internal_name": "fx308-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx309-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx309-idle.mp3",
+    "internal_name": "fx309-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx310-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx310-idle.mp3",
+    "internal_name": "fx310-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx311-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx311-idle.mp3",
+    "internal_name": "fx311-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx312-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx312-idle.mp3",
+    "internal_name": "fx312-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx313",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx313.mp3",
+    "internal_name": "fx313",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx314",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx314.mp3",
+    "internal_name": "fx314",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx315",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx315.mp3",
+    "internal_name": "fx315",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx316",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx316.mp3",
+    "internal_name": "fx316",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx317",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx317.mp3",
+    "internal_name": "fx317",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx318",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx318.mp3",
+    "internal_name": "fx318",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx319",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx319.mp3",
+    "internal_name": "fx319",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx320",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx320.mp3",
+    "internal_name": "fx320",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx321",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx321.mp3",
+    "internal_name": "fx321",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx322",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx322.mp3",
+    "internal_name": "fx322",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx323",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx323.mp3",
+    "internal_name": "fx323",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx324",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx324.mp3",
+    "internal_name": "fx324",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx325",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx325.mp3",
+    "internal_name": "fx325",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx326",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx326.mp3",
+    "internal_name": "fx326",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx327",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx327.mp3",
+    "internal_name": "fx327",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx328",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx328.mp3",
+    "internal_name": "fx328",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx329",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx329.mp3",
+    "internal_name": "fx329",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx331",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx331.mp3",
+    "internal_name": "fx331",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx332",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx332.mp3",
+    "internal_name": "fx332",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx333-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx333-idle.mp3",
+    "internal_name": "fx333-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx334-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx334-idle.mp3",
+    "internal_name": "fx334-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx335-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx335-idle.mp3",
+    "internal_name": "fx335-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx336-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx336-idle.mp3",
+    "internal_name": "fx336-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx337-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx337-idle.mp3",
+    "internal_name": "fx337-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx338-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx338-idle.mp3",
+    "internal_name": "fx338-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx339-idle",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx339-idle.mp3",
+    "internal_name": "fx339-idle",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx340",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx340.mp3",
+    "internal_name": "fx340",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx341",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx341.mp3",
+    "internal_name": "fx341",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx342",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx342.mp3",
+    "internal_name": "fx342",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx343",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx343.mp3",
+    "internal_name": "fx343",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx344",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx344.mp3",
+    "internal_name": "fx344",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx345",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx345.mp3",
+    "internal_name": "fx345",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx346",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx346.mp3",
+    "internal_name": "fx346",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx347",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx347.mp3",
+    "internal_name": "fx347",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx348",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx348.mp3",
+    "internal_name": "fx348",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx349",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx349.mp3",
+    "internal_name": "fx349",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx350",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx350.mp3",
+    "internal_name": "fx350",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx351",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx351.mp3",
+    "internal_name": "fx351",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx352",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx352.mp3",
+    "internal_name": "fx352",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx353",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx353.mp3",
+    "internal_name": "fx353",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx354",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx354.mp3",
+    "internal_name": "fx354",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx355",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx355.mp3",
+    "internal_name": "fx355",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx357",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx357.mp3",
+    "internal_name": "fx357",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx359",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx359.mp3",
+    "internal_name": "fx359",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx360",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx360.mp3",
+    "internal_name": "fx360",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx361",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx361.mp3",
+    "internal_name": "fx361",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx362",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx362.mp3",
+    "internal_name": "fx362",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx363",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx363.mp3",
+    "internal_name": "fx363",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx364",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx364.mp3",
+    "internal_name": "fx364",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx365",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx365.mp3",
+    "internal_name": "fx365",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx366",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx366.mp3",
+    "internal_name": "fx366",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx367",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx367.mp3",
+    "internal_name": "fx367",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx368",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx368.mp3",
+    "internal_name": "fx368",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx369",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx369.mp3",
+    "internal_name": "fx369",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx370",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx370.mp3",
+    "internal_name": "fx370",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx371",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx371.mp3",
+    "internal_name": "fx371",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx372",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx372.mp3",
+    "internal_name": "fx372",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx373",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx373.mp3",
+    "internal_name": "fx373",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx374",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx374.mp3",
+    "internal_name": "fx374",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx375",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx375.mp3",
+    "internal_name": "fx375",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx376",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx376.mp3",
+    "internal_name": "fx376",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx377",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx377.mp3",
+    "internal_name": "fx377",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx378",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx378.mp3",
+    "internal_name": "fx378",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx379",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx379.mp3",
+    "internal_name": "fx379",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx380",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx380.mp3",
+    "internal_name": "fx380",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx381",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx381.mp3",
+    "internal_name": "fx381",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx382",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx382.mp3",
+    "internal_name": "fx382",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx383",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx383.mp3",
+    "internal_name": "fx383",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "fx384",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx384.mp3",
+    "internal_name": "fx384",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM01",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM01.mp3",
+    "internal_name": "mfdoom01",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM02",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM02.mp3",
+    "internal_name": "mfdoom02",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM03",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM03.mp3",
+    "internal_name": "mfdoom03",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM04",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM04.mp3",
+    "internal_name": "mfdoom04",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM05",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM05.mp3",
+    "internal_name": "mfdoom05",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM06",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM06.mp3",
+    "internal_name": "mfdoom06",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM07",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM07.mp3",
+    "internal_name": "mfdoom07",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM08",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM08.mp3",
+    "internal_name": "mfdoom08",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM09",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM09.mp3",
+    "internal_name": "mfdoom09",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM10",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM10.mp3",
+    "internal_name": "mfdoom10",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM11",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM11.mp3",
+    "internal_name": "mfdoom11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM12",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM12.mp3",
+    "internal_name": "mfdoom12",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM13",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM13.mp3",
+    "internal_name": "mfdoom13",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM14",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM14.mp3",
+    "internal_name": "mfdoom14",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM15",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM15.mp3",
+    "internal_name": "mfdoom15",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM16",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM16.mp3",
+    "internal_name": "mfdoom16",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM17",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM17.mp3",
+    "internal_name": "mfdoom17",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM18",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM18.mp3",
+    "internal_name": "mfdoom18",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "MFDOOM19",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM19.mp3",
+    "internal_name": "mfdoom19",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "player1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\player1.mp3",
+    "internal_name": "player1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "player2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\player2.mp3",
+    "internal_name": "player2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "player3",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\player3.mp3",
+    "internal_name": "player3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "player4",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\player4.mp3",
+    "internal_name": "player4",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "powerdownn",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\powerdownn.mp3",
+    "internal_name": "powerdownn",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Supreme_fx_11",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\Supreme_fx_11.mp3",
+    "internal_name": "supreme_fx_11",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Thunder7",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\Thunder7.mp3",
+    "internal_name": "thunder7",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\tilt.mp3",
+    "internal_name": "tilt",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\tilt1.mp3",
+    "internal_name": "tilt1",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\tilt2.mp3",
+    "internal_name": "tilt2",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tilt3",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\tilt3.mp3",
+    "internal_name": "tilt3",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "tiltshutdown",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\tiltshutdown.mp3",
+    "internal_name": "tiltshutdown",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
   }
 ]

@@ -97,7 +97,7 @@ cPuPPack = "MFDOOM"    ' name of the PuP-Pack / PuPVideos folder for this table
 	CalloutVol = 0.5					' Recommended values should be no greater than 1.
 
 '----- Choose Ball Options -----
-	Const ChooseBall = 0  				'Choose Ball Settings (select 0-4)
+	Const ChooseBall = 3  				'Choose Ball Settings (select 0-4)
 										' *** 0 = Normal Ball
 										' *** 1 = Purple Green Swirl Ball
 										' *** 2 = Purple Swirl Ball 
@@ -112,6 +112,10 @@ cPuPPack = "MFDOOM"    ' name of the PuP-Pack / PuPVideos folder for this table
 Dim BallRollVolume : BallRollVolume = 0.5   	' Level of ball rolling volume. Value between 0 and 1
 Dim RampRollVolume : RampRollVolume = 0.5 		' Level of ramp rolling volume. Value between 0 and 1
 Dim StagedFlippers : StagedFlippers = 0         ' Staged Flippers. 0 = Disabled, 1 = Enabled
+
+'----- Music Options -----
+Const fMusicVolume = 0.5			'Music volume. 0 = no music, 1 = full volume
+COnst fAttractVolume = 0.3			'Attract mode music volume. 0 = no music, 1 = full volume
 
 
 '*******************************************
@@ -2945,7 +2949,8 @@ End Sub
 			RightFlipper.RotateToStart
 			LeftSlingshot.Disabled = 1
 			RightSlingshot.Disabled = 1
-			PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
+			StopAllMusic
+			'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
 			bWarpSpeedMultiballActive = False
 			Bumper1.Threshold = 100    
 			Bumper2.Threshold = 100    
@@ -3015,7 +3020,8 @@ End Sub
 		BallHandlingQueue.Add "FirstBall","FirstBall",30,1500,0,0,0,False
 	End Sub
 	Sub EndOfGame()
-		PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
+		StopAllMusic
+		'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
 		DelayAttractText
 		StartAttractMode
 		introposition = 0     '0
@@ -3074,25 +3080,25 @@ End Sub
 Sub LoadOrbital
 	If HasPuP Then
 		PuPlayer.LabelInit pBackglass
-		PuPlayer.Init pMusic,cGameName
-		PuPlayer.Init pAudio,cGameName
-		PuPlayer.Init pCallouts,cGameName
-
-		PuPlayer.SetScreenex pAudio,0,0,0,0,2
-		PuPlayer.hide pAudio
-		PuPlayer.SetScreenex pMusic,0,0,0,0,2
-		PuPlayer.hide pMusic
-		PuPlayer.SetScreenex pCallouts,0,0,0,0,2
-		PuPlayer.hide pCallouts
-
-		PuPlayer.playlistadd pMusic,"audioattract", 1 , 0
-		PuPlayer.playlistadd pMusic,"audiobg", 1 , 0
-		PuPlayer.playlistadd pMusic,"audiogas", 1 , 0
-		PuPlayer.playlistadd pAudio,"audioclear", 1 , 0
-		PuPlayer.playlistadd pAudio,"audioevents", 1 , 0
-		PuPlayer.playlistadd pCallouts,"audiocallouts", 1 , 0
-		PuPlayer.playlistadd pCallouts,"audioidle", 1 , 0
-		PuPlayer.playlistadd pCallouts,"audioidlestop", 1 , 0
+'		PuPlayer.Init pMusic,cGameName
+'		PuPlayer.Init pAudio,cGameName
+'		PuPlayer.Init pCallouts,cGameName
+'
+'		PuPlayer.SetScreenex pAudio,0,0,0,0,2
+'		PuPlayer.hide pAudio
+'		PuPlayer.SetScreenex pMusic,0,0,0,0,2
+'		PuPlayer.hide pMusic
+'		PuPlayer.SetScreenex pCallouts,0,0,0,0,2
+'		PuPlayer.hide pCallouts
+'
+'		PuPlayer.playlistadd pMusic,"audioattract", 1 , 0
+'		PuPlayer.playlistadd pMusic,"audiobg", 1 , 0
+'		PuPlayer.playlistadd pMusic,"audiogas", 1 , 0
+'		PuPlayer.playlistadd pAudio,"audioclear", 1 , 0
+'		PuPlayer.playlistadd pAudio,"audioevents", 1 , 0
+'		PuPlayer.playlistadd pCallouts,"audiocallouts", 1 , 0
+'		PuPlayer.playlistadd pCallouts,"audioidle", 1 , 0
+'		PuPlayer.playlistadd pCallouts,"audioidlestop", 1 , 0
 
 		If toppervideo = 1 Then
 			RandomTopperVideoLoop
@@ -3173,10 +3179,10 @@ Sub Reseths
     HighScoreName(1) = "ILL"
     HighScoreName(2) = "IAK"
     HighScoreName(3) = "OQQ"
-    HighScore(0) = 1500000
-    HighScore(1) = 1400000
-    HighScore(2) = 1300000
-    HighScore(3) = 1200000
+    HighScore(0) = 2000000
+    HighScore(1) = 1500000
+    HighScore(2) = 1000000
+    HighScore(3) = 800000
     Savehs
 End Sub
 
@@ -3356,6 +3362,8 @@ End Sub
 		LightQueue.Add "StartLightSeq2","StartLightSeq2",20,150,0,0,0,false
 		LightQueue.Add "StartLightSeq3","StartLightSeq3",20,300,0,0,0,false
 		'ShowTableInfo
+		i = RndNbr(2)
+		SwitchMusic "Attract" &i
 		DMDintroloop
 		FlasherAttract
 		StartRainbow alights
@@ -3388,12 +3396,96 @@ End Sub
 		StopPLights
 		LRuby2.state = 0
 	End Sub
+
+'*******************************************
+'  ZMUS - Music
+'*******************************************
+Dim fCurrentMusicVol : fCurrentMusicVol = 0
+Dim sMusicTrack : sMusicTrack = ""
+Dim fSongVolume : fSongVolume = 1
+
+Sub SwitchMusic(sTrack)
+Dbg "sTrack: " &sTrack
+Dbg "sMusicTrack: " &sMusicTrack
+	If sTrack <> sMusicTrack Then
+		StopSound sMusicTrack
+		sMusicTrack = sTrack
+		If (sTrack = "Attract1") or (sTrack = "Attract2") Then
+			PlaySound sTrack, -1, fAttractVolume
+			fCurrentMusicVol = fAttractVolume
+		Else
+			PlaySound sTrack, -1, fMusicVolume * fSongVolume
+			fCurrentMusicVol = fMusicVolume
+		End If
+	End If
+End Sub
+
+Sub StopAllMusic
+	'sMusicTrack = ""
+	StopSound "Attract1"
+	StopSound "Attract2"
+	StopSound "MFDOOM01"
+	StopSound "MFDOOM02"
+	StopSound "MFDOOM03"
+	StopSound "MFDOOM04"
+	StopSound "MFDOOM05"
+	StopSound "MFDOOM06"
+	StopSound "MFDOOM07"
+	StopSound "MFDOOM08"
+	StopSound "MFDOOM09"
+	StopSound "MFDOOM10"
+	StopSound "MFDOOM11"
+	StopSound "MFDOOM12"
+	StopSound "MFDOOM13"
+	StopSound "MFDOOM14"
+	StopSound "MFDOOM15"
+	StopSound "MFDOOM16"
+	StopSound "MFDOOM17"
+	StopSound "MFDOOM18"
+	StopSound "MFDOOM19"
+	StopSound "MFDOOM20"
+End Sub
+
+Dim newSong
+Sub UpdateMusicNow
+	StopAllMusic
+	newSong = RndNbr(20)
+
+	Dbg "NewSong: " &newSong
+    Select Case newSong
+        Case 1:SwitchMusic "MFDOOM01"
+        Case 2:SwitchMusic "MFDOOM02"
+        Case 3:SwitchMusic "MFDOOM03"
+        Case 4:SwitchMusic "MFDOOM04"
+        Case 5:SwitchMusic "MFDOOM05"
+        Case 6:SwitchMusic "MFDOOM06"
+        Case 7:SwitchMusic "MFDOOM07"
+        Case 8:SwitchMusic "MFDOOM08"
+        Case 9:SwitchMusic "MFDOOM09"
+        Case 10:SwitchMusic "MFDOOM10"
+        Case 11:SwitchMusic "MFDOOM11"
+        Case 12:SwitchMusic "MFDOOM12"
+        Case 13:SwitchMusic "MFDOOM13"
+        Case 14:SwitchMusic "MFDOOM14"
+        Case 15:SwitchMusic "MFDOOM15"
+        Case 16:SwitchMusic "MFDOOM16"
+        Case 17:SwitchMusic "MFDOOM17"
+        Case 18:SwitchMusic "MFDOOM18"
+        Case 19:SwitchMusic "MFDOOM19"
+        Case 20:SwitchMusic "MFDOOM20"
+
+    End Select
+end sub
+
+
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 ' PLAY MUSIC		
 	Sub MusicTrigger_hit()
 		If LWarpMultiballCounter.state = 0 Then
-			PuPlayer.playlistplayex pAudio,"audioevents","",100,9
-			PuPlayer.SetLoop 7,1 
+			UpdateMusicNow
+'			PuPlayer.playlistplayex pAudio,"audioevents","",100,9
+'			PuPlayer.SetLoop 7,1 
 		End If
 		If LKicker.state = 1 then 
 			LArrow04.state = 2
@@ -3423,120 +3515,122 @@ End Sub
 	End Sub
 
 	Sub StopTracks_hit()
-		PuPlayer.playstop pAudio
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 	End Sub
 
 	Sub RandomRestartMusicSelection
 		IF (bGameInPLay = True) AND (Tilted = False) AND (BallsOnPlayfield > 0) AND (LWarpMultiballCounter.state = 0) THEN
-			PuPlayer.playlistplayex pAudio,"audioevents","",100,8   
-			PuPlayer.SetLoop 7,1 			
+			UpdateMusicNow
+'			PuPlayer.playlistplayex pAudio,"audioevents","",100,8   
+'			PuPlayer.SetLoop 7,1 			
 		END IF
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' CALLOUTS
 	'MULTIBALL Callouts
 	Sub OneMoreHitCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","onemorehit.mp3",100,30
+		If EnableCallouts=1 Then Playsoundcallout "co_onemorehit.mp3"
 	End Sub
 	Sub TwoMoreHitsCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","twomorehits.mp3",100,29
+		If EnableCallouts=1 Then Playsoundcallout "co_twomorehits.mp3"
 	End Sub
 	Sub AmericasMostBluntedCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","americasmostblunted.mp3",100,31
+		Playsoundcallout "co_americasmostblunted.mp3"
 	End Sub
 	Sub AmericasMostBluntedMultiballCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","americasmostbluntedmultiball.mp3",100,32
+		If EnableCallouts=1 Then Playsoundcallout "co_americasmostbluntedmultiball.mp3"
 	End Sub
 	Sub GasDrawlsCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","gasdrawls.mp3",100,34
+		Playsoundcallout "co_gasdrawls.mp3"
 	End Sub
 	Sub GasDrawlsMultiballCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","gasdrawlsmultiball.mp3",100,35
+		If EnableCallouts=1 Then Playsoundcallout "co_gasdrawlsmultiball.mp3"
 	End Sub
 	Sub GazzillionEarTenSecondCountdownCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","gazzillionear-10sec.mp3",100,48
+		Playsoundcallout "co_gazzillionear-10sec.mp3"
 	End Sub
 	Sub GazzillionEarMultiballCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","gazzillionear-multiball.mp3",100,43
+		Playsoundcallout "co_gazzillionear-multiball.mp3"
 	End Sub
 
 	'JACKPOT Callouts
 	Sub GasDrawlsJackpotCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","lookslikeihitthejackpot.mp3",100,36
+		Playsoundcallout "co_lookslikeihitthejackpot.mp3"
 		'RandomUltraDMDSceneGasDrawlsJackpot
 		playvideo=20+int(rnd(1)*3)
 	End Sub
 	Sub AmericasMostBluntedJackpotCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","lookslikeihitthejackpot.mp3",100,37
+		Playsoundcallout "co_lookslikeihitthejackpot.mp3"
 		'RandomUltraDMDSceneAmericasMostBluntedJackpot
 		playvideo=27+int(rnd(1)*3)
 	End Sub
 	Sub GazzillionEarJackpotCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","lookslikeihitthejackpot.mp3",100,47
+		Playsoundcallout "co_lookslikeihitthejackpot.mp3"
 		'RandomUltraDMDSceneGazzillionEarJackpot
 		playvideo=34+int(rnd(1)*3)
 	End Sub
 	Sub GazzillionEarSuperJackpotCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","gazzillionear-superjackpot.mp3",100,46
+		Playsoundcallout "co_gazzillionear-superjackpot.mp3"
 	End Sub
 	Sub GazzillionEarSuperJackpotIsLitCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","gazzillionear-superjackpotislit.mp3",100,45
+		If EnableCallouts=1 Then Playsoundcallout "co_gazzillionear-superjackpotislit.mp3"
 	End Sub
 	'COMBO Callouts
 	Sub TwoWayComboCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","twowaycombo.mp3",100,13
+		If EnableCallouts=1 Then Playsoundcallout "co_twowaycombo.mp3"
 	End Sub
 	Sub ThreeWayComboCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","threewaycombo.mp3",100,14
+		If EnableCallouts=1 Then Playsoundcallout "co_threewaycombo.mp3"
 	End Sub
 	Sub FourWayComboCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","fourwaycombo.mp3",100,15
+		If EnableCallouts=1 Then Playsoundcallout "co_fourwaycombo.mp3"
 	End Sub
 	Sub FiveWayComboCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","fivewaycombo.mp3",100,16
+		If EnableCallouts=1 Then Playsoundcallout "co_fivewaycombo.mp3"
 	End Sub
 	'MULTIPLIER Callouts
 	Sub TwoTimesBonusMultiplierCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","twotimesbonusmultiplier.mp3",100,25
+		If EnableCallouts=1 Then Playsoundcallout "co_twotimesbonusmultiplier.mp3"
 	End Sub
 	Sub ThreeTimesBonusMultiplierCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","threetimesbonusmultiplier.mp3",100,26
+		If EnableCallouts=1 Then Playsoundcallout "co_threetimesbonusmultiplier.mp3"
 	End Sub
 	Sub FiveTimesBonusMultiplierCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","fivetimesbonusmultiplier.mp3",100,27
+		If EnableCallouts=1 Then Playsoundcallout "co_fivetimesbonusmultiplier.mp3"
 	End Sub
 	'TILT Callouts
 	Sub TiltCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","tilt.mp3",100,50
+		If EnableCallouts=1 Then Playsoundcallout "co_tilt.mp3"
 	End Sub
 	Sub TiltWarningCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","tiltwarning.mp3",100,42
+		If EnableCallouts=1 Then Playsoundcallout "co_tiltwarning.mp3"
 	End Sub
 	'COMPLETED Callouts
 	Sub LevelOneCompletedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","levelonecompleted.mp3",100,38
+		If EnableCallouts=1 Then Playsoundcallout "co_levelonecompleted.mp3"
 	End Sub
 	Sub LevelTwoCompletedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","leveltwocompleted.mp3",100,39
+		If EnableCallouts=1 Then Playsoundcallout "co_leveltwocompleted.mp3"
 	End Sub
 	Sub OrbitsCompletedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","orbitscompleted.mp3",100,18
+		If EnableCallouts=1 Then Playsoundcallout "co_orbitscompleted.mp3"
 	End Sub
 	Sub RampsCompletedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","rampscompleted.mp3",100,19
+		If EnableCallouts=1 Then Playsoundcallout "co_rampscompleted.mp3"
 	End Sub
 	Sub SpinnerCompletedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","spinnercompleted.mp3",100,17
+		If EnableCallouts=1 Then Playsoundcallout "co_spinnercompleted.mp3"
 	End Sub
 	Sub StandupsCompleteCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","standupscomplete.mp3",100,28
+		If EnableCallouts=1 Then Playsoundcallout "co_standupscomplete.mp3"
 	End Sub
 	'MISCELLANEOUS Callouts
 	Sub BallAddedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","balladded.mp3",100,41
+		If EnableCallouts=1 Then Playsoundcallout "co_balladded.mp3"
 	End Sub
 	Sub BallLockedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","balllocked.mp3",100,33
+		If EnableCallouts=1 Then Playsoundcallout "co_balllocked.mp3"
 	End Sub
 	Sub BallSavedCallout
 		Select Case Int(Rnd * 5) + 1
@@ -3548,46 +3642,47 @@ End Sub
 		End Select
 	End Sub
 	Sub DoubleScoringCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","doublescoring.mp3",100,12
+		If EnableCallouts=1 Then Playsoundcallout "co_doublescoring.mp3"
 	End Sub
 	Sub MysteryBonusCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","mysterybonus.mp3",100,40
+		If EnableCallouts=1 Then Playsoundcallout "co_mysterybonus.mp3"
 	End Sub
 	Sub SkillshotCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","skillshot.mp3",100,11
+		If EnableCallouts=1 Then Playsoundcallout "co_skillshot.mp3"
 	End Sub
 	Sub SuperOrbitsCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","superorbits.mp3",100,22
+		If EnableCallouts=1 Then Playsoundcallout "co_superorbits.mp3"
 	End Sub
 	Sub SuperPopsCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","superpops.mp3",100,21
+		If EnableCallouts=1 Then Playsoundcallout "co_superpops.mp3"
 	End Sub
 	Sub SuperRampsCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","superramps.mp3",100,23
+		If EnableCallouts=1 Then Playsoundcallout "co_superramps.mp3"
 	End Sub
 	Sub DoubleSpinnerCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","doublespinner.mp3",100,20
+		If EnableCallouts=1 Then Playsoundcallout "co_doublespinner.mp3"
 	End Sub
 	Sub Player1Callout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pMusic,"audiobg","player1.mp3",100,7
+		If EnableCallouts=1 Then Playsoundcallout "player1.mp3"
 	End Sub
 	Sub Player2Callout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pMusic,"audiobg","player2.mp3",100,8
+		If EnableCallouts=1 Then Playsoundcallout "player2.mp3"
 	End Sub
 	Sub Player3Callout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pMusic,"audiobg","player3.mp3",100,9
+		If EnableCallouts=1 Then Playsoundcallout "player3.mp3"
 	End Sub
 	Sub Player4Callout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pMusic,"audiobg","player4.mp3",100,10
+		If EnableCallouts=1 Then Playsoundcallout "player4.mp3"
 	End Sub
 	Sub MysteryAliasMissionsUnlockedCallout
-		If EnableCallouts=1 Then PuPlayer.playlistplayex pCallouts,"audiocallouts","mysteryaliasmissionsunlocked.mp3",100,42
+		If EnableCallouts=1 Then Playsoundcallout "co_mysteryaliasmissionsunlocked.mp3"
 	End Sub
 	Sub GameOverCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","gameover.mp3",100,55
+		Playsoundcallout "co_gameover.mp3"
 	End Sub
 	Sub ClearMusicCallout
-		PuPlayer.playlistplayex pCallouts,"audiocallouts","clear.mp3",100,60
+		StopAllMusic
+		'Playsoundcallout "co_clear.mp3"
 	End Sub
 	'********************************************
 	'   FLIPPER LIGHTS ON/OFF
@@ -3674,7 +3769,12 @@ end sub
 	End Sub
 		
 	Sub RandomSoundGas()
-		PuPlayer.playlistplayex pMusic,"audiogas","",100,8
+		Select Case Int(Rnd * 4) + 1				
+			Case 1:PlaySoundCallOut "fx281"
+			Case 2:PlaySoundCallOut "fx282"
+			Case 3:PlaySoundCallOut "fx283"
+			Case 4:PlaySoundCallOut "fx284"
+		End Select
 	End Sub
 
 	Sub RandomSoundGasToo()
@@ -3900,16 +4000,51 @@ end sub
 		End Select
 	End Sub
 
+		Dim IdleCalloutIndex
+		IdleCalloutIndex = Int(Rnd * 12) + 1
 	Sub RandomSoundPlungerIdle
 		chilloutthemusic
-		PuPlayer.playlistplayex pCallouts,"audioidle","",100,8
-		PuPlayer.SetLoop 8,1 
+		IdleCalloutIndex = IdleCalloutIndex + 1
+		Select Case IdleCalloutIndex			
+			Case 1:PlaySound "fx308-idle", -1
+			Case 2:PlaySound "fx309-idle", -1
+			Case 3:PlaySound "fx310-idle", -1
+			Case 4:PlaySound "fx311-idle", -1
+			Case 5:PlaySound "fx312-idle", -1
+			Case 6:PlaySound "fx333-idle", -1
+			Case 7:PlaySound "fx334-idle", -1
+			Case 8:PlaySound "fx335-idle", -1
+			Case 9:PlaySound "fx336-idle", -1
+			Case 10:PlaySound "fx337-idle", -1
+			Case 11:PlaySound "fx338-idle", -1
+			Case 12:PlaySound "fx339-idle", -1
+				   IdleCalloutIndex = 0
+		End Select
+
+	End Sub
+
+	Sub StopIdleSound
+		Select Case IdleCalloutIndex			
+			Case 1:StopSound "fx308-idle"
+			Case 2:StopSound "fx309-idle"
+			Case 3:StopSound "fx310-idle"
+			Case 4:StopSound "fx311-idle"
+			Case 5:StopSound "fx312-idle"
+			Case 6:StopSound "fx333-idle"
+			Case 7:StopSound "fx334-idle"
+			Case 8:StopSound "fx335-idle"
+			Case 9:StopSound "fx336-idle"
+			Case 10:StopSound "fx337-idle"
+			Case 11:StopSound "fx338-idle"
+			Case 12:StopSound "fx339-idle"
+		End Select
 	End Sub
 
 		Dim SoundPlungerShoot
 		SoundPlungerShoot = Int(Rnd * 9) + 1
 	Sub RandomSoundPlungerShoot()
 		SoundPlungerShoot = SoundPlungerShoot + 1
+		'StopIdleSound
 		Select Case SoundPlungerShoot			
 			Case 1:PlaySoundCallOut "fx061"
 			Case 2:PlaySoundCallOut "fx192"
@@ -4712,8 +4847,9 @@ end sub
 						RandomKickerRubberSound
 						RandomKickerEjectSlow
 					Else
-						EndMusic
-						PuPlayer.playstop pAudio
+						'EndMusic
+						'PuPlayer.playstop pAudio
+						StopAllMusic
 						LightQueue.Add "DelayGasDrawlsMBMX","DelayGasDrawlsMBMX",20,7900,0,0,0,false
 						RandomSoundGas
 						BallLockedCallout
@@ -4920,7 +5056,7 @@ end sub
 		PLightsFlashLaser
 	End Sub
 
-	Sub StopIdleSound
+	Sub StopIdleSoundOld
 		LSlime.state = 0
 		PuPlayer.playlistplayex pCallouts,"audioidlestop","clear.mp3",100,9
 	End Sub
@@ -7135,7 +7271,7 @@ End Sub
 			RightSlingshot.Disabled = 1
 			Tilted = True
 			PlaySoundCallOut "tiltshutdown"
-			PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
+			'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
 			DisableTable True
 			tilttableclear.enabled = true
 			TiltRecoveryTimer.Enabled = True 
@@ -9417,7 +9553,8 @@ End Sub
 			z.State = 0
 		Next
 		'PuPlayer.playresume 4
-		PuPlayer.playstop pAudio
+		'PuPlayer.playstop pAudio
+		StopAllMusic
 		If PlayersPlayingGame > 1 Then
 			If CurrentPlayer = 1 Then
 				Player1Callout
@@ -9453,7 +9590,8 @@ End Sub
 				DOF 942, DOFOn   'DOF MX
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
-		        PuPlayer.playstop pAudio
+				StopAllMusic
+		        'PuPlayer.playstop pAudio
 				LSlime.state = 2
 			Elseif currentplayer = 3 Then
 				Player3Callout
@@ -9471,7 +9609,8 @@ End Sub
 				DOF 942, DOFOn   'DOF MX	
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
-		        PuPlayer.playstop pAudio
+				StopAllMusic
+		        'PuPlayer.playstop pAudio
 				LSlime.state = 2
 			Elseif currentplayer = 4 Then
 				Player4Callout
@@ -9489,7 +9628,8 @@ End Sub
 				DOF 942, DOFOn   'DOF MX	
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
-		        PuPlayer.playstop pAudio
+				StopAllMusic
+		        'PuPlayer.playstop pAudio
 				LSlime.state = 2
 			End If
 		Else
@@ -9534,7 +9674,8 @@ End Sub
 		ResetSuperRampsLight               '
 		LCombo.State = 0
 		bCombo(CurrentPlayer) = 0
-		PuPlayer.playstop pAudio
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 	End Sub
 
 	Sub CreateNewBall()
@@ -9555,7 +9696,8 @@ End Sub
 			bAutoPlunger = True
 		End If
 		End If
-		PuPlayer.playstop pAudio
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 	End Sub
 
 	Sub AddMultiball(nballs)
@@ -9583,8 +9725,9 @@ End Sub
 	'   BALL LOCK ROUTINE
 	'**************************
 	Sub CreateNewBallForBallLock()
-		EndMusic
-		PuPlayer.playstop pAudio
+		'EndMusic
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 		RandomSoundFood
 		BallHandlingQueue.Add "BallForBallLock","BallForBallLock",20,6025,0,0,0,false
 		AudioQueue.Add "RandomSoundGas","RandomSoundGas",20,1000,0,0,0,false
@@ -9726,12 +9869,14 @@ End Sub
 		ResetLWarpMultiballLight       '
 		ResetLSupreme08confirm         '
 		bWarpSpeedMultiballActive = False
-		PuPlayer.playstop pAudio
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 
 	End Sub
 
 	Sub Balldrained
-		PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
+		StopAllMusic
+		'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
 	End Sub
 	'**************************
 	'   DRAIN HIT
@@ -9739,8 +9884,9 @@ End Sub
 	Sub Drain_Hit()
 		Drain.DestroyBall
 		BallsOnPlayfield = BallsOnPlayfield - 1
-		EndMusic
-		PuPlayer.playstop pAudio
+		'EndMusic
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 		RandomSoundDrainBottom
 		RandomSoundDrain drain
 		AudioQueue.Add "RandomRestartMusicSelection","RandomRestartMusicSelection",20,6000,0,0,0,false
@@ -9909,6 +10055,31 @@ End Sub
 		LightShootAgain.BlinkInterval = 80
 		LightShootAgain.State = 2
 	End Sub
+
+' Locale independent number formatter
+Function FormatScore(nScore)
+	Dim i
+	Dim sScore, sFormattedScore
+	sScore = CStr(nScore)
+	sFormattedScore = ""
+	Dim nDigitCount
+	Dim sDigit
+	If "" = sScore or "0" = sScore Then
+		FormatScore = "00"
+		Exit Function
+	End If
+	nDigitCount = Len(sScore)
+	For i = 1 to nDigitCount
+		sDigit = Mid(sScore, (1 + (nDigitCount - i)), 1)
+		If (i > 1) and (1 = (i mod 3)) Then
+			sFormattedScore = sFormattedScore & "," & sDigit
+		Else
+			sFormattedScore = sFormattedScore & sDigit
+		End If
+	Next
+	FormatScore = StrReverse(sFormattedScore)
+End Function
+
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  ATTRACT MODE
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -9916,7 +10087,7 @@ End Sub
 	introposition = 0
 
 	Sub DMDintroloop
-
+		Dim i
 		'PuPlayer.LabelSet pBackglass,"modetitle","",1,"{'mt':2,'color':16777215, 'size': 0, 'xpos': 80.7, 'xalign': 1, 'ypos': 72.6, 'yalign': 0}"
 		introtime = 0	
 		introposition = introposition + 1
@@ -9924,15 +10095,17 @@ End Sub
 			Case 1
 	Dbg "In the DMD Loop"
 				PupEvent 736
-				PupEvent 836
+				'PupEvent 836
+				
+				' switchmusic attract bg1.mp3
 				DMDTopSplash HighScoreName(0),1000,0
-				DMDBigText HighScore(0),1000,0
+				DMDBigText formatscore(HighScore(0)),1000,0
 			Case 2
 				DMDTopSplash HighScoreName(1),1000,0
-				DMDBigText HighScore(1),1000,0
+				DMDBigText formatscore(HighScore(1)),1000,0
 			Case 3
    				DMDTopSplash HighScoreName(2),1000,0
-				DMDBigText HighScore(2),1000,0                   
+				DMDBigText formatscore(HighScore(2)),1000,0                   
 			Case 4
 			'	PupEvent 737
 			'	PupEvent 837
@@ -10040,14 +10213,14 @@ End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Sub Game_Init() 'called at the start of a new game
 		Dbg "=========== Starting Game ==========="
-		PuPEvent 200
+		'PuPEvent 200
 		Dim i
 		For i = 0 to 4
 			SkillshotValue(i) = 10000 ' increases by 10000 each time it is collected
 		Next
 		bExtraBallWonThisBall = False
 
-		PuPEvent 201
+		'PuPEvent 201
 		PuPEvent 301
 		ClearMusicCallout
 
@@ -10073,7 +10246,8 @@ End Sub
 	End Sub
 
 	Sub ResetNewBallVariables()
-		PuPlayer.playstop pAudio
+		StopAllMusic
+		'PuPlayer.playstop pAudio
 			Dim a
 				For each a in TotalLights
 				a.State = 0
@@ -16017,6 +16191,7 @@ BallHandlingQueue.Add "BumperScore3","BumperScore3 " & idx & "",20,900,0,0,0,fal
 	End Sub 
 
 	Sub ClearSmoke
+		
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 0, "PuPOverlays2\\Clear.png" ,1,""
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 1, "PuPOverlays2\\Clear.png" ,1,""
