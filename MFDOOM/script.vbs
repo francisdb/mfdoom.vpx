@@ -71,7 +71,7 @@ Dim UsePuPEvents: Dim cPuPPack: Dim PUPStatus: PUPStatus=false ' dont edit this 
 
 '*************************** PuP Settings for this table ********************************
 
-UsePuPEvents   = True               ' enable Pinup Player functions for this table -- not needed for audio callouts
+UsePuPEvents   = True               ' enable Pinup Player functions for this table
 cPuPPack = "MFDOOM"    ' name of the PuP-Pack / PuPVideos folder for this table
 
 '----- General Sound Options -----
@@ -97,7 +97,7 @@ cPuPPack = "MFDOOM"    ' name of the PuP-Pack / PuPVideos folder for this table
 	CalloutVol = 0.5					' Recommended values should be no greater than 1.
 
 '----- Choose Ball Options -----
-	Const ChooseBall = 3  				'Choose Ball Settings (select 0-4)
+	Const ChooseBall = 0  				'Choose Ball Settings (select 0-4)
 										' *** 0 = Normal Ball
 										' *** 1 = Purple Green Swirl Ball
 										' *** 2 = Purple Swirl Ball 
@@ -794,15 +794,17 @@ if Not hsbModeActive Then
 		PlayVideo=0
 	End If
 	If int(DMD_VideoTimer)=int(Frame) Then 
-		FlexDMD.Stage.GetVideo("vidvid1").remove()
-		If OldVideo>36 Then
-			Playvideo=37+int(rnd(1)*5)
-			If introtexton=1 Then
-				introtexton=0
-				FlexDMD.Stage.GetLabel("introtext").remove()
-			End If	
+		If Not OldVideo=0 Then
+			FlexDMD.Stage.GetVideo("vidvid1").remove()
+			If OldVideo>36 Then
+				Playvideo=37+int(rnd(1)*5)
+				If introtexton=1 Then
+					introtexton=0
+					FlexDMD.Stage.GetLabel("introtext").remove()
+				End If	
+			End If
+			OldVideo=0
 		End If
-		OldVideo=0
 	End If
 
 	If introtexton=1 Then
@@ -2950,7 +2952,6 @@ End Sub
 			LeftSlingshot.Disabled = 1
 			RightSlingshot.Disabled = 1
 			StopAllMusic
-			'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
 			bWarpSpeedMultiballActive = False
 			Bumper1.Threshold = 100    
 			Bumper2.Threshold = 100    
@@ -3021,7 +3022,6 @@ End Sub
 	End Sub
 	Sub EndOfGame()
 		StopAllMusic
-		'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100,9
 		DelayAttractText
 		StartAttractMode
 		introposition = 0     '0
@@ -3051,7 +3051,7 @@ End Sub
 '   PinUp Player Config
 '   Change HasPuP = True if using PinUp Player Videos
 '*********************************************************
-	Dim HasPup:HasPuP = true
+'	Dim HasPup:HasPuP = true
 	Dim PuPlayer
 	Const pTopper=0
 	Const pDMD=1
@@ -3078,28 +3078,8 @@ End Sub
 
 
 Sub LoadOrbital
-	If HasPuP Then
+	If PuPStatus Then
 		PuPlayer.LabelInit pBackglass
-'		PuPlayer.Init pMusic,cGameName
-'		PuPlayer.Init pAudio,cGameName
-'		PuPlayer.Init pCallouts,cGameName
-'
-'		PuPlayer.SetScreenex pAudio,0,0,0,0,2
-'		PuPlayer.hide pAudio
-'		PuPlayer.SetScreenex pMusic,0,0,0,0,2
-'		PuPlayer.hide pMusic
-'		PuPlayer.SetScreenex pCallouts,0,0,0,0,2
-'		PuPlayer.hide pCallouts
-'
-'		PuPlayer.playlistadd pMusic,"audioattract", 1 , 0
-'		PuPlayer.playlistadd pMusic,"audiobg", 1 , 0
-'		PuPlayer.playlistadd pMusic,"audiogas", 1 , 0
-'		PuPlayer.playlistadd pAudio,"audioclear", 1 , 0
-'		PuPlayer.playlistadd pAudio,"audioevents", 1 , 0
-'		PuPlayer.playlistadd pCallouts,"audiocallouts", 1 , 0
-'		PuPlayer.playlistadd pCallouts,"audioidle", 1 , 0
-'		PuPlayer.playlistadd pCallouts,"audioidlestop", 1 , 0
-
 		If toppervideo = 1 Then
 			RandomTopperVideoLoop
 		End If
@@ -3118,6 +3098,7 @@ End Sub
 
 Sub resetbackglass
 	Loadhs
+	if PuPStatus = False Then Exit Sub
 	PuPlayer.LabelNew pBackglass,"Smoke",numberfont,		10,RGB(255, 255, 255)			,0,1,0 ,0,0    ,1,1
 	dim i
 	for i = 0 to 5
@@ -3210,6 +3191,11 @@ End Sub
 			EndOfBallComplete
 		End If
 	End Sub
+
+Sub ClearDMDHighScore
+	DMDTopSplash "", 1, 0
+	DMDBigText "",1,0
+End Sub
 
 
 Sub HighScoreEntryInit()
@@ -3322,7 +3308,7 @@ End Sub
 	' post the high score letters
 Sub HighScoreCommitName()
     HighScoreFlashTimer.Enabled = False
-    hsbModeActive = False
+    hsbModeActive = False': CreateDMD_intro
 
     hsEnteredName = hsEnteredDigits(0) & hsEnteredDigits(1) & hsEnteredDigits(2)
     if(hsEnteredName = "   ")then
@@ -3331,6 +3317,7 @@ Sub HighScoreCommitName()
 
     HighScoreName(3) = hsEnteredName
     SortHighscore
+	'DMDTextDisplayTime = Frame
     EndOfBallComplete()
 End Sub
 
@@ -3348,11 +3335,13 @@ Sub SortHighscore
             End If
         Next
     Next
+	Savehs
 End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  ATTRACT MODE
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Sub StartAttractMode()
+		Dim i
 		DOF 947, DOFOn   'DOF MX - Attract Mode ON
 		DOF 311, DOFOn   'MX-Undercab1
 		bAttractMode = True
@@ -3442,14 +3431,12 @@ Sub StopAllMusic
 	StopSound "MFDOOM16"
 	StopSound "MFDOOM17"
 	StopSound "MFDOOM18"
-	StopSound "MFDOOM19"
-	StopSound "MFDOOM20"
 End Sub
 
 Dim newSong
 Sub UpdateMusicNow
 	StopAllMusic
-	newSong = RndNbr(20)
+	newSong = RndNbr(18)
 
 	Dbg "NewSong: " &newSong
     Select Case newSong
@@ -3471,8 +3458,6 @@ Sub UpdateMusicNow
         Case 16:SwitchMusic "MFDOOM16"
         Case 17:SwitchMusic "MFDOOM17"
         Case 18:SwitchMusic "MFDOOM18"
-        Case 19:SwitchMusic "MFDOOM19"
-        Case 20:SwitchMusic "MFDOOM20"
 
     End Select
 end sub
@@ -3484,8 +3469,6 @@ end sub
 	Sub MusicTrigger_hit()
 		If LWarpMultiballCounter.state = 0 Then
 			UpdateMusicNow
-'			PuPlayer.playlistplayex pAudio,"audioevents","",100,9
-'			PuPlayer.SetLoop 7,1 
 		End If
 		If LKicker.state = 1 then 
 			LArrow04.state = 2
@@ -3516,14 +3499,11 @@ end sub
 
 	Sub StopTracks_hit()
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 	End Sub
 
 	Sub RandomRestartMusicSelection
 		IF (bGameInPLay = True) AND (Tilted = False) AND (BallsOnPlayfield > 0) AND (LWarpMultiballCounter.state = 0) THEN
-			UpdateMusicNow
-'			PuPlayer.playlistplayex pAudio,"audioevents","",100,8   
-'			PuPlayer.SetLoop 7,1 			
+			UpdateMusicNow		
 		END IF
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -4023,21 +4003,38 @@ end sub
 
 	End Sub
 
+'	Sub StopIdleSound
+'		Select Case IdleCalloutIndex			
+'			Case 1:StopSound "fx308-idle"
+'			Case 2:StopSound "fx309-idle"
+'			Case 3:StopSound "fx310-idle"
+'			Case 4:StopSound "fx311-idle"
+'			Case 5:StopSound "fx312-idle"
+'			Case 6:StopSound "fx333-idle"
+'			Case 7:StopSound "fx334-idle"
+'			Case 8:StopSound "fx335-idle"
+'			Case 9:StopSound "fx336-idle"
+'			Case 10:StopSound "fx337-idle"
+'			Case 11:StopSound "fx338-idle"
+'			Case 12:StopSound "fx339-idle"
+'		End Select
+'	End Sub
+
 	Sub StopIdleSound
-		Select Case IdleCalloutIndex			
-			Case 1:StopSound "fx308-idle"
-			Case 2:StopSound "fx309-idle"
-			Case 3:StopSound "fx310-idle"
-			Case 4:StopSound "fx311-idle"
-			Case 5:StopSound "fx312-idle"
-			Case 6:StopSound "fx333-idle"
-			Case 7:StopSound "fx334-idle"
-			Case 8:StopSound "fx335-idle"
-			Case 9:StopSound "fx336-idle"
-			Case 10:StopSound "fx337-idle"
-			Case 11:StopSound "fx338-idle"
-			Case 12:StopSound "fx339-idle"
-		End Select
+'		Select Case IdleCalloutIndex			
+			StopSound "fx308-idle"
+			StopSound "fx309-idle"
+			StopSound "fx310-idle"
+			StopSound "fx311-idle"
+			StopSound "fx312-idle"
+			StopSound "fx333-idle"
+			StopSound "fx334-idle"
+			StopSound "fx335-idle"
+			StopSound "fx336-idle"
+			StopSound "fx337-idle"
+			StopSound "fx338-idle"
+			StopSound "fx339-idle"
+'		End Select
 	End Sub
 
 		Dim SoundPlungerShoot
@@ -4847,8 +4844,6 @@ end sub
 						RandomKickerRubberSound
 						RandomKickerEjectSlow
 					Else
-						'EndMusic
-						'PuPlayer.playstop pAudio
 						StopAllMusic
 						LightQueue.Add "DelayGasDrawlsMBMX","DelayGasDrawlsMBMX",20,7900,0,0,0,false
 						RandomSoundGas
@@ -5056,10 +5051,6 @@ end sub
 		PLightsFlashLaser
 	End Sub
 
-	Sub StopIdleSoundOld
-		LSlime.state = 0
-		PuPlayer.playlistplayex pCallouts,"audioidlestop","clear.mp3",100,9
-	End Sub
 	'********************************************
 	'   RAMP ENTRY/EXIT SOUND FX
 	'********************************************
@@ -5200,7 +5191,6 @@ end sub
 		PlaySound "fx_wireramp_exit"
 		AudioQueue.Add "RandomSoundWireRampRolling","RandomSoundWireRampRolling",20,200,0,0,0,false
 		RandomSoundBeat
-		'PuPlayer.playlistplayex pBackglass,"videos-ramps","",100,5
 		DMDHorizontalThick=50 : DMDHorizontalThickBG=50
 		ChangeGiForRampRight
 		FlasherRightRamp
@@ -5365,8 +5355,7 @@ end sub
 		LightQueue.Add "WarpSpeedSuperJackpotNotification","WarpSpeedSuperJackpotNotification",20,1200,0,0,0,false
 		LightQueue.Add "CheckBoxLogoLights","CheckBoxLogoLights",20,2000,0,0,0,false
 		LightQueue.Add "LevelCompletedBonus","LevelCompletedBonus",20,2000,0,0,0,false
-		DOF 405, DOFPulse	'DOF Strobe	
-		'PuPlayer.playlistplayex pBackglass,"videos-spinner","",100,4  
+		DOF 405, DOFPulse	'DOF Strobe	  
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' LANE TRIGGERS
@@ -5843,11 +5832,6 @@ end sub
 			LightExtraBallLight
 		End If
 
-		IF LWarpMultiball.state = 1 Then		
-			'Do nothing
-		Else
-			'PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,4
-		End If
 
 		If LSuperOrbits.state = 2 Then
 			LightBonus07
@@ -5947,12 +5931,6 @@ end sub
 
 		If LExtraBall01.State = 0 Then
 			LightExtraBallLight
-		End If
-
-		IF LWarpMultiball.state = 1 Then		
-			'Do nothing
-		Else
-		'PuPlayer.playlistplayex pBackglass,"videos-orbits","",100,3
 		End If
 
 		TriggerWarpMultiballLight
@@ -6108,7 +6086,6 @@ end sub
 			FlashForMs Light049, 5930, 50, 0
 			RotDisc8Step = 36
 			Disc8Timer.Enabled = 1
-			'PuPlayer.playlistplayex pBackglass,"videos-multiball-gazzillionear-superjackpot","",100,22
 			pupevent 709
 			'chilloutthemusic
 			AudioQueue.Add "GazzillionEarJackpotCallout","GazzillionEarJackpotCallout",20,3200,0,0,0,false
@@ -6119,15 +6096,8 @@ end sub
 				IF LExtraBall01.state = 2 AND BallsOnPlayfield < 2 THEN		
 					AddMultiball 1
 					bAutoPlunger = True
-					'PuPlayer.playlistplayex pBackglass,"videos-add-a-ball","",100,15
 					DMDBigText "BALL ADDED",100,1  '3.4sec blink
 					BallAddedCallout	
-				Else	
-					IF LExtraBall01.state = 0 THEN 
-						'PuPlayer.playlistplayex pBackglass,"videos-extraballislit-3shotstolight","",100,6
-					Else
-					
-					End If
 				End If
 			End If
 		End If
@@ -6200,10 +6170,8 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3 
 		ELSE
 			AddScore 1000 	
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
 		END IF		
 		
 		IF LSupShot01.state = 0 and LBolt01.state = 2 and LSupreme01.state = 0 Then
@@ -6252,10 +6220,8 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 	
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
 		END IF	
 
 		IF LSupShot02.state = 0 and LBolt02.state = 2 and LSupreme02.state = 0 Then
@@ -6303,10 +6269,8 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
-			AddScore 1000 	
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3	
+			AddScore 1000 		
 		END IF
 
 		IF LSupShot03.state = 0 and LBolt03.state = 2 and LSupreme03.state = 0 Then
@@ -6354,10 +6318,8 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 	
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3
 		END IF
 
 		IF LSupShot06.state = 0 and LBolt04.state = 2 and LSupreme06.state = 0 Then
@@ -6405,10 +6367,8 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
 			AddScore 1000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3
 		END IF
 
 		IF LSupShot05.state = 0 and LBolt05.state = 2 and LSupreme05.state = 0 Then
@@ -6456,10 +6416,8 @@ end sub
 		TargetBouncer Activeball, 1
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-2000","",100,3
 		ELSE
-			AddScore 1000 
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks-1000","",100,3		
+			AddScore 1000 		
 		END IF
 
 		IF LSupShot04.state = 0 and LBolt06.state = 2 and LSupreme04.state = 0 Then
@@ -6731,8 +6689,7 @@ end sub
 				LMultiplier02.state = 0
 				LMultiplier03.state = 0
 				ResetAllLaneLights
-				LightBonus01
-				'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-2x","",100,14 
+				LightBonus01 
 				DMDBigText "2X BONUS",100,0   '3.4sec
 				DMDTopSplash "2X BONUS MULTIPLIER",100,0
 				TwoTimesBonusMultiplierCallout
@@ -6743,7 +6700,6 @@ end sub
 					LMultiplier03.state = 0
 					ResetAllLaneLights
 					LightBonus01
-					'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-3x","",100,14 
 				    DMDBigText "3X BONUS",100,0   '3.4sec
 					DMDTopSplash "3X BONUS MULTIPLIER",100,0
 					ThreeTimesBonusMultiplierCallout
@@ -6754,7 +6710,6 @@ end sub
 						LMultiplier03.state = 1
 						ResetAllLaneLights 
 						LightBonus01
-						'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,14 
 				        DMDBigText "5X BONUS",100,0   '3.4sec
 					    DMDTopSplash "5X BONUS MULTIPLIER",100,0
 						FiveTimesBonusMultiplierCallout
@@ -6765,7 +6720,6 @@ end sub
 							LMultiplier03.state = 1
 							ResetAllLaneLights 
 							LightBonus01
-							'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,14 
 				            DMDBigText "5X BONUS",100,0   '3.4sec
 					        DMDTopSplash "3X BONUS MULTIPLIER",100,0
 							FiveTimesBonusMultiplierCallout
@@ -6773,8 +6727,6 @@ end sub
 					END IF 
 				END IF
 			END IF
-		ELSE
-			'PuPlayer.playlistplayex pBackglass,"videos-switch-bottomlane","",100,4
 		End IF
 	End Sub
 	'***********************************************************
@@ -6788,7 +6740,6 @@ end sub
 				LMultiplier03.state = 0
 				ResetAllLaneLights
 				LightBonus01
-				'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-2x","",100,7
 				DMDBigText "2X BONUS",100,0   '3.4sec
 				DMDTopSplash "2X BONUS MULTIPLIER",100,0
 				TwoTimesBonusMultiplierCallout
@@ -6799,7 +6750,6 @@ end sub
 					LMultiplier03.state = 0
 					ResetAllLaneLights
 					LightBonus01
-					'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-3x","",100,7 
 				    DMDBigText "3X BONUS",100,0   '3.4sec
 					DMDTopSplash "3X BONUS MULTIPLIER",100,0
 					ThreeTimesBonusMultiplierCallout
@@ -6810,7 +6760,6 @@ end sub
 						LMultiplier03.state = 1
 						ResetAllLaneLights 
 						LightBonus01
-						'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,7
 				        DMDBigText "5X BONUS",100,0   '3.4sec
 					    DMDTopSplash "5X BONUS MULTIPLIER",100,0
 						FiveTimesBonusMultiplierCallout
@@ -6821,7 +6770,6 @@ end sub
 							LMultiplier03.state = 1
 							ResetAllLaneLights 
 							LightBonus01
-							'PuPlayer.playlistplayex pBackglass,"videos-bonusmultiplier-5x","",100,7
 							DMDBigText "5X BONUS",100,0   '3.4sec
 							DMDTopSplash "5X BONUS MULTIPLIER",100,0
 							FiveTimesBonusMultiplierCallout
@@ -6970,8 +6918,6 @@ end sub
 				
 				Next
 			End If
-		Else	
-			'PuPlayer.playlistplayex pTopper,"videos-targets-masks","",100,3
 		End If	
 	End Sub
 	'*******************************************************
@@ -7131,7 +7077,6 @@ end sub
 				Else
 					AddScore 10000
 				End If
-				'PuPlayer.playlistplayex pBackglass,"videos-targets-masks","",100,3
 			END IF
 	End Sub
 
@@ -7271,7 +7216,6 @@ End Sub
 			RightSlingshot.Disabled = 1
 			Tilted = True
 			PlaySoundCallOut "tiltshutdown"
-			'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
 			DisableTable True
 			tilttableclear.enabled = true
 			TiltRecoveryTimer.Enabled = True 
@@ -7359,52 +7303,44 @@ End Sub
 	Sub ComboLightsVideo
 		bCombo(CurrentPlayer)=bCombo(CurrentPlayer)+1
 		If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 2 Then
-			'PuPlayer.playlistplayex pBackglass,"videos-combo-2way-15k","",100,6
 			DMDBigText "2WAY COMBO",100,0
 			TwoWayComboCallout
 			LightBonus05
 			LightQueue.Add "LightBonus06","LightBonus06",20,2500,0,0,0,false
 		Else
 			If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 2 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-combo-2way-30k","",100,6
 				DMDBigText "2WAY COMBO",100,0
 				TwoWayComboCallout
 				LightBonus08
 			Else
 				If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 3 Then
-					'PuPlayer.playlistplayex pBackglass,"videos-combo-3way-20k","",100,6
 					DMDBigText "3WAY COMBO",100,0
 					ThreeWayComboCallout
 					LightBonus07
 				Else
 					If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 3 Then
-						'PuPlayer.playlistplayex pBackglass,"videos-combo-3way-40k","",100,6
 						DMDBigText "3WAY COMBO",100,0
 						ThreeWayComboCallout
 						LightBonus09
 					Else
 						If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 4 Then
-							'PuPlayer.playlistplayex pBackglass,"videos-combo-4way-25k","",100,6
 							DMDBigText "4WAY COMBO",100,0
 							FourWayComboCallout
 							LightBonus07
 							LightQueue.Add "LightBonus05","LightBonus05",20,2500,0,0,0,false
 						Else
 							If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 4 Then
-								'PuPlayer.playlistplayex pBackglass,"videos-combo-4way-50k","",100,6
 								DMDBigText "4WAY COMBO",100,0
 								FourWayComboCallout
 								LightBonus09
 								LightQueue.Add "LightBonus06","LightBonus06",20,2500,0,0,0,false
 							Else
 								If LCombo.state = 2 AND LDoubleScoring01.state = 0 AND bCombo(CurrentPlayer) = 5 Then
-									'PuPlayer.playlistplayex pBackglass,"videos-combo-5way-30k","",100,6
 									DMDBigText "5WAY COMBO",100,0
 									FiveWayComboCallout	
 									LightBonus08
 								Else
 									If LCombo.state = 2 AND LDoubleScoring01.state = 2 AND bCombo(CurrentPlayer) = 5 Then
-										'PuPlayer.playlistplayex pBackglass,"videos-combo-5way-60k","",100,6
 										DMDBigText "5WAY COMBO",100,0
 										FiveWayComboCallout
 										LightBonus09
@@ -7446,7 +7382,6 @@ End Sub
 	Sub SuperPopsCheck
 		bSuperPops(CurrentPlayer)=bSuperPops(CurrentPlayer)+1
 		If bSuperPops(CurrentPlayer)=30 AND LSuperPops.State = 0 Then
-			'PuPlayer.playlistplayex pBackglass,"videos-superpops","",100,11
 			DMDBigText "SUPER POPS",100,0   '3.4sec
 			SuperPopsCallout
 			EnableSuperPopsCountdown 60
@@ -7485,7 +7420,6 @@ End Sub
 	Sub SuperRampsCheck
 		bSuperRamps(CurrentPlayer)=bSuperRamps(CurrentPlayer)+1
 		If bSuperRamps(CurrentPlayer)=5 AND LSuperRamps.State = 0 Then
-			'PuPlayer.playlistplayex pBackglass,"videos-superramps","",100,11  
             DMDBigText "SUPER RAMP",100,0   '3.4sec 
 			SuperRampsCallout
 			EnableSuperRampsCountdown 60
@@ -7524,7 +7458,6 @@ End Sub
 	Sub SuperOrbitsCheck
 		bSuperOrbits(CurrentPlayer)=bSuperOrbits(CurrentPlayer)+1
 		If bSuperOrbits(CurrentPlayer)=5 AND LSuperOrbits.State = 0 Then
-			'PuPlayer.playlistplayex pBackglass,"videos-superorbits","",100,11
 			DMDBigText "SUPERORBIT",100,0   '3.4sec
 			SuperOrbitsCallout
 			EnableSuperOrbitsCountdown 60
@@ -7584,7 +7517,6 @@ End Sub
 		If LLevelOneCompleted.state = 0 AND L10KScore01.state = 1 AND L10KScore02.state = 1 AND L5KScore01.state = 1 AND L10KScore07.state = 1 AND L5KScore02.state = 1 AND L10KScore09.state = 1 Then
 			LLevelOneCompleted.state = 1
 			AddScore 75000
-			'PuPlayer.playlistplayex pBackglass,"videos-level1completed","",100,17
 			DMDTopSplash "LEVEL 1 COMPLETED",100,0
 			LevelOneCompletedCallout
 			LightQueue.Add "LightBonus10","LightBonus10",20,6000,0,0,0,false
@@ -7593,7 +7525,6 @@ End Sub
 			If LLevelTwoCompleted.state = 0 AND L25KScore01.state = 1 AND L25KScore02.state = 1 AND L10KScore06.state = 1 AND L25KScore03.state = 1 AND L10KScore08.state = 1 AND L25KScore04.state = 1 Then
 				LLevelTwoCompleted.state = 1
 				AddScore 150000
-				'PuPlayer.playlistplayex pBackglass,"videos-level2completed","",100,17
 				DMDTopSplash "LEVEL 2 COMPLETED",100,0
 				LevelTwoCompletedCallout
 				LightQueue.Add "LightBonus10","LightBonus10",20,6000,0,0,0,false
@@ -9547,14 +9478,14 @@ End Sub
 	End Sub
 
 	Sub ResetForNewPlayerBall()
+		Dbg "Reseting for New Player Ball"
 		LRuby2.state = 0
 		Dim z
 			For each z in herbs
 			z.State = 0
 		Next
-		'PuPlayer.playresume 4
-		'PuPlayer.playstop pAudio
 		StopAllMusic
+		'hsbModeActive = False ' Reset high score mode active
 		If PlayersPlayingGame > 1 Then
 			If CurrentPlayer = 1 Then
 				Player1Callout
@@ -9572,7 +9503,7 @@ End Sub
 				DOF 942, DOFOn   'DOF MX
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
-		        PuPlayer.playstop pAudio
+				StopAllMusic
 				LSlime.state = 2
 			Elseif currentplayer = 2 Then
 				Player2Callout
@@ -9591,7 +9522,6 @@ End Sub
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
 				StopAllMusic
-		        'PuPlayer.playstop pAudio
 				LSlime.state = 2
 			Elseif currentplayer = 3 Then
 				Player3Callout
@@ -9610,7 +9540,6 @@ End Sub
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
 				StopAllMusic
-		        'PuPlayer.playstop pAudio
 				LSlime.state = 2
 			Elseif currentplayer = 4 Then
 				Player4Callout
@@ -9629,7 +9558,6 @@ End Sub
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
 				StopAllMusic
-		        'PuPlayer.playstop pAudio
 				LSlime.state = 2
 			End If
 		Else
@@ -9644,7 +9572,8 @@ End Sub
 			AudioQueue.Add "RandomSoundPlungerIdle","RandomSoundPlungerIdle",20,500,0,0,0,false
 			DOF 942, DOFOn   'DOF MX	
 			DOF 971, DOFOn   'DOF MX - BACK
-		    PuPlayer.playstop pAudio
+			'chilloutthemusic
+			StopAllMusic
 			LSlime.state = 2
 		End If
 		AddScore 0
@@ -9675,7 +9604,6 @@ End Sub
 		LCombo.State = 0
 		bCombo(CurrentPlayer) = 0
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 	End Sub
 
 	Sub CreateNewBall()
@@ -9697,7 +9625,6 @@ End Sub
 		End If
 		End If
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 	End Sub
 
 	Sub AddMultiball(nballs)
@@ -9727,7 +9654,6 @@ End Sub
 	Sub CreateNewBallForBallLock()
 		'EndMusic
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 		RandomSoundFood
 		BallHandlingQueue.Add "BallForBallLock","BallForBallLock",20,6025,0,0,0,false
 		AudioQueue.Add "RandomSoundGas","RandomSoundGas",20,1000,0,0,0,false
@@ -9837,6 +9763,11 @@ End Sub
 	End Sub
 
 	Sub EndOfBallComplete()
+		ClearDMDHighScore
+		DMDBigText FormatScore(Score(CurrentPlayer)),100,0
+		'CreateDMD_intro
+		
+
 		ResetNewBallVariables
 		Dim NextPlayer
 		If(PlayersPlayingGame> 1) Then
@@ -9870,13 +9801,11 @@ End Sub
 		ResetLSupreme08confirm         '
 		bWarpSpeedMultiballActive = False
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 
 	End Sub
 
 	Sub Balldrained
 		StopAllMusic
-		'PuPlayer.playlistplayex pAudio,"audioclear","clear.mp3",100, 9
 	End Sub
 	'**************************
 	'   DRAIN HIT
@@ -9886,10 +9815,9 @@ End Sub
 		BallsOnPlayfield = BallsOnPlayfield - 1
 		'EndMusic
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 		RandomSoundDrainBottom
 		RandomSoundDrain drain
-		AudioQueue.Add "RandomRestartMusicSelection","RandomRestartMusicSelection",20,6000,0,0,0,false
+		'AudioQueue.Add "RandomRestartMusicSelection","RandomRestartMusicSelection",20,6000,0,0,0,false
 
 		If Tilted Then
 			StopEndOfBallMode
@@ -10088,7 +10016,6 @@ End Function
 
 	Sub DMDintroloop
 		Dim i
-		'PuPlayer.LabelSet pBackglass,"modetitle","",1,"{'mt':2,'color':16777215, 'size': 0, 'xpos': 80.7, 'xalign': 1, 'ypos': 72.6, 'yalign': 0}"
 		introtime = 0	
 		introposition = introposition + 1
 		Select Case introposition
@@ -10237,8 +10164,9 @@ End Sub
 		FlashForMs LDoubleScoring01, 1500, 50, 0
 		FlashForMs LSlimeb, 1500, 50, 0
 		DOOMLightsFlash
-		DMDTopSplash "",1,0
-		DMDBigText "",1,0
+		ClearDMDHighScore
+		'DMDTopSplash "",1,0
+		'DMDBigText "",1,0
 	End Sub
 
 	Sub StopEndOfBallMode()              'called after the last ball is drained
@@ -10247,7 +10175,6 @@ End Sub
 
 	Sub ResetNewBallVariables()
 		StopAllMusic
-		'PuPlayer.playstop pAudio
 			Dim a
 				For each a in TotalLights
 				a.State = 0
@@ -10630,7 +10557,6 @@ End Sub
 
 		LightBonus01
 		If NOT (bBallSaverActive = True) THEN 
-			'PuPlayer.playlistplayex pBackglass,"videos-balllost","",100,4
 			PuPEvent 202
 			Dbg "Event 202"
 		End If
@@ -16009,7 +15935,6 @@ end Function
 		If LSupreme003.state = 2 THEN
 			bonusbumps(CurrentPlayer)=bonusbumps(CurrentPlayer)+1
 			If bonusbumps(CurrentPlayer)=60 Then
-				PuPlayer.playlistplayex pBackglass,"videos-bonus-bumps","",100,18
 				pupevent 728
 				DMDBigText "VIK VAUGHN",175,0
 				LSupreme003.state = 1   
@@ -16022,8 +15947,7 @@ end Function
 	Sub BonusLeftRampCount
 		If LSupreme002.state = 2 THEN
 			bonusleftramp(CurrentPlayer)=bonusleftramp(CurrentPlayer)+1
-			If bonusleftramp(CurrentPlayer)=4 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-leftramp","",100,18   
+			If bonusleftramp(CurrentPlayer)=4 Then   
 				pupevent 729
 				DMDBigText "GEEDORAH",175,0    
 				LSupreme002.state = 1   
@@ -16037,7 +15961,6 @@ end Function
 		If LSupreme004.state = 2 THEN
 			bonusrightramp(CurrentPlayer)=bonusrightramp(CurrentPlayer)+1
 			If bonusrightramp(CurrentPlayer)=4 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-rightramp","",100,18  
 				pupevent 730
 				DMDBigText "MADVILLAIN",175,0    
 				LSupreme004.state = 1 
@@ -16050,8 +15973,7 @@ end Function
 	Sub BonusLeftOrbitCount
 		If LSupreme001.state = 2 THEN
 			bonusleftorbit(CurrentPlayer)=bonusleftorbit(CurrentPlayer)+1
-			If bonusleftorbit(CurrentPlayer)=4 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-leftorbit","",100,18  
+			If bonusleftorbit(CurrentPlayer)=4 Then 
 				pupevent 731
 				DMDBigText "ZEV LOVE X",175,0   
 				LSupreme001.state = 1  
@@ -16065,7 +15987,6 @@ end Function
 		If LSupreme005.state = 2 THEN
 			bonusspinner(CurrentPlayer)=bonusspinner(CurrentPlayer)+1
 			If bonusspinner(CurrentPlayer)=4 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-spinner","",100,18  
 				pupevent 732
 				DMDBigText "DANGERDOOM",175,0  
 				LSupreme005.state = 1  
@@ -16079,7 +16000,6 @@ end Function
 		If LStar08.state = 2 THEN
 			bonuscentertarget(CurrentPlayer)=bonuscentertarget(CurrentPlayer)+1
 			If bonuscentertarget(CurrentPlayer)=3 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-centertarget","",100,18   
 				pupevent 733
 				DMDBigText "JJ DOOM",175,0   
 				LStar08.state = 1   
@@ -16092,8 +16012,7 @@ end Function
 	Sub BonusSmallTargetCount
 		If LStar09.state = 2 THEN
 			bonussmalltarget(CurrentPlayer)=bonussmalltarget(CurrentPlayer)+1
-			If bonussmalltarget(CurrentPlayer)=4 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-smalltarget","",100,18  
+			If bonussmalltarget(CurrentPlayer)=4 Then 
 				pupevent 734
 				DMDBigText "NEHRUVIAN",175,0   
 				LStar09.state = 1   
@@ -16107,7 +16026,6 @@ end Function
 		If LArrow10.state = 2 THEN
 			BonusMission(CurrentPlayer)=BonusMission(CurrentPlayer)+1
 			If BonusMission(CurrentPlayer)=2 Then
-				'PuPlayer.playlistplayex pBackglass,"videos-bonus-missions","",100,18 
 				pupevent 735
 				Dbg "Event 935"
 				DMDBigText "MYSTERY?",100,0   '3.4sec
@@ -16171,7 +16089,9 @@ end Function
 				x=INT(RND*75)+12.5     'x=INT(RND*75)+12.5
 				y=INT(RND*75)+8       'y=INT(RND*75)+8
 	''debug.print "BumperBG" & i &" PuPOverlays\\BumperBurst"&idx1&"-"&idx2&".png {'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
+		if PupStatus = True Then
 				puPlayer.LabelSet pBackglass,"BumperBG" & idx, "PuPOverlays2\\BumperBurst"&idx1&"-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
+		End If
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 	''debug.print  "BumperScore2 " & Score & "," & x & "," & y & "," & size & "," & idx & "," & idx2 & " '"
 BallHandlingQueue.Add "BumperScore2","BumperScore2 """ & Score & """," & x & "," & y & "," & size & "," & idx & "," & idx2 & "",20,900,0,0,0,false
@@ -16180,18 +16100,22 @@ BallHandlingQueue.Add "BumperScore2","BumperScore2 """ & Score & """," & x & ","
 		Next 
 	End Sub
 	Sub BumperScore2(Score, x, y, size, idx, idx2)		' Display a popup Animation on the backglass 
-		puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\BumperBurst0-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
+		if PupStatus = True Then
+			puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\BumperBurst0-"&idx2&".png" ,1,"{'mt':2, 'zback':1, 'width':"& 15 + size&", 'height':"& 25 + size&",'yalign':1,'xalign':1,'ypos':"&y&",'xpos':"&x&"}"
+		End If
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 BallHandlingQueue.Add "BumperScore3","BumperScore3 " & idx & "",20,900,0,0,0,false
 	End Sub 
 	Sub BumperScore3(idx)		' Display a popup Animation on the backglass 
-		puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\Clear.png" ,1,""
+		if PupStatus = True Then
+			puPlayer.LabelSet pBackglass,"BumperBG"  & idx, "PuPOverlays2\\Clear.png" ,1,""
+		End If
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		BumperScoreFree(idx)=False
 	End Sub 
 
 	Sub ClearSmoke
-		
+		if PuPStatus = False Then Exit Sub
 ' Merlin RTP  may need some pupDMD to get these BumperBG images to show up
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 0, "PuPOverlays2\\Clear.png" ,1,""
 		puPlayer.LabelSet pBackglass,"BumperBG"  & 1, "PuPOverlays2\\Clear.png" ,1,""
@@ -16208,10 +16132,12 @@ BallHandlingQueue.Add "BumperScore3","BumperScore3 " & idx & "",20,900,0,0,0,fal
 		puPlayer.LabelSet pBackglass,"Smoke", "PuPOverlays2\\clear.png" ,1,""
 	End Sub
 	Sub ClearSmoke_Hit(idx)
+		if PuPStatus = False Then Exit Sub
 		ClearSmoke
 	End Sub
 
 	Sub RandomSmokeGif
+		if PuPStatus = False Then Exit Sub
 		Dim image
 		PupAniFolder="gifs"
 		image=PupAniFolder&"\\"

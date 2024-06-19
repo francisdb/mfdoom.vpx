@@ -5850,15 +5850,6 @@
     "output_target": "backglass"
   },
   {
-    "name": "MFDOOM17",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM17.mp3",
-    "internal_name": "mfdoom17",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
     "name": "MFDOOM18",
     "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM18.mp3",
     "internal_name": "mfdoom18",
@@ -5868,9 +5859,9 @@
     "output_target": "backglass"
   },
   {
-    "name": "MFDOOM19",
+    "name": "MFDOOM17",
     "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\MFDOOM19.mp3",
-    "internal_name": "mfdoom19",
+    "internal_name": "mfdoom17",
     "fade": 0,
     "volume": 0,
     "balance": 0,
