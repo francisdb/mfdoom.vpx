@@ -2,7 +2,7 @@
   "HitTarget": {
     "position": {
       "x": 793.9014,
-      "y": 1142.2737,
+      "y": 1142.274,
       "z": -13.0
     },
     "size": {
@@ -15,17 +15,17 @@
     "target_type": "hit_target_rectangle",
     "name": "Target10",
     "material": "Plastic",
-    "is_visible": true,
+    "is_visible": false,
     "is_legacy": false,
     "use_hit_event": true,
     "threshold": 2.0,
-    "elasticity": 0.3,
+    "elasticity": 0.35,
     "elasticity_falloff": 0.5,
     "friction": 0.2,
     "scatter": 5.0,
     "is_collidable": true,
-    "disable_lighting_top_old": 0.0,
-    "disable_lighting_top": null,
+    "disable_lighting_top_old": null,
+    "disable_lighting_top": 0.0,
     "disable_lighting_below": 0.0,
     "depth_bias": 0.0,
     "is_reflection_enabled": true,

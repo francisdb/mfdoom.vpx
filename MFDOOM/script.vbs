@@ -55,9 +55,11 @@
 ' 17 iaakki	 	 - Fixed the GI bug I made and adjusted some levels
 ' 18 iaakki		 - Slings fixed, callout volume option added, something must be done for primitive25
 ' 19 RobbyKingPin- Updated nFozzy/Rothbauerw physics and Fleep sounds, removed JP's ball rolling codes. Removed endpoints for the flippers and added endpoints on the slingshots
-' 22 MerlinRTP 	- Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup, removed extraneous code and timers
-'				- added sequence stopplay to the 4 long routines, converted vpmtimer to queue/tick timers
-
+' 22 MerlinRTP 	 - Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup, removed extraneous code and timers
+'				 - Added sequence stopplay to the 4 long routines, converted vpmtimer to queue/tick timers
+' 23 RobbyKingPin- Added Rothbauerw Targets
+'                - Further inspection on the entire playfield to ensure all nFozzy and Fleep implementations are working as they should
+'                - Added VR Hybrid codes
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -76,9 +78,6 @@ cPuPPack = "MFDOOM"    ' name of the PuP-Pack / PuPVideos folder for this table
 
 '----- General Sound Options -----
 	Const VolumeDial = 0.8				' Recommended values should be no greater than 1.
-
-'----- VR Room -----
-	Const VRRoom = 1                    '0 = VR Room off, 1 = Minimal Room
 
 '----- Shadow Options -----
 	Const DynamicBallShadowsOn = 1		'0 = no dynamic ball shadow, 1 = enable dynamic ball shadow
@@ -127,13 +126,21 @@ Const BallMass = 1				  'Ball mass must be 1
 Const tnob = 5					  'Total number of balls the table can hold
 Const lob = 0					   'Locked balls
 
-'Detect if VPX is rendering in VR and then make sure the VR Room Chioce is used
-'Dim VRRoom
-'If RenderingMode = 2 Then
-'	VRRoom = VRRoomChoice
-'Else
-'	VRRoom = 0
-'End If
+'----- VR Room Auto-Detect -----
+Dim VRRoom, VR_Obj, VRMode
+Const VRTest = 0				' 1 = Testing VR in Live View, 0 = Do not force VR mode.
+
+If RenderingMode = 2 or Table1.ShowFSS = True or VRTest = 1 Then
+	VRMode = True
+	DMDbackbox.visible=true  ' flasher dmd
+    PinCab_Rails.Visible = 1
+	For Each VR_Obj in VRCabinet : VR_Obj.Visible = 1 : Next
+	For Each VR_Obj in VRMinimalRoom : VR_Obj.Visible = 1 : Next
+Else
+	VRMode = False
+	For Each VR_Obj in VRCabinet : VR_Obj.Visible = 0 : Next
+	For Each VR_Obj in VRMinimalRoom : VR_Obj.Visible = 0 : Next
+End If
 
 Dim tablewidth
 tablewidth = Table1.width
@@ -6034,13 +6041,12 @@ end sub
 		DOF 930, DOFPulse    'DOF MX
 		DOF 966, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 12
 		RandomFlasherCenterDropTargets  
 		If (BallsOnPlayfield < 3) AND (Tilted = False) THEN				
 			RANDOMLIGHTSTARGETSCENTERFADE : DMDBumper
 			DMDTopSplash "SUPER WHAT?",100,0
 		End If
-		RandomSoundSideTargets
 		If LDoubleScoring01.state = 2 THEN
 			AddScore 2000
 		Else
@@ -6049,6 +6055,11 @@ end sub
 		BonusMissionCount
 		BonusSmallTargetCount
 	End Sub
+
+Sub TargetRubberNextToRampo_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'********************************************
 	'   HIT TARGET: ADD-A-BALL (SINGLE)
 	'********************************************
@@ -6056,7 +6067,7 @@ end sub
 		DOF 929, DOFPulse    'DOF MX
 		DOF 966, DOFPulse    'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 1
 
 		If (BallsOnPlayfield < 3) AND (Tilted = False) THEN				
 			RANDOMLIGHTSTARGETSCENTERFADE : DMDBumper
@@ -6107,9 +6118,12 @@ end sub
 			AddScore 25000
 		End If
 		BonusCenterTargetCount
-		RandomSoundTarget
 		FlasherAllBlinkOnce
-	End Sub 
+	End Sub
+
+Sub Target01o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
 
 	Sub WarpSpeedSuperJackpotNotification
 		If LWarpMultiballCounter.state = 2 AND LWarpMultiballSuperJackpotIsLit.state = 0 AND LSupreme07.state = 1 AND LSupreme08.state = 1 AND LSupreme09.state = 1 AND LSupreme10.state = 1 THEN
@@ -6131,7 +6145,7 @@ end sub
 		DOF 928, DOFPulse   'DOF MX
 		DOF 966, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 2
 		If LExtraBall01.State = 0 Then
 			LightExtraBallLight
 		End If
@@ -6160,6 +6174,11 @@ end sub
 		PLightsFlashC
 		dank4Shaker : dank5Shaker : ChangeColorMaskSmall
 	End Sub
+
+Sub Target02o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'***********************************************
 	'	HIT TARGETS: MASK (TOP LEFT)
 	'***********************************************
@@ -6167,7 +6186,7 @@ end sub
 		DOF 922, DOFPulse   'DOF MX
 		DOF 967, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 6
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000
 		ELSE
@@ -6205,11 +6224,15 @@ end sub
 			LightExtraBallLight
 		End If
 
-		RandomSoundTarget
 		AudioQueue.Add "StandupsCompleteNotificationL","StandupsCompleteNotificationL",20,1000,0,0,0,false
 		RandomFlasherSideTargetsLeft
 		PLightsFlashL
 	End Sub
+
+Sub Target06o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'***********************************************
 	'	HIT TARGETS: MASK (CENTER LEFT)
 	'***********************************************
@@ -6217,7 +6240,7 @@ end sub
 		DOF 923, DOFPulse   'DOF MX
 		DOF 967, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 7
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
 		ELSE
@@ -6254,11 +6277,15 @@ end sub
 			LightExtraBallLight
 		End If
 
-		RandomSoundSideTargets
 		AudioQueue.Add "StandupsCompleteNotificationL","StandupsCompleteNotificationL",20,1000,0,0,0,false
 		RandomFlasherSideTargetsLeft
 		PLightsFlashL
 	End Sub
+
+Sub Target07o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'***********************************************
 	'	HIT TARGETS: MASK (BOTTOM LEFT)
 	'***********************************************
@@ -6266,7 +6293,7 @@ end sub
 		DOF 924, DOFPulse   'DOF MX
 		DOF 967, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 8
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
 		ELSE
@@ -6303,11 +6330,15 @@ end sub
 			LightExtraBallLight
 		End If
 		
-		RandomSoundSideTargets
 		AudioQueue.Add "StandupsCompleteNotificationL","StandupsCompleteNotificationL",20,1000,0,0,0,false
 		RandomFlasherSideTargetsLeft
 		PLightsFlashL
 	End Sub
+
+Sub Target08o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'***********************************************
 	'	HIT TARGETS: MASK (TOP RIGHT)
 	'***********************************************
@@ -6315,7 +6346,7 @@ end sub
 		DOF 925, DOFPulse   'DOF MX
 		DOF 967, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 9
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
 		ELSE
@@ -6352,11 +6383,15 @@ end sub
 			LightExtraBallLight
 		End If
 		
-		RandomSoundTarget
 		AudioQueue.Add "StandupsCompleteNotificationR","StandupsCompleteNotificationR",20,1000,0,0,0,false
 		RandomFlasherSideTargetsRight
 		PLightsFlashR
 	End Sub
+
+Sub Target09o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'*************************************************
 	'	HIT TARGETS: MASK (CENTER RIGHT)
 	'*************************************************
@@ -6364,7 +6399,7 @@ end sub
 		DOF 926, DOFPulse   'DOF MX
 		DOF 967, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 10
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
 		ELSE
@@ -6401,11 +6436,15 @@ end sub
 			LightExtraBallLight
 		End If	
 		
-		RandomSoundSideTargets
 		AudioQueue.Add "StandupsCompleteNotificationR","StandupsCompleteNotificationR",20,1000,0,0,0,false
 		RandomFlasherSideTargetsRight
 		PLightsFlashR
 	End Sub
+
+Sub Target10o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 	'*************************************************
 	'	HIT TARGETS: MASK (BOTTOM RIGHT)
 	'*************************************************
@@ -6413,7 +6452,7 @@ end sub
 		DOF 927, DOFPulse   'DOF MX
 		DOF 967, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
+		STHit 11
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 2000 
 		ELSE
@@ -6450,11 +6489,15 @@ end sub
 			LightExtraBallLight
 		End If
 		
-		RandomSoundSideTargets
 		AudioQueue.Add "StandupsCompleteNotificationR","StandupsCompleteNotificationR",20,1000,0,0,0,false
 		RandomFlasherSideTargetsRight
 		PLightsFlashR
 	End Sub
+
+Sub Target11o_Hit
+	TargetBouncer ActiveBall, 1
+End Sub
+
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' DROP TARGETS
 	'********************************************************
@@ -6464,7 +6507,6 @@ end sub
 		DOF 931, DOFPulse   'DOF MX	
 		DOF 966, DOFPulse   'DOF MX - BACK
 		DOF 199, DOFPulse
-		TargetBouncer Activeball, 1
 		If (BallsOnPlayfield < 3) AND (Tilted = False) THEN
 			RANDOMLIGHTSTARGETSCENTERFADE
 			Select Case Int(Rnd * 3) + 1
@@ -6474,14 +6516,13 @@ end sub
 			End Select
 		End If
 
-		Target03.IsDropped = true  
+		DTHit 3 
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 20000
 		Else
 			AddScore 10000
 		END IF
 		
-		RandomSoundTarget
 		L10KScore03.State = 1	
 		MultiballIsLit
 		RandomFlasherCenterDropTargets
@@ -6491,8 +6532,7 @@ end sub
 	Sub Target04_hit() 
 		DOF 932, DOFPulse   'DOF MX  
 		DOF 966, DOFPulse   'DOF MX - BACK
-		DOF 199, DOFPulse   
-		TargetBouncer Activeball, 1         
+		DOF 199, DOFPulse          
 		If (BallsOnPlayfield < 3) AND (Tilted = False) THEN
 			RANDOMLIGHTSTARGETSCENTERFADE
 			Select Case Int(Rnd * 3) + 1
@@ -6502,14 +6542,13 @@ end sub
 			End Select
 		End If
 
-		Target04.IsDropped = true   
+		DTHit 4  
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 20000
 		Else
 			AddScore 10000
 		END IF
 		
-		RandomSoundTarget
 		L10KScore04.State = 1
 		MultiballIsLit
 		RandomFlasherCenterDropTargets
@@ -6520,7 +6559,6 @@ end sub
 		DOF 933, DOFPulse   'DOF MX  
 		DOF 966, DOFPulse   'DOF MX - BACK   
 		DOF 199, DOFPulse  
-		TargetBouncer Activeball, 1   
 		If (BallsOnPlayfield < 3) AND (Tilted = False) THEN
 			RANDOMLIGHTSTARGETSCENTERFADE
 			Select Case Int(Rnd * 3) + 1
@@ -6530,56 +6568,27 @@ end sub
 			End Select
 		End If
 
-		Target05.IsDropped = true   
+		DTHit 5 
 		IF LDoubleScoring01.State = 2 THEN
 			AddScore 20000
 		Else
 			AddScore 10000
 		END IF
 		
-		RandomSoundTarget
 		L10KScore05.State = 1
 		MultiballIsLit
 		RandomFlasherCenterDropTargets
 		PLightsFlashC
 	End Sub
+
 	'**************************************************************************
 	'	RESET MADVILLAINY MASKS (BANK OF 3 SMALLER TARGETS & LIGHT TRIGGERS)
 	'**************************************************************************
 	Sub ResetDropTargetsSparks
-		IF Target03.IsDropped = 1 and Target04.IsDropped = 1 and Target05.IsDropped = 1 Then
-			Playsound "fx_resetdrop"
-		Else
-			IF Target03.IsDropped = 1 and Target04.IsDropped = 1 and Target05.IsDropped = False Then
-				Playsound "fx_resetdrop"
-			Else
-				IF Target03.IsDropped = 1 and Target04.IsDropped = False and Target05.IsDropped = False Then
-					Playsound "fx_resetdrop"
-				Else
-					IF Target03.IsDropped = False and Target04.IsDropped = 1 and Target05.IsDropped = False Then
-						Playsound "fx_resetdrop"
-					Else
-						IF Target03.IsDropped = False and Target04.IsDropped = 1 and Target05.IsDropped = 1 Then
-							Playsound "fx_resetdrop"
-						Else
-							IF Target03.IsDropped = False and Target04.IsDropped = False and Target05.IsDropped = 1 Then
-								Playsound "fx_resetdrop"
-							Else
-								IF Target03.IsDropped = 1 and Target04.IsDropped = False and Target05.IsDropped = 1 Then
-									Playsound "fx_resetdrop"
-								Else
-									'insert scenario here
-								End If
-							End If
-						End If
-					End If
-				End If
-			End If
-		End If
-
-		Target03.IsDropped = False
-		Target04.IsDropped = False
-		Target05.IsDropped = False
+		DTRaise 3
+		DTRaise 4
+		DTRaise 5
+		RandomSoundDropTargetReset Target03p
 		L10KScore03.State = 2   'confirm
 		L10KScore04.State = 2   'confirm
 		L10KScore05.State = 2   'confirm
@@ -12860,6 +12869,511 @@ Class SlingshotCorrection
 End Class
 
 '******************************************************
+' 	ZRDT:  DROP TARGETS by Rothbauerw
+'******************************************************
+' The Stand Up and Drop Target solutions improve the physics for targets to create more realistic behavior. It allows the ball
+' to move through the target enabling the ability to score more than one target with a well placed shot.
+' It also handles full target animation, switch handling and deflection on hit. For drop targets there is also a slight lift when
+' the drop targets raise, bricking, and popping the ball up if it's over the drop target when it raises.
+'
+' Add a Timers named DTAnim and STAnim to editor to handle drop & standup target animations, or run them off an always-on 10ms timer (GameTimer)
+' DTAnim.interval = 10
+' DTAnim.enabled = True
+
+' Sub DTAnim_Timer
+' 	DoDTAnim
+'	DoSTAnim
+' End Sub
+
+' For each drop target, we'll use two wall objects for physics calculations and one primitive for visuals and
+' animation. We will not use target objects.  Place your drop target primitive the same as you would a VP drop target.
+' The primitive should have it's pivot point centered on the x and y axis and at or just below the playfield
+' level on the z axis. Orientation needs to be set using Rotz and bending deflection using Rotx. You'll find a hooded
+' target mesh in this table's example. It uses the same texture map as the VP drop targets.
+'
+' For each stand up target we'll use a vp target, a laid back collidable primitive, and one primitive for visuals and animation.
+' The visual primitive should should have it's pivot point centered on the x and y axis and the z should be at or just below the playfield.
+' The target should animate backwards using transy.
+'
+' To create visual target primitives that work with the stand up and drop target code, follow the below instructions:
+' (Other methods will work as well, but this is easy for even non-blender users to do)
+' 1) Open a new blank table. Delete everything off the table in editor.
+' 2) Copy and paste the VP target from your table into this blank table.
+' 3) Place the target at x = 0, y = 0  (upper left hand corner) with an orientation of 0 (target facing the front of the table)
+' 4) Under the file menu, select Export "OBJ Mesh"
+' 5) Go to "https://threejs.org/editor/". Here you can modify the exported obj file. When you export, it exports your target and also 
+'    the playfield mesh. You need to delete the playfield mesh here. Under the file menu, chose import, and select the obj you exported
+'    from VPX. In the right hand panel, find the Playfield object and click on it and delete. Then use the file menu to Export OBJ.
+' 6) In VPX, you can add a primitive and use "Import Mesh" to import the exported obj from the previous step. X,Y,Z scale should be 1.
+'    The primitive will use the same target texture as the VP target object. 
+'
+' * Note, each target must have a unique switch number. If they share a same number, add 100 to additional target with that number.
+' For example, three targets with switch 32 would use 32, 132, 232 for their switch numbers.
+' The 100 and 200 will be removed when setting the switch value for the target.
+
+'******************************************************
+'  DROP TARGETS INITIALIZATION
+'******************************************************
+
+Class DropTarget
+  Private m_primary, m_secondary, m_prim, m_sw, m_animate, m_isDropped
+
+  Public Property Get Primary(): Set Primary = m_primary: End Property
+  Public Property Let Primary(input): Set m_primary = input: End Property
+
+  Public Property Get Secondary(): Set Secondary = m_secondary: End Property
+  Public Property Let Secondary(input): Set m_secondary = input: End Property
+
+  Public Property Get Prim(): Set Prim = m_prim: End Property
+  Public Property Let Prim(input): Set m_prim = input: End Property
+
+  Public Property Get Sw(): Sw = m_sw: End Property
+  Public Property Let Sw(input): m_sw = input: End Property
+
+  Public Property Get Animate(): Animate = m_animate: End Property
+  Public Property Let Animate(input): m_animate = input: End Property
+
+  Public Property Get IsDropped(): IsDropped = m_isDropped: End Property
+  Public Property Let IsDropped(input): m_isDropped = input: End Property
+
+  Public default Function init(primary, secondary, prim, sw, animate, isDropped)
+    Set m_primary = primary
+    Set m_secondary = secondary
+    Set m_prim = prim
+    m_sw = sw
+    m_animate = animate
+    m_isDropped = isDropped
+
+    Set Init = Me
+  End Function
+End Class
+
+'Define a variable for each drop target
+Dim DT3, DT4, DT5
+
+'Set array with drop target objects
+'
+'DropTargetvar = Array(primary, secondary, prim, swtich, animate)
+'   primary:	primary target wall to determine drop
+'   secondary:  wall used to simulate the ball striking a bent or offset target after the initial Hit
+'   prim:	   primitive target used for visuals and animation
+'				   IMPORTANT!!!
+'				   rotz must be used for orientation
+'				   rotx to bend the target back
+'				   transz to move it up and down
+'				   the pivot point should be in the center of the target on the x, y and at or below the playfield (0) on z
+'   switch:	 ROM switch number
+'   animate:	Array slot for handling the animation instrucitons, set to 0
+'				   Values for animate: 1 - bend target (hit to primary), 2 - drop target (hit to secondary), 3 - brick target (high velocity hit to secondary), -1 - raise target
+'   isDropped:  Boolean which determines whether a drop target is dropped. Set to false if they are initially raised, true if initially dropped.
+'					Use the function DTDropped(switchid) to check a target's drop status.
+
+Set DT3 = (new DropTarget)(Target03, Target03a, Target03p, 3, 0, False)
+Set DT4 = (new DropTarget)(Target04, Target04a, Target04p, 4, 0, False)
+Set DT5 = (new DropTarget)(Target05, Target05a, Target05p, 5, 0, False)
+
+Dim DTArray
+DTArray = Array(DT3, DT4, DT5)
+
+'Configure the behavior of Drop Targets.
+Const DTDropSpeed = 20 'in milliseconds
+Const DTDropUpSpeed = 20 'in milliseconds
+Const DTDropUnits = 60 'VP units primitive drops so top of at or below the playfield
+Const DTDropUpUnits = 10 'VP units primitive raises above the up position on drops up
+Const DTMaxBend = 8 'max degrees primitive rotates when hit
+Const DTDropDelay = 20 'time in milliseconds before target drops (due to friction/impact of the ball)
+Const DTRaiseDelay = 100 'time in milliseconds before target drops back to normal up position after the solenoid fires to raise the target
+Const DTBrickVel = 30 'velocity at which the target will brick, set to '0' to disable brick
+Const DTEnableBrick = 0 'Set to 0 to disable bricking, 1 to enable bricking
+Const DTMass = 0.2 'Mass of the Drop Target (between 0 and 1), higher values provide more resistance
+
+'******************************************************
+'  DROP TARGETS FUNCTIONS
+'******************************************************
+
+Sub DTHit(switch)
+	Dim i
+	i = DTArrayID(switch)
+	
+	PlayTargetSound
+	DTArray(i).animate = DTCheckBrick(ActiveBall,DTArray(i).prim)
+	If DTArray(i).animate = 1 Or DTArray(i).animate = 3 Or DTArray(i).animate = 4 Then
+		DTBallPhysics ActiveBall, DTArray(i).prim.rotz, DTMass
+	End If
+	DoDTAnim
+End Sub
+
+Sub DTRaise(switch)
+	Dim i
+	i = DTArrayID(switch)
+	
+	DTArray(i).animate =  - 1
+	DoDTAnim
+End Sub
+
+Sub DTDrop(switch)
+	Dim i
+	i = DTArrayID(switch)
+	
+	DTArray(i).animate = 1
+	DoDTAnim
+End Sub
+
+Function DTArrayID(switch)
+	Dim i
+	For i = 0 To UBound(DTArray)
+		If DTArray(i).sw = switch Then
+			DTArrayID = i
+			Exit Function
+		End If
+	Next
+End Function
+
+Sub DTBallPhysics(aBall, angle, mass)
+	Dim rangle,bangle,calc1, calc2, calc3
+	rangle = (angle - 90) * 3.1416 / 180
+	bangle = atn2(cor.ballvely(aball.id),cor.ballvelx(aball.id))
+	
+	calc1 = cor.BallVel(aball.id) * Cos(bangle - rangle) * (aball.mass - mass) / (aball.mass + mass)
+	calc2 = cor.BallVel(aball.id) * Sin(bangle - rangle) * Cos(rangle + 4 * Atn(1) / 2)
+	calc3 = cor.BallVel(aball.id) * Sin(bangle - rangle) * Sin(rangle + 4 * Atn(1) / 2)
+	
+	aBall.velx = calc1 * Cos(rangle) + calc2
+	aBall.vely = calc1 * Sin(rangle) + calc3
+End Sub
+
+'Check if target is hit on it's face or sides and whether a 'brick' occurred
+Function DTCheckBrick(aBall, dtprim)
+	Dim bangle, bangleafter, rangle, rangle2, Xintersect, Yintersect, cdist, perpvel, perpvelafter, paravel, paravelafter
+	rangle = (dtprim.rotz - 90) * 3.1416 / 180
+	rangle2 = dtprim.rotz * 3.1416 / 180
+	bangle = atn2(cor.ballvely(aball.id),cor.ballvelx(aball.id))
+	bangleafter = Atn2(aBall.vely,aball.velx)
+	
+	Xintersect = (aBall.y - dtprim.y - Tan(bangle) * aball.x + Tan(rangle2) * dtprim.x) / (Tan(rangle2) - Tan(bangle))
+	Yintersect = Tan(rangle2) * Xintersect + (dtprim.y - Tan(rangle2) * dtprim.x)
+	
+	cdist = Distance(dtprim.x, dtprim.y, Xintersect, Yintersect)
+	
+	perpvel = cor.BallVel(aball.id) * Cos(bangle - rangle)
+	paravel = cor.BallVel(aball.id) * Sin(bangle - rangle)
+	
+	perpvelafter = BallSpeed(aBall) * Cos(bangleafter - rangle)
+	paravelafter = BallSpeed(aBall) * Sin(bangleafter - rangle)
+	
+	If perpvel > 0 And  perpvelafter <= 0 Then
+		If DTEnableBrick = 1 And  perpvel > DTBrickVel And DTBrickVel <> 0 And cdist < 8 Then
+			DTCheckBrick = 3
+		Else
+			DTCheckBrick = 1
+		End If
+	ElseIf perpvel > 0 And ((paravel > 0 And paravelafter > 0) Or (paravel < 0 And paravelafter < 0)) Then
+		DTCheckBrick = 4
+	Else
+		DTCheckBrick = 0
+	End If
+End Function
+
+Sub DoDTAnim()
+	Dim i
+	For i = 0 To UBound(DTArray)
+		DTArray(i).animate = DTAnimate(DTArray(i).primary,DTArray(i).secondary,DTArray(i).prim,DTArray(i).sw,DTArray(i).animate)
+	Next
+End Sub
+
+Function DTAnimate(primary, secondary, prim, switch, animate)
+	Dim transz, switchid
+	Dim animtime, rangle
+	
+	switchid = switch
+	
+	Dim ind
+	ind = DTArrayID(switchid)
+	
+	rangle = prim.rotz * PI / 180
+	
+	DTAnimate = animate
+	
+	If animate = 0 Then
+		primary.uservalue = 0
+		DTAnimate = 0
+		Exit Function
+	ElseIf primary.uservalue = 0 Then
+		primary.uservalue = GameTime
+	End If
+	
+	animtime = GameTime - primary.uservalue
+	
+	If (animate = 1 Or animate = 4) And animtime < DTDropDelay Then
+		primary.collidable = 0
+		If animate = 1 Then secondary.collidable = 1 Else secondary.collidable = 0
+		prim.rotx = DTMaxBend * Cos(rangle)
+		prim.roty = DTMaxBend * Sin(rangle)
+		DTAnimate = animate
+		Exit Function
+	ElseIf (animate = 1 Or animate = 4) And animtime > DTDropDelay Then
+		primary.collidable = 0
+		If animate = 1 Then secondary.collidable = 1 Else secondary.collidable = 1 'If animate = 1 Then secondary.collidable = 1 Else secondary.collidable = 0 'updated by rothbauerw to account for edge case
+		prim.rotx = DTMaxBend * Cos(rangle)
+		prim.roty = DTMaxBend * Sin(rangle)
+		animate = 2
+		SoundDropTargetDrop prim
+	End If
+	
+	If animate = 2 Then
+		transz = (animtime - DTDropDelay) / DTDropSpeed * DTDropUnits *  - 1
+		If prim.transz >  - DTDropUnits  Then
+			prim.transz = transz
+		End If
+		
+		prim.rotx = DTMaxBend * Cos(rangle) / 2
+		prim.roty = DTMaxBend * Sin(rangle) / 2
+		
+		If prim.transz <= - DTDropUnits Then
+			prim.transz =  - DTDropUnits
+			secondary.collidable = 0
+			DTArray(ind).isDropped = True 'Mark target as dropped
+			primary.uservalue = 0
+			DTAnimate = 0
+			Exit Function
+		Else
+			DTAnimate = 2
+			Exit Function
+		End If
+	End If
+	
+	If animate = 3 And animtime < DTDropDelay Then
+		primary.collidable = 0
+		secondary.collidable = 1
+		prim.rotx = DTMaxBend * Cos(rangle)
+		prim.roty = DTMaxBend * Sin(rangle)
+	ElseIf animate = 3 And animtime > DTDropDelay Then
+		primary.collidable = 1
+		secondary.collidable = 0
+		prim.rotx = 0
+		prim.roty = 0
+		primary.uservalue = 0
+		DTAnimate = 0
+		Exit Function
+	End If
+	
+	If animate =  - 1 Then
+		transz = (1 - (animtime) / DTDropUpSpeed) * DTDropUnits *  - 1
+		
+		If prim.transz =  - DTDropUnits Then
+			Dim b
+			Dim BOT
+			BOT = GetBalls
+			
+			For b = 0 To UBound(BOT)
+				If InRotRect(BOT(b).x,BOT(b).y,prim.x, prim.y, prim.rotz, - 25, - 10,25, - 10,25,25, - 25,25) And BOT(b).z < prim.z + DTDropUnits + 25 Then
+					BOT(b).velz = 20
+				End If
+			Next
+		End If
+		
+		If prim.transz < 0 Then
+			prim.transz = transz
+		ElseIf transz > 0 Then
+			prim.transz = transz
+		End If
+		
+		If prim.transz > DTDropUpUnits Then
+			DTAnimate =  - 2
+			prim.transz = DTDropUpUnits
+			prim.rotx = 0
+			prim.roty = 0
+			primary.uservalue = GameTime
+		End If
+		primary.collidable = 0
+		secondary.collidable = 1
+		DTArray(ind).isDropped = False 'Mark target as not dropped
+	End If
+	
+	If animate =  - 2 And animtime > DTRaiseDelay Then
+		prim.transz = (animtime - DTRaiseDelay) / DTDropSpeed * DTDropUnits *  - 1 + DTDropUpUnits
+		If prim.transz < 0 Then
+			prim.transz = 0
+			primary.uservalue = 0
+			DTAnimate = 0
+			
+			primary.collidable = 1
+			secondary.collidable = 0
+		End If
+	End If
+End Function
+
+Function DTDropped(switchid)
+	Dim ind
+	ind = DTArrayID(switchid)
+	
+	DTDropped = DTArray(ind).isDropped
+End Function
+
+'******************************************************
+'****  END DROP TARGETS
+'******************************************************
+
+'******************************************************
+'	ZRST: STAND-UP TARGETS by Rothbauerw
+'******************************************************
+
+Class StandupTarget
+  Private m_primary, m_prim, m_sw, m_animate
+
+  Public Property Get Primary(): Set Primary = m_primary: End Property
+  Public Property Let Primary(input): Set m_primary = input: End Property
+
+  Public Property Get Prim(): Set Prim = m_prim: End Property
+  Public Property Let Prim(input): Set m_prim = input: End Property
+
+  Public Property Get Sw(): Sw = m_sw: End Property
+  Public Property Let Sw(input): m_sw = input: End Property
+
+  Public Property Get Animate(): Animate = m_animate: End Property
+  Public Property Let Animate(input): m_animate = input: End Property
+
+  Public default Function init(primary, prim, sw, animate)
+    Set m_primary = primary
+    Set m_prim = prim
+    m_sw = sw
+    m_animate = animate
+
+    Set Init = Me
+  End Function
+End Class
+
+'Define a variable for each stand-up target
+Dim ST1, ST2, ST6, ST7, ST8, ST9, ST10, ST11, ST12
+
+'Set array with stand-up target objects
+'
+'StandupTargetvar = Array(primary, prim, swtich)
+'   primary:	vp target to determine target hit
+'   prim:	   primitive target used for visuals and animation
+'				   IMPORTANT!!!
+'				   transy must be used to offset the target animation
+'   switch:	 ROM switch number
+'   animate:	Arrary slot for handling the animation instrucitons, set to 0
+'
+'You will also need to add a secondary hit object for each stand up (name sw11o, sw12o, and sw13o on the example Table1)
+'these are inclined primitives to simulate hitting a bent target and should provide so z velocity on high speed impacts
+
+
+Set ST1 = (new StandupTarget)(Target01, Target01p, 1, 0)
+Set ST2 = (new StandupTarget)(Target02, Target02p, 2, 0)
+Set ST6 = (new StandupTarget)(Target06, Target06p, 6, 0)
+Set ST7 = (new StandupTarget)(Target07, Target07p, 7, 0)
+Set ST8 = (new StandupTarget)(Target08, Target08p, 8, 0)
+Set ST9 = (new StandupTarget)(Target09, Target09p, 9, 0)
+Set ST10 = (new StandupTarget)(Target10, Target10p, 10, 0)
+Set ST11 = (new StandupTarget)(Target11, Target11p, 11, 0)
+Set ST12 = (new StandupTarget)(TargetRubberNextToRamp, TargetRubberNextToRampp, 12, 0)
+
+'Add all the Stand-up Target Arrays to Stand-up Target Animation Array
+'   STAnimationArray = Array(ST1, ST2, ....)
+Dim STArray
+STArray = Array(ST1, ST2, ST6, ST7, ST8, ST9, ST10, ST11, ST12)
+
+'Configure the behavior of Stand-up Targets
+Const STAnimStep = 1.5  'vpunits per animation step (control return to Start)
+Const STMaxOffset = 9   'max vp units target moves when hit
+
+Const STMass = 0.2	  'Mass of the Stand-up Target (between 0 and 1), higher values provide more resistance
+
+'******************************************************
+'				STAND-UP TARGETS FUNCTIONS
+'******************************************************
+
+Sub STHit(switch)
+	Dim i
+	i = STArrayID(switch)
+	
+	PlayTargetSound
+	STArray(i).animate = STCheckHit(ActiveBall,STArray(i).primary)
+	
+	If STArray(i).animate <> 0 Then
+		DTBallPhysics ActiveBall, STArray(i).primary.orientation, STMass
+	End If
+	DoSTAnim
+End Sub
+
+Function STArrayID(switch)
+	Dim i
+	For i = 0 To UBound(STArray)
+		If STArray(i).sw = switch Then
+			STArrayID = i
+			Exit Function
+		End If
+	Next
+End Function
+
+Function STCheckHit(aBall, target) 'Check if target is hit on it's face
+	Dim bangle, bangleafter, rangle, rangle2, perpvel, perpvelafter, paravel, paravelafter
+	rangle = (target.orientation - 90) * 3.1416 / 180
+	bangle = atn2(cor.ballvely(aball.id),cor.ballvelx(aball.id))
+	bangleafter = Atn2(aBall.vely,aball.velx)
+	
+	perpvel = cor.BallVel(aball.id) * Cos(bangle - rangle)
+	paravel = cor.BallVel(aball.id) * Sin(bangle - rangle)
+	
+	perpvelafter = BallSpeed(aBall) * Cos(bangleafter - rangle)
+	paravelafter = BallSpeed(aBall) * Sin(bangleafter - rangle)
+	
+	If perpvel > 0 And  perpvelafter <= 0 Then
+		STCheckHit = 1
+	ElseIf perpvel > 0 And ((paravel > 0 And paravelafter > 0) Or (paravel < 0 And paravelafter < 0)) Then
+		STCheckHit = 1
+	Else
+		STCheckHit = 0
+	End If
+End Function
+
+Sub DoSTAnim()
+	Dim i
+	For i = 0 To UBound(STArray)
+		STArray(i).animate = STAnimate(STArray(i).primary,STArray(i).prim,STArray(i).sw,STArray(i).animate)
+	Next
+End Sub
+
+Function STAnimate(primary, prim, switch,  animate)
+	Dim animtime
+	
+	STAnimate = animate
+	
+	If animate = 0  Then
+		primary.uservalue = 0
+		STAnimate = 0
+		Exit Function
+	ElseIf primary.uservalue = 0 Then
+		primary.uservalue = GameTime
+	End If
+	
+	animtime = GameTime - primary.uservalue
+	
+	If animate = 1 Then
+		primary.collidable = 0
+		prim.transy =  - STMaxOffset
+		STAnimate = 2
+		Exit Function
+	ElseIf animate = 2 Then
+		prim.transy = prim.transy + STAnimStep
+		If prim.transy >= 0 Then
+			prim.transy = 0
+			primary.collidable = 1
+			STAnimate = 0
+			Exit Function
+		Else
+			STAnimate = 2
+		End If
+	End If
+End Function
+
+'******************************************************
+'****   END STAND-UP TARGETS
+'******************************************************
+
+'******************************************************
 '	ZBRL:  BALL ROLLING AND DROP SOUNDS
 '******************************************************
 
@@ -14417,8 +14931,8 @@ Sub FrameTimer_Timer() 'The frame timer interval should be -1, so executes at th
 	InitFrameTime = GameTime	'Count frametime
 	'Add animation stuff here
 	RollingUpdate   		'update rolling sounds
-	'DoDTAnim				'handle drop target animations
-	'DoSTAnim				'handle stand up target animations
+	DoDTAnim				'handle drop target animations
+	DoSTAnim				'handle stand up target animations
 	FlipperVisualUpdate				'update flipper shadows and primitives
 	If DynamicBallShadowsOn=1 Then DynamicBSUpdate 'update ball shadows
 End Sub
@@ -16215,21 +16729,6 @@ BallHandlingQueue.Add "BumperScore3","BumperScore3 " & idx & "",20,900,0,0,0,fal
 		PhilliesSmoke.Visible = 1
 	End Sub
 
-'*******************************************
-' VR Room / VR Cabinet
-'*******************************************
-DIM VRThings
-If VRRoom <> 0 Then
-'	DMDbackbox.DMD=True
-	DMDbackbox.visible=true  ' flasher dmd
-	If VRRoom = 1 Then
-		for each VRThings in VR_Cab:VRThings.visible = 1:Next
-	End If
-Else
-	If Table1.ShowDT then
-		for each VRThings in VR_Cab:VRThings.visible = 0:Next
-	End IF
-End if
 '************** VR Plunger *****************
 Sub TimerVRPlunger_Timer
   If PinCab_Shooter.Y < -99 then

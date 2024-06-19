@@ -51,7 +51,12 @@
       "Ramp011",
       "Wall057",
       "Wall020",
-      "RubberPostPrim004"
+      "RubberPostPrim004",
+      "Wall038",
+      "Wall031",
+      "Wall20",
+      "Wall013",
+      "Wall019"
     ],
     "fire_events": true,
     "stop_single_events": false,
@@ -241,7 +246,9 @@
       "RubberPostPrim013",
       "RubberPostPrim012",
       "RubberPostPrim010",
-      "RubberPostPrim008"
+      "RubberPostPrim008",
+      "RubberPostPrim019",
+      "RubberPostPrim018"
     ],
     "fire_events": true,
     "stop_single_events": false,
@@ -250,7 +257,9 @@
   {
     "name": "dSleeves",
     "items": [
-      "RubberPostPrim033"
+      "RubberPostPrim033",
+      "RubberPostPrim039",
+      "RubberPostPrim040"
     ],
     "fire_events": true,
     "stop_single_events": false,
@@ -274,7 +283,27 @@
       "Wall36",
       "Ramp003",
       "Wall057",
-      "Wall015"
+      "Wall015",
+      "Wall33",
+      "Wall027",
+      "Wall044",
+      "Wall012",
+      "Wall002",
+      "Wall009",
+      "Wall056",
+      "Wall036",
+      "Wall041",
+      "Wall040",
+      "Wall021",
+      "Wall008",
+      "plastic5",
+      "plastic3",
+      "Primitive52",
+      "Wall045",
+      "Wall042",
+      "Wall059",
+      "Wall7",
+      "Wall5"
     ],
     "fire_events": true,
     "stop_single_events": false,
@@ -501,11 +530,30 @@
       "RubberPostPrim006",
       "RubberPostPrim002",
       "RubberPostPrim029",
-      "RubberPostPrim028"
+      "RubberPostPrim028",
+      "RubberPostPrim039",
+      "Wall043",
+      "Wall062",
+      "Wall063",
+      "Wall064",
+      "Wall065",
+      "Wall066",
+      "Wall067",
+      "Wall069",
+      "Wall068",
+      "Wall075",
+      "Wall074",
+      "Wall073",
+      "Wall072",
+      "Wall071",
+      "Wall070",
+      "RubberPostPrim005",
+      "RubberPostPrim037",
+      "RubberPostPrim040"
     ],
     "fire_events": true,
     "stop_single_events": false,
-    "group_elements": true
+    "group_elements": false
   },
   {
     "name": "Drainlights",
@@ -1131,18 +1179,7 @@
   {
     "name": "Targets",
     "items": [
-      "TargetRubberNextToRamp",
-      "Target11",
-      "Target10",
-      "Target09",
-      "Target01",
-      "Target05",
-      "Target04",
-      "Target03",
-      "Target02",
-      "Target06",
-      "Target07",
-      "Target08"
+      "TriggerCenter02"
     ],
     "fire_events": true,
     "stop_single_events": false,
@@ -1255,16 +1292,6 @@
       "LeftInlane2",
       "RightInlane",
       "RightInlane2",
-      "Target06",
-      "Target07",
-      "Target08",
-      "Target05",
-      "Target04",
-      "Target03",
-      "Target11",
-      "Target10",
-      "Target09",
-      "TargetRubberNextToRamp",
       "LeftSlingShot",
       "RightSlingShot",
       "Drain",
@@ -1351,27 +1378,35 @@
     "group_elements": false
   },
   {
-    "name": "VR_Cab",
+    "name": "VRCabinet",
     "items": [
       "PinCab_Backglass",
       "PinCab_Backbox",
       "PinCab_Buttons",
       "PinCab_Cabinet",
       "PinCab_Metals",
+      "PinCab_Bottom",
+      "PinCab_Housing",
+      "PinCab_Shooter",
+      "dank12",
+      "dank13"
+    ],
+    "fire_events": false,
+    "stop_single_events": false,
+    "group_elements": false
+  },
+  {
+    "name": "VRMinimalRoom",
+    "items": [
+      "VR_Cord",
+      "VR_CordPlug",
       "VR_Floor",
+      "VR_Outlet",
       "VR_Roof",
       "VR_Wall_Left",
       "VR_Wall_Right",
       "Logo",
-      "Logo2",
-      "PinCab_Bottom",
-      "PinCab_Housing",
-      "PinCab_Shooter",
-      "VR_Outlet",
-      "VR_Cord",
-      "VR_CordPlug",
-      "dank12",
-      "dank13"
+      "Logo2"
     ],
     "fire_events": false,
     "stop_single_events": false,

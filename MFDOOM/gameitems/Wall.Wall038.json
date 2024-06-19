@@ -26,11 +26,11 @@
     "is_top_bottom_visible": false,
     "slingshot_animation": false,
     "is_side_visible": false,
-    "disable_lighting_top_old": 0.0,
-    "disable_lighting_top": null,
+    "disable_lighting_top_old": null,
+    "disable_lighting_top": 0.0,
     "disable_lighting_below": 0.0,
     "is_reflection_enabled": false,
-    "physics_material": "zCol_MetalFO",
+    "physics_material": "zCol_Metal",
     "overwrite_physics": false,
     "drag_points": [
       {
