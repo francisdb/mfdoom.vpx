@@ -2304,411 +2304,6 @@
     "output_target": "backglass"
   },
   {
-    "name": "clear",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\clear.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_ar",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ar.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_bg1",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_bg1.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_bg2",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_bg2.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_blescoring",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_blescoring.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_blespinner",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_blespinner.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_drawls",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_drawls.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_drawlsmultiball",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_drawlsmultiball.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_eetimesbonusmultiplier",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eetimesbonusmultiplier.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_eewaycombo",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eewaycombo.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_elonecompleted",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_elonecompleted.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_eltwocompleted",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eltwocompleted.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_eover",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_eover.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_erorbits",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_erorbits.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_erpops",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_erpops.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_erramps",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_erramps.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_etimesbonusmultiplier",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_etimesbonusmultiplier.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_ewaycombo",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ewaycombo.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_itscompleted",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_itscompleted.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_kslikeihitthejackpot",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_kslikeihitthejackpot.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_ladded",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ladded.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_llocked",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_llocked.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_llshot",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_llshot.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_lsaved",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_lsaved.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_morehit",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_morehit.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_morehits",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_morehits.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_ndupscomplete",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ndupscomplete.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_nnercompleted",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_nnercompleted.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_pscompleted",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_pscompleted.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_ricasmostblunted",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ricasmostblunted.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_ricasmostbluntedmultiball",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ricasmostbluntedmultiball.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_rwaycombo",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_rwaycombo.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_t",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_t.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_teryaliasmissionsunlocked",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_teryaliasmissionsunlocked.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_terybonus",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_terybonus.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_tiball",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tiball.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_timesbonusmultiplier",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_timesbonusmultiplier.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_tshutdown",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tshutdown.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_twarning",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_twarning.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_waycombo",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_waycombo.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_zillionear",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_zillionear-10sec",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-10sec.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_zillionear-multiball",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-multiball.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_zillionear-superjackpot",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-superjackpot.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
-    "name": "co_zillionear-superjackpotislit",
-    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_zillionear-superjackpotislit.mp3",
-    "internal_name": "",
-    "fade": 0,
-    "volume": 0,
-    "balance": 0,
-    "output_target": "backglass"
-  },
-  {
     "name": "fx001",
     "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\fx001.mp3",
     "internal_name": "",
@@ -5969,6 +5564,393 @@
   {
     "name": "tiltshutdown",
     "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\tiltshutdown.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_americasmostblunted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_americasmostblunted.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_americasmostbluntedmultiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_americasmostbluntedmultiball.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_balladded",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_balladded.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_balllocked",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_balllocked.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_ballsaved",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_ballsaved.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_bg1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_bg1.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_bg2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_bg2.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_doublescoring",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_doublescoring.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_doublespinner",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_doublespinner.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_fivetimesbonusmultiplier",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_fivetimesbonusmultiplier.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_fivewaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_fivewaycombo.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_fourwaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_fourwaycombo.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gameover",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gameover.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gasdrawls",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gasdrawls.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gasdrawlsmultiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gasdrawlsmultiball.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gazzillionear",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gazzillionear.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gazzillionear-10sec",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gazzillionear-10sec.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gazzillionear-multiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gazzillionear-multiball.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gazzillionear-superjackpot",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gazzillionear-superjackpot.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_gazzillionear-superjackpotislit",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_gazzillionear-superjackpotislit.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_levelonecompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_levelonecompleted.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_leveltwocompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_leveltwocompleted.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_lookslikeihitthejackpot",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_lookslikeihitthejackpot.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_multiball",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_multiball.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_mysteryaliasmissionsunlocked",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_mysteryaliasmissionsunlocked.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_mysterybonus",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_mysterybonus.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_onemorehit",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_onemorehit.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_orbitscompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_orbitscompleted.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_rampscompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_rampscompleted.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_skillshot",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_skillshot.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_spinnercompleted",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_spinnercompleted.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_standupscomplete",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_standupscomplete.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_superorbits",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_superorbits.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_superpops",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_superpops.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_superramps",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_superramps.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_threetimesbonusmultiplier",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_threetimesbonusmultiplier.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_threewaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_threewaycombo.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_tilt",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tilt.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_tiltshutdown",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tiltshutdown.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_tiltwarning",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_tiltwarning.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_twomorehits",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_twomorehits.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_twotimesbonusmultiplier",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_twotimesbonusmultiplier.mp3",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "co_twowaycombo",
+    "path": "C:\\Users\\Robbr\\Desktop\\Normalize\\co_twowaycombo.mp3",
     "internal_name": "",
     "fade": 0,
     "volume": 0,

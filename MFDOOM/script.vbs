@@ -60,6 +60,8 @@
 ' 23 RobbyKingPin- Added Rothbauerw Targets
 '                - Further inspection on the entire playfield to ensure all nFozzy and Fleep implementations are working as they should
 '                - Added VR Hybrid codes
+' 24 MerlinRTP   - Added Audio Callouts that were missing, Added targets to Fleep target collection, changed how skill/lane light rotation works,
+'				 - Fixed audio bugs where music would stop playing, Added highscore 4 to display rotation.
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -1015,7 +1017,6 @@ Sub FistLeft
 		title.AddAction af.Repeat(list, 1)
 	End If
 	If DMDFistLeft>70 Then DMDFistLeft=0
-	debug.print "DMD_FISTLEFT" & DMDFistLeft
 End sub
 
 Sub FistRight
@@ -1036,7 +1037,6 @@ Sub FistRight
 		title.AddAction af.Repeat(list, 1)
 	End If
 	If DMDFistRight>70 Then DMDFistRight=0
-	debug.print "DMDFistRight" & DMDFistRight
 End sub
 
 Sub DMDBackgroundblink
@@ -2030,7 +2030,8 @@ End Sub
 	Dim bBallSaverActive         
 	Dim bBallSaverReady
 	Dim bMultiBallMode
-	Dim bMusicOn
+'	Dim bMusicOn
+	Dim bIdleMusicOn
 	Dim bSkillshotReady
 	Dim bSkillshotRotateLights
 	Dim bExtraBallWonThisBall
@@ -2307,7 +2308,8 @@ End Sub
 			LArrow04.state = 2
 		End If
 		bAutoPlunger = False
-		bMusicOn = True
+'		bMusicOn = True
+		bIdleMusicOn = False
 		BallsOnPlayfield = 0
 		BallsInHole = 0
 		LastSwitchHit = ""
@@ -2543,8 +2545,9 @@ if keycode = "7" Then RTP
 						
 						ldown = 1
 						checkdown
-						If bSkillshotReady AND bSkillshotRotateLights Then 
-						RotateLaneLightsLeft
+						If bSkillshotReady = False AND bSkillshotRotateLights Then 
+							RotateLaneLightsLeft
+							RotateSkillLightsLeft
 						End If
 					Else
 						'LeftFlipper.RotateToStart
@@ -2568,8 +2571,9 @@ if keycode = "7" Then RTP
 
 						rdown = 1
 						checkdown
-						If bSkillshotReady AND bSkillshotRotateLights Then  
-						RotateLaneLightsRight
+						If bSkillshotReady = False AND bSkillshotRotateLights Then  
+							RotateLaneLightsRight
+							RotateSkillLightsRight
 						End If
 
 					Else
@@ -3028,7 +3032,7 @@ End Sub
 		BallHandlingQueue.Add "FirstBall","FirstBall",30,1500,0,0,0,False
 	End Sub
 	Sub EndOfGame()
-		StopAllMusic
+		'StopAllMusic
 		DelayAttractText
 		StartAttractMode
 		introposition = 0     '0
@@ -3069,19 +3073,24 @@ End Sub
 	Const pCallouts=8
 
 
-	Sub chilloutthemusic
+Sub chilloutthemusic
+	if PupStatus Then
 		If LWarpMultiballCounter.state = 0 Then
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":11, ""VL"":10 }"
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 4, ""FN"":11, ""VL"":10 }"
 			PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 7, ""FN"":11, ""VL"":10 }"
 			BallHandlingQueue.Add "turnitbackup","turnitbackup",20,2200,0,0,0,false
 		End If
-	End Sub
-	Sub turnitbackup
+	End If
+End Sub
+
+Sub turnitbackup
+	if PupStatus Then
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 2, ""FN"":11, ""VL"":99 }"
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 4, ""FN"":11, ""VL"":99 }"
 		PuPlayer.SendMSG "{ ""mt"":301, ""SN"": 7, ""FN"":11, ""VL"":99 }"
-	End Sub
+	End If
+End Sub
 
 
 Sub LoadOrbital
@@ -3163,10 +3172,10 @@ Sub Savehs
 End Sub
 
 Sub Reseths
-    HighScoreName(0) = "RTP"
-    HighScoreName(1) = "ILL"
+    HighScoreName(0) = "ILL"
+    HighScoreName(1) = "RTP"
     HighScoreName(2) = "IAK"
-    HighScoreName(3) = "OQQ"
+    HighScoreName(3) = "RKP"
     HighScore(0) = 2000000
     HighScore(1) = 1500000
     HighScore(2) = 1000000
@@ -3208,7 +3217,7 @@ End Sub
 Sub HighScoreEntryInit()
 	DbgTimer.Enabled = 1
 	Dbg "Entering High Score Entry"
-
+	UpdateMusicNow
 	PlayVideo = 0
 	pupevent 798
     hsbModeActive = True
@@ -3402,10 +3411,13 @@ Dim fSongVolume : fSongVolume = 1
 
 Sub SwitchMusic(sTrack)
 Dbg "sTrack: " &sTrack
-Dbg "sMusicTrack: " &sMusicTrack
+
+	if bIdleMusicOn Then StopIdleSound ' make sure idle music is not playing
+
 	If sTrack <> sMusicTrack Then
 		StopSound sMusicTrack
 		sMusicTrack = sTrack
+		Dbg "sMusicTrack: " &sMusicTrack
 		If (sTrack = "Attract1") or (sTrack = "Attract2") Then
 			PlaySound sTrack, -1, fAttractVolume
 			fCurrentMusicVol = fAttractVolume
@@ -3417,7 +3429,8 @@ Dbg "sMusicTrack: " &sMusicTrack
 End Sub
 
 Sub StopAllMusic
-	'sMusicTrack = ""
+	Dbg "Stopping all music"
+	sMusicTrack = ""
 	StopSound "Attract1"
 	StopSound "Attract2"
 	StopSound "MFDOOM01"
@@ -3469,6 +3482,12 @@ Sub UpdateMusicNow
     End Select
 end sub
 
+Sub CheckNoMusicTimer_Timer()
+	if sMusicTrack = "" And bIdleMusicOn = False Then RandomRestartMusicSelection
+
+	Dbg "Skill:RotateLane" & bSkillshotReady &"-" & bSkillshotRotateLights
+End Sub
+
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
@@ -3505,7 +3524,7 @@ end sub
 	End Sub
 
 	Sub StopTracks_hit()
-		StopAllMusic
+		'StopAllMusic
 	End Sub
 
 	Sub RandomRestartMusicSelection
@@ -3517,107 +3536,107 @@ end sub
 ' CALLOUTS
 	'MULTIBALL Callouts
 	Sub OneMoreHitCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_onemorehit.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_onemorehit"
 	End Sub
 	Sub TwoMoreHitsCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_twomorehits.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_twomorehits"
 	End Sub
 	Sub AmericasMostBluntedCallout
-		Playsoundcallout "co_americasmostblunted.mp3"
+		Playsoundcallout "co_americasmostblunted"
 	End Sub
 	Sub AmericasMostBluntedMultiballCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_americasmostbluntedmultiball.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_americasmostbluntedmultiball"
 	End Sub
 	Sub GasDrawlsCallout
-		Playsoundcallout "co_gasdrawls.mp3"
+		Playsoundcallout "co_gasdrawls"
 	End Sub
 	Sub GasDrawlsMultiballCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_gasdrawlsmultiball.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_gasdrawlsmultiball"
 	End Sub
 	Sub GazzillionEarTenSecondCountdownCallout
-		Playsoundcallout "co_gazzillionear-10sec.mp3"
+		Playsoundcallout "co_gazzillionear-10sec"
 	End Sub
 	Sub GazzillionEarMultiballCallout
-		Playsoundcallout "co_gazzillionear-multiball.mp3"
+		Playsoundcallout "co_gazzillionear-multiball"
 	End Sub
 
 	'JACKPOT Callouts
 	Sub GasDrawlsJackpotCallout
-		Playsoundcallout "co_lookslikeihitthejackpot.mp3"
+		Playsoundcallout "co_lookslikeihitthejackpot"
 		'RandomUltraDMDSceneGasDrawlsJackpot
 		playvideo=20+int(rnd(1)*3)
 	End Sub
 	Sub AmericasMostBluntedJackpotCallout
-		Playsoundcallout "co_lookslikeihitthejackpot.mp3"
+		Playsoundcallout "co_lookslikeihitthejackpot"
 		'RandomUltraDMDSceneAmericasMostBluntedJackpot
 		playvideo=27+int(rnd(1)*3)
 	End Sub
 	Sub GazzillionEarJackpotCallout
-		Playsoundcallout "co_lookslikeihitthejackpot.mp3"
+		Playsoundcallout "co_lookslikeihitthejackpot"
 		'RandomUltraDMDSceneGazzillionEarJackpot
 		playvideo=34+int(rnd(1)*3)
 	End Sub
 	Sub GazzillionEarSuperJackpotCallout
-		Playsoundcallout "co_gazzillionear-superjackpot.mp3"
+		Playsoundcallout "co_gazzillionear-superjackpot"
 	End Sub
 	Sub GazzillionEarSuperJackpotIsLitCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_gazzillionear-superjackpotislit.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_gazzillionear-superjackpotislit"
 	End Sub
 	'COMBO Callouts
 	Sub TwoWayComboCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_twowaycombo.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_twowaycombo"
 	End Sub
 	Sub ThreeWayComboCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_threewaycombo.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_threewaycombo"
 	End Sub
 	Sub FourWayComboCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_fourwaycombo.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_fourwaycombo"
 	End Sub
 	Sub FiveWayComboCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_fivewaycombo.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_fivewaycombo"
 	End Sub
 	'MULTIPLIER Callouts
 	Sub TwoTimesBonusMultiplierCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_twotimesbonusmultiplier.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_twotimesbonusmultiplier"
 	End Sub
 	Sub ThreeTimesBonusMultiplierCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_threetimesbonusmultiplier.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_threetimesbonusmultiplier"
 	End Sub
 	Sub FiveTimesBonusMultiplierCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_fivetimesbonusmultiplier.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_fivetimesbonusmultiplier"
 	End Sub
 	'TILT Callouts
 	Sub TiltCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_tilt.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_tilt"
 	End Sub
 	Sub TiltWarningCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_tiltwarning.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_tiltwarning"
 	End Sub
 	'COMPLETED Callouts
 	Sub LevelOneCompletedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_levelonecompleted.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_levelonecompleted"
 	End Sub
 	Sub LevelTwoCompletedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_leveltwocompleted.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_leveltwocompleted"
 	End Sub
 	Sub OrbitsCompletedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_orbitscompleted.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_orbitscompleted"
 	End Sub
 	Sub RampsCompletedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_rampscompleted.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_rampscompleted"
 	End Sub
 	Sub SpinnerCompletedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_spinnercompleted.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_spinnercompleted"
 	End Sub
 	Sub StandupsCompleteCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_standupscomplete.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_standupscomplete"
 	End Sub
 	'MISCELLANEOUS Callouts
 	Sub BallAddedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_balladded.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_balladded"
 	End Sub
 	Sub BallLockedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_balllocked.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_balllocked"
 	End Sub
 	Sub BallSavedCallout
 		Select Case Int(Rnd * 5) + 1
@@ -3629,47 +3648,48 @@ end sub
 		End Select
 	End Sub
 	Sub DoubleScoringCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_doublescoring.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_doublescoring"
 	End Sub
 	Sub MysteryBonusCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_mysterybonus.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_mysterybonus"
 	End Sub
 	Sub SkillshotCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_skillshot.mp3"
+		dbg "Calling Skillshot"
+		If EnableCallouts=1 Then Playsoundcallout "co_skillshot"
 	End Sub
 	Sub SuperOrbitsCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_superorbits.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_superorbits"
 	End Sub
 	Sub SuperPopsCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_superpops.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_superpops"
 	End Sub
 	Sub SuperRampsCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_superramps.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_superramps"
 	End Sub
 	Sub DoubleSpinnerCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_doublespinner.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_doublespinner"
 	End Sub
 	Sub Player1Callout
-		If EnableCallouts=1 Then Playsoundcallout "player1.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "player1"
 	End Sub
 	Sub Player2Callout
-		If EnableCallouts=1 Then Playsoundcallout "player2.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "player2"
 	End Sub
 	Sub Player3Callout
-		If EnableCallouts=1 Then Playsoundcallout "player3.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "player3"
 	End Sub
 	Sub Player4Callout
-		If EnableCallouts=1 Then Playsoundcallout "player4.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "player4"
 	End Sub
 	Sub MysteryAliasMissionsUnlockedCallout
-		If EnableCallouts=1 Then Playsoundcallout "co_mysteryaliasmissionsunlocked.mp3"
+		If EnableCallouts=1 Then Playsoundcallout "co_mysteryaliasmissionsunlocked"
 	End Sub
 	Sub GameOverCallout
-		Playsoundcallout "co_gameover.mp3"
+		Playsoundcallout "co_gameover"
 	End Sub
 	Sub ClearMusicCallout
-		StopAllMusic
-		'Playsoundcallout "co_clear.mp3"
+		'StopAllMusic
+		'Playsoundcallout "co_clear"
 	End Sub
 	'********************************************
 	'   FLIPPER LIGHTS ON/OFF
@@ -3711,8 +3731,6 @@ end sub
 ' CalloutVol
 
 sub PlaySoundCallOut(clip)
-'PlaySound "EFX_gun_loading2",0,CalloutVol,0,0,1,1,1
-	debug.print clip & " at " & CalloutVol
 	PlaySound clip,0,CalloutVol,0,0,1,1,1
 end sub
 
@@ -3990,7 +4008,10 @@ end sub
 		Dim IdleCalloutIndex
 		IdleCalloutIndex = Int(Rnd * 12) + 1
 	Sub RandomSoundPlungerIdle
-		chilloutthemusic
+		'chilloutthemusic
+		bIdleMusicOn = True
+		Dbg "Playing Idle Track: " &IdleCalloutIndex
+		StopAllMusic
 		IdleCalloutIndex = IdleCalloutIndex + 1
 		Select Case IdleCalloutIndex			
 			Case 1:PlaySound "fx308-idle", -1
@@ -4028,6 +4049,7 @@ end sub
 '	End Sub
 
 	Sub StopIdleSound
+		Dbg "Stopping Idle Tracks"	
 '		Select Case IdleCalloutIndex			
 			StopSound "fx308-idle"
 			StopSound "fx309-idle"
@@ -4042,6 +4064,7 @@ end sub
 			StopSound "fx338-idle"
 			StopSound "fx339-idle"
 '		End Select
+			bIdleMusicOn = False
 	End Sub
 
 		Dim SoundPlungerShoot
@@ -4061,7 +4084,8 @@ end sub
 			Case 9:PlaySoundCallOut "fx332"
 				   SoundPlungerShoot = 0
 		End Select
-		turnitbackup
+		'turnitbackup
+		RandomRestartMusicSelection
 	End Sub
 		
 		Dim SoundKickout
@@ -4851,7 +4875,7 @@ end sub
 						RandomKickerRubberSound
 						RandomKickerEjectSlow
 					Else
-						StopAllMusic
+						'StopAllMusic
 						LightQueue.Add "DelayGasDrawlsMBMX","DelayGasDrawlsMBMX",20,7900,0,0,0,false
 						RandomSoundGas
 						BallLockedCallout
@@ -5375,6 +5399,8 @@ end sub
 			LightBonus05
 			RANDOMLIGHTSSKILLSHOTFADE
 		Else
+		Dbg "Lane 1 not LIT"
+		Dbg "" &LStar01.state &":" &LStar02.state & ":" &LStar03.state
 			IF LDoubleScoring01.State = 2 THEN
 				AddScore 500 
 			ELSE
@@ -7243,7 +7269,7 @@ End Sub
 	Sub GazzillionEar10secvideo
 		pupevent 717
 		GazzillionEarTenSecondCountdownCallout
-			AudioQueue.Add "ClearMusicCallout","ClearMusicCallout",20,16000,0,0,0,false
+			'AudioQueue.Add "ClearMusicCallout","ClearMusicCallout",20,16000,0,0,0,false
 	End Sub
 	'************************************************************************************************
 	'   RESETS ALL GAZZILLION EAR MULTIBALL LIGHT TRIGGERS TO OFF AFTER MULTIBALL STARTS
@@ -7965,7 +7991,7 @@ function returnBaseColor(baseObject)
 			end if
 		next
 	Else
-		debug.print "not object: " & baseObject
+		'debug.print "not object: " & baseObject
 	end if
 end function
 
@@ -8111,7 +8137,7 @@ Sub ResetAllGILightsColor
 	Dim bulb
 	For each bulb in GI
 		SetLightColorGI bulb, base, -1
-		debug.print bulb.name & base
+		'debug.print bulb.name & base
 	Next	
 	
 	TurnOffGIMultiball
@@ -9463,7 +9489,7 @@ End Sub
 		ResetSkillShotTimer_Timer
 		AddScore SkillshotValue(CurrentPLayer)
 		DOF 939, DOFPulse   'DOF MX - Skillshot
-		AudioQueue.Add "SkillshotCallout","SkillshotCallout",20,1200,0,0,0,false
+		AudioQueue.Add "SkillshotCallout","SkillshotCallout",20,200,0,0,0,false
 		pupevent 719
 		DMDBigText "SKILL SHOT",100,0 '3.4sec 
 		SkillShotValue(CurrentPLayer) = SkillShotValue(CurrentPLayer) + 10000
@@ -9512,7 +9538,7 @@ End Sub
 				DOF 942, DOFOn   'DOF MX
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
-				StopAllMusic
+				'StopAllMusic
 				LSlime.state = 2
 			Elseif currentplayer = 2 Then
 				Player2Callout
@@ -9530,7 +9556,7 @@ End Sub
 				DOF 942, DOFOn   'DOF MX
 				DOF 971, DOFOn   'DOF MX - BACK
 				'chilloutthemusic
-				StopAllMusic
+				'StopAllMusic
 				LSlime.state = 2
 			Elseif currentplayer = 3 Then
 				Player3Callout
@@ -9566,7 +9592,7 @@ End Sub
 				DOF 942, DOFOn   'DOF MX	
 				DOF 971, DOFOn   'DOF MX - BACK	
 				'chilloutthemusic
-				StopAllMusic
+				'StopAllMusic
 				LSlime.state = 2
 			End If
 		Else
@@ -9582,7 +9608,7 @@ End Sub
 			DOF 942, DOFOn   'DOF MX	
 			DOF 971, DOFOn   'DOF MX - BACK
 			'chilloutthemusic
-			StopAllMusic
+			'StopAllMusic
 			LSlime.state = 2
 		End If
 		AddScore 0
@@ -9593,7 +9619,7 @@ End Sub
 		ResetNewBallVariables
 		bBallSaverReady = True
 		bSkillShotReady = True
-		bSkillshotRotateLights = True
+		bSkillshotRotateLights = False
 		bDoubleScoringActive = False       '
 		bWarpSpeedMultiballActive = False  '
 		bComboActive = False               '
@@ -9612,7 +9638,7 @@ End Sub
 		ResetSuperRampsLight               '
 		LCombo.State = 0
 		bCombo(CurrentPlayer) = 0
-		StopAllMusic
+		'StopAllMusic
 	End Sub
 
 	Sub CreateNewBall()
@@ -9633,7 +9659,7 @@ End Sub
 			bAutoPlunger = True
 		End If
 		End If
-		StopAllMusic
+		'StopAllMusic
 	End Sub
 
 	Sub AddMultiball(nballs)
@@ -9662,7 +9688,7 @@ End Sub
 	'**************************
 	Sub CreateNewBallForBallLock()
 		'EndMusic
-		StopAllMusic
+		'StopAllMusic
 		RandomSoundFood
 		BallHandlingQueue.Add "BallForBallLock","BallForBallLock",20,6025,0,0,0,false
 		AudioQueue.Add "RandomSoundGas","RandomSoundGas",20,1000,0,0,0,false
@@ -9814,7 +9840,7 @@ End Sub
 	End Sub
 
 	Sub Balldrained
-		StopAllMusic
+		'StopAllMusic
 	End Sub
 	'**************************
 	'   DRAIN HIT
@@ -9823,7 +9849,7 @@ End Sub
 		Drain.DestroyBall
 		BallsOnPlayfield = BallsOnPlayfield - 1
 		'EndMusic
-		StopAllMusic
+		'StopAllMusic
 		RandomSoundDrainBottom
 		RandomSoundDrain drain
 		'AudioQueue.Add "RandomRestartMusicSelection","RandomRestartMusicSelection",20,6000,0,0,0,false
@@ -10045,6 +10071,9 @@ End Function
 			Case 4
 			'	PupEvent 737
 			'	PupEvent 837
+   				DMDTopSplash HighScoreName(3),1000,0
+				DMDBigText formatscore(HighScore(3)),1000,0  
+			Case 5
 				FlasherAllBlinkOnce
 				introposition = 0 
 		End Select
@@ -10071,6 +10100,11 @@ End Function
 			End If
 		End If
 		If introposition = 4 Then
+			If introtime = 9 Then 
+				DMDintroloop
+			End If
+		End If
+		If introposition = 5 Then
 			If introtime = 29 Then
 				DMDintroloop
 				introposition = 0
@@ -10079,7 +10113,6 @@ End Function
 	End Sub
 
 	Sub AttractModeGrandChampion
-
 			RandomSoundHighScores  
 			pupevent 726
 			FlasherAllBlinkOnce
@@ -10183,7 +10216,7 @@ End Sub
 	End Sub
 
 	Sub ResetNewBallVariables()
-		StopAllMusic
+		'StopAllMusic
 			Dim a
 				For each a in TotalLights
 				a.State = 0
@@ -10206,7 +10239,7 @@ End Sub
 			Case 1:LStar01.State = 2 
 			Case 2:LStar02.State = 2 
 			Case 3:LStar03.State = 2 
-		End Select
+		End Select	
 	End Sub
 
 	Sub SkillshotOff_Hit 'trigger to stop the skillshot due to a weak plunger shot
@@ -10224,7 +10257,8 @@ End Sub
 	End Sub
 
 	Sub SkillShotRotateLights_hit
-		bSkillshotRotateLights = FALSE
+		BallHandlingQueue.Add "ResetSkillShotTimer_Timer","ResetSkillShotTimer_Timer",90,500,0,0,0,false
+		bSkillshotRotateLights = TRUE
 	End Sub
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -10306,7 +10340,7 @@ End Sub
 		LStep = LStep + 1
 	End Sub
 
-	Sub RotateLaneLightsRight
+	Sub RotateSkillLightsRight
 		Dim TempState
 		TempState = LStar03.State
 		LStar03.State = LStar02.State
@@ -10314,12 +10348,30 @@ End Sub
 		LStar01.State = TempState
 	End Sub
 
-	Sub RotateLaneLightsLeft
+	Sub RotateSkillLightsLeft
 		Dim TempState
 		TempState = LStar01.State
 		LStar01.State = LStar02.State
 		LStar02.State = LStar03.State
 		LStar03.State = TempState
+	End Sub
+
+	Sub RotateLaneLightsRight
+		Dim TempState
+		TempState = LStar07.State
+		LStar07.State = LStar06.State
+		LStar06.State = LStar05.State
+		LStar05.State = LStar04.State
+		LStar04.State = TempState
+	End Sub
+
+	Sub RotateLaneLightsLeft
+		Dim TempState
+		TempState = LStar04.State
+		LStar04.State = LStar05.State
+		LStar05.State = LStar06.State
+		LStar06.State = LStar07.State
+		LStar07.State = TempState
 	End Sub
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '  BUMPERS
@@ -13522,8 +13574,8 @@ Sub Waddball(input, RampInput) 'This subroutine is called from WireRampOn to Add
 			Exit Sub
 		End If
 		If x = UBound(RampBalls) Then	 'debug
-			Debug.print "WireRampOn error, ball queue Is full: " & vbNewLine & _
-			RampBalls(0, 0) & vbNewLine & _
+'			Debug.print "WireRampOn error, ball queue Is full: " & vbNewLine & _
+'			RampBalls(0, 0) & vbNewLine & _
 			TypeName(RampBalls(1, 0)) & " ID:" & RampBalls(1, 1) & "type:" & RampType(1) & vbNewLine & _
 			TypeName(RampBalls(2, 0)) & " ID:" & RampBalls(2, 1) & "type:" & RampType(2) & vbNewLine & _
 			TypeName(RampBalls(3, 0)) & " ID:" & RampBalls(3, 1) & "type:" & RampType(3) & vbNewLine & _
@@ -17827,3 +17879,4 @@ End Sub
 Sub dmdattract_Timer()
 	DMDintroloop
 End Sub
+

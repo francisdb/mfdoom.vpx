@@ -1177,9 +1177,21 @@
     "group_elements": false
   },
   {
-    "name": "Targets",
+    "name": "targets",
     "items": [
-      "TriggerCenter02"
+      "TriggerCenter02",
+      "Target04",
+      "Target05",
+      "Target06",
+      "Target02",
+      "Target03",
+      "Target07",
+      "Target08",
+      "Target09",
+      "Target10",
+      "Target11",
+      "Target01",
+      "Target001"
     ],
     "fire_events": true,
     "stop_single_events": false,
