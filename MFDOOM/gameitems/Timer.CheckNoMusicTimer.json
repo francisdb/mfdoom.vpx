@@ -4,7 +4,7 @@
       "x": -333.0,
       "y": 2004.0
     },
-    "is_timer_enabled": false,
+    "is_timer_enabled": true,
     "timer_interval": 2000,
     "name": "CheckNoMusicTimer",
     "backglass": false
