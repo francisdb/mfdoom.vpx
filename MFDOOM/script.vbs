@@ -2546,7 +2546,7 @@ if keycode = "7" Then RTP
 						ldown = 1
 						checkdown
 						If bSkillshotReady = False AND bSkillshotRotateLights Then 
-							RotateLaneLightsLeft
+							'RotateLaneLightsLeft
 							RotateSkillLightsLeft
 						End If
 					Else
@@ -2572,7 +2572,7 @@ if keycode = "7" Then RTP
 						rdown = 1
 						checkdown
 						If bSkillshotReady = False AND bSkillshotRotateLights Then  
-							RotateLaneLightsRight
+							'RotateLaneLightsRight
 							RotateSkillLightsRight
 						End If
 
@@ -13573,9 +13573,7 @@ Sub Waddball(input, RampInput) 'This subroutine is called from WireRampOn to Add
 			'RampRoll.Interval = RampRoll.Interval 'reset timer
 			Exit Sub
 		End If
-		If x = UBound(RampBalls) Then	 'debug
-'			Debug.print "WireRampOn error, ball queue Is full: " & vbNewLine & _
-'			RampBalls(0, 0) & vbNewLine & _
+		If x = UBound(RampBalls) Then	
 			TypeName(RampBalls(1, 0)) & " ID:" & RampBalls(1, 1) & "type:" & RampType(1) & vbNewLine & _
 			TypeName(RampBalls(2, 0)) & " ID:" & RampBalls(2, 1) & "type:" & RampType(2) & vbNewLine & _
 			TypeName(RampBalls(3, 0)) & " ID:" & RampBalls(3, 1) & "type:" & RampType(3) & vbNewLine & _
