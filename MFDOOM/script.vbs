@@ -13573,14 +13573,6 @@ Sub Waddball(input, RampInput) 'This subroutine is called from WireRampOn to Add
 			'RampRoll.Interval = RampRoll.Interval 'reset timer
 			Exit Sub
 		End If
-		If x = UBound(RampBalls) Then	
-			TypeName(RampBalls(1, 0)) & " ID:" & RampBalls(1, 1) & "type:" & RampType(1) & vbNewLine & _
-			TypeName(RampBalls(2, 0)) & " ID:" & RampBalls(2, 1) & "type:" & RampType(2) & vbNewLine & _
-			TypeName(RampBalls(3, 0)) & " ID:" & RampBalls(3, 1) & "type:" & RampType(3) & vbNewLine & _
-			TypeName(RampBalls(4, 0)) & " ID:" & RampBalls(4, 1) & "type:" & RampType(4) & vbNewLine & _
-			TypeName(RampBalls(5, 0)) & " ID:" & RampBalls(5, 1) & "type:" & RampType(5) & vbNewLine & _
-			" "
-		End If
 	Next
 End Sub
 
