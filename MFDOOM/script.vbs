@@ -62,11 +62,37 @@
 '                - Added VR Hybrid codes
 ' 24 MerlinRTP   - Added Audio Callouts that were missing, Added targets to Fleep target collection, changed how skill/lane light rotation works,
 '				 - Fixed audio bugs where music would stop playing, Added highscore 4 to display rotation.
+'				 - Moved Music to MFDOOM music folder for copywright issues
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
 	Randomize
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+'The songs placed in the directory must bedefined here. The filenames must be correct and in this order
+dim Songs(20)
+Songs(1) = "MFDOOM01.mp3"
+Songs(2) = "MFDOOM02.mp3"
+Songs(3) = "MFDOOM03.mp3"
+Songs(4) = "MFDOOM04.mp3"
+Songs(5) = "MFDOOM05.mp3"
+Songs(6) = "MFDOOM06.mp3"
+Songs(7) = "MFDOOM07.mp3"
+Songs(8) = "MFDOOM08.mp3"
+Songs(9) = "MFDOOM09.mp3"
+Songs(10) = "MFDOOM10.mp3"
+Songs(11) = "MFDOOM11.mp3"
+Songs(12) = "MFDOOM12.mp3"
+Songs(13) = "MFDOOM13.mp3"
+Songs(14) = "MFDOOM14.mp3"
+Songs(15) = "MFDOOM15.mp3"
+Songs(16) = "MFDOOM16.mp3"
+Songs(17) = "MFDOOM17.mp3"
+Songs(18) = "MFDOOM18.mp3"
+Songs(19) = "Attract1.mp3"
+Songs(20) = "Attract2.mp3"
+
+
 '  USER OPTIONS
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 '****** PuP Variables ******
@@ -3367,8 +3393,8 @@ End Sub
 		LightQueue.Add "StartLightSeq2","StartLightSeq2",20,150,0,0,0,false
 		LightQueue.Add "StartLightSeq3","StartLightSeq3",20,300,0,0,0,false
 		'ShowTableInfo
-		i = RndNbr(2)
-		SwitchMusic "Attract" &i
+		i = RndNbr(2) + 18
+		SwitchMusic i
 		DMDintroloop
 		FlasherAttract
 		StartRainbow alights
@@ -3415,42 +3441,21 @@ Dbg "sTrack: " &sTrack
 	if bIdleMusicOn Then StopIdleSound ' make sure idle music is not playing
 
 	If sTrack <> sMusicTrack Then
-		StopSound sMusicTrack
-		sMusicTrack = sTrack
+		if sMusicTrack <> "" Then EndMusic
+		sMusicTrack = Songs(sTrack)
 		Dbg "sMusicTrack: " &sMusicTrack
-		If (sTrack = "Attract1") or (sTrack = "Attract2") Then
-			PlaySound sTrack, -1, fAttractVolume
+		If sTrack > 18 Then
+			PlayMusic "MFDOOM\" & Songs(sTrack), fAttractVolume * fSongVolume
 			fCurrentMusicVol = fAttractVolume
 		Else
-			PlaySound sTrack, -1, fMusicVolume * fSongVolume
+			PlayMusic "MFDOOM\" & Songs(sTrack), fMusicVolume * fSongVolume
 			fCurrentMusicVol = fMusicVolume
 		End If
 	End If
 End Sub
 
 Sub StopAllMusic
-	Dbg "Stopping all music"
-	sMusicTrack = ""
-	StopSound "Attract1"
-	StopSound "Attract2"
-	StopSound "MFDOOM01"
-	StopSound "MFDOOM02"
-	StopSound "MFDOOM03"
-	StopSound "MFDOOM04"
-	StopSound "MFDOOM05"
-	StopSound "MFDOOM06"
-	StopSound "MFDOOM07"
-	StopSound "MFDOOM08"
-	StopSound "MFDOOM09"
-	StopSound "MFDOOM10"
-	StopSound "MFDOOM11"
-	StopSound "MFDOOM12"
-	StopSound "MFDOOM13"
-	StopSound "MFDOOM14"
-	StopSound "MFDOOM15"
-	StopSound "MFDOOM16"
-	StopSound "MFDOOM17"
-	StopSound "MFDOOM18"
+	EndMusic
 End Sub
 
 Dim newSong
@@ -3459,33 +3464,21 @@ Sub UpdateMusicNow
 	newSong = RndNbr(18)
 
 	Dbg "NewSong: " &newSong
-    Select Case newSong
-        Case 1:SwitchMusic "MFDOOM01"
-        Case 2:SwitchMusic "MFDOOM02"
-        Case 3:SwitchMusic "MFDOOM03"
-        Case 4:SwitchMusic "MFDOOM04"
-        Case 5:SwitchMusic "MFDOOM05"
-        Case 6:SwitchMusic "MFDOOM06"
-        Case 7:SwitchMusic "MFDOOM07"
-        Case 8:SwitchMusic "MFDOOM08"
-        Case 9:SwitchMusic "MFDOOM09"
-        Case 10:SwitchMusic "MFDOOM10"
-        Case 11:SwitchMusic "MFDOOM11"
-        Case 12:SwitchMusic "MFDOOM12"
-        Case 13:SwitchMusic "MFDOOM13"
-        Case 14:SwitchMusic "MFDOOM14"
-        Case 15:SwitchMusic "MFDOOM15"
-        Case 16:SwitchMusic "MFDOOM16"
-        Case 17:SwitchMusic "MFDOOM17"
-        Case 18:SwitchMusic "MFDOOM18"
 
-    End Select
+	SwitchMusic newSong
+
 end sub
 
 Sub CheckNoMusicTimer_Timer()
 	if sMusicTrack = "" And bIdleMusicOn = False Then RandomRestartMusicSelection
 
 	Dbg "Skill:RotateLane" & bSkillshotReady &"-" & bSkillshotRotateLights
+End Sub
+
+Sub RandomRestartMusicSelection
+	IF (bGameInPLay = True) AND (Tilted = False) AND (BallsOnPlayfield > 0) AND (LWarpMultiballCounter.state = 0) THEN
+		UpdateMusicNow		
+	END IF
 End Sub
 
 
@@ -3527,11 +3520,7 @@ End Sub
 		'StopAllMusic
 	End Sub
 
-	Sub RandomRestartMusicSelection
-		IF (bGameInPLay = True) AND (Tilted = False) AND (BallsOnPlayfield > 0) AND (LWarpMultiballCounter.state = 0) THEN
-			UpdateMusicNow		
-		END IF
-	End Sub
+
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ' CALLOUTS
 	'MULTIBALL Callouts
