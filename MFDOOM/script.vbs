@@ -63,34 +63,17 @@
 ' 24 MerlinRTP   - Added Audio Callouts that were missing, Added targets to Fleep target collection, changed how skill/lane light rotation works,
 '				 - Fixed audio bugs where music would stop playing, Added highscore 4 to display rotation.
 '				 - Moved Music to MFDOOM music folder for copywright issues
+'				 - Added functions to dynamacially create the songs array based off what files are placed in music\MFDOOM folder
+'				 - Fixed High Scores
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
 	Randomize
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+' This will dynamically create an array SONGS that has the mp3 files it finds in music\MFDOOM directory
+Dim re,fso,folder,files,Songs
+Songs = mp3PathArray
 
-'The songs placed in the directory must bedefined here. The filenames must be correct and in this order
-dim Songs(20)
-Songs(1) = "MFDOOM01.mp3"
-Songs(2) = "MFDOOM02.mp3"
-Songs(3) = "MFDOOM03.mp3"
-Songs(4) = "MFDOOM04.mp3"
-Songs(5) = "MFDOOM05.mp3"
-Songs(6) = "MFDOOM06.mp3"
-Songs(7) = "MFDOOM07.mp3"
-Songs(8) = "MFDOOM08.mp3"
-Songs(9) = "MFDOOM09.mp3"
-Songs(10) = "MFDOOM10.mp3"
-Songs(11) = "MFDOOM11.mp3"
-Songs(12) = "MFDOOM12.mp3"
-Songs(13) = "MFDOOM13.mp3"
-Songs(14) = "MFDOOM14.mp3"
-Songs(15) = "MFDOOM15.mp3"
-Songs(16) = "MFDOOM16.mp3"
-Songs(17) = "MFDOOM17.mp3"
-Songs(18) = "MFDOOM18.mp3"
-Songs(19) = "Attract1.mp3"
-Songs(20) = "Attract2.mp3"
 
 
 '  USER OPTIONS
@@ -2310,6 +2293,9 @@ End Sub
 			'pupevent 500
 		End If
 		LoadOrbital
+
+		'DirName = MusicDirectory
+		'msgbox DirName
 		
 		resetbackglass
 		flexdmd_Init
@@ -3161,21 +3147,21 @@ End Function
 Sub Loadhs
     Dim x
     x = LoadValue(cGameName, "HighScore1")
-    If(x <> "")Then HighScore(0) = CDbl(x)Else HighScore(0) = 1000000000 End If
+    If(x <> "")Then HighScore(0) = CDbl(x)Else HighScore(0) = 2000000 End If
     x = LoadValue(cGameName, "HighScore1Name")
-    If(x <> "")Then HighScoreName(0) = x Else HighScoreName(0) = "AAA" End If
+    If(x <> "")Then HighScoreName(0) = x Else HighScoreName(0) = "ILL" End If
     x = LoadValue(cGameName, "HighScore2")
-    If(x <> "")then HighScore(1) = CDbl(x)Else HighScore(1) = 1000000000 End If
+    If(x <> "")then HighScore(1) = CDbl(x)Else HighScore(1) = 1500000 End If
     x = LoadValue(cGameName, "HighScore2Name")
-    If(x <> "")then HighScoreName(1) = x Else HighScoreName(1) = "BBB" End If
+    If(x <> "")then HighScoreName(1) = x Else HighScoreName(1) = "RTP" End If
     x = LoadValue(cGameName, "HighScore3")
-    If(x <> "")then HighScore(2) = CDbl(x)Else HighScore(2) = 1000000000 End If
+    If(x <> "")then HighScore(2) = CDbl(x)Else HighScore(2) = 1000000 End If
     x = LoadValue(cGameName, "HighScore3Name")
-    If(x <> "")then HighScoreName(2) = x Else HighScoreName(2) = "CCC" End If
+    If(x <> "")then HighScoreName(2) = x Else HighScoreName(2) = "IAK" End If
     x = LoadValue(cGameName, "HighScore4")
-    If(x <> "")then HighScore(3) = CDbl(x)Else HighScore(3) = 1000000000 End If
+    If(x <> "")then HighScore(3) = CDbl(x)Else HighScore(3) = 800000 End If
     x = LoadValue(cGameName, "HighScore4Name")
-    If(x <> "")then HighScoreName(3) = x Else HighScoreName(3) = "DDD" End If
+    If(x <> "")then HighScoreName(3) = x Else HighScoreName(3) = "RKP" End If
     x = LoadValue(cGameName, "Credits")
     If(x <> "")then Credits = CInt(x)Else Credits = 0
     x = LoadValue(cGameName, "TotalGamesPlayed")
@@ -3393,8 +3379,9 @@ End Sub
 		LightQueue.Add "StartLightSeq2","StartLightSeq2",20,150,0,0,0,false
 		LightQueue.Add "StartLightSeq3","StartLightSeq3",20,300,0,0,0,false
 		'ShowTableInfo
-		i = RndNbr(2) + 18
-		SwitchMusic i
+		'i = RndNbr(2) + 18
+		'SwitchMusic i
+		UpdateMusicNow
 		DMDintroloop
 		FlasherAttract
 		StartRainbow alights
@@ -3435,19 +3422,19 @@ Dim fCurrentMusicVol : fCurrentMusicVol = 0
 Dim sMusicTrack : sMusicTrack = ""
 Dim fSongVolume : fSongVolume = 1
 
+
 Sub SwitchMusic(sTrack)
+if Ubound(Songs) < 1 Then Exit Sub ' make sure there are music files to play
 Dbg "sTrack: " &sTrack
 
 	if bIdleMusicOn Then StopIdleSound ' make sure idle music is not playing
 
-	If sTrack <> sMusicTrack Then
-		if sMusicTrack <> "" Then EndMusic
-		sMusicTrack = Songs(sTrack)
-		Dbg "sMusicTrack: " &sMusicTrack
-		If sTrack > 18 Then
-			PlayMusic "MFDOOM\" & Songs(sTrack), fAttractVolume * fSongVolume
-			fCurrentMusicVol = fAttractVolume
-		Else
+	if sTrack<> "" Then
+		If sTrack <> sMusicTrack Then
+			if sMusicTrack <> "" Then EndMusic
+			sMusicTrack = Songs(sTrack)
+			Dbg "sMusicTrack: " &sMusicTrack
+
 			PlayMusic "MFDOOM\" & Songs(sTrack), fMusicVolume * fSongVolume
 			fCurrentMusicVol = fMusicVolume
 		End If
@@ -3461,7 +3448,8 @@ End Sub
 Dim newSong
 Sub UpdateMusicNow
 	StopAllMusic
-	newSong = RndNbr(18)
+	newSong = RndNbr(Ubound(Songs))
+	newSong = NewSong - 1
 
 	Dbg "NewSong: " &newSong
 
@@ -17858,4 +17846,57 @@ End Sub
 Sub dmdattract_Timer()
 	DMDintroloop
 End Sub
+
+' Superhac function to load song data dynamically
+Function HasArrayElements(arr)
+    HasArrayElements = False
+    If IsArray(arr) Then
+        On Error Resume Next
+        Dim ub : ub = UBound(arr)
+    If (Err.Number = 0) And (ub >= 0) Then HasArrayElements = True
+    End If  
+    On Error Goto 0 ' reset to default error catching
+End Function
+
+Function mp3PathArray()
+  Dim matchedFiles()
+  Dim rootPath:rootPath = MusicDirectory &"\MFDOOM"
+  Dim objFile,bMatch,curFile
+  
+  Set re = New RegExp
+  re.Global     = True
+  re.IgnoreCase = False
+  re.Pattern    = ".*\.mp3"
+
+  Set fso = CreateObject("Scripting.FileSystemObject")
+  set folder = fso.GetFolder(rootPath)
+  Set files = folder.Files
+
+  For Each objFile in files
+    bMatch = re.Test(objFile.Name)
+    curFile = objFile.Name
+
+    If bMatch Then
+     if NOT HasArrayElements(matchedFiles) Then
+       ReDim matchedFiles(1)
+       matchedFiles(0) = curFile
+     Else
+    ReDim Preserve matchedFiles(Ubound(matchedFiles)+1)
+    matchedFiles(Ubound(matchedFiles)-1) = curFile
+     End If
+      'msgbox(curFile)
+
+    End If
+  Next
+
+mp3PathArray = matchedFiles ' return values
+End Function
+
+
+
+
+' example call
+'dim mp3Paths
+'mp3Files = mp3PathArray("c:\users\pinball\vbtesting")
+'msgbox mp3Files(1)
 
