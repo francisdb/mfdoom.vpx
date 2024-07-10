@@ -65,6 +65,8 @@
 '				 - Moved Music to MFDOOM music folder for copywright issues
 '				 - Added functions to dynamacially create the songs array based off what files are placed in music\MFDOOM folder
 '				 - Fixed High Scores
+'				 - Fixed Smoke clouds tied to bumpers, fixed flippers and solenoids from firing when game not started
+' RC1			 - Adjust ballrolling sounds, review code for release
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -2297,7 +2299,7 @@ End Sub
 		'DirName = MusicDirectory
 		'msgbox DirName
 		
-		resetbackglass
+		
 		flexdmd_Init
 		Dim i
 		Randomize
@@ -2331,6 +2333,9 @@ End Sub
 		bBonusHeld = False
 		bJustStarted = True
 		GiOff
+
+		resetbackglass
+
 		StartAttractMode
 
 		bonusbumps(CurrentPlayer) = 0   '
@@ -2356,7 +2361,8 @@ End Sub
 			.Random 1.5
 			.InitExitSnd SoundFX("fx_kicker", DOFContactors), SoundFX("fx_solenoid", DOFContactors)
 			.CreateEvents "plungerIM"
-		End With		
+		End With	
+
 		ChangeBall(ChooseBall)
 		StartSmokeAnimations
 
@@ -2502,9 +2508,9 @@ if keycode = "7" Then RTP
 			End Select
 		End If
 
-		If keycode = LeftFlipperKey Then FlipperActivate LeftFlipper, LFPress : DOF 101, DOFOn  
+		If keycode = LeftFlipperKey And bGameInPlay Then FlipperActivate LeftFlipper, LFPress : DOF 101, DOFOn  
 
-		If keycode = RightFlipperKey Then FlipperActivate RightFlipper, RFPress : DOF 102, DOFOn      
+		If keycode = RightFlipperKey And bGameInPlay Then FlipperActivate RightFlipper, RFPress : DOF 102, DOFOn      
 
 		If ballrolleron = 1 then
 			If keycode = 46 then ' C Key
@@ -2543,7 +2549,7 @@ if keycode = "7" Then RTP
 
 				If NOT Tilted Then
 
-					If keycode = LeftFlipperKey Then
+					If keycode = LeftFlipperKey And bGameInPlay  Then
 						SolLFlipper True	'This would be called by the solenoid callbacks if using a ROM
 
 						If leftflipper.currentangle < leftflipper.endangle + ReflipAngle Then 
@@ -2569,7 +2575,7 @@ if keycode = "7" Then RTP
 						'FlipperLeftHitParm = FlipperUpSoundLevel
 					End If
 
-					If keycode = RightFlipperKey Then 
+					If keycode = RightFlipperKey And bGameInPlay  Then 
 						SolRFlipper True	'This would be called by the solenoid callbacks if using a ROM
 
 						If rightflipper.currentangle > rightflipper.endangle - ReflipAngle Then
@@ -3126,11 +3132,12 @@ End Sub
 
 Sub resetbackglass
 	Loadhs
+	PuPlayer.LabelShowPage pBackglass,1,0,""
 	if PuPStatus = False Then Exit Sub
-	PuPlayer.LabelNew pBackglass,"Smoke",numberfont,		10,RGB(255, 255, 255)			,0,1,0 ,0,0    ,1,1
+	PuPlayer.LabelNew pBackglass,"Smoke",1,		10,RGB(255, 255, 255)			,0,1,0 ,0,0    ,1,1
 	dim i
 	for i = 0 to 5
-		PuPlayer.LabelNew pBackglass,"BumperBG" & i,numberfont ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,0
+		PuPlayer.LabelNew pBackglass,"BumperBG" & i,1 ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,1
 	Next 
 End Sub
 
@@ -10170,7 +10177,7 @@ End Sub
 		PuPEvent 301
 		ClearMusicCallout
 
-'		resetbackglass
+		resetbackglass
 		ResetBoltLights
 		ResetAllLaneLights
 		RandomSoundStartup
@@ -13688,7 +13695,7 @@ NudgeCenterSoundLevel = 1			   'volume level; range [0, 1]
 StartButtonSoundLevel = 0.1			 'volume level; range [0, 1]
 PlungerReleaseSoundLevel = 0.8 '1 wjr   'volume level; range [0, 1]
 PlungerPullSoundLevel = 1			   'volume level; range [0, 1]
-RollingSoundFactor = 1.1 / 5
+RollingSoundFactor = .8
 
 '///////////////////////-----Solenoids, Kickers and Flash Relays-----///////////////////////
 Dim FlipperUpAttackMinimumSoundLevel, FlipperUpAttackMaximumSoundLevel, FlipperUpAttackLeftSoundLevel, FlipperUpAttackRightSoundLevel

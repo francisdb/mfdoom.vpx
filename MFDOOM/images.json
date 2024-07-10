@@ -1101,10 +1101,9 @@
   },
   {
     "name": "Desktop",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\DT.jpg",
+    "path": "C:\\vPinball\\PinUPSystem\\PUPVideos\\MFDOOM\\PuPOverlays\\Desktop.png",
     "alpha_test_value": 1.0,
-    "is_signed": false,
-    "jpeg_name": "DT"
+    "is_signed": false
   },
   {
     "name": "VR_Wall_Right",
@@ -1207,7 +1206,7 @@
     "path": "C:\\Users\\rolan\\Desktop\\PF.001.png",
     "width": 1352,
     "height": 3072,
-    "alpha_test_value": 50.000122,
+    "alpha_test_value": 50.000145,
     "is_opaque": false,
     "is_signed": false,
     "jpeg_name": "PF.001"
