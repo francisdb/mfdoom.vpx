@@ -1070,8 +1070,6 @@
   {
     "name": "black wood grain.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\black wood grain.001.jpeg",
-    "width": 213,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_opaque": true,
     "is_signed": false
@@ -1086,9 +1084,8 @@
   },
   {
     "name": "Pincab_Cabinet",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\Pincab_Cabinet.jpg",
+    "path": "C:\\Users\\Robbr\\Downloads\\Pincab_Cabinet.png",
     "alpha_test_value": 1.0,
-    "is_opaque": true,
     "is_signed": false
   },
   {
@@ -1101,7 +1098,7 @@
   },
   {
     "name": "Desktop",
-    "path": "C:\\vPinball\\PinUPSystem\\PUPVideos\\MFDOOM\\PuPOverlays\\Desktop.png",
+    "path": "C:\\Users\\Robbr\\Downloads\\MF DOOM - Image Manager\\Desktop.png",
     "alpha_test_value": 1.0,
     "is_signed": false
   },
@@ -1115,16 +1112,12 @@
   {
     "name": "flasherbloomCenter",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomCenter.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "flasherbloomCenterRight",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomCenterRight.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
@@ -1137,7 +1130,7 @@
   },
   {
     "name": "BackglassImage",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\VR-WPC95-MFDOOM\\BackglassImage.jpg",
+    "path": "C:\\Users\\Robbr\\Downloads\\MF DOOM - Image Manager\\BackglassImage.png",
     "alpha_test_value": 1.0,
     "is_opaque": true,
     "is_signed": false
@@ -1145,8 +1138,6 @@
   {
     "name": "TS insertsA",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\t.001.png",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false,
     "jpeg_name": "t.001"
@@ -1154,8 +1145,6 @@
   {
     "name": "Plastics3.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\p3.001.png",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_opaque": false,
     "is_signed": false,
@@ -1164,58 +1153,46 @@
   {
     "name": "flasherbloomLowerRight",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomLowerRight.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "flasherbloomCenterLeft",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomCenterLeft.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "flasherbloomUpperLeft",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomUpperLeft.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "flasherbloomLowerLeft",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomLowerLeft.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "flasherbloomUpperRight",
     "path": "C:\\Users\\rolan\\Desktop\\flasherbloomUpperRight.png",
-    "width": 1369,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "playfield-4k",
     "path": "C:\\Users\\rolan\\Desktop\\PF.001.png",
-    "width": 1352,
-    "height": 3072,
-    "alpha_test_value": 50.000145,
+    "width": 1904,
+    "height": 4324,
+    "link": 1,
+    "alpha_test_value": 50.00023,
     "is_opaque": false,
-    "is_signed": false,
-    "jpeg_name": "PF.001"
+    "is_signed": false
   },
   {
     "name": "Pincab_Backbox",
-    "path": "C:\\Users\\rolan\\Desktop\\mac\\compress\\Pincab_Backbox(white tag).jpg",
-    "width": 1536,
-    "height": 3072,
+    "path": "C:\\Users\\Robbr\\Downloads\\MF DOOM - Image Manager\\Pincab_Backbox(white tag).png",
     "alpha_test_value": 1.0,
     "is_opaque": true,
     "is_signed": false,
@@ -1224,16 +1201,12 @@
   {
     "name": "testlight",
     "path": "C:\\Users\\rolan\\Desktop\\testlight.png",
-    "width": 1536,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_signed": false
   },
   {
     "name": "playfield-PLASTICS(trans)",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\P.001.png",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_opaque": false,
     "is_signed": false,
@@ -1242,8 +1215,6 @@
   {
     "name": "PLASTICS (Green Paint Splatter)",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\KEYNOTE-PLASTICS (Black & Green Paint Splatter) copy 2.001.jpeg",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_opaque": true,
     "is_signed": false,
@@ -1252,647 +1223,9 @@
   {
     "name": "green-bg1.001",
     "path": "C:\\Users\\rolan\\Desktop\\mac\\images to compress\\splatter.001.jpeg",
-    "width": 1352,
-    "height": 3072,
     "alpha_test_value": 1.0,
     "is_opaque": true,
     "is_signed": false,
     "jpeg_name": "splatter.001"
-  },
-  {
-    "name": "d_0",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_0a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_0a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_1",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_1a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_1a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_2",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_2a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_2a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_3",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_3a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_3a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_4",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_4a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_4a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_5",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_5a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_5a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_6",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_6a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_6a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_7",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_7a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_7a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_8",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_8a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_8a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_9",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_9a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_9a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_b",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_b.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_c",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_c.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_d",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_d.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_dot",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_dot.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_down",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_down.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_e",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_e.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_empty",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_empty.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_f",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_f.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_g",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_g.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_h",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_h.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_i",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_i.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_j",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_j.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_k",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_k.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_l",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_l.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_less",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_less.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_m",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_m.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_minus",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_minus.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_more",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_more.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_n",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_n.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_o",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_o.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_p",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_p.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_plus",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_plus.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_q",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_q.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_r",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_r.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_s",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_s.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_t",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_t.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_u",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_u.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_up",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_up.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_v",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_v.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_w",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_w.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_x",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_x.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_y",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_y.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_z",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d_z.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_bkempty",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\new\\d_bkempty.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_border",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\new\\d_border.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d_title",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\new\\d_title.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d0",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d0.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d0a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d0a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d1",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d1.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d1a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d1a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d2",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d2.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d2a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d2a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d3",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d3.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d3a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d3a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d4",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d4.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d4a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d4a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d5",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d5.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d5a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d5a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d6",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d6.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d6a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d6a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d7",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d7.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d7a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d7a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d8",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d8.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d8a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d8a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d9",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d9.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "d9a",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\d9a.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "da",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\da.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "db",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\db.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dc",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dc.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dd",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dd.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "de",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\de.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dempty",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dempty.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "df",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\df.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dg",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dg.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dgreater",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dgreater.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dh",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dh.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "di",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\di.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dj",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dj.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dk",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dk.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dl",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dl.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dless",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dless.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dm",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dm.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dn",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dn.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "do",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\do.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dp",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dp.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dq",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dq.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dr",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dr.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "ds",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\ds.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dt",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dt.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "du",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\du.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dv",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dv.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dw",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dw.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dx",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dx.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dy",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dy.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
-  },
-  {
-    "name": "dz",
-    "path": "C:\\Users\\Robbr\\Desktop\\highscore\\dz.png",
-    "alpha_test_value": 1.0,
-    "is_signed": false
   }
 ]

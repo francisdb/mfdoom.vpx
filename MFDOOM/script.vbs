@@ -20,53 +20,61 @@
 '                                                            
 
 'Change Log
-' 01 goill773    - repositioned sounds, minor cosmetic changes 
-' 02 goill773	 - NF physics, rubber dampening, compressed vids/audio   	
-' 03 goill773	 - tweaked flashers
-' 04 goill773	 - updated DOF calls, fixed hs, updated PuP vids, tweaked lighting, added new fx, cosmetic changes 
-' 05 goill773	 - updated more DOF calls, fixed spamming start error, added MagnaSave LUT changer, tweaked lighting, lowered drop target heights, comsmetic changes 
-' 06 goill773	 - full Fleep implementation, rubberizer, targetbouncer, added ball options, tweaked flashers, tweaked GI, reshaped some plastics and added lights
-'                - made ramps easier to hit, added static and animated primitives, fixed hs error, cosmetic changes
-' 07 goill773	 - added dynamic ball shdow, fixed right orbit hitting slings, tweaked GI more, added flasherbloom/intensity to flupper domes, tweaked mech sounds 
-' 08 goill773	 - added invisible walls to fix bumper2 ball jam and targetbouncer jumps , deleted dupe "cor.update", added flipper control of lane lights for skillshot  
-' 				 - tweaked lightsequencer timings and colors, added rainbow/purple attract mode, added variable spin prim speeds, added Keyup/down lights to glowing hands next to flippers 
-' 				 - added new "Arrow" & "?" lights under right ramp hit target for mystery missions, added mystery bonus & mission callouts, scripted some mystery alias bonus missions
-' 				 - updated PuP callout and video priorities, added level primitive, added screws on gates, added ramp entry flap primitives, added additional animated smoke cloud primitive in bong  
-' 				 - added PuP "smoke cloud popups" when bumper1 hit, added PuP "smoke cloud gifs" at ball release and drain events  
-' 				 - added 2 Metal Fist primitives that randomly shake when slings hit, added a spinning bumper1 cap, weed prims shake on bumper3 hit, bong shakes on bumper1 hit, masks shake when hit  
-' 				 - added lots of new playfield & plastics text and graphics, added new flipper graphics, added new plunger lane plastics with lights, added graffiti images to backwall square posts  
-' 				 - fixed POV for DT and updated new DT background image, added/deleted some sound fx
-' 08a hauntfreaks- darkened DT background image
-' 09a oqqsan 	 - Pure Flex DMD ... things start to look good.. need to enter all gifs names/lengths
-' 09b goill773 	 - added Flex gif lengths, added Fire font/pngs
-' 09c oqqsan 	 - added scripts for intro startup and end of game gifs, troubleshooting 
-' 09e oqqsan 	 - added Flex Title at startup
-' 09f oqqsan 	 - Flex font tweaks (colors, sizes, position, alignment)
-' 09g goill773 	 - updated Fire fx pngs
-' 09h goill773 	 - added more Flex animation scoring effects (checkerboard, vertical/horizontal/diagonal stripes, explosion, implosion, spirals, stars)  
-' 10i oqqsan	 - fistbumps for slings
-' 11 goill773 	 - updated pf art, added more inserts, added flipper prims, added DOOMSDAY lights, added cartoon smoke animations, added flasher lasers from mask rubies
-'                - added VR room, fixed positioning of ramps, outlane wire guides, blunt wrap & smoke prims 
-' 12 goill773    - VR tweaks, added VR mask topper, Animated plunger  
-' 13 iaakki 	 - Reworking how inserts are done
-' 14 iaakki 	 - Bug fix and 17 new inserts reworked
-' 15 iaakki		 - Added insert color mod. Some new inserts reworked
-' 16 iaakki	 	 - Inserts done
-' 17 iaakki	 	 - Fixed the GI bug I made and adjusted some levels
-' 18 iaakki		 - Slings fixed, callout volume option added, something must be done for primitive25
-' 19 RobbyKingPin- Updated nFozzy/Rothbauerw physics and Fleep sounds, removed JP's ball rolling codes. Removed endpoints for the flippers and added endpoints on the slingshots
-' 22 MerlinRTP 	 - Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup, removed extraneous code and timers
-'				 - Added sequence stopplay to the 4 long routines, converted vpmtimer to queue/tick timers
-' 23 RobbyKingPin- Added Rothbauerw Targets
-'                - Further inspection on the entire playfield to ensure all nFozzy and Fleep implementations are working as they should
-'                - Added VR Hybrid codes
-' 24 MerlinRTP   - Added Audio Callouts that were missing, Added targets to Fleep target collection, changed how skill/lane light rotation works,
-'				 - Fixed audio bugs where music would stop playing, Added highscore 4 to display rotation.
-'				 - Moved Music to MFDOOM music folder for copywright issues
-'				 - Added functions to dynamacially create the songs array based off what files are placed in music\MFDOOM folder
-'				 - Fixed High Scores
-'				 - Fixed Smoke clouds tied to bumpers, fixed flippers and solenoids from firing when game not started
-' RC1			 - Adjust ballrolling sounds, review code for release
+' 01 goill773      - repositioned sounds, minor cosmetic changes 
+' 02 goill773	   - NF physics, rubber dampening, compressed vids/audio   	
+' 03 goill773	   - tweaked flashers
+' 04 goill773	   - updated DOF calls, fixed hs, updated PuP vids, tweaked lighting, added new fx, cosmetic changes 
+' 05 goill773	   - updated more DOF calls, fixed spamming start error, added MagnaSave LUT changer, tweaked lighting, lowered drop target heights, comsmetic changes 
+' 06 goill773	   - full Fleep implementation, rubberizer, targetbouncer, added ball options, tweaked flashers, tweaked GI, reshaped some plastics and added lights
+'                  - made ramps easier to hit, added static and animated primitives, fixed hs error, cosmetic changes
+' 07 goill773	   - added dynamic ball shdow, fixed right orbit hitting slings, tweaked GI more, added flasherbloom/intensity to flupper domes, tweaked mech sounds 
+' 08 goill773	   - added invisible walls to fix bumper2 ball jam and targetbouncer jumps , deleted dupe "cor.update", added flipper control of lane lights for skillshot  
+' 				   - tweaked lightsequencer timings and colors, added rainbow/purple attract mode, added variable spin prim speeds, added Keyup/down lights to glowing hands next to flippers 
+' 				   - added new "Arrow" & "?" lights under right ramp hit target for mystery missions, added mystery bonus & mission callouts, scripted some mystery alias bonus missions
+' 				   - updated PuP callout and video priorities, added level primitive, added screws on gates, added ramp entry flap primitives, added additional animated smoke cloud primitive in bong  
+' 				   - added PuP "smoke cloud popups" when bumper1 hit, added PuP "smoke cloud gifs" at ball release and drain events  
+' 				   - added 2 Metal Fist primitives that randomly shake when slings hit, added a spinning bumper1 cap, weed prims shake on bumper3 hit, bong shakes on bumper1 hit, masks shake when hit  
+' 				   - added lots of new playfield & plastics text and graphics, added new flipper graphics, added new plunger lane plastics with lights, added graffiti images to backwall square posts  
+' 				   - fixed POV for DT and updated new DT background image, added/deleted some sound fx
+' 08a hauntfreaks  - darkened DT background image
+' 09a oqqsan 	   - Pure Flex DMD ... things start to look good.. need to enter all gifs names/lengths
+' 09b goill773 	   - added Flex gif lengths, added Fire font/pngs
+' 09c oqqsan 	   - added scripts for intro startup and end of game gifs, troubleshooting 
+' 09e oqqsan       - added Flex Title at startup
+' 09f oqqsan 	   - Flex font tweaks (colors, sizes, position, alignment)
+' 09g goill773 	   - updated Fire fx pngs
+' 09h goill773 	   - added more Flex animation scoring effects (checkerboard, vertical/horizontal/diagonal stripes, explosion, implosion, spirals, stars)  
+' 10i oqqsan	   - fistbumps for slings
+' 11 goill773 	   - updated pf art, added more inserts, added flipper prims, added DOOMSDAY lights, added cartoon smoke animations, added flasher lasers from mask rubies
+'                  - added VR room, fixed positioning of ramps, outlane wire guides, blunt wrap & smoke prims 
+' 12 goill773      - VR tweaks, added VR mask topper, Animated plunger  
+' 13 iaakki 	   - Reworking how inserts are done
+' 14 iaakki 	   - Bug fix and 17 new inserts reworked
+' 15 iaakki		   - Added insert color mod. Some new inserts reworked
+' 16 iaakki	 	   - Inserts done
+' 17 iaakki	 	   - Fixed the GI bug I made and adjusted some levels
+' 18 iaakki		   - Slings fixed, callout volume option added, something must be done for primitive25
+' 19 RobbyKingPin  - Updated nFozzy/Rothbauerw physics and Fleep sounds, removed JP's ball rolling codes. Removed endpoints for the flippers and added endpoints on the slingshots
+' 22 MerlinRTP 	   - Converted Pup from Orbital to pupevents, pup can be disabled to only use audio from pup, removed extraneous code and timers
+'				   - Added sequence stopplay to the 4 long routines, converted vpmtimer to queue/tick timers
+' 23 RobbyKingPin  - Added Rothbauerw Targets
+'                  - Further inspection on the entire playfield to ensure all nFozzy and Fleep implementations are working as they should
+'                  - Added VR Hybrid codes
+' 24 MerlinRTP     - Added Audio Callouts that were missing, Added targets to Fleep target collection, changed how skill/lane light rotation works,
+'				   - Fixed audio bugs where music would stop playing, Added highscore 4 to display rotation.
+'				   - Moved Music to MFDOOM music folder for copywright issues
+'				   - Added functions to dynamacially create the songs array based off what files are placed in music\MFDOOM folder
+'				   - Fixed High Scores
+'				   - Fixed Smoke clouds tied to bumpers, fixed flippers and solenoids from firing when game not started
+' 25 Kemurro	   - Artwork for pup overlays, cabinet art, backgrounds, backglass
+
+' RC1 MerlinRTP	   - Adjust ballrolling sounds, review code for release
+' RC2 MerlinRTP	   - Changed audio file routines
+' RC3 DGrimmReaper - Added VR flipper animations
+' RC4 MerlinRTP	   - Added missing Drop_Target audio files, replaced a couple fx??? calls
+' RC5 MerlinRTP	   - Added Scorbit	
+' RC6 apophis	   - Fixed autoplunger. Made VR flipper buttons red. Set ScorbitActive = 0. Default Day Night set to 30%. Set most VR room prims disable lighting to zero. Updated desktop and cab pov. Updated Table Info Description with current credits
+
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 	Option Explicit
@@ -128,6 +136,18 @@ Dim StagedFlippers : StagedFlippers = 0         ' Staged Flippers. 0 = Disabled,
 '----- Music Options -----
 Const fMusicVolume = 0.5			'Music volume. 0 = no music, 1 = full volume
 COnst fAttractVolume = 0.3			'Attract mode music volume. 0 = no music, 1 = full volume
+
+
+' SCORBIT SETTINGS
+'//////////////////////////////////////////////////////////////////////
+dim ScorbitActive
+ScorbitActive					= 0 	' Is Scorbit Active	
+Const     ScorbitShowClaimQR	= 1 	' If Scorbit is active this will show a QR Code  on ball 1 that allows player to claim the active player from the app
+
+Const     ScorbitUploadLog		= 0 	' Store local log and upload after the game is over 
+Const     ScorbitAlternateUUID  = 0 	' Force Alternate UUID from Windows Machine and saves it in VPX Users directory (C:\Visual Pinball\User\ScorbitUUID.dat)
+Dim bOnTheFirstBallScorbit
+'/////////////////////////////////////////////////////////////////////
 
 
 '*******************************************
@@ -2292,14 +2312,10 @@ End Sub
 		Set PuPlayer = CreateObject("PinUpPlayer.PinDisplay") 
 		if UsePuPEvents Then 
 			PuPStart(cPuPPack)
-			'pupevent 500
 		End If
+
 		LoadOrbital
 
-		'DirName = MusicDirectory
-		'msgbox DirName
-		
-		
 		flexdmd_Init
 		Dim i
 		Randomize
@@ -2310,6 +2326,7 @@ End Sub
 		bBallSaverReady = False
 		bMultiBallMode = False
 		bGameInPlay = False
+		bOnTheFirstBallScorbit = False
 		bDoubleScoringActive = False         '
 		bWarpSpeedMultiballActive = False    '
 		bComboActive = False                 '
@@ -2354,7 +2371,7 @@ End Sub
 		bCombo(CurrentPlayer) = 0   '
 
 		Const IMPowerSetting = 45 
-		Const IMTime = .2       
+		Const IMTime = 1.1      
 		Set plungerIM = New cvpmImpulseP
 		With plungerIM
 			.InitImpulseP swplunger, IMPowerSetting, IMTime
@@ -2365,6 +2382,15 @@ End Sub
 
 		ChangeBall(ChooseBall)
 		StartSmokeAnimations
+
+	if Scorbitactive then 
+		if Scorbit.DoInit(4303, "PupOverlays", myVersion, " mfdoom-vpin") then 	' Prod
+			tmrScorbit.Interval=2000
+			tmrScorbit.UserValue = 0
+			tmrScorbit.Enabled=True 
+			Scorbit.UploadLog = ScorbitUploadLog
+		End if 
+	End If
 
 End Sub
 
@@ -2490,7 +2516,8 @@ End Function
 	Sub Table1_KeyDown(ByVal Keycode)
 
 if keycode = "7" Then RTP
-
+		If keycode = LeftFlipperKey Then Pincab_Button_Left.x = Pincab_Button_Left.x + 10
+		If keycode = RightFlipperKey Then Pincab_Button_Right.x = Pincab_Button_Right.x - 10
 		If keycode = AddCreditKey Then
 			Select Case Int(rnd*3)
 				Case 0: PlaySound ("Coin_In_1"), 0, CoinSoundLevel, 0, 0.25
@@ -2543,9 +2570,9 @@ if keycode = "7" Then RTP
 		If hsbModeActive = True Then
 			EnterHighScoreKey(keycode)
 		elseif bGameInPlay Then
-			If keycode = LeftTiltKey Then Nudge 90, 6:SoundNudgeLeft:CheckTilt
-			If keycode = RightTiltKey Then Nudge 270, 6:SoundNudgeRight:CheckTilt
-			If keycode = CenterTiltKey Then Nudge 0, 7:SoundNudgeCenter:CheckTilt
+			If keycode = LeftTiltKey Then Nudge 90, 2:SoundNudgeLeft:CheckTilt
+			If keycode = RightTiltKey Then Nudge 270, 2:SoundNudgeRight:CheckTilt
+			If keycode = CenterTiltKey Then Nudge 0, 3:SoundNudgeCenter:CheckTilt
 
 				If NOT Tilted Then
 
@@ -2651,11 +2678,11 @@ if keycode = "7" Then RTP
 				If NOT Tilted Then
 					If keycode = LeftFlipperKey Then helptime.enabled = true:DMDintroloop:introtime = 0
 					If keycode = RightFlipperKey Then helptime.enabled = true:DMDintroloop:introtime = 0
-						If keycode = StartGameKey Then
-								If(BallsOnPlayfield = 0) Then
-									ResetForNewGame()
-								End If
+					If keycode = StartGameKey Then
+						If(BallsOnPlayfield = 0) Then
+							ResetForNewGame()
 						End If
+					End If
 				End If
 			End If 
 
@@ -2720,13 +2747,21 @@ if keycode = "7" Then RTP
 	end sub
 
 	Sub Table1_KeyUp(ByVal keycode)
-		If keycode = LeftFlipperKey Then SolLFlipper False : DOF 101, DOFOff
-		If keycode = RightFlipperKey Then SolRFlipper False : DOF 102, DOFOff
+		If keycode = LeftFlipperKey Then 
+			SolLFlipper False : DOF 101, DOFOff
+			Pincab_Button_Left.x = Pincab_Button_Left.x - 10
+		End If
+		If keycode = RightFlipperKey Then 
+			SolRFlipper False : DOF 102, DOFOff
+			Pincab_Button_Right.x = Pincab_Button_Right.x + 10
+		End If
+
 		'Manual Ball Control
 		If keycode = 203 then bcleft = 0 ' Left Arrow
 		If keycode = 200 then bcup = 0 ' Up Arrow
 		If keycode = 208 then bcdown = 0 ' Down Arrow
 		If keycode = 205 then bcright = 0 ' Right Arrow
+				
         If KeyCode = PlungerKey Then
 			Plunger.Fire
 			If LSlime.state = 2 Then     
@@ -3030,6 +3065,12 @@ End Sub
 	Sub ResetForNewGame()
 		playvideo=100
 		Dim i
+
+		Dbg "RESET FOR NEW GAME"
+		if ScorbitActive = 1 And (Scorbit.bNeedsPairing) = False Then 
+			Scorbit.StartSession()
+		End If
+
 		bGameInPLay = True
 		StopAttractMode
 		GiOn
@@ -3037,6 +3078,8 @@ End Sub
 		CurrentPlayer = 1
 		PlayersPlayingGame = 1
 		bOnTheFirstBall = True
+		bOnTheFirstBallScorbit = True
+
 		For i = 1 To MaxPlayers
 			Score(i) = 0
 			BonusPoints(i) = 0
@@ -3048,10 +3091,12 @@ End Sub
 		Tilt = 0
 		Game_Init()
 		BallHandlingQueue.Add "FirstBall","FirstBall",30,1500,0,0,0,False
+
 	End Sub
 	Sub EndOfGame()
 		'StopAllMusic
 		DelayAttractText
+		StopScorbit
 		StartAttractMode
 		introposition = 0     '0
 		bGameInPLay = False
@@ -3089,6 +3134,7 @@ End Sub
 	Const pMusic=4
 	Const pAudio=7
 	Const pCallouts=8
+	
 
 
 Sub chilloutthemusic
@@ -3139,7 +3185,112 @@ Sub resetbackglass
 	for i = 0 to 5
 		PuPlayer.LabelNew pBackglass,"BumperBG" & i,1 ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,1
 	Next 
+
+PuPlayer.LabelNew pBackglass,"ScorbitQR1",1 ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,1
+PuPlayer.LabelNew pBackglass,"ScorbitQR2",1 ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,1
+PuPlayer.LabelNew pBackglass,"ScorbitQRIcon1",1 ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,1
+PuPlayer.LabelNew pBackglass,"ScorbitQRIcon2",1 ,		10,RGB(255, 255, 255)	,0,1,0 ,0,0    ,1,1
+
 End Sub
+
+'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+' DO NOT CHANGE ANYTHING IN THIS SECTION
+Const     ScorbitClaimSmall		= 1 	' Make Claim QR Code smaller for high res backglass 
+
+	Const cWhite = 	16777215
+	Const cRed = 	397512
+	Const cGold = 	1604786
+	Const cGold2 = 46079
+	Const cGreen = 32768
+	Const cGrey = 	8421504
+	Const cYellow = 65535
+	Const cOrange = 33023
+	Const cPurple = 16711808
+	Const cBlue = 16711680
+	Const cLightBlue = 16744448
+	Const cBoltYellow = 2148582
+	Const cLightGreen = 9747818
+	Const cBlack = 0
+	Const cPink = 12615935
+
+Dim pGameName       : pGameName=cGameName
+
+ 
+'Const pFontFixed="Ghost Stories Deluxe"
+Const pFontBold="Bronx Bystreets"  'main score font
+'Const pFontGodfather = "The Godfather"
+Const pFontGodfather = "The Scarface Free Trial"
+Const dmddef="Neue Alte Grotesk Bold"
+
+
+'pages
+Const pDMDBlank = 0
+Const pScores = 1
+Const pAttract = 2
+Const pPrevScores = 3
+Const pCredits = 4
+Const pSlotMachine = 5
+Const pBonus = 6
+Const pEvent = 7
+Const pHighScore = 8
+
+sub pDMDLabelSetPos(labName, xpos, ypos)
+   PuPlayer.LabelSet pBackglass,labName,"",1,"{'mt':2,'xpos':"&xpos& ",'ypos':"&ypos&"}"    
+end sub
+
+sub pDMDLabelSetSizeImage(labName, lWidth, lHeight)
+   PuPlayer.LabelSet pBackglass,labName,"",1,"{'mt':2,'width':"& lWidth & ",'height':"&lHeight&"}" 
+end sub
+
+sub pBackglassLabelSetSizeImage(labName, lWidth, lHeight)
+   PuPlayer.LabelSet pBackglass,labName,"",1,"{'mt':2,'width':"& lWidth & ",'height':"&lHeight&"}" 
+end sub
+
+sub pBackglassLabelSetPos(labName, xpos, ypos)
+   PuPlayer.LabelSet pBackglass,labName,"",1,"{'mt':2,'xpos':"&xpos& ",'ypos':"&ypos&"}"    
+end sub
+
+Sub pDMDLabelSet(labName,LabText)
+	PuPlayer.LabelSet pBackglass, labName, " " & LabText & " ", 1, ""   
+end sub
+
+Sub pDMDLabelHide(labName)
+	PuPlayer.LabelSet pBackglass,labName," ",0,""
+end sub
+
+Sub pDMDLabelShow(labName)
+	PuPlayer.LabelSet pBackglass,labName," ",1,""
+end sub
+
+Sub pBackglassLabelShow(labName)
+PuPlayer.LabelSet pBackglass,labName,"",1,""   
+end sub
+
+Sub pBackglassLabelHide(labName)
+PuPlayer.LabelSet pBackglass,labName,"",0,""   
+end sub
+
+
+Sub pupCreateLabelImage(lName, lFilename,xpos, ypos, Iwidth, Iheight, pagenum, lvis)
+	PuPlayer.LabelNew pBackglass,lName ,"",50,RGB(100,100,100),0,1,1,1,1,pagenum,lvis
+	PuPlayer.LabelSet pBackglass,lName,lFilename,lvis,"{'mt':2,'width':"&IWidth&",'height':"&Iheight&",'xpos':"&xpos&",'ypos':"&ypos&"}"
+end Sub
+
+
+sub setPageLayouts
+	pupCreateLabelImage "ScorbitQRicon1","PuPOverlays\\QRcodeS.png",50,30,34,60,1,0
+	pupCreateLabelImage "ScorbitQR1","PuPOverlays\\QRcode.png",50,30,34,60,1,0
+
+	pupCreateLabelImage "ScorbitQRicon2","PuPOverlays\\QRcodeB.png",50,30,34,60,1,0
+	pupCreateLabelImage "ScorbitQR2","PuPOverlays\\QRclaim.png",50,30,34,60,1,0
+End Sub
+
+Sub DelayQRClaim_Timer()
+	Dbg "Delay QR STARTED"
+	if bOnTheFirstBall AND bBallInPlungerLane then ScorbitClaimQR(True)
+	DelayQRClaim.Enabled=False
+End Sub
+
 
 
 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -3386,9 +3537,9 @@ End Sub
 		LightQueue.Add "StartLightSeq2","StartLightSeq2",20,150,0,0,0,false
 		LightQueue.Add "StartLightSeq3","StartLightSeq3",20,300,0,0,0,false
 		'ShowTableInfo
-		'i = RndNbr(2) + 18
-		'SwitchMusic i
-		UpdateMusicNow
+		StopAllMusic
+		i = RndNbr(2)
+		PlayMusic "MFDOOM\Attract"&i &".mp3"
 		DMDintroloop
 		FlasherAttract
 		StartRainbow alights
@@ -3467,7 +3618,7 @@ end sub
 Sub CheckNoMusicTimer_Timer()
 	if sMusicTrack = "" And bIdleMusicOn = False Then RandomRestartMusicSelection
 
-	Dbg "Skill:RotateLane" & bSkillshotReady &"-" & bSkillshotRotateLights
+	'Dbg "Skill:RotateLane" & bSkillshotReady &"-" & bSkillshotRotateLights
 End Sub
 
 Sub RandomRestartMusicSelection
@@ -4288,7 +4439,7 @@ end sub
 			Case 26:PlaySoundCallOut "fx325"
 			Case 27:PlaySoundCallOut "fx326"
 			Case 28:PlaySoundCallOut "fx327"
-			Case 29:PlaySoundCallOut "fx330"
+			Case 29:PlaySoundCallOut "fx343"
 			Case 30:PlaySoundCallOut "fx331"
 			Case 31:PlaySoundCallOut "fx340"
 			Case 32:PlaySoundCallOut "fx341"
@@ -9813,7 +9964,7 @@ End Sub
 				y.State = 0
 			Next
 			If PlayersPlayingGame> 1 Then
-				PlaySoundCallOut "fx067" &CurrentPlayer
+				PlaySoundCallOut "fx067"
 			End If
 		End If
 		ResetLWarpMultiballLight       '
@@ -9939,15 +10090,19 @@ End Sub
 	Sub swPlungerRest_Hit()
 		PlaySoundAt "fx_sensor", ActiveBall
 		bBallInPlungerLane = True
+
+		if bOnTheFirstBallScorbit And ScorbitActive = 1 And (Scorbit.bNeedsPairing) = false then vpmtimer.addtimer 1000, "ScorbitClaimQR(True) '"
 		If bAutoPlunger Then
-			PlungerIM.Strength = 45
-			'PlungerIM.AutoFire
-			PlungerIM.Strength = Plunger.MechStrength
-			Plunger.AutoPlunger = true
-			Plunger.Pullback
-			Plunger.Fire
-			bAutoPlunger = False
-			Plunger.AutoPlunger = false
+		    autoplungerdelay.interval = 300
+		    autoplungerdelay.enabled = True
+'			PlungerIM.Strength = 45
+'			'PlungerIM.AutoFire
+'			PlungerIM.Strength = Plunger.MechStrength
+'			Plunger.AutoPlunger = true
+'			Plunger.Pullback
+'			Plunger.Fire
+'			bAutoPlunger = False
+'			Plunger.AutoPlunger = false
 		End If
 		If bSkillShotReady AND LStar01.State = 0 AND LStar02.State = 0 AND LStar03.State = 0 Then
 			swPlungerRest.TimerEnabled = 1
@@ -9956,12 +10111,26 @@ End Sub
 		LastSwitchHit = "swPlungerRest"
 	End Sub
 
+	Sub autoplungerdelay_timer
+		PlungerIM.Strength = 45
+		PlungerIM.AutoFire
+		PlungerIM.Strength = Plunger.MechStrength
+
+		bAutoPlunger = False
+		autoplungerdelay.enabled = False
+	End Sub
+
+
 	Sub swPlungerRest_UnHit()
 		bBallInPlungerLane = False
 		swPlungerRest.TimerEnabled = 0 'stop the launch ball timer if active
 		If bSkillShotReady Then
 			ResetSkillShotTimer.Enabled = 1
+			ScorbitClaimQR(False)
+			hideScorbit 'backup call to make sure all scorbit QR codes are gone
 		End If
+
+		bOnTheFirstBallScorbit = False
 	End Sub
 
 	Sub swPlungerRest_Timer
@@ -10002,6 +10171,28 @@ End Sub
 		LightShootAgain.BlinkInterval = 80
 		LightShootAgain.State = 2
 	End Sub
+
+sub CheckPairing
+		Dbg "***************** In check pairing"
+		'pBGSetPage(1)
+	if (Scorbit.bNeedsPairing) then 
+		pupevent 402
+		Dbg "Scorbit Needs Pairing"
+		PuPlayer.LabelSet pBackglass, "ScorbitQR1", "PuPOverlays\\QRcode.png",1,"{'mt':2,'width':19.61, 'height':36,'xalign':0,'yalign':0,'ypos':32,'xpos':74.6}"
+		DelayQRClaim.Interval=6000
+		DelayQRClaim.Enabled=True
+	end if
+End sub
+
+Sub pBgSetPage(pagenum)    
+	PuPlayer.LabelShowPage pBackglass,pagenum,0,""   'set page to blank 0 page if want off
+end Sub
+
+Sub hideScorbit
+	pupevent 800
+	PuPlayer.LabelSet pBackglass, "ScorbitQR1", "PuPOverlays\\clear.png",0,""
+	PuPlayer.LabelSet pBackglass, "ScorbitQR2", "PuPOverlays\\clear.png",0,""
+End Sub
 
 ' Locale independent number formatter
 Function FormatScore(nScore)
@@ -10193,6 +10384,7 @@ End Sub
 		ClearDMDHighScore
 		'DMDTopSplash "",1,0
 		'DMDBigText "",1,0
+		GeneralPupQueue.Add "CheckPairing","CheckPairing",20,2500,0,0,0,false
 	End Sub
 
 	Sub StopEndOfBallMode()              'called after the last ball is drained
@@ -16375,6 +16567,7 @@ end Function
 '**************************************************************
 'TARGETS CENTER
 		Sub RANDOMLIGHTSTARGETSCENTERFADE()	'ms
+			LightSeqGI2.stopplay
 			Select Case Int(Rnd * 4) + 1
 				Case 1: LightSeqGI2.UpdateInterval = 3       
 						LightSeqGI2.Play SeqMiddleOutVertOn, 10, 2	
@@ -16389,6 +16582,7 @@ end Function
 '**************************************************************
 'TARGETS
 		Sub RANDOMLIGHTSTARGETSFADE()	'ms
+			LightSeqGI2.stopplay
 			Select Case Int(Rnd * 3) + 1
 				Case 1: LightSeqGI2.UpdateInterval = 1
 						LightSeqGI2.Play SeqBlinking, , 2, 10
@@ -16481,6 +16675,7 @@ end Function
 				bonusbumps(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "VIK VAUGHN"
 			End If
 		End If
 	End Sub
@@ -16494,6 +16689,7 @@ end Function
 				bonusleftramp(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "GEEDORAH"
 			End If
 		End If
 	End Sub
@@ -16507,6 +16703,7 @@ end Function
 				bonusrightramp(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "MAD VILLAIN"
 			End If
 		End If
 	End Sub
@@ -16520,6 +16717,7 @@ end Function
 				bonusleftorbit(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "ZEV LOVE X"
 			End If
 		End If
 	End Sub
@@ -16533,6 +16731,7 @@ end Function
 				bonusspinner(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "DANGER DOOM"
 			End If
 		End If
 	End Sub
@@ -16546,6 +16745,7 @@ end Function
 				bonuscentertarget(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "JJ DOOM"
 			End If
 		End If
 	End Sub
@@ -16559,6 +16759,7 @@ end Function
 				bonussmalltarget(CurrentPlayer)=0
 				RandomBonusMissionLight
 				RandomBonusMissionScore
+				ScorbitBuildGameModes "NEHRUVIAN"
 			End If
 		End If
 	End Sub
@@ -17906,4 +18107,745 @@ End Function
 'dim mp3Paths
 'mp3Files = mp3PathArray("c:\users\pinball\vbtesting")
 'msgbox mp3Files(1)
+
+
+
+'**************************
+'   SCORBIT
+'**************************
+'==================================================================================================================
+'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+' X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  X  
+'/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/ \/
+'  SCORBIT Interface
+' To Use:
+' 1) Define a timer tmrScorbit
+' 2) Call DoInit at the end of PupInit or in Table Init if you are nto using pup with the appropriate parameters
+'     Replace 389 with your TableID from Scorbit 
+'     Replace GRWvz-MP37P from your table on OPDB - eg: https://opdb.org/machines/2103
+'		if Scorbit.DoInit(389, "PupOverlays", "1.0.0", "GRWvz-MP37P") then 
+'			tmrScorbit.Interval=2000
+'			tmrScorbit.UserValue = 0
+'			tmrScorbit.Enabled=True 
+'		End if 
+' 3) Customize helper functions below for different events if you want or make your own 
+' 4) Call 
+'		DoInit - After Pup/Screen is setup (PuPInit)
+'		StartSession - When a game starts (ResetForNewGame)
+'		StopSession - When the game is over (Table1_Exit, EndOfGame)
+'		SendUpdate - called when Score Changes (AddScore)
+'			SendUpdate(P1Score, P2Score, P3Score, P4Score, CurrentBall, CurrentPlayer, NumberPlayers)
+'			Example:  Scorbit.SendUpdate Score(0), Score(1), Score(2), Score(3), Balls, CurrentPlayer+1, PlayersPlayingGame
+'		SetGameMode - When different game events happen like starting a mode, MB etc.  (ScorbitBuildGameModes helper function shows you how)
+' 5) Drop the binaries sQRCode.exe and sToken.exe in your Pup Root so we can create session tokens and QRCodes.
+'	- Drop QRCode Images (QRCodeS.png, QRcodeB.png) in yur pup PuPOverlays if you want to use those 
+' 6) Callbacks 
+'		Scorbit_Paired   	- Called when machine is successfully paired.  Hide QRCode and play a sound 
+'		Scorbit_PlayerClaimed	- Called when player is claimed.  Hide QRCode, play a sound and display name 
+'		ScorbitClaimQR		- Call before/after plunge (swPlungerRest_Hit, swPlungerRest_UnHit)
+' 7) Other 
+'		Set Pair QR Code	- During Attract
+'			if (Scorbit.bNeedsPairing) then 
+'				PuPlayer.LabelSet pDMDFull, "ScorbitQR_a", "PuPOverlays\\QRcode.png",1,"{'mt':2,'width':32, 'height':64,'xalign':0,'yalign':0,'ypos':5,'xpos':5}"
+'				PuPlayer.LabelSet pDMDFull, "ScorbitQRIcon_a", "PuPOverlays\\QRcodeS.png",1,"{'mt':2,'width':36, 'height':85,'xalign':0,'yalign':0,'ypos':3,'xpos':3,'zback':1}"
+'			End if 
+'		Set Player Names 	- Wherever it makes sense but I do it here: (pPupdateScores)
+'		   if ScorbitActive then 
+'			if Scorbit.bSessionActive then
+'				PlayerName=Scorbit.GetName(CurrentPlayer+1)
+'				if PlayerName="" then PlayerName= "Player " & CurrentPlayer+1 
+'			End if 
+'		   End if 
+'
+'
+'>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+' TABLE CUSTOMIZATION START HERE 
+
+Sub Scorbit_Paired()								' Scorbit callback when new machine is paired 
+dbg "Scorbit PAIRED"
+	PlaySound "scorbit_login"
+	hideScorbit
+
+End Sub 
+
+Sub Scorbit_PlayerClaimed(PlayerNum, PlayerName)	' Scorbit callback when QR Is Claimed 
+dbg "Scorbit LOGIN"
+	PlaySound "scorbit_login"
+	ScorbitClaimQR(False)
+	
+End Sub 
+
+
+Sub ScorbitClaimQR(bShow)	
+dbg "In ScorbitClaimQR: " &bShow					'  Show QRCode on first ball for users to claim this position
+	if Scorbit.bSessionActive=False then Exit Sub 
+	if ScorbitShowClaimQR=False then Exit Sub
+	if Scorbit.bNeedsPairing then exit sub 
+
+	pupevent 401
+
+	if bShow and CurrBall=1 and bGameInPlay and Scorbit.GetName(CurrentPlayer+1)="" then 
+		'PuPlayer.LabelSet pBackglass, "ScorbitQRIcon2", "PuPOverlays\\QRcodeB.png",1,"{'mt':2,'width':25, 'height':50,'xalign':0,'yalign':0,'ypos':3,'xpos':3,'zback':1}"
+		PuPlayer.LabelSet pBackglass, "ScorbitQR2", "PuPOverlays\\QRclaim.png",1,"{'mt':2,'width':19.61, 'height':36,'xalign':0,'yalign':0,'ypos':32,'xpos':74.6}"
+		'pbackglasslabelshow "ScorbitQR2"
+	Else 
+		dbg "Hiding QR claim"
+		hideScorbit
+		'PuPlayer.LabelSet pBackglass, "ScorbitQR2", "PuPOverlays\\clear.png",0,""
+		'pupevent 800
+	End if 
+End Sub 
+
+Sub StopScorbit
+	Scorbit.StopSession Score(0), Score(1), Score(2), Score(3), PlayersPlayingGame   ' Stop updateing scores
+End Sub
+
+Sub ScorbitBuildGameModes(MysMode)		' Custom function to build the game modes for better stats 
+	dim GameModeStr
+	if Scorbit.bSessionActive=False then Exit Sub 
+	GameModeStr="NA:"
+
+	if BallsRemaining(CurrentPlayer) <= 0 Then	'no balls left
+		GameModeStr="NA{red}:YOU FAILED!!!"
+	Else										'game on
+		Select Case MysMode
+			Case "VIK VAUGHN":
+				GameModeStr="NA{purple}:VIK VAUGHN Completed"
+			Case "GEEDORAH":
+				GameModeStr="NA{green}:GEEDORAH Completed"
+			Case "MAD VILLAIN":
+				GameModeStr="NA{red}:MAD VILLAIN Completed"
+			Case "ZEV LOVE X":
+				GameModeStr="NA{orange}:ZEV LOVE X Completed"
+			Case "DANGER DOOM":
+				GameModeStr="NA{green}:DANGER DOOM Completed"
+			Case "JJ DOOM":
+				GameModeStr="NA{purple}:JJ DOOM Completed"
+			Case "NEHRUVIAN":
+				GameModeStr="NA{yellow}:NEHRUVIAN Completed"
+		End Select
+
+
+	End If ' endif balls remaining
+	Scorbit.SetGameMode(GameModeStr)
+
+End Sub 
+
+
+
+
+
+
+' END ----------
+
+Sub Scorbit_LOGUpload(state)	' Callback during the log creation process.  0=Creating Log, 1=Uploading Log, 2=Done 
+	Select Case state 
+		case 0:
+			dbg "CREATING LOG"
+		case 1:
+			dbg "Uploading LOG"
+		case 2:
+			dbg "LOG Complete"
+	End Select 
+End Sub 
+'<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+' TABLE CUSTOMIZATION END HERE - NO NEED TO EDIT BELOW THIS LINE
+
+
+dim Scorbit : Set Scorbit = New ScorbitIF
+' Workaround - Call get a reference to Member Function
+Sub tmrScorbit_Timer()								' Timer to send heartbeat 
+	Scorbit.DoTimer(tmrScorbit.UserValue)
+	tmrScorbit.UserValue=tmrScorbit.UserValue+1
+	if tmrScorbit.UserValue>5 then tmrScorbit.UserValue=0
+End Sub 
+Function ScorbitIF_Callback()
+	Scorbit.Callback()
+End Function 
+Class ScorbitIF
+
+	Public bSessionActive
+	Public bNeedsPairing
+	Private bUploadLog
+	Private bActive
+	Private LOGFILE(10000000)
+	Private LogIdx
+
+	Private bProduction
+
+	Private TypeLib
+	Private MyMac
+	Private Serial
+	Private MyUUID
+	Private TableVersion
+
+	Private SessionUUID
+	Private SessionSeq
+	Private SessionTimeStart
+	Private bRunAsynch
+	Private bWaitResp
+	Private GameMode
+	Private GameModeOrig		' Non escaped version for log
+	Private VenueMachineID
+	Private CachedPlayerNames(4)
+	Private SaveCurrentPlayer
+
+	Public bEnabled
+	Private sToken
+	Private machineID
+	Private dirQRCode
+	Private opdbID
+	Private wsh
+
+	Private objXmlHttpMain
+	Private objXmlHttpMainAsync
+	Private fso
+	Private Domain
+
+	Public Sub Class_Initialize()
+		bActive="false"
+		bSessionActive=False
+		bEnabled=False 
+	End Sub 
+
+	Property Let UploadLog(bValue)
+		bUploadLog = bValue
+	End Property
+
+	Sub DoTimer(bInterval)	' 2 second interval
+		dim holdScores(4)
+		dim i
+		if bInterval=0 then 
+			SendHeartbeat()
+		elseif bRunAsynch And bSessionActive = True then ' Game in play (Updated for TNA to resolve stutter in CoopMode)
+			Scorbit.SendUpdate Score(1), Score(2), Score(3), Score(4), Balls, CurrentPlayer, PlayersPlayingGame
+		End if 
+	End Sub 
+
+	Function GetName(PlayerNum)	' Return Parsed Players name  
+		if PlayerNum<1 or PlayerNum>4 then 
+			GetName=""
+		else 
+			GetName=CachedPlayerNames(PlayerNum-1)
+		End if 
+	End Function 
+
+	Function DoInit(MyMachineID, Directory_PupQRCode, Version, opdb)
+		dim Nad
+		Dim EndPoint
+		Dim resultStr 
+		Dim UUIDParts 
+		Dim UUIDFile
+
+		bProduction=1
+'		bProduction=0
+		SaveCurrentPlayer=0
+		VenueMachineID=""
+		bWaitResp=False 
+		bRunAsynch=False 
+		DoInit=False 
+		opdbID=opdb
+		dirQrCode=Directory_PupQRCode
+		MachineID=MyMachineID
+		TableVersion=version
+		bNeedsPairing=False
+		if bProduction then 
+			domain = "api.scorbit.io"
+		else 
+			domain = "staging.scorbit.io"
+			domain = "scorbit-api-staging.herokuapp.com"
+		End if 
+		Set fso = CreateObject("Scripting.FileSystemObject")
+		dim objLocator:Set objLocator = CreateObject("WbemScripting.SWbemLocator")
+		Dim objService:Set objService = objLocator.ConnectServer(".", "root\cimv2")
+		Set objXmlHttpMain = CreateObject("Msxml2.ServerXMLHTTP")
+		Set objXmlHttpMainAsync = CreateObject("Microsoft.XMLHTTP")
+		objXmlHttpMain.onreadystatechange = GetRef("ScorbitIF_Callback")
+		Set wsh = CreateObject("WScript.Shell")
+
+		' Get Mac for Serial Number 
+		dim Nads: set Nads = objService.ExecQuery("Select * from Win32_NetworkAdapter where physicaladapter=true")
+		for each Nad in Nads
+			if not isnull(Nad.MACAddress) then
+				if left(Nad.MACAddress, 6)<>"00090F" then ' Skip over forticlient MAC
+dbg "Using MAC Addresses:" & Nad.MACAddress & " From Adapter:" & Nad.description   
+					MyMac=replace(Nad.MACAddress, ":", "")
+					Exit For 
+				End if 
+			End if 
+		Next
+		Serial=eval("&H" & mid(MyMac, 5))
+		if Serial<0 then Serial=eval("&H" & mid(MyMac, 6))		' Mac Address Overflow Special Case 
+		if MyMachineID<>2108 then 			' GOTG did it wrong but MachineID should be added to serial number also
+			Serial=Serial+MyMachineID
+		End if 
+'		Serial=123456
+		dbg "Serial:" & Serial
+
+		' Get System UUID
+		set Nads = objService.ExecQuery("SELECT * FROM Win32_ComputerSystemProduct")
+		for each Nad in Nads
+			dbg "Using UUID:" & Nad.UUID   
+			MyUUID=Nad.UUID
+			Exit For 
+		Next
+
+		if MyUUID="" then 
+			MsgBox "SCORBIT - Can get UUID, Disabling."
+			Exit Function
+		elseif MyUUID="03000200-0400-0500-0006-000700080009" or ScorbitAlternateUUID then
+			If fso.FolderExists(UserDirectory) then 
+				If fso.FileExists(UserDirectory & "ScorbitUUID.dat") then
+					Set UUIDFile = fso.OpenTextFile(UserDirectory & "ScorbitUUID.dat",1)
+					MyUUID = UUIDFile.ReadLine()
+					UUIDFile.Close
+					Set UUIDFile = Nothing
+				Else 
+					MyUUID=GUID()
+					Set UUIDFile=fso.CreateTextFile(UserDirectory & "ScorbitUUID.dat",True)
+					UUIDFile.WriteLine MyUUID
+					UUIDFile.Close
+					Set UUIDFile=Nothing
+				End if
+			End if 
+		End if
+
+		' Clean UUID
+		UUIDParts=split(MyUUID, "-")
+		MyUUID=LCASE(Hex(eval("&h" & UUIDParts(0))+MyMachineID) & UUIDParts(1) &  UUIDParts(2) &  UUIDParts(3) & UUIDParts(4))		 ' Add MachineID to UUID
+		MyUUID=LPad(MyUUID, 32, "0")
+'		MyUUID=Replace(MyUUID, "-",  "")
+		dbg "MyUUID:" & MyUUID 
+
+
+		' Authenticate and get our token 
+		if getStoken() then 
+			bEnabled=True 
+'			SendHeartbeat
+			DoInit=True
+		End if 
+	End Function 
+
+	Sub Callback()
+		Dim ResponseStr
+		Dim i 
+		Dim Parts
+		Dim Parts2
+		Dim Parts3
+		if bEnabled=False then Exit Sub 
+
+		if bWaitResp and objXmlHttpMain.readystate=4 then 
+'			dbg "CALLBACK: " & objXmlHttpMain.Status & " " & objXmlHttpMain.readystate
+			if objXmlHttpMain.Status=200 and objXmlHttpMain.readystate = 4 then 
+				ResponseStr=objXmlHttpMain.responseText
+				'dbg "RESPONSE: " & ResponseStr
+
+				' Parse Name 
+				If bSessionActive = True Then
+					if CachedPlayerNames(SaveCurrentPlayer-1)="" then  ' Player doesnt have a name
+						if instr(1, ResponseStr, "cached_display_name") <> 0 Then	' There are names in the result
+							Parts=Split(ResponseStr,",{")							' split it 
+							if ubound(Parts)>=SaveCurrentPlayer-1 then 				' Make sure they are enough avail
+								if instr(1, Parts(SaveCurrentPlayer-1), "cached_display_name")<>0 then 	' See if mine has a name 
+									CachedPlayerNames(SaveCurrentPlayer-1)=GetJSONValue(Parts(SaveCurrentPlayer-1), "cached_display_name")		' Get my name
+									CachedPlayerNames(SaveCurrentPlayer-1)=Replace(CachedPlayerNames(SaveCurrentPlayer-1), """", "")
+									Scorbit_PlayerClaimed SaveCurrentPlayer, CachedPlayerNames(SaveCurrentPlayer-1)
+	'								dbg "Player Claim:" & SaveCurrentPlayer & " " & CachedPlayerNames(SaveCurrentPlayer-1)
+								End if 
+							End if
+						End if 
+					else												    ' Check for unclaim 
+						if instr(1, ResponseStr, """player"":null")<>0 Then	' Someone doesnt have a name
+							Parts=Split(ResponseStr,"[")						' split it 
+	'dbg "Parts:" & Parts(1)
+							Parts2=Split(Parts(1),"}")							' split it 
+							for i = 0 to Ubound(Parts2)
+	'dbg "Parts2:" & Parts2(i)
+								if instr(1, Parts2(i), """player"":null")<>0 Then
+									CachedPlayerNames(i)=""
+								End if 
+							Next 
+						End if 
+					End if
+				End If
+
+				'Check heartbeat
+				HandleHeartbeatResp ResponseStr
+			End if 
+			bWaitResp=False
+		End if 
+	End Sub
+
+	Public Sub StartSession()
+		if bEnabled=False then Exit Sub 
+		dbg "Scorbit Start Session" 
+		CachedPlayerNames(0)=""
+		CachedPlayerNames(1)=""
+		CachedPlayerNames(2)=""
+		CachedPlayerNames(3)=""
+		bRunAsynch=True 
+		bActive="true"
+		bSessionActive=True
+		SessionSeq=0
+		SessionUUID=GUID()
+		SessionTimeStart=GameTime
+		LogIdx=0
+		SendUpdate 0, 0, 0, 0, 1, 1, 1
+	End Sub
+
+	' Custom method for TNA to work around coop mode stuttering
+	Public Sub ForceAsynch(enabled)
+		if bEnabled=False then Exit Sub
+		if bSessionActive=True then Exit Sub 'Sessions should always control asynch when active
+		bRunAsynch=enabled
+	End Sub
+
+	Public Sub StopSession(P1Score, P2Score, P3Score, P4Score, NumberPlayers)
+		StopSession2 P1Score, P2Score, P3Score, P4Score, NumberPlayers, False
+	End Sub 
+
+	Public Sub StopSession2(P1Score, P2Score, P3Score, P4Score, NumberPlayers, bCancel)
+		Dim i
+		dim objFile
+		if bEnabled=False then Exit Sub 
+		bRunAsynch=False 'Asynch might have been forced on in TNA to prevent coop mode stutter
+		if bSessionActive=False then Exit Sub 
+dbg "Scorbit Stop Session" 
+
+		bActive="false" 
+		SendUpdate P1Score, P2Score, P3Score, P4Score, -1, -1, NumberPlayers
+		bSessionActive=False
+'		SendHeartbeat
+
+		if bUploadLog and LogIdx<>0 and bCancel=False then 
+			dbg "Creating Scorbit Log: Size" & LogIdx
+			Scorbit_LOGUpload(0)
+			Set objFile = fso.CreateTextFile(puplayer.getroot&"\" & cGameName & "\sGameLog.csv")
+			For i = 0 to LogIdx-1 
+				objFile.Writeline LOGFILE(i)
+			Next 
+			objFile.Close
+			LogIdx=0
+			Scorbit_LOGUpload(1)
+			pvPostFile "https://" & domain & "/api/session_log/", puplayer.getroot&"\" & cGameName & "\sGameLog.csv", False
+			Scorbit_LOGUpload(2)
+			on error resume next
+			fso.DeleteFile(puplayer.getroot&"\" & cGameName & "\sGameLog.csv")
+			on error goto 0
+		End if 
+
+	End Sub 
+
+	Public Sub SetGameMode(GameModeStr)
+		GameModeOrig=GameModeStr
+		GameMode=GameModeStr
+		GameMode=Replace(GameMode, ":", "%3a")
+		GameMode=Replace(GameMode, ";", "%3b")
+		GameMode=Replace(GameMode, " ", "%20")
+		GameMode=Replace(GameMode, "{", "%7B")
+		GameMode=Replace(GameMode, "}", "%7D")
+	End sub 
+
+	Public Sub SendUpdate(P1Score, P2Score, P3Score, P4Score, CurrentBall, nPlayer, NumberPlayers)
+		SendUpdateAsynch P1Score, P2Score, P3Score, P4Score, CurrentBall, nPlayer, NumberPlayers, bRunAsynch
+	End Sub 
+
+	Public Sub SendUpdateAsynch(P1Score, P2Score, P3Score, P4Score, CurrentBall, nPlayer, NumberPlayers, bAsynch)
+		dim i
+		Dim PostData
+		Dim resultStr
+		dim LogScores(4)
+
+		if bUploadLog then 
+			if NumberPlayers>=1 then LogScores(0)=P1Score
+			if NumberPlayers>=2 then LogScores(1)=P2Score
+			if NumberPlayers>=3 then LogScores(2)=P3Score
+			if NumberPlayers>=4 then LogScores(3)=P4Score
+			LOGFILE(LogIdx)=DateDiff("S", "1/1/1970", Now()) & "," & LogScores(0) & "," & LogScores(1) & "," & LogScores(2) & "," & LogScores(3) & ",,," &  nPlayer & "," & CurrentBall & ",""" & GameModeOrig & """"
+			LogIdx=LogIdx+1
+		End if
+
+		if bSessionActive=False then Exit Sub 
+		if bEnabled=False then Exit Sub 
+		if bWaitResp then exit sub ' Drop message until we get our next response 
+
+'		msgbox "currentplayer: " & CurrentPlayer
+		SaveCurrentPlayer=nPlayer
+		PostData = "session_uuid=" & SessionUUID & "&session_time=" & GameTime-SessionTimeStart+1 & _
+					"&session_sequence=" & SessionSeq & "&active=" & bActive
+
+		SessionSeq=SessionSeq+1
+		if NumberPlayers > 0 then 
+			for i = 0 to NumberPlayers-1
+				PostData = PostData & "&current_p" & i+1 & "_score="
+				if i <= NumberPlayers-1 then 
+					if i = 0 then PostData = PostData & P1Score
+					if i = 1 then PostData = PostData & P2Score
+					if i = 2 then PostData = PostData & P3Score
+					if i = 3 then PostData = PostData & P4Score
+				else 
+					PostData = PostData & "-1"
+				End if 
+			Next 
+
+			PostData = PostData & "&current_ball=" & CurrentBall & "&current_player=" & nPlayer
+			if GameMode<>"" then PostData=PostData & "&game_modes=" & GameMode
+		End if 
+		resultStr = PostMsg("https://" & domain, "/api/entry/", PostData, bAsynch)
+		'if resultStr<>"" then dbg "SendUpdate Resp:" & resultStr    			'rtp12
+	End Sub 
+
+' PRIVATE BELOW 
+	Private Function LPad(StringToPad, Length, CharacterToPad)
+	  Dim x : x = 0
+	  If Length > Len(StringToPad) Then x = Length - len(StringToPad)
+	  LPad = String(x, CharacterToPad) & StringToPad
+	End Function
+
+	Private Function GUID()		
+		Dim TypeLib
+		Set TypeLib = CreateObject("Scriptlet.TypeLib")
+		GUID = Mid(TypeLib.Guid, 2, 36)
+	End Function
+
+	Private Function GetJSONValue(JSONStr, key)
+		dim i 
+		Dim tmpStrs,tmpStrs2
+		if Instr(1, JSONStr, key)<>0 then 
+			tmpStrs=split(JSONStr,",")
+			for i = 0 to ubound(tmpStrs)
+				if instr(1, tmpStrs(i), key)<>0 then 
+					tmpStrs2=split(tmpStrs(i),":")
+					GetJSONValue=tmpStrs2(1)
+					exit for
+				End if 
+			Next 
+		End if 
+	End Function
+
+	Private Sub SendHeartbeat()
+		Dim resultStr
+		if bEnabled=False then Exit Sub 
+		resultStr = GetMsgHdr("https://" & domain, "/api/heartbeat/", "Authorization", "SToken " & sToken)
+		
+		'Customized for TNA
+		If bRunAsynch = False Then 
+			dbg "Heartbeat Resp:" & resultStr
+			HandleHeartbeatResp ResultStr
+		End If
+	End Sub 
+
+	'TNA custom method
+	Private Sub HandleHeartbeatResp(resultStr)
+		dim TmpStr
+		Dim Command
+		Dim rc
+		'Dim QRFile:QRFile=puplayer.getroot&"\" & cGameName & "\" & dirQrCode
+		Dim QRFile:QRFile=puplayer.getroot & cGameName & "\" & dirQrCode
+'dbg "QRFile: " &QRFile
+		If VenueMachineID="" then
+			If resultStr<>"" And Not InStr(resultStr, """machine_id"":" & machineID)=0 Then 'We Paired
+				bNeedsPairing=False
+				dbg "Scorbit: Paired"
+				Scorbit_Paired()
+			ElseIf resultStr<>"" And Not InStr(resultStr, """unpaired"":true")=0 Then 'We Did not Pair
+				dbg "Scorbit: NOT Paired"
+				bNeedsPairing=True
+			Else
+				' Error (or not a heartbeat); do nothing
+			End If
+
+			TmpStr=GetJSONValue(resultStr, "venuemachine_id")
+			if TmpStr<>"" then 
+				VenueMachineID=TmpStr
+'dbg "VenueMachineID=" & VenueMachineID			
+				'Command = """" & puplayer.getroot&"\" & cGameName & "\sQRCode.exe"" " & VenueMachineID & " " & opdbID & " """ & QRFile & """"
+				Command = """" & puplayer.getroot & cGameName & "\sQRCode.exe"" " & VenueMachineID & " " & opdbID & " """ & QRFile & """"
+				rc = wsh.Run(Command, 0, False)
+			End if 
+		End if
+	End Sub
+
+	Private Function getStoken()
+		Dim result
+		Dim results
+'		dim wsh
+		Dim tmpUUID:tmpUUID="adc12b19a3504453a7414e722f58736b"
+		Dim tmpVendor:tmpVendor="vscorbitron"
+		Dim tmpSerial:tmpSerial="999990104"
+		'Dim QRFile:QRFile=puplayer.getroot&"\" & cGameName & "\" & dirQrCode
+		Dim QRFile:QRFile=puplayer.getroot & cGameName & "\" & dirQrCode
+		'Dim sTokenFile:sTokenFile=puplayer.getroot&"\" & cGameName & "\sToken.dat"
+		Dim sTokenFile:sTokenFile=puplayer.getroot & cGameName & "\sToken.dat"
+
+		' Set everything up
+		tmpUUID=MyUUID
+		tmpVendor="vpin"
+		tmpSerial=Serial
+		
+		on error resume next
+		fso.DeleteFile(sTokenFile)
+		On error goto 0 
+
+		' get sToken and generate QRCode
+'		Set wsh = CreateObject("WScript.Shell")
+		Dim waitOnReturn: waitOnReturn = True
+		Dim windowStyle: windowStyle = 0
+		Dim Command 
+		Dim rc
+		Dim objFileToRead
+
+		'Command = """" & puplayer.getroot&"\" & cGameName & "\sToken.exe"" " & tmpUUID & " " & tmpVendor & " " &  tmpSerial & " " & MachineID & " """ & QRFile & """ """ & sTokenFile & """ " & domain
+		Command = """" & puplayer.getroot & cGameName & "\sToken.exe"" " & tmpUUID & " " & tmpVendor & " " &  tmpSerial & " " & MachineID & " """ & QRFile & """ """ & sTokenFile & """ " & domain
+dbg "RUNNING Command:" & Command
+		rc = wsh.Run(Command, windowStyle, waitOnReturn)
+dbg "Return:" & rc
+		if FileExists(puplayer.getroot&"\" & cGameName & "\sToken.dat") and rc=0 then
+			Set objFileToRead = fso.OpenTextFile(puplayer.getroot&"\" & cGameName & "\sToken.dat",1)
+			result = objFileToRead.ReadLine()
+			objFileToRead.Close
+			Set objFileToRead = Nothing
+
+			if Instr(1, result, "Invalid timestamp")<> 0 then 
+				MsgBox "Scorbit Timestamp Error: Please make sure the time on your system is exact"
+				getStoken=False
+			elseif Instr(1, result, ":")<>0 then 
+				results=split(result, ":")
+				sToken=results(1)
+				sToken=mid(sToken, 3, len(sToken)-4)
+dbg "Got TOKEN:" & sToken
+				getStoken=True
+			Else 
+dbg "ERROR:" & result
+				getStoken=False
+			End if 
+		else 
+dbg "ERROR No File:" & rc
+		End if 
+
+	End Function 
+
+	private Function FileExists(FilePath)
+		If fso.FileExists(FilePath) Then
+			FileExists=CBool(1)
+		Else
+			FileExists=CBool(0)
+		End If
+	End Function
+
+	Private Function GetMsg(URLBase, endpoint)
+		GetMsg = GetMsgHdr(URLBase, endpoint, "", "")
+	End Function
+
+	Private Function GetMsgHdr(URLBase, endpoint, Hdr1, Hdr1Val)
+		Dim Url
+		Url = URLBase + endpoint & "?session_active=" & bActive
+'dbg "Url:" & Url  & "  Async=" & bRunAsynch
+		objXmlHttpMain.open "GET", Url, bRunAsynch
+'		objXmlHttpMain.setRequestHeader "Content-Type", "text/xml"
+		objXmlHttpMain.setRequestHeader "Cache-Control", "no-cache"
+		if Hdr1<> "" then objXmlHttpMain.setRequestHeader Hdr1, Hdr1Val
+
+'		on error resume next
+			err.clear
+			objXmlHttpMain.send ""
+			if err.number=-2147012867 then 
+				MsgBox "Multiplayer Server is down (" & err.number & ") " & Err.Description
+				bEnabled=False
+			elseif err.number <> 0 then 
+				dbg "Server error: (" & err.number & ") " & Err.Description
+			End if 
+			if bRunAsynch=False then 
+dbg "Status: " & objXmlHttpMain.status
+				If objXmlHttpMain.status = 200 Then
+					GetMsgHdr = objXmlHttpMain.responseText
+				Else 
+					GetMsgHdr=""
+				End if 
+			Else 
+				bWaitResp=True
+				GetMsgHdr=""
+			End if 
+'		On error goto 0
+
+	End Function
+
+	Private Function PostMsg(URLBase, endpoint, PostData, bAsynch)
+		Dim Url
+
+		Url = URLBase + endpoint
+'dbg "PostMSg:" & Url & " " & PostData			'rtp12
+
+		objXmlHttpMain.open "POST",Url, bAsynch
+		objXmlHttpMain.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+		objXmlHttpMain.setRequestHeader "Content-Length", Len(PostData)
+		objXmlHttpMain.setRequestHeader "Cache-Control", "no-cache"
+		objXmlHttpMain.setRequestHeader "Authorization", "SToken " & sToken
+		if bAsynch then bWaitResp=True 
+
+		on error resume next
+			objXmlHttpMain.send PostData
+			if err.number=-2147012867 then 
+				MsgBox "Multiplayer Server is down (" & err.number & ") " & Err.Description
+				bEnabled=False
+			elseif err.number <> 0 then 
+				'dbg "Multiplayer Server error (" & err.number & ") " & Err.Description
+			End if 
+			If objXmlHttpMain.status = 200 Then
+				PostMsg = objXmlHttpMain.responseText
+			else 
+				PostMsg="ERROR: " & objXmlHttpMain.status & " >" & objXmlHttpMain.responseText & "<"
+			End if 
+		On error goto 0
+	End Function
+
+	Private Function pvPostFile(sUrl, sFileName, bAsync)
+'dbg "Posting File " & sUrl & " " & sFileName & " " & bAsync & " File:" & Mid(sFileName, InStrRev(sFileName, "\") + 1)
+		Dim STR_BOUNDARY:STR_BOUNDARY  = GUID()
+		Dim nFile  
+		Dim baBuffer()
+		Dim sPostData
+		Dim Response
+
+		'--- read file
+		Set nFile = fso.GetFile(sFileName)
+		With nFile.OpenAsTextStream()
+			sPostData = .Read(nFile.Size)
+			.Close
+		End With
+
+
+		'--- prepare body
+		sPostData = "--" & STR_BOUNDARY & vbCrLf & _
+			"Content-Disposition: form-data; name=""uuid""" & vbCrLf & vbCrLf & _
+			SessionUUID & vbcrlf & _
+			"--" & STR_BOUNDARY & vbCrLf & _
+			"Content-Disposition: form-data; name=""log_file""; filename=""" & SessionUUID & ".csv""" & vbCrLf & _
+			"Content-Type: application/octet-stream" & vbCrLf & vbCrLf & _
+			sPostData & vbCrLf & _
+			"--" & STR_BOUNDARY & "--"
+
+
+		'--- post
+		With objXmlHttpMain
+			.Open "POST", sUrl, bAsync
+			.SetRequestHeader "Content-Type", "multipart/form-data; boundary=" & STR_BOUNDARY
+			.SetRequestHeader "Authorization", "SToken " & sToken
+			.Send sPostData ' pvToByteArray(sPostData)
+			If Not bAsync Then
+				Response= .ResponseText
+				pvPostFile = Response
+dbg "Upload Response: " & Response
+			End If
+		End With
+
+	End Function
+
+	Private Function pvToByteArray(sText)
+		pvToByteArray = StrConv(sText, 128)		' vbFromUnicode
+	End Function
+
+End Class 
+'  END SCORBIT 
+'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 

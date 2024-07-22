@@ -1,0 +1,12 @@
+{
+  "Timer": {
+    "center": {
+      "x": -335.85184,
+      "y": 1855.2966
+    },
+    "is_timer_enabled": false,
+    "timer_interval": 300,
+    "name": "autoplungerdelay",
+    "backglass": false
+  }
+}

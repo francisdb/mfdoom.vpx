@@ -1394,14 +1394,16 @@
     "items": [
       "PinCab_Backglass",
       "PinCab_Backbox",
-      "PinCab_Buttons",
       "PinCab_Cabinet",
       "PinCab_Metals",
       "PinCab_Bottom",
       "PinCab_Housing",
       "PinCab_Shooter",
       "dank12",
-      "dank13"
+      "dank13",
+      "Pincab_Button_Left",
+      "Pincab_Button_Right",
+      "Pincab_Button_rings"
     ],
     "fire_events": false,
     "stop_single_events": false,

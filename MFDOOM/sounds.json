@@ -1536,7 +1536,7 @@
     "fade": 0,
     "volume": 0,
     "balance": 0,
-    "output_target": "table"
+    "output_target": "backglass"
   },
   {
     "name": "Apron_Bounce_2",
@@ -5776,5 +5776,194 @@
     "volume": 0,
     "balance": 0,
     "output_target": "backglass"
+  },
+  {
+    "name": "Drop_Target_Down_1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Down_1.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Down_2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Down_2.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Down_3",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Down_3.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Down_4",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Down_4.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Down_5",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Down_5.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Down_6",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Down_6.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Reset_1",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Reset_1.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Reset_2",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Reset_2.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Reset_3",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Reset_3.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Reset_4",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Reset_4.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Reset_5",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Reset_5.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Drop_Target_Reset_6",
+    "path": "C:\\Users\\Robbr\\Desktop\\Fleep Sounds\\Drop Targets\\Drop_Target_Reset_6.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "scorbit_detected_2",
+    "path": "C:\\Users\\Robbr\\Desktop\\ScorbitImportFiles\\scorbit_detected_2.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "scorbit_detected_2b",
+    "path": "C:\\Users\\Robbr\\Desktop\\ScorbitImportFiles\\scorbit_detected_2b.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "scorbit_login",
+    "path": "C:\\Users\\Robbr\\Desktop\\ScorbitImportFiles\\scorbit_login.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "backglass"
+  },
+  {
+    "name": "Flipper_ReFlip_L01",
+    "path": "C:\\Users\\dan\\OneDrive\\Documents\\Dan\\Pinball\\Fleep\\Fleep Sounds\\Flipper_ReFlip_L01.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_ReFlip_L02",
+    "path": "C:\\Users\\dan\\OneDrive\\Documents\\Dan\\Pinball\\Fleep\\Fleep Sounds\\Flipper_ReFlip_L02.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_ReFlip_L03",
+    "path": "C:\\Users\\dan\\OneDrive\\Documents\\Dan\\Pinball\\Fleep\\Fleep Sounds\\Flipper_ReFlip_L03.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_ReFlip_R01",
+    "path": "C:\\Users\\dan\\OneDrive\\Documents\\Dan\\Pinball\\Fleep\\Fleep Sounds\\Flipper_ReFlip_R01.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_ReFlip_R02",
+    "path": "C:\\Users\\dan\\OneDrive\\Documents\\Dan\\Pinball\\Fleep\\Fleep Sounds\\Flipper_ReFlip_R02.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
+  },
+  {
+    "name": "Flipper_ReFlip_R03",
+    "path": "C:\\Users\\dan\\OneDrive\\Documents\\Dan\\Pinball\\Fleep\\Fleep Sounds\\Flipper_ReFlip_R03.wav",
+    "internal_name": "",
+    "fade": 0,
+    "volume": 0,
+    "balance": 0,
+    "output_target": "table"
   }
 ]

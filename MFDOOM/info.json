@@ -5,11 +5,11 @@
   "table_rules": null,
   "author_email": null,
   "release_date": null,
-  "table_save_rev": "595",
+  "table_save_rev": "667",
   "table_version": "1.0",
   "author_website": null,
-  "table_save_date": "Tue Jul  9 13:32:16 2024",
-  "table_description": null,
+  "table_save_date": "Sun Jul 21 15:03:31 2024",
+  "table_description": "# MF DOOM\r\n  * GoIll773 - Original Table Design, Coding and Artwork\r\n  * MerlinRTP - Pup conversion from Orbital to PupDMD/PupEvents, Audio conversion, highscore system, variety of table code, audio and video bug fixes\r\n  * Iaakki - Reworking of inserts, variety of fixes to GI, Slings, callout volume option\r\n  * Oqqsan - FlexDMD Assistance\r\n  * RobbyKingPin - Updated nFozzy/Rothbauerw physics and Fleep sounds, Rothbauerw Targets, VR Hybrid codes\r\n  * Kemurro - Artwork for pup overlays, Cabinet art and backgrounds\r\n  * Somatik - Linux standalone proofing/testing\r\n  * JoePicaso - Artwork for additional overlays\r\n  * Shaggysrsg  Brought table to VPW help shop so that the game could be completed \r\n  * DGrimmReaper - VR flipper animations\r\n  * Apophis - Autoplunger bug fix, VR tweaking\r\n  * Testers - Passion4pins, Studlygooright, PinStratsDan\r\n",
   "properties": {},
   "properties_order": []
 }
